@@ -1,29 +1,31 @@
-import React, { createContext, useState } from "react";
+/* eslint-disable react/jsx-no-constructed-context-values */
+import React, { createContext, useState } from "react"
+import PropTypes from "prop-types"
 
-export const AppContext = createContext();
+export const AppContext = createContext()
 
-const AppContextProvider = (props) => {
-  const [categories, setCategories] = useState([]);
-  const [categorySelected, setCategorySelected] = useState();
-  const [categoryId, setcategoryId] = useState(null); //temporal to be improved
-  const [cards, setCards] = useState([]);
+function AppContextProvider({ children }) {
+   const [categories, setCategories] = useState([1, 2])
+   const [categorySelected, setCategorySelected] = useState()
+   const [categoryId, setCategoryId] = useState(null) //temporal to be improved
+   const [cards, setCards] = useState([])
 
-  return (
-    <AppContext.Provider
-      value={{
-        categories,
-        setCategories,
-        categorySelected,
-        setCategorySelected,
-        categoryId,
-        setcategoryId,
-        cards,
-        setCards,
-      }}
-    >
-      {props.children}
-    </AppContext.Provider>
-  );
-};
+   const store = {
+      categories,
+      setCategories,
+      categorySelected,
+      setCategorySelected,
+      categoryId,
+      setCategoryId,
+      cards,
+      setCards,
+   }
 
-export default AppContextProvider;
+   return <AppContext.Provider value={store}>{children}</AppContext.Provider>
+}
+
+AppContextProvider.propTypes = {
+   children: PropTypes.element,
+}
+
+export default AppContextProvider

@@ -1,29 +1,24 @@
-import { useState, useEffect, useContext } from "react";
-import Navbar from "./components/navbar";
-import Button from "./components/button";
-import Collapse from "./components/collapse";
-import Modal from "./components/modal";
-import { getCollectionList } from "./services";
-import AppContextProvider, { AppContext } from "./context";
-import CategorySelector from "./components/categorySelector";
-import CardsContainer from "./components/cardsContainer";
+import Navbar from "./components/navbar"
+import Collapse from "./components/collapse"
+import Modal from "./components/modal"
+import AppContextProvider from "./context"
+import CategorySelector from "./components/categorySelector"
+import CardsContainer from "./components/cardsContainer"
 
 function App() {
- 
-
-  return (
-    <AppContextProvider>
-      <div className="App">
-        <Navbar></Navbar>
-        <main className="container">
-          <Collapse></Collapse>
-          <CategorySelector></CategorySelector>
-          <CardsContainer></CardsContainer>
-          <Modal></Modal>
-        </main>
-      </div>
-    </AppContextProvider>
-  );
+   return (
+      <AppContextProvider>
+         <div className="App">
+            <Navbar />
+            <main className="container">
+               <Collapse />
+               <CategorySelector />
+               <CardsContainer />
+               <Modal />
+            </main>
+         </div>
+      </AppContextProvider>
+   )
 }
 
-export default App;
+export default App

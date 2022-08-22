@@ -1,0 +1,39 @@
+{
+   "env": {
+      "browser": true,
+      "es2021": true
+   },
+   "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:react/all",
+      "prettier"
+   ],
+   "overrides": [],
+   "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+   },
+   "plugins": ["react", "unused-imports"],
+   "rules": {
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-max-depth": 0,
+      "react/jsx-no-bind": "off",
+      "react/button-has-type": "off",
+      "react/jsx-no-literals": "off",
+      "react/function-component-definition": "off",
+      "react/require-default-props": "off", //to be changed to error
+      "react/no-array-index-key": "off",
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+         "warn",
+         {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+         }
+      ]
+   }
+}
