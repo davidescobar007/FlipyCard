@@ -1,13 +1,13 @@
 import React, { useState } from "react"
-import ReactCardFlip from "react-card-flip"
 import PropTypes from "prop-types"
+import CardFlipper from "../features/flipCard"
 
 const Card = ({ section, frontReference, backReference }) => {
    const [flip, setFlip] = useState(false)
 
    return (
       <div className="col-11 col-md-6">
-         <ReactCardFlip flipDirection="horizontal" isFlipped={flip}>
+         <CardFlipper flipDirection="horizontal" isFlipped={flip}>
             <div className="card shadow">
                <div className="card-header">{section}</div>
                <div className="card-body text-center">
@@ -41,7 +41,7 @@ const Card = ({ section, frontReference, backReference }) => {
                   </button>
                </div>
             </div>
-         </ReactCardFlip>
+         </CardFlipper>
       </div>
    )
 }

@@ -31,7 +31,6 @@ export const getCategories = (dispatch, payload) => {
 export const getCardsByCategories = (dispatch, collection, field, criteria) => {
    try {
       getDataByQuery(collection, field, criteria).then((cardsArray) => {
-         console.log(cardsArray)
          dispatch(actionsHandler.card.setCards(cardsArray))
          setRandomCard(dispatch, cardsArray)
       })
