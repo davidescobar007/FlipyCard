@@ -1,41 +1,13 @@
-import React, { useContext, useEffect, useState } from "react"
-import { AppContext } from "../context"
-import { getDataByQuery } from "../services"
-import { getRandomFromArray } from "../utils/indes"
+import React, { useContext } from "react"
 import Card from "./card"
+import { StoreContext } from "../context/global.state"
 
 function CardsContainer() {
-   const [randomCard, setRandomCard] = useState()
-   const { cards, setCards, categorySelected } = useContext(AppContext)
-
-   const selectCategory = (item) => {
-      getDataByQuery("cards", "category", item).then((data) => {
-         console.log(data)
-         handleRandomCard(data)
-         setCards(data)
-      })
-   }
-
-   const handleNextCard = (cardToBeDeleted) => {
-      let cardsFiltered = cards.filter(
-         (item) => item.frontReference !== cardToBeDeleted.frontReference,
-      )
-      setCards(cardsFiltered)
-      handleRandomCard(cardsFiltered)
-   }
-
-   const handleRandomCard = (cardList) => {
-      const { random } = getRandomFromArray(cardList)
-      setRandomCard(random)
-   }
-
-   useEffect(() => {
-      console.log("cardContainer")
-   }, [])
-
-   useEffect(() => {
-      selectCategory(categorySelected)
-   }, [categorySelected])
+   const {
+      state: { cards, categorySelected, randomCard },
+      nextRandomCard,
+      getCardsListByCategories
+   } = useContext(StoreContext)
 
    return (
       <div>
@@ -55,8 +27,8 @@ function CardsContainer() {
                   className="btn btn-outline-primary"
                   onClick={() => {
                      cards.length
-                        ? handleNextCard(randomCard)
-                        : selectCategory(categorySelected)
+                        ? nextRandomCard(randomCard)
+                        : getCardsListByCategories(categorySelected)
                   }}
                >
                   {cards.length ? "Next Card" : "Click me to flip again"}

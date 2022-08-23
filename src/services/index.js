@@ -7,7 +7,7 @@ import {
    doc,
    updateDoc,
    query,
-   where,
+   where
 } from "firebase/firestore/lite"
 import { v4 as uuidv4 } from "uuid"
 
@@ -19,7 +19,7 @@ export const getCollectionList = async (collectionParam) => {
    const collectionList = collectionSnapshot.docs.map((doc) => {
       return {
          data: doc.data(),
-         id: doc.id,
+         id: doc.id
       }
    })
    return collectionList

@@ -10,7 +10,7 @@ const firebaseConfig = {
    projectId: "flipycard",
    storageBucket: "flipycard.appspot.com",
    messagingSenderId: "17659616550",
-   appId: "1:17659616550:web:d883096d7afddac9a0f5e7",
+   appId: "1:17659616550:web:d883096d7afddac9a0f5e7"
 }
 
 // Initialize Firebase

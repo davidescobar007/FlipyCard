@@ -1,28 +1,31 @@
 import React, { useContext, useState } from "react"
-import { AppContext } from "../context"
+import { StoreContext } from "../context/global.state"
 import CategorySelector from "./categorySelector"
-import { setDocument } from "../services"
 
 const FormSubmit = () => {
    const [formData, setFormData] = useState(null)
-   const { categorySelected } = useContext(AppContext)
+
+   const {
+      saveNewCard,
+      state: { categorySelected }
+   } = useContext(StoreContext)
 
    const handleSubmit = async (e) => {
       e.preventDefault()
-      if (!categorySelected) {
+      if (!categorySelected.length) {
          return alert("Please select a category")
       }
-      await setDocument("cards", {
-         ...formData,
-         ...{ category: categorySelected, timesSeen: 0, userId: "" },
-      })
       const collapseElementList = document.querySelectorAll(".collapse")
       // eslint-disable-next-line unused-imports/no-unused-vars, no-unused-vars
       const collapseList = [...collapseElementList].map(
          // eslint-disable-next-line no-undef
-         (collapseEl) => new bootstrap.Collapse(collapseEl),
+         (collapseEl) => new bootstrap.Collapse(collapseEl)
       )
-      setFormData({ ...formData, frontReference: "", backReference: "" })
+      setFormData(null)
+      saveNewCard({
+         ...formData,
+         ...{ category: categorySelected, timesSeen: 0, userId: "" }
+      })
    }
 
    return (
@@ -40,7 +43,7 @@ const FormSubmit = () => {
                   onChange={(e) =>
                      setFormData({
                         ...formData,
-                        frontReference: e.target.value,
+                        frontReference: e.target.value
                      })
                   }
                   placeholder="Type your reference"

@@ -1,32 +1,20 @@
 import React, { useContext, useEffect } from "react"
 import Button from "./button"
-import { AppContext } from "../context"
-import { getCollectionList, getDataByQuery } from "../services"
+import { StoreContext } from "../context/global.state"
 
 const CategorySelector = () => {
    const {
-      setCards,
-      categories,
-      setCategories,
-      categorySelected,
-      setCategorySelected,
-      setCategoryId,
-   } = useContext(AppContext)
+      getCategoryList,
+      getCardsListByCategories,
+      state: { categories, categorySelected }
+   } = useContext(StoreContext)
 
-   const selectCategory = (item) => {
-      setCategorySelected(item)
-      getDataByQuery("cards", "categorySelected", item).then((data) => {
-         setCards(data)
-      })
+   const selectCategory = (category) => {
+      getCardsListByCategories(category)
    }
 
    useEffect(() => {
-      getCollectionList("categories").then((data) => {
-         const dataCleaned = data.map((item) => item.data.categoryList)
-         const id = data.map((item) => item.id)
-         setCategoryId(id[0])
-         setCategories(dataCleaned.flat().filter((item) => item !== ""))
-      })
+      getCategoryList()
    }, [])
 
    return (

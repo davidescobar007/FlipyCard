@@ -7,7 +7,7 @@ const Button = ({
    color = "primary",
    size = "",
    isModalTrigger = false,
-   onclick,
+   onclick
 }) => {
    return (
       <div>
@@ -32,7 +32,7 @@ Button.propTypes = {
    isSelected: PropTypes.bool,
    onclick: PropTypes.func,
    size: PropTypes.string,
-   text: PropTypes.string,
+   text: PropTypes.string
 }
 
 export default Button
