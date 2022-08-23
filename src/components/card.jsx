@@ -49,7 +49,7 @@ const Card = ({ section, frontReference, backReference }) => {
 Card.propTypes = {
    backReference: PropTypes.string,
    frontReference: PropTypes.string,
-   section: PropTypes.string,
+   section: PropTypes.string
 }
 
 export default Card
