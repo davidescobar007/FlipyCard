@@ -9,3 +9,13 @@ export const getRandomFromArray = (array) => {
       cleanedArray: array.filter((item, index) => index !== random)
    }
 }
+
+export const toggleItemFromArray = (array, itemToToggle) => {
+   let newArray = [...array]
+   if (newArray.includes(itemToToggle)) {
+      newArray = newArray.filter((item) => item !== itemToToggle)
+   } else {
+      newArray = [...array, itemToToggle]
+   }
+   return newArray
+}

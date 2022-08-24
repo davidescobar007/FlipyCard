@@ -21,6 +21,7 @@ const StoreProvider = ({ children }) => {
 
    const getCardsListByCategories = (categoryName) =>
       getCardsByCategories(
+         state,
          dispatch,
          constants.CARDS,
          constants.CATEGORY,

@@ -25,6 +25,17 @@ export const getCollectionList = async (collectionParam) => {
    return collectionList
 }
 
+export const getCollectionListByArray = async (
+   collectionParam,
+   field,
+   arrayParams
+) => {
+   const reference = collection(db, collectionParam)
+   const q = query(reference, where(field, "array-contains-any", arrayParams))
+   const querySnapshot = await getDocs(q)
+   return querySnapshot.docs.map((doc) => doc.data())
+}
+
 export const setDocument = async (collection, docData) =>
    await setDoc(doc(db, collection, uuidv4()), docData)
 
@@ -33,9 +44,9 @@ export const updateDocument = async (collection, id, docData) => {
 }
 
 export const getDataByQuery = async (collectionParam, field, param) => {
-   const citiesRef = collection(db, collectionParam)
+   const reference = collection(db, collectionParam)
 
-   const q = query(citiesRef, where(field, "==", param))
+   const q = query(reference, where(field, "==", param))
    const querySnapshot = await getDocs(q)
    return querySnapshot.docs.map((doc) => doc.data())
 }
