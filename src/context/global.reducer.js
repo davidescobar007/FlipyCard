@@ -25,6 +25,16 @@ const globalReducer = (state, action) => {
             ...state,
             randomCard: action.payload
          }
+      case types.UPDATE_CARDS:
+         return {
+            ...state,
+            cards: action.payload
+         }
+      case types.UPDATE_RANDOM_CARD:
+         return {
+            ...state,
+            randomCard: action.payload
+         }
       case types.SET_CATEGORIES:
          return {
             ...state,

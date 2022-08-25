@@ -19,17 +19,16 @@ const CategorySelector = () => {
 
    return (
       <section className="mb-5">
-         <Button
-            color="warning"
-            isModalTrigger
-            isSelected
-            text="Add new category. +"
-         />
+         <div>
+            <Button color="warning" isModalTrigger isSelected>
+               Add new category. +
+            </Button>
+         </div>
          {Array.isArray(categories) &&
             categories.map((item, index) => (
                <a
-                  className={`me-2 ${
-                     categorySelected === item
+                  className={`mt-3 me-2 ${
+                     categorySelected.includes(item)
                         ? "text-primary fw-bold"
                         : "text-secondary"
                   }`}

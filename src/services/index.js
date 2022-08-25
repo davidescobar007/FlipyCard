@@ -33,7 +33,12 @@ export const getCollectionListByArray = async (
    const reference = collection(db, collectionParam)
    const q = query(reference, where(field, "array-contains-any", arrayParams))
    const querySnapshot = await getDocs(q)
-   return querySnapshot.docs.map((doc) => doc.data())
+   let processedData = querySnapshot.docs.map((doc) => {
+      let data = doc.data()
+      data.id = doc.id
+      return data
+   })
+   return processedData
 }
 
 export const setDocument = async (collection, docData) =>

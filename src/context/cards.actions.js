@@ -1,6 +1,7 @@
-import { setDocument } from "../services"
+import { setDocument, updateDocument } from "../services"
 import { getRandomFromArray } from "../utils"
 import { types } from "./global.reducer"
+import { constants } from "./global.types"
 
 export const createCard = async (state, dispatch, collection, cardData) => {
    await setDocument(collection, cardData)
@@ -21,6 +22,11 @@ export const setRandomCard = (dispatch, listOfCards) => {
    dispatch(cardActions.setRandomCard(random))
 }
 
+export const updateRandomCard = (dispatch, cardData) => {
+   updateDocument(constants.CARDS, cardData.id, cardData)
+   dispatch(cardActions.setRandomCard(cardData))
+}
+
 export const cardActions = {
    createCard: (payload) => ({
       type: types.CREATE_CARD,
@@ -32,6 +38,14 @@ export const cardActions = {
    }),
    setRandomCard: (payload) => ({
       type: types.SET_RANDOM_CARD,
+      payload
+   }),
+   updateRandomCard: (payload) => ({
+      type: types.UPDATE_RANDOM_CARD,
+      payload
+   }),
+   updateCards: (payload) => ({
+      type: types.UPDATE_CARDS,
       payload
    }),
    error: () => ({

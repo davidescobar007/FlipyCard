@@ -4,7 +4,8 @@ import {
    cardActions,
    createCard,
    setNextRandomCard,
-   setRandomCard
+   setRandomCard,
+   updateRandomCard
 } from "./cards.actions"
 import {
    createCategory,
@@ -46,8 +47,9 @@ export {
    createCard,
    setNextRandomCard,
    setRandomCard,
-   actionsHandler,
+   updateRandomCard,
    createCategory,
    getCategories,
-   getCardsByCategories
+   getCardsByCategories,
+   actionsHandler
 }
