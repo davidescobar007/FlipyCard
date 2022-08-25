@@ -11,7 +11,6 @@ function CardsContainer() {
 
    return (
       <div>
-         edit
          <div className="d-flex justify-content-center">
             {categorySelected ? (
                <Card

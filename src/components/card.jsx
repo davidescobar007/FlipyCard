@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-component-props */
 import PropTypes from "prop-types"
 import React, { useContext, useState } from "react"
 import { RiDeleteBin3Fill, RiEdit2Line } from "react-icons/ri"
@@ -11,7 +10,8 @@ const Card = ({ frontReference, backReference }) => {
    const [formData, setFormData] = useState(null)
    const {
       state: { randomCard },
-      updateCard
+      updateCard,
+      deleteCurrentCard
    } = useContext(StoreContext)
 
    const handleChange = (e) => {
@@ -40,8 +40,12 @@ const Card = ({ frontReference, backReference }) => {
          >
             <RiEdit2Line />
          </div>
-         <div className="col-1" style={{ cursor: "pointer" }}>
-            <RiDeleteBin3Fill style={{ color: "red" }} />
+         <div
+            className="col-1"
+            onClick={deleteCurrentCard}
+            style={{ cursor: "pointer" }}
+         >
+            <RiDeleteBin3Fill />
          </div>
       </div>
    )
@@ -87,7 +91,10 @@ const Card = ({ frontReference, backReference }) => {
          <CardFlipper flipDirection="horizontal" isFlipped={flip}>
             <div className="card shadow">
                {cardHeader()}
-               <div className="card-body text-center">
+               <div
+                  className="card-body text-center"
+                  style={{ cursor: "pointer" }}
+               >
                   {displayForm ? (
                      cardForm(true, frontReference)
                   ) : (
@@ -100,7 +107,10 @@ const Card = ({ frontReference, backReference }) => {
 
             <div className="card shadow">
                {cardHeader()}
-               <div className="card-body text-center">
+               <div
+                  className="card-body text-center"
+                  style={{ cursor: "pointer" }}
+               >
                   {displayForm ? (
                      cardForm(false, backReference)
                   ) : (

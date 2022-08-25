@@ -7,7 +7,8 @@ import {
    doc,
    updateDoc,
    query,
-   where
+   where,
+   deleteDoc
 } from "firebase/firestore/lite"
 import { v4 as uuidv4 } from "uuid"
 
@@ -50,8 +51,11 @@ export const updateDocument = async (collection, id, docData) => {
 
 export const getDataByQuery = async (collectionParam, field, param) => {
    const reference = collection(db, collectionParam)
-
    const q = query(reference, where(field, "==", param))
    const querySnapshot = await getDocs(q)
    return querySnapshot.docs.map((doc) => doc.data())
+}
+
+export const deleteDocument = async (collectionParam, id) => {
+   await deleteDoc(doc(db, collectionParam, id))
 }

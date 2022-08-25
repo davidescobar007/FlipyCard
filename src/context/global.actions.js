@@ -5,7 +5,8 @@ import {
    createCard,
    setNextRandomCard,
    setRandomCard,
-   updateRandomCard
+   updateRandomCard,
+   deleteCard
 } from "./cards.actions"
 import {
    createCategory,
@@ -48,6 +49,7 @@ export {
    setNextRandomCard,
    setRandomCard,
    updateRandomCard,
+   deleteCard,
    createCategory,
    getCategories,
    getCardsByCategories,

@@ -8,7 +8,8 @@ import {
    getCardsByCategories,
    getCategories,
    setNextRandomCard,
-   updateRandomCard
+   updateRandomCard,
+   deleteCard
 } from "./global.actions"
 import storeReducer, { initialStore } from "./global.reducer"
 import { constants } from "./global.types"
@@ -47,15 +48,18 @@ const StoreProvider = ({ children }) => {
    const updateCard = (newDataForRandomCard) =>
       updateRandomCard(dispatch, newDataForRandomCard)
 
+   const deleteCurrentCard = () => deleteCard(state, dispatch)
+
    const store = {
       state,
+      saveNewCard,
+      updateCard,
+      nextRandomCard,
+      deleteCurrentCard,
       getCategoryList,
       getCardsListByCategories,
-      saveNewCard,
-      createNewCategory,
       setCards,
-      nextRandomCard,
-      updateCard
+      createNewCategory
    }
 
    return (
