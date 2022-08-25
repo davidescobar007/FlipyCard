@@ -12,7 +12,7 @@ function CardsContainer() {
    return (
       <div>
          <div className="d-flex justify-content-center">
-            {categorySelected ? (
+            {categorySelected && randomCard ? (
                <Card
                   backReference={randomCard?.backReference}
                   frontReference={randomCard?.frontReference}
