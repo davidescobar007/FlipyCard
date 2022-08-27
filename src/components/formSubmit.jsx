@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 import { StoreContext } from "../context/global.state"
-import CategorySelector from "./categorySelector"
+// import CategorySelector from "./categorySelector"
 
 const FormSubmit = () => {
    const [formData, setFormData] = useState(null)
@@ -29,9 +29,9 @@ const FormSubmit = () => {
    }
 
    return (
-      <div>
-         <form className="row g-3 mb-5" onSubmit={(e) => handleSubmit(e)}>
-            <CategorySelector />
+      <div className="rounded-5">
+         <form className="row g-3 mb-3" onSubmit={(e) => handleSubmit(e)}>
+            {/* <CategorySelector /> */}
             <div className="col-12 col-md-6">
                <label className="form-label" htmlFor="frontReference">
                   Front reference

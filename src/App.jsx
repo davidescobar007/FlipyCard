@@ -11,8 +11,8 @@ function App() {
          <div className="App">
             <Navbar />
             <main className="container">
-               <Collapse />
                <CategorySelector />
+               <Collapse />
                <CardsContainer />
                <Modal />
             </main>

@@ -24,7 +24,7 @@ function CardsContainer() {
          <div className="d-grid col-6 mx-auto mt-5">
             {categorySelected ? (
                <button
-                  className="btn btn-outline-primary"
+                  className="btn btn-outline-light"
                   onClick={() => {
                      cards.length
                         ? nextRandomCard(randomCard)

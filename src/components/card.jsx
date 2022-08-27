@@ -89,7 +89,7 @@ const Card = ({ frontReference, backReference }) => {
    return (
       <div className="col-11 col-md-6">
          <CardFlipper flipDirection="horizontal" isFlipped={flip}>
-            <div className="card shadow">
+            <div className="card shadow rounded-4">
                {cardHeader()}
                <div
                   className="card-body text-center"
@@ -105,7 +105,7 @@ const Card = ({ frontReference, backReference }) => {
                </div>
             </div>
 
-            <div className="card shadow">
+            <div className="card rounded-4">
                {cardHeader()}
                <div
                   className="card-body text-center"

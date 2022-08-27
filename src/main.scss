@@ -1,0 +1,55 @@
+///////////////////////////////////
+/// VARIABLES
+///////////////////////////////////
+
+$main-blue: #3f5efb;
+$main-red: #fc466b;
+$main-yellow: #f8c537;
+$main-white: #fffbfe;
+$main-black: #000000;
+
+body {
+   background: rgb(63, 94, 251);
+   background: radial-gradient(
+      circle,
+      rgba(63, 94, 251, 1) 0%,
+      rgba(252, 70, 107, 1) 100%
+   );
+   height: 100vh;
+}
+
+///////////////////////////////////
+/// CATEGORY-SELECTOR
+///////////////////////////////////
+.cardSelector-container {
+   overflow-x: auto;
+   padding: 15px 0;
+   .cardSelector-button {
+      white-space: nowrap;
+      border-radius: 20px;
+      margin: 0 7px;
+      padding: 2px 10px;
+      border: solid 2px $main-white;
+      color: $main-white;
+      background-color: transparent;
+   }
+   & :hover {
+      background-color: grey;
+   }
+   .cardSelector-button_active {
+      background-color: $main-white;
+      color: $main-black;
+      white-space: nowrap;
+      border-radius: 20px;
+      margin: 0 7px;
+      padding: 0 10px;
+      border: solid 2px $main-white;
+   }
+}
+::-webkit-scrollbar {
+   height: 10px; /* height of horizontal scrollbar ← You're missing this */
+   width: 4px; /* width of vertical scrollbar */
+}
+///////////////////////////////////
+/// END CATEGORY-SELECTOR
+///////////////////////////////////
