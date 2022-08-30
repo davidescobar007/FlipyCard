@@ -59,3 +59,18 @@ export const getDataByQuery = async (collectionParam, field, param) => {
 export const deleteDocument = async (collectionParam, id) => {
    await deleteDoc(doc(db, collectionParam, id))
 }
+
+export const dynamicSearch = async (collectionParam, queryList) => {
+   const reference = collection(db, collectionParam)
+   const queryConditions = queryList.map((condition) =>
+      where(condition.field, condition.operator, condition.value)
+   )
+   const queryToExecute = query(reference, ...queryConditions)
+   const querySnapshot = await getDocs(queryToExecute)
+   let processedData = querySnapshot.docs.map((doc) => {
+      let data = doc.data()
+      data.id = doc.id
+      return data
+   })
+   return processedData
+}

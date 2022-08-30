@@ -1,7 +1,4 @@
-import {
-   getCollectionList,
-   updateDocument
-} from "../services"
+import { getCollectionList, updateDocument } from "../services"
 import { types } from "./global.reducer"
 
 export const createCategory = async (state, dispatch, payload) => {

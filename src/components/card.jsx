@@ -71,13 +71,13 @@ const Card = ({ frontReference, backReference }) => {
                </div>
                <div className="col-12">
                   <button
-                     className="m-3 btn btn-outline-primary"
+                     className="m-3 btn btn-outline-primary btn-outline-light"
                      onClick={() => setDisplayForm(false)}
                      type="button"
                   >
                      Cancel
                   </button>
-                  <button className="m-3 btn btn-primary" type="submit">
+                  <button className="m-3 btn btn-light" type="submit">
                      Save
                   </button>
                </div>
@@ -89,32 +89,32 @@ const Card = ({ frontReference, backReference }) => {
    return (
       <div className="col-11 col-md-6">
          <CardFlipper flipDirection="horizontal" isFlipped={flip}>
-            <div className="card shadow rounded-4">
+            <div className="card_glassmorphism card shadow rounded-4">
                {cardHeader()}
-               <div
-                  className="card-body text-center"
-                  style={{ cursor: "pointer" }}
-               >
+               <div className="card-body text-center">
                   {displayForm ? (
                      cardForm(true, frontReference)
                   ) : (
-                     <div onClick={() => setFlip(!flip)}>
+                     <div
+                        onClick={() => setFlip(!flip)}
+                        style={{ cursor: "pointer" }}
+                     >
                         <p className="card-text fs-1">{frontReference}</p>
                      </div>
                   )}
                </div>
             </div>
 
-            <div className="card rounded-4">
+            <div className="card card_glassmorphism rounded-4">
                {cardHeader()}
-               <div
-                  className="card-body text-center"
-                  style={{ cursor: "pointer" }}
-               >
+               <div className="card-body text-center">
                   {displayForm ? (
                      cardForm(false, backReference)
                   ) : (
-                     <div onClick={() => setFlip(!flip)}>
+                     <div
+                        onClick={() => setFlip(!flip)}
+                        style={{ cursor: "pointer" }}
+                     >
                         <p className="card-text fs-1">{backReference}</p>
                      </div>
                   )}

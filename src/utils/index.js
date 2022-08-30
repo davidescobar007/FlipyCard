@@ -19,3 +19,23 @@ export const toggleItemFromArray = (array, itemToToggle) => {
    }
    return newArray
 }
+
+export const creteDinamicObject = (array) => {
+   let newObject = {}
+   array.map((item) => {
+      newObject[item] = true
+   })
+   return newObject
+}
+
+export const createDinamicArray = (array, operator) => {
+   let newDinamicArray = []
+   array.map((item) => {
+      newDinamicArray.push({
+         field: `category.${item}`,
+         operator: operator,
+         value: true
+      })
+   })
+   return newDinamicArray
+}

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 import { StoreContext } from "../context/global.state"
-// import CategorySelector from "./categorySelector"
+import { creteDinamicObject } from "../utils"
 
 const FormSubmit = () => {
    const [formData, setFormData] = useState(null)
@@ -15,6 +15,9 @@ const FormSubmit = () => {
       if (!categorySelected.length) {
          return alert("Please select a category")
       }
+      if (!formData?.frontReference.length || !formData?.backReference.length) {
+         return alert("Please add info to the card")
+      }
       const collapseElementList = document.querySelectorAll(".collapse")
       // eslint-disable-next-line unused-imports/no-unused-vars, no-unused-vars
       const collapseList = [...collapseElementList].map(
@@ -22,18 +25,25 @@ const FormSubmit = () => {
          (collapseEl) => new bootstrap.Collapse(collapseEl)
       )
       setFormData(null)
+
       saveNewCard({
          ...formData,
-         ...{ category: categorySelected, timesSeen: 0, userId: "" }
+         ...{
+            category: creteDinamicObject(categorySelected),
+            timesSeen: 0,
+            userId: ""
+         }
       })
    }
 
    return (
       <div className="rounded-5">
          <form className="row g-3 mb-3" onSubmit={(e) => handleSubmit(e)}>
-            {/* <CategorySelector /> */}
             <div className="col-12 col-md-6">
-               <label className="form-label" htmlFor="frontReference">
+               <label
+                  className="form-label text-light"
+                  htmlFor="frontReference"
+               >
                   Front reference
                </label>
                <input
@@ -53,7 +63,7 @@ const FormSubmit = () => {
             </div>
 
             <div className="col-12 col-md-6">
-               <label className="form-label" htmlFor="backReference">
+               <label className="form-label text-light" htmlFor="backReference">
                   Back reference (the answer)
                </label>
                <input
@@ -69,7 +79,7 @@ const FormSubmit = () => {
             </div>
 
             <div className="d-grid col-6 mx-auto">
-               <button className="btn btn-outline-primary">Create card</button>
+               <button className="btn btn-light">Create card</button>
             </div>
          </form>
       </div>

@@ -1,19 +1,20 @@
-import { getCollectionListByArray } from "../services"
-import { toggleItemFromArray } from "../utils"
+import { dynamicSearch } from "../services"
+import { createDinamicArray, toggleItemFromArray } from "../utils"
 import {
    cardActions,
    createCard,
+   deleteCard,
    setNextRandomCard,
    setRandomCard,
-   updateRandomCard,
-   deleteCard
+   updateRandomCard
 } from "./cards.actions"
 import {
+   categoryActions,
    createCategory,
-   getCategories,
-   categoryActions
+   getCategories
 } from "./category.actions"
 import { types } from "./global.reducer"
+import { queryOperators } from "./global.types"
 
 const getCardsByCategories = (state, dispatch, collection, field, category) => {
    try {
@@ -22,12 +23,13 @@ const getCardsByCategories = (state, dispatch, collection, field, category) => {
          category
       )
       categorySelected.length &&
-         getCollectionListByArray(collection, field, categorySelected).then(
-            (cardsArray) => {
-               dispatch(actionsHandler.cardActions.setCards(cardsArray))
-               setRandomCard(dispatch, cardsArray)
-            }
-         )
+         dynamicSearch(
+            collection,
+            createDinamicArray(categorySelected, queryOperators.EQUAL_TO)
+         ).then((cardsArray) => {
+            dispatch(actionsHandler.cardActions.setCards(cardsArray))
+            setRandomCard(dispatch, cardsArray)
+         })
       dispatch(
          actionsHandler.categoryActions.selectCetegories(categorySelected)
       )
