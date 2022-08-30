@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 const Button = ({
-   text = "Example",
+   children,
    isSelected,
    color = "primary",
    size = "",
@@ -10,29 +10,27 @@ const Button = ({
    onclick
 }) => {
    return (
-      <div>
-         <button
-            className={`btn ${
-               isSelected ? `btn-${color}` : `btn-${color}`
-            } ${size}`}
-            data-bs-target={`${isModalTrigger ? "#staticBackdrop" : ""}`}
-            data-bs-toggle={`${isModalTrigger ? "modal" : ""}`}
-            onClick={onclick}
-            type="button"
-         >
-            {text}
-         </button>
-      </div>
+      <button
+         className={`btn ${
+            isSelected ? `btn-${color}` : `btn-${color}`
+         } ${size}`}
+         data-bs-target={`${isModalTrigger ? "#staticBackdrop" : ""}`}
+         data-bs-toggle={`${isModalTrigger ? "modal" : ""}`}
+         onClick={onclick}
+         type=""
+      >
+         {children}
+      </button>
    )
 }
 
 Button.propTypes = {
+   children: PropTypes.node,
    color: PropTypes.string,
    isModalTrigger: PropTypes.bool,
    isSelected: PropTypes.bool,
    onclick: PropTypes.func,
-   size: PropTypes.string,
-   text: PropTypes.string
+   size: PropTypes.string
 }
 
 export default Button

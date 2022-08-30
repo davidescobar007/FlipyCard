@@ -19,28 +19,25 @@ const CategorySelector = () => {
 
    return (
       <section className="mb-5">
-         <Button
-            color="warning"
-            isModalTrigger
-            isSelected
-            text="Add new category. +"
-         />
-         {Array.isArray(categories) &&
-            categories.map((item, index) => (
-               <a
-                  className={`me-2 ${
-                     categorySelected === item
-                        ? "text-primary fw-bold"
-                        : "text-secondary"
-                  }`}
-                  href="#"
-                  key={index}
-                  onClick={() => selectCategory(item)}
-                  style={{ textDecoration: "none" }}
-               >
-                  #{item}
-               </a>
-            ))}
+         <div>
+            <Button color="warning" isModalTrigger isSelected>
+               Add new category. +
+            </Button>
+         </div>
+         <div className="d-flex cardSelector-container">
+            {Array.isArray(categories) &&
+               categories.map((item, index) => (
+                  <button
+                     className={`cardSelector-button${
+                        categorySelected.includes(item) ? "_active" : ""
+                     }`}
+                     key={index}
+                     onClick={() => selectCategory(item)}
+                  >
+                     {item}
+                  </button>
+               ))}
+         </div>
       </section>
    )
 }

@@ -2,14 +2,16 @@ import React from "react"
 
 const Navbar = () => {
    return (
-      <nav className="navbar bg-light mb-5">
+      <nav className="navbar mb-5">
          <div className="container-fluid">
-            <a className="navbar-brand">FlipyCard</a>
+            <a className="navbar-brand text-light" href="#">
+               FlipyCard
+            </a>
             <div>
                <button
                   aria-controls="collapseExample"
                   aria-expanded="false"
-                  className="btn btn-primary me-3"
+                  className="btn btn-warning me-3"
                   data-bs-target="#collapseExample"
                   data-bs-toggle="collapse"
                   type="button"
@@ -17,7 +19,7 @@ const Navbar = () => {
                   Add new flip card
                </button>
 
-               <button className="btn btn-outline-primary" type="button">
+               <button className="btn btn-outline-light" type="button">
                   Log In
                </button>
             </div>
