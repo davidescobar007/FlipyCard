@@ -28,6 +28,9 @@ const getCardsByCategories = (state, dispatch, collection, field, category) => {
             createDinamicArray(categorySelected, queryOperators.EQUAL_TO)
          ).then((cardsArray) => {
             dispatch(actionsHandler.cardActions.setCards(cardsArray))
+            dispatch(
+               actionsHandler.cardActions.setDynamicCards([...cardsArray])
+            )
             setRandomCard(dispatch, cardsArray)
          })
       dispatch(
