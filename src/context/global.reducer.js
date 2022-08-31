@@ -5,6 +5,7 @@ const initialStore = {
    categorySelected: [],
    categoryId: null,
    cards: [],
+   dynamicCards: [],
    randomCard: null
 }
 
@@ -14,6 +15,11 @@ const globalReducer = (state, action) => {
          return {
             ...state,
             cards: action.payload
+         }
+      case types.SET_DYNAMICCARDS:
+         return {
+            ...state,
+            dynamicCards: action.payload
          }
       case types.CREATE_CARD:
          return {

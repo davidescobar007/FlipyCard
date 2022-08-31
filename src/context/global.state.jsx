@@ -5,11 +5,12 @@ import {
    actionsHandler,
    createCard,
    createCategory,
+   deleteCard,
    getCardsByCategories,
    getCategories,
    setNextRandomCard,
-   updateRandomCard,
-   deleteCard
+   setRandomCard,
+   updateRandomCard
 } from "./global.actions"
 import storeReducer, { initialStore } from "./global.reducer"
 import { constants } from "./global.types"
@@ -40,7 +41,10 @@ const StoreProvider = ({ children }) => {
          category
       })
 
-   const setCards = (payload) => actionsHandler.card.setCards(payload)
+   const resetDynamicCards = (cards) => {
+      dispatch(actionsHandler.cardActions.setDynamicCards([...cards]))
+      setRandomCard(dispatch, cards)
+   }
 
    const nextRandomCard = (cardToBeDeleted) =>
       setNextRandomCard(state, dispatch, cardToBeDeleted)
@@ -58,8 +62,8 @@ const StoreProvider = ({ children }) => {
       deleteCurrentCard,
       getCategoryList,
       getCardsListByCategories,
-      setCards,
-      createNewCategory
+      createNewCategory,
+      resetDynamicCards
    }
 
    return (

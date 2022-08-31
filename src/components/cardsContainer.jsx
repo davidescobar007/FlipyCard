@@ -1,23 +1,32 @@
 import React, { useContext } from "react"
-import Card from "./card"
 import { StoreContext } from "../context/global.state"
+import ProgressPercentage from "./atomic/progressBar"
+import Card from "./card"
 
 function CardsContainer() {
    const {
-      state: { cards, categorySelected, randomCard },
+      state: { cards, categorySelected, randomCard, dynamicCards },
       nextRandomCard,
-      getCardsListByCategories
+      resetDynamicCards
    } = useContext(StoreContext)
+
+   const calculateProgressPercentage = () => {
+      let cardslength = cards.length
+      let dynamicCardsLength = dynamicCards.length - 1
+      let percentage = (dynamicCardsLength / cardslength) * 100
+      return 100 - percentage
+   }
 
    return (
       <div>
+         {randomCard && (
+            <ProgressPercentage value={calculateProgressPercentage()} />
+         )}
          <div className="d-flex justify-content-center">
             {categorySelected && randomCard ? (
                <Card
                   backReference={randomCard?.backReference}
                   frontReference={randomCard?.frontReference}
-                  key={randomCard?.frontReference}
-                  section={`${cards.length}`}
                />
             ) : null}
          </div>
@@ -26,12 +35,12 @@ function CardsContainer() {
                <button
                   className="btn btn-outline-light"
                   onClick={() => {
-                     cards.length
+                     dynamicCards.length
                         ? nextRandomCard(randomCard)
-                        : getCardsListByCategories(categorySelected)
+                        : resetDynamicCards(cards)
                   }}
                >
-                  {cards.length ? "Next Card" : "Click me to flip again"}
+                  {dynamicCards.length ? "Next" : "Click me to flip again"}
                </button>
             ) : (
                <h5>Select a category</h5>

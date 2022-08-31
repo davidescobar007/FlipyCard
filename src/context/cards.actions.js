@@ -9,12 +9,12 @@ export const createCard = async (state, dispatch, collection, cardData) => {
 }
 
 export const setNextRandomCard = (state, dispatch, cardToBeDeleted) => {
-   let { cards } = state
-   cards = cards.filter(
+   let { dynamicCards } = state
+   dynamicCards = dynamicCards.filter(
       (card) => card.frontReference !== cardToBeDeleted.frontReference
    )
-   setRandomCard(dispatch, cards)
-   dispatch(cardActions.setCards(cards))
+   setRandomCard(dispatch, dynamicCards)
+   dispatch(cardActions.setDynamicCards(dynamicCards))
 }
 
 export const setRandomCard = (dispatch, listOfCards) => {
@@ -29,7 +29,7 @@ export const updateRandomCard = (dispatch, cardData) => {
 
 export const deleteCard = (state, dispatch) => {
    deleteDocument(constants.CARDS, state.randomCard.id)
-   dispatch(cardActions.deleteCard(null))
+   dispatch(cardActions.deleteCard())
    setNextRandomCard(state, dispatch, state.randomCard)
 }
 
@@ -42,6 +42,10 @@ export const cardActions = {
       type: types.SET_CARDS,
       payload
    }),
+   setDynamicCards: (payload) => ({
+      type: types.SET_DYNAMICCARDS,
+      payload
+   }),
    setRandomCard: (payload) => ({
       type: types.SET_RANDOM_CARD,
       payload
@@ -50,9 +54,8 @@ export const cardActions = {
       type: types.UPDATE_RANDOM_CARD,
       payload
    }),
-   deleteCard: (payload) => ({
-      type: types.DELETE_CARD,
-      payload
+   deleteCard: () => ({
+      type: types.DELETE_CARD
    }),
    error: () => ({
       type: types.SERVICE_ERROR
