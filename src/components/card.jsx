@@ -87,7 +87,7 @@ const Card = ({ frontReference, backReference }) => {
    }
 
    return (
-      <div className="col-11 col-md-6">
+      <div className="col-11 col-md-6 animate__animated animate__lightSpeedInRight animate__faster">
          <CardFlipper flipDirection="horizontal" isFlipped={flip}>
             <div className="card_glassmorphism card shadow rounded-4">
                {cardHeader()}
