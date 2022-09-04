@@ -1,0 +1,19 @@
+@import "./animate.scss";
+
+.animation_entrance_exit {
+   animation-delay: 0s, 0.4s;
+   animation-duration: 400ms, 400ms;
+   animation-name: lightSpeedOutLeft, lightSpeedInRight;
+}
+
+.animation_entrance {
+   animation-delay: 0s;
+   animation-duration: 500ms;
+   animation-name: lightSpeedInRight;
+}
+
+.animation_exit {
+   animation-delay: 0s;
+   animation-duration: 500ms;
+   animation-name: lightSpeedOutLeft;
+}

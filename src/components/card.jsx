@@ -1,13 +1,15 @@
 import PropTypes from "prop-types"
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { RiDeleteBin3Fill, RiEdit2Line } from "react-icons/ri"
 import { StoreContext } from "../context/global.state"
 import CardFlipper from "../features/flipCard"
 
-const Card = ({ frontReference, backReference }) => {
+const Card = ({ frontReference, backReference, isFirstCard }) => {
+   const [animation, setAnimation] = useState("")
    const [flip, setFlip] = useState(false)
    const [displayForm, setDisplayForm] = useState(false)
    const [formData, setFormData] = useState(null)
+
    const {
       state: { randomCard },
       updateCard,
@@ -27,6 +29,17 @@ const Card = ({ frontReference, backReference }) => {
       setDisplayForm(false)
       updateCard({ ...randomCard, ...formData })
    }
+
+   useEffect(() => {
+      if (isFirstCard) {
+         setAnimation("animation_entrance")
+      } else {
+         setAnimation("animation_entrance_exit")
+      }
+      setTimeout(() => {
+         setAnimation("")
+      }, 820)
+   }, [frontReference])
 
    const cardHeader = () => (
       <div
@@ -87,7 +100,7 @@ const Card = ({ frontReference, backReference }) => {
    }
 
    return (
-      <div className="col-11 col-md-6">
+      <div className={`col-11 col-md-6 ${animation}`}>
          <CardFlipper flipDirection="horizontal" isFlipped={flip}>
             <div className="card_glassmorphism card shadow rounded-4">
                {cardHeader()}
@@ -127,7 +140,8 @@ const Card = ({ frontReference, backReference }) => {
 
 Card.propTypes = {
    backReference: PropTypes.string,
-   frontReference: PropTypes.string
+   frontReference: PropTypes.string,
+   isFirstCard: PropTypes.bool
 }
 
 export default Card

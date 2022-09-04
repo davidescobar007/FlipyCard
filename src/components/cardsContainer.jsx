@@ -27,6 +27,7 @@ function CardsContainer() {
                <Card
                   backReference={randomCard?.backReference}
                   frontReference={randomCard?.frontReference}
+                  isFirstCard={dynamicCards.length === cards.length}
                />
             ) : null}
          </div>
