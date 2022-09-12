@@ -1,7 +1,3 @@
-export const getButtonColor = (itemSelected, currentItem) => {
-   return itemSelected === currentItem ? "primary" : "light"
-}
-
 export const getRandomFromArray = (array) => {
    const random = Math.floor(Math.random() * array.length)
    return {

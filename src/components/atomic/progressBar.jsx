@@ -11,6 +11,7 @@ export default function ProgressPercentage({ value }) {
             bgColor="#f8c537"
             completed={value}
             labelColor="transparent"
+            transitionDuration="0.4s"
          />
       </section>
    )
