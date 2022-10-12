@@ -1,7 +1,7 @@
-import { deleteDocument, setDocument, updateDocument } from "../services"
-import { getRandomFromArray } from "../utils"
-import { types } from "./global.reducer"
-import { constants } from "./global.types"
+import { deleteDocument, setDocument, updateDocument } from "../../services"
+import { getRandomFromArray } from "../../utils"
+import { types } from "../global.reducer"
+import { constants } from "../global.types"
 
 export const createCard = async (state, dispatch, collection, cardData) => {
    await setDocument(collection, cardData)

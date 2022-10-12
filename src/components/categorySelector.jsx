@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react"
 import Button from "./atomic/button"
 import { StoreContext } from "../context/global.state"
 
-const CategorySelector = () => {
+function CategorySelector() {
    const {
       getCategoryList,
       getCardsListByCategories,
@@ -19,6 +19,18 @@ const CategorySelector = () => {
 
    return (
       <section className="mb-5">
+         <div>
+            <button
+               aria-controls="collapseExample"
+               aria-expanded="false"
+               className="btn btn-warning me-5 mb-3"
+               data-bs-target="#collapseExample"
+               data-bs-toggle="collapse"
+               type="button"
+            >
+               Add new flip card
+            </button>
+         </div>
          <div>
             <Button color="warning" isModalTrigger isSelected>
                Add new category. +

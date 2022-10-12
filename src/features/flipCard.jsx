@@ -2,7 +2,7 @@
 import * as React from "react"
 import { useEffect, useState, useMemo } from "react"
 
-const CardFlipper = ({
+function CardFlipper({
    cardStyles: { back, front },
    cardZIndex,
    containerStyle,
@@ -13,7 +13,7 @@ const CardFlipper = ({
    infinite,
    isFlipped,
    children
-}) => {
+}) {
    const [isItemFlipped, setIsItemFlipped] = useState(isFlipped)
    const [rotation, setRotation] = useState(0)
 

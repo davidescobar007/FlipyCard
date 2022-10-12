@@ -1,14 +1,14 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-const Button = ({
+function Button({
    children,
    isSelected,
    color = "primary",
    size = "",
    isModalTrigger = false,
    onclick
-}) => {
+}) {
    return (
       <button
          className={`btn ${

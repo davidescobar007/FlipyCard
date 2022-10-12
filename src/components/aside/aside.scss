@@ -1,0 +1,19 @@
+@import "../../main.scss";
+.menuAside {
+   position: fixed;
+   background: $main-yellow;
+   color: $main-black;
+   font-size: larger;
+   height: 100%;
+   width: 100%;
+   z-index: 1;
+   ul {
+      li {
+         margin: 20px 0;
+         cursor: pointer;
+         &:hover {
+            color: gray;
+         }
+      }
+   }
+}

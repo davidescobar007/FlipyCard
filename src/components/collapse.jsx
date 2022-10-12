@@ -1,7 +1,7 @@
 import React from "react"
 import FormSubmit from "./formSubmit"
 
-const Collapse = () => {
+function Collapse() {
    return (
       <section className="mb-5 rounded-5">
          <div className="collapse" id="collapseExample">

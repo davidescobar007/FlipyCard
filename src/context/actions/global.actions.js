@@ -1,5 +1,5 @@
-import { dynamicSearch } from "../services"
-import { createDinamicArray, toggleItemFromArray } from "../utils"
+import { dynamicSearch } from "../../services"
+import { createDinamicArray, toggleItemFromArray } from "../../utils"
 import {
    cardActions,
    createCard,
@@ -13,8 +13,8 @@ import {
    createCategory,
    getCategories
 } from "./category.actions"
-import { types } from "./global.reducer"
-import { queryOperators } from "./global.types"
+import { types } from "../global.reducer"
+import { queryOperators } from "../global.types"
 
 const getCardsByCategories = (state, dispatch, collection, field, category) => {
    try {
@@ -27,23 +27,20 @@ const getCardsByCategories = (state, dispatch, collection, field, category) => {
             collection,
             createDinamicArray(categorySelected, queryOperators.EQUAL_TO)
          ).then((cardsArray) => {
-            dispatch(actionsHandler.cardActions.setCards(cardsArray))
-            dispatch(
-               actionsHandler.cardActions.setDynamicCards([...cardsArray])
-            )
+            dispatch(cardActions.setCards(cardsArray))
+            dispatch(cardActions.setDynamicCards([...cardsArray]))
             setRandomCard(dispatch, cardsArray)
          })
-      dispatch(
-         actionsHandler.categoryActions.selectCetegories(categorySelected)
-      )
+      dispatch(categoryActions.selectCetegories(categorySelected))
    } catch (error) {
       actionsHandler.error()
    }
 }
 
 const actionsHandler = {
-   categoryActions,
-   cardActions,
+   trigerMenu: () => ({
+      type: types.IS_MENU_OPEN
+   }),
    error: () => ({
       type: types.SERVICE_ERROR
    })

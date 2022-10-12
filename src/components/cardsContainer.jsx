@@ -23,11 +23,13 @@ function CardsContainer() {
    }
 
    useEffect(() => {
-      if (dynamicCards.length > 0) {
-         play()
-         return
-      }
-      finishSound()
+      setTimeout(() => {
+         if (dynamicCards.length > 0) {
+            play()
+            return
+         }
+         finishSound()
+      }, 200)
    }, [randomCard])
 
    return (

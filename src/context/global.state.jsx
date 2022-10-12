@@ -11,13 +11,13 @@ import {
    setNextRandomCard,
    setRandomCard,
    updateRandomCard
-} from "./global.actions"
+} from "./actions/global.actions"
 import storeReducer, { initialStore } from "./global.reducer"
 import { constants } from "./global.types"
 
 const StoreContext = createContext()
 
-const StoreProvider = ({ children }) => {
+function StoreProvider({ children }) {
    const [state, dispatch] = useReducer(storeReducer, initialStore)
 
    const getCategoryList = () => getCategories(dispatch, constants.CATEGORIES)
@@ -54,6 +54,8 @@ const StoreProvider = ({ children }) => {
 
    const deleteCurrentCard = () => deleteCard(state, dispatch)
 
+   const trigerAsideMenu = () => dispatch(actionsHandler.trigerMenu())
+
    const store = {
       state,
       saveNewCard,
@@ -63,7 +65,8 @@ const StoreProvider = ({ children }) => {
       getCategoryList,
       getCardsListByCategories,
       createNewCategory,
-      resetDynamicCards
+      resetDynamicCards,
+      trigerAsideMenu
    }
 
    return (

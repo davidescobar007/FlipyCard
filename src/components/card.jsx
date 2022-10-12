@@ -4,7 +4,7 @@ import { RiDeleteBin3Fill, RiEdit2Line } from "react-icons/ri"
 import { StoreContext } from "../context/global.state"
 import CardFlipper from "../features/flipCard"
 
-const Card = ({ frontReference, backReference, isFirstCard }) => {
+function Card({ frontReference, backReference, isFirstCard }) {
    const [animation, setAnimation] = useState("")
    const [flip, setFlip] = useState(false)
    const [displayForm, setDisplayForm] = useState(false)

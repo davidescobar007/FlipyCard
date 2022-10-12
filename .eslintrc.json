@@ -23,7 +23,7 @@
       "react/jsx-no-bind": "off",
       "react/button-has-type": "off",
       "react/jsx-no-literals": "off",
-      "react/function-component-definition": "off",
+      // "react/function-component-definition": "off",
       "react/require-default-props": "off", //to be changed to error
       "react/no-array-index-key": "off",
       "unused-imports/no-unused-imports": "error",

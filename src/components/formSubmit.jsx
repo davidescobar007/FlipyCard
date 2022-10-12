@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import { StoreContext } from "../context/global.state"
 import { creteDinamicObject } from "../utils"
 
-const FormSubmit = () => {
+function FormSubmit() {
    const [formData, setFormData] = useState(null)
 
    const {

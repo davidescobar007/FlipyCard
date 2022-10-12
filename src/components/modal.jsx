@@ -1,8 +1,8 @@
-import React, { useContext } from "react"
+import { useContext } from "react"
 import { updateDocument } from "../services"
 import { StoreContext } from "../context/global.state"
 
-const Modal = () => {
+function Modal() {
    const { categories, setCategories, categoryId } = useContext(StoreContext)
 
    const handleSubmit = async (e) => {

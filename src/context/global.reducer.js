@@ -6,7 +6,8 @@ const initialStore = {
    categoryId: null,
    cards: [],
    dynamicCards: [],
-   randomCard: null
+   randomCard: null,
+   isMenuOpen: false
 }
 
 const globalReducer = (state, action) => {
@@ -42,7 +43,10 @@ const globalReducer = (state, action) => {
             randomCard: action.payload
          }
       case types.DELETE_CARD:
-         return { ...state, randomCard: initialStore.randomCard } //to be defined
+         return {
+            ...state,
+            randomCard: initialStore.randomCard
+         }
       case types.SET_CATEGORIES:
          return {
             ...state,
@@ -62,6 +66,11 @@ const globalReducer = (state, action) => {
          return {
             ...state,
             categoryId: action.payload
+         }
+      case types.IS_MENU_OPEN:
+         return {
+            ...state,
+            isMenuOpen: !state.isMenuOpen
          }
       default:
          return state
