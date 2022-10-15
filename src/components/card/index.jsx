@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react"
 import { StoreContext } from "../../context/global.state"
-import ProgressPercentage from "../atomic/progressBar"
+import ProgressPercentage from "../progressBar"
 import Card from "./card"
 import useSound from "use-sound"
-import sound from "../../public/sound1.mp3"
-import finishSound1 from "../../public/finishSound1.mp3"
+import sound from "../../../public/sound1.mp3"
+import finishSound1 from "../../../public/finishSound1.mp3"
+
 function CardsContainer() {
    const {
       state: { cards, categorySelected, randomCard, dynamicCards },

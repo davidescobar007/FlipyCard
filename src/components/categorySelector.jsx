@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react"
-import Button from "./atomic/button"
+import Button from "./button"
 import { StoreContext } from "../context/global.state"
 
 function CategorySelector() {
