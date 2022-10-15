@@ -1,8 +1,8 @@
 import PropTypes from "prop-types"
 import React, { useContext, useEffect, useState } from "react"
 import { RiDeleteBin3Fill, RiEdit2Line } from "react-icons/ri"
-import { StoreContext } from "../context/global.state"
-import CardFlipper from "../features/flipCard"
+import { StoreContext } from "../../context/global.state"
+import CardFlipper from "../../features/flipCard"
 
 function Card({ frontReference, backReference, isFirstCard }) {
    const [animation, setAnimation] = useState("")
