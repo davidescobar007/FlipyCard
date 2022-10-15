@@ -95,13 +95,13 @@ function Card({ frontReference, backReference, isFirstCard }) {
                </div>
                <div className="col-12">
                   <button
-                     className="m-3 btn btn-outline-primary btn-outline-light"
+                     className="btn btn-outline-primary btn-outline-light m-3"
                      onClick={() => setDisplayForm(false)}
                      type="button"
                   >
                      Cancel
                   </button>
-                  <button className="m-3 btn btn-light" type="submit">
+                  <button className="btn btn-light m-3" type="submit">
                      Save
                   </button>
                </div>
@@ -113,7 +113,7 @@ function Card({ frontReference, backReference, isFirstCard }) {
    return (
       <div className={`col-11 col-md-6 ${animation}`}>
          <CardFlipper flipDirection="horizontal" isFlipped={flip}>
-            <div className="card_glassmorphism card shadow rounded-4">
+            <div className="card_glassmorphism card rounded-4 shadow">
                {cardHeader()}
                <div className="card-body text-center">
                   {displayForm ? (

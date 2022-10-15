@@ -36,5 +36,10 @@
             "argsIgnorePattern": "^_"
          }
       ]
+   },
+   "settings": {
+      "react": {
+         "version": "detect"
+      }
    }
 }

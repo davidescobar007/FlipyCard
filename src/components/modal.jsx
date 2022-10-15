@@ -58,7 +58,7 @@ function Modal() {
                         />
                      </div>
 
-                     <div className="d-grid gap-2 col-6 mx-auto">
+                     <div className="d-grid col-6 mx-auto gap-2">
                         <button
                            className="btn btn-outline-primary"
                            data-bs-dismiss="modal"

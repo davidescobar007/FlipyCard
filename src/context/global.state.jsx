@@ -1,17 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import PropTypes from "prop-types"
 import { createContext, useReducer } from "react"
-import {
-   actionsHandler,
-   createCard,
-   createCategory,
-   deleteCard,
-   getCardsByCategories,
-   getCategories,
-   setNextRandomCard,
-   setRandomCard,
-   updateRandomCard
-} from "./actions/global.actions"
+import * as action from "./actions/global.actions"
 import storeReducer, { initialStore } from "./global.reducer"
 import { constants } from "./global.types"
 
@@ -20,10 +10,11 @@ const StoreContext = createContext()
 function StoreProvider({ children }) {
    const [state, dispatch] = useReducer(storeReducer, initialStore)
 
-   const getCategoryList = () => getCategories(dispatch, constants.CATEGORIES)
+   const getCategoryList = () =>
+      action.getCategories(dispatch, constants.CATEGORIES)
 
    const getCardsListByCategories = (categoryName) =>
-      getCardsByCategories(
+      action.getCardsByCategories(
          state,
          dispatch,
          constants.CARDS,
@@ -32,29 +23,33 @@ function StoreProvider({ children }) {
       )
 
    const saveNewCard = (cardData) =>
-      createCard(state, dispatch, constants.CARDS, cardData)
+      action.createCard(state, dispatch, constants.CARDS, cardData)
 
    const createNewCategory = (category) =>
-      createCategory(state, dispatch, {
+      action.createCategory(state, dispatch, {
          collection: constants.CATEGORIES,
          id: state.categoryId,
-         category
+         category,
+         section: state.selectedSection
       })
 
    const resetDynamicCards = (cards) => {
-      dispatch(actionsHandler.cardActions.setDynamicCards([...cards]))
-      setRandomCard(dispatch, cards)
+      dispatch(action.actionsHandler.cardActions.setDynamicCards([...cards]))
+      action.setRandomCard(dispatch, cards)
    }
 
    const nextRandomCard = (cardToBeDeleted) =>
-      setNextRandomCard(state, dispatch, cardToBeDeleted)
+      action.setNextRandomCard(state, dispatch, cardToBeDeleted)
 
    const updateCard = (newDataForRandomCard) =>
-      updateRandomCard(dispatch, newDataForRandomCard)
+      action.updateRandomCard(dispatch, newDataForRandomCard)
 
-   const deleteCurrentCard = () => deleteCard(state, dispatch)
+   const deleteCurrentCard = () => action.deleteCard(state, dispatch)
 
-   const trigerAsideMenu = () => dispatch(actionsHandler.trigerMenu())
+   const trigerAsideMenu = () => dispatch(action.actionsHandler.trigerMenu())
+   const getSections = () => action.sectionActions.getSections(dispatch)
+   const setSection = (section) =>
+      action.sectionActions.setSection(dispatch, section)
 
    const store = {
       state,
@@ -66,7 +61,9 @@ function StoreProvider({ children }) {
       getCardsListByCategories,
       createNewCategory,
       resetDynamicCards,
-      trigerAsideMenu
+      trigerAsideMenu,
+      getSections,
+      setSection
    }
 
    return (

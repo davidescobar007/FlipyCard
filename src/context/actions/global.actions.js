@@ -13,6 +13,7 @@ import {
    createCategory,
    getCategories
 } from "./category.actions"
+import * as sectionActions from "./section.actions"
 import { types } from "../global.reducer"
 import { queryOperators } from "../global.types"
 
@@ -47,6 +48,7 @@ const actionsHandler = {
 }
 
 export {
+   sectionActions,
    createCard,
    setNextRandomCard,
    setRandomCard,

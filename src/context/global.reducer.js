@@ -7,7 +7,9 @@ const initialStore = {
    cards: [],
    dynamicCards: [],
    randomCard: null,
-   isMenuOpen: false
+   isMenuOpen: false,
+   sections: [],
+   selectedSection: null
 }
 
 const globalReducer = (state, action) => {
@@ -71,6 +73,21 @@ const globalReducer = (state, action) => {
          return {
             ...state,
             isMenuOpen: !state.isMenuOpen
+         }
+      case types.CREATE_SECTION:
+         return {
+            ...state,
+            sections: action.payload
+         }
+      case types.UPDATE_SECTIONS:
+         return {
+            ...state,
+            sections: action.payload
+         }
+      case types.SET_SECTION:
+         return {
+            ...state,
+            selectedSection: action.payload
          }
       default:
          return state

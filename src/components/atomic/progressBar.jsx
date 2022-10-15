@@ -4,7 +4,7 @@ import ProgressBar from "@ramonak/react-progress-bar"
 
 export default function ProgressPercentage({ value }) {
    return (
-      <section className="col-12 text-center mb-5">
+      <section className="col-12 mb-5 text-center">
          <ProgressBar
             animateOnRender
             baseBgColor="transparent"
