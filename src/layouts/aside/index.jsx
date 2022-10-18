@@ -1,6 +1,7 @@
 import { RiCloseFill } from "react-icons/ri"
 import { useContext } from "react"
 import { StoreContext } from "../../context/global.state"
+import { Link } from "react-router-dom"
 
 export default function Aside() {
    const {
@@ -19,7 +20,7 @@ export default function Aside() {
       return
    }
    return (
-      <aside className="z-0 flex h-screen w-full bg-white text-lg text-gray-700">
+      <aside className="z-1 fixed flex min-h-screen w-full bg-white text-lg text-gray-700">
          <div className="fixed right-0 my-4 mx-2" onClick={handleClick}>
             <RiCloseFill cursor="pointer" size="2em" />
          </div>
@@ -42,9 +43,11 @@ export default function Aside() {
                   </li>
                ))}
                <li>
-                  <h2 className="cursor-pointer text-xl font-medium">
-                     Add new set of cards
-                  </h2>
+                  <Link onClick={trigerAsideMenu} to="/new-set">
+                     <h2 className="cursor-pointer text-xl font-medium">
+                        Add new set of cards
+                     </h2>
+                  </Link>
                </li>
             </ul>
          </div>

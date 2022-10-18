@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react"
 import { Routes, Route } from "react-router-dom"
 
 const Home = lazy(() => import("../pages/home"))
+const NewSet = lazy(() => import("../pages/newSetOfCards/index"))
 export default function Router() {
    return (
       <main className="px-3">
@@ -17,7 +18,7 @@ export default function Router() {
             <Route
                element={
                   <Suspense>
-                     <h3>new set of cards</h3>
+                     <NewSet />
                   </Suspense>
                }
                path="/new-set"

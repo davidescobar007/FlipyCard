@@ -72,7 +72,7 @@ function StoreProvider({ children }) {
 }
 
 StoreProvider.propTypes = {
-   children: PropTypes.element
+   children: PropTypes.element.isRequired
 }
 
 export { StoreContext }
