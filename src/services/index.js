@@ -14,8 +14,8 @@ import { v4 as uuidv4 } from "uuid"
 
 const db = getFirestore(app)
 
-export const getCollectionList = async (collectionParam) => {
-   const newCollection = collection(db, collectionParam)
+export const getCollectionList = async (collectionName) => {
+   const newCollection = collection(db, collectionName)
    const collectionSnapshot = await getDocs(newCollection)
    const collectionList = collectionSnapshot.docs.map((doc) => {
       return {
@@ -27,11 +27,11 @@ export const getCollectionList = async (collectionParam) => {
 }
 
 export const getCollectionListByArray = async (
-   collectionParam,
+   collectionName,
    field,
    arrayParams
 ) => {
-   const reference = collection(db, collectionParam)
+   const reference = collection(db, collectionName)
    const q = query(reference, where(field, "array-contains-any", arrayParams))
    const querySnapshot = await getDocs(q)
    let processedData = querySnapshot.docs.map((doc) => {
@@ -49,19 +49,19 @@ export const updateDocument = async (collection, id, docData) => {
    await updateDoc(doc(db, collection, id), docData)
 }
 
-export const getDataByQuery = async (collectionParam, field, param) => {
-   const reference = collection(db, collectionParam)
+export const getDataByQuery = async (collectionName, field, param) => {
+   const reference = collection(db, collectionName)
    const q = query(reference, where(field, "==", param))
    const querySnapshot = await getDocs(q)
    return querySnapshot.docs.map((doc) => doc.data())
 }
 
-export const deleteDocument = async (collectionParam, id) => {
-   await deleteDoc(doc(db, collectionParam, id))
+export const deleteDocument = async (collectionName, id) => {
+   await deleteDoc(doc(db, collectionName, id))
 }
 
-export const dynamicSearch = async (collectionParam, queryList) => {
-   const reference = collection(db, collectionParam)
+export const dynamicSearch = async (collectionName, queryList) => {
+   const reference = collection(db, collectionName)
    const queryConditions = queryList.map((condition) =>
       where(condition.field, condition.operator, condition.value)
    )

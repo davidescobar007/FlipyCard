@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react"
-import Button from "./button"
 import { StoreContext } from "../context/global.state"
 
 function CategorySelector() {
@@ -19,23 +18,6 @@ function CategorySelector() {
 
    return (
       <section className="mb-5">
-         <div>
-            <button
-               aria-controls="collapseExample"
-               aria-expanded="false"
-               className="btn btn-warning me-5 mb-3"
-               data-bs-target="#collapseExample"
-               data-bs-toggle="collapse"
-               type="button"
-            >
-               Add new flip card
-            </button>
-         </div>
-         <div>
-            <Button color="warning" isModalTrigger isSelected>
-               Add new category. +
-            </Button>
-         </div>
          <div className="d-flex cardSelector-container">
             {Array.isArray(categories) &&
                categories.map((item, index) => (
@@ -46,7 +28,7 @@ function CategorySelector() {
                      key={index}
                      onClick={() => selectCategory(item)}
                   >
-                     {item}
+                     {item.name}
                   </button>
                ))}
          </div>

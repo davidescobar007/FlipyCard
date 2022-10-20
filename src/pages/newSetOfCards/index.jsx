@@ -3,8 +3,9 @@ import Button from "../../components/button"
 import { useState } from "react"
 import TableDataCell from "../../components/table/TableDataCell"
 import TableRow from "../../components/table/TableRow"
-import "./index.scss"
 import CustomInputComponent from "./customInputComponent"
+import Title from "../../components/title/title"
+import CategorySelector from "../../components/categorySelector"
 
 const tHeadData = ["Front Term", "Answer"]
 const initialListValue = [{ frontTerm: "", answer: "" }]
@@ -23,6 +24,10 @@ export default function NewSet() {
 
    return (
       <>
+         <Title extraClassName="my-3" type="h3">
+            Select a category for the new set of cards
+         </Title>
+         <CategorySelector />
          <Table tableHeadProps={tHeadData}>
             <>
                {cardsList.map((item, index) => (

@@ -1,0 +1,1 @@
+{ "eslint.autoFixOnSave": true, "lint:fix.run": "onSave" }

@@ -1,4 +1,4 @@
-import { getCollectionList, updateDocument } from "../../services"
+import { updateDocument, getDataByQuery } from "../../services"
 import { types } from "../global.reducer"
 
 export const createCategory = async (state, dispatch, payload) => {
@@ -11,9 +11,10 @@ export const createCategory = async (state, dispatch, payload) => {
 
 export const getCategories = (dispatch, payload) => {
    try {
-      getCollectionList(payload).then((data) => {
-         dispatch(categoryActions.setCategory(data[0].data.categoryList))
-         dispatch(categoryActions.setCategoriesId(data[0].id))
+      getDataByQuery(payload, "section", "german").then((dataList) => {
+         dispatch(categoryActions.setCategory(dataList))
+         //TODO: to be fixed
+         // dispatch(categoryActions.setCategoriesId(data[0].id))
       })
    } catch (error) {
       categoryActions.error()
