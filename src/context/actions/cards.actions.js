@@ -1,11 +1,20 @@
-import { deleteDocument, setDocument, updateDocument } from "../../services"
+import {
+   deleteDocument,
+   setDocument,
+   setManyAtSameTime,
+   updateDocument
+} from "../../services"
 import { getRandomFromArray } from "../../utils"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
 export const createCard = async (state, dispatch, collection, cardData) => {
    await setDocument(collection, cardData)
-   dispatch(cardActions.setCards([...state.cards, cardData]))
+   dispatch(cardActionTypes.setCards([...state.cards, cardData]))
+}
+
+export const createCardsAtOnce = async (cardList, collection) => {
+   await setManyAtSameTime(cardList, collection)
 }
 
 export const setNextRandomCard = (state, dispatch, cardToBeDeleted) => {
@@ -14,26 +23,26 @@ export const setNextRandomCard = (state, dispatch, cardToBeDeleted) => {
       (card) => card.frontReference !== cardToBeDeleted.frontReference
    )
    setRandomCard(dispatch, dynamicCards)
-   dispatch(cardActions.setDynamicCards(dynamicCards))
+   dispatch(cardActionTypes.setDynamicCards(dynamicCards))
 }
 
 export const setRandomCard = (dispatch, listOfCards) => {
    const { random } = getRandomFromArray(listOfCards)
-   dispatch(cardActions.setRandomCard(random))
+   dispatch(cardActionTypes.setRandomCard(random))
 }
 
 export const updateRandomCard = (dispatch, cardData) => {
    updateDocument(constants.CARDS, cardData.id, cardData)
-   dispatch(cardActions.setRandomCard(cardData))
+   dispatch(cardActionTypes.setRandomCard(cardData))
 }
 
 export const deleteCard = (state, dispatch) => {
    deleteDocument(constants.CARDS, state.randomCard.id)
-   dispatch(cardActions.deleteCard())
+   dispatch(cardActionTypes.deleteCard())
    setNextRandomCard(state, dispatch, state.randomCard)
 }
 
-export const cardActions = {
+export const cardActionTypes = {
    createCard: (payload) => ({
       type: types.CREATE_CARD,
       payload

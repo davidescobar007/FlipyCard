@@ -1,18 +1,7 @@
 import { dynamicSearch } from "../../services"
 import { createDinamicArray, toggleItemFromArray } from "../../utils"
-import {
-   cardActions,
-   createCard,
-   deleteCard,
-   setNextRandomCard,
-   setRandomCard,
-   updateRandomCard
-} from "./cards.actions"
-import {
-   categoryActions,
-   createCategory,
-   getCategories
-} from "./category.actions"
+import * as cardsActions from "./cards.actions"
+import * as categoryActions from "./category.actions"
 import * as sectionActions from "./section.actions"
 import { types } from "../global.reducer"
 import { queryOperators } from "../global.types"
@@ -28,17 +17,21 @@ const getCardsByCategories = (state, dispatch, collection, field, category) => {
             collection,
             createDinamicArray(categorySelected, queryOperators.EQUAL_TO)
          ).then((cardsArray) => {
-            dispatch(cardActions.setCards(cardsArray))
-            dispatch(cardActions.setDynamicCards([...cardsArray]))
-            setRandomCard(dispatch, cardsArray)
+            dispatch(cardsActions.cardActionTypes.setCards(cardsArray))
+            dispatch(
+               cardsActions.cardActionTypes.setDynamicCards([...cardsArray])
+            )
+            cardsActions.setRandomCard(dispatch, cardsArray)
          })
-      dispatch(categoryActions.selectCetegories(categorySelected))
+      dispatch(
+         categoryActions.categoryActionTypes.selectCetegories(categorySelected)
+      )
    } catch (error) {
-      actionsHandler.error()
+      actionHandlerTypes.error()
    }
 }
 
-const actionsHandler = {
+const actionHandlerTypes = {
    trigerMenu: () => ({
       type: types.IS_MENU_OPEN
    }),
@@ -49,13 +42,8 @@ const actionsHandler = {
 
 export {
    sectionActions,
-   createCard,
-   setNextRandomCard,
-   setRandomCard,
-   updateRandomCard,
-   deleteCard,
-   createCategory,
-   getCategories,
+   categoryActions,
    getCardsByCategories,
-   actionsHandler
+   cardsActions,
+   actionHandlerTypes
 }

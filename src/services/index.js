@@ -1,6 +1,5 @@
-import { app } from "./setup"
+import { db, batch } from "./setup"
 import {
-   getFirestore,
    collection,
    getDocs,
    setDoc,
@@ -11,8 +10,6 @@ import {
    deleteDoc
 } from "firebase/firestore/lite"
 import { v4 as uuidv4 } from "uuid"
-
-const db = getFirestore(app)
 
 export const getCollectionList = async (collectionName) => {
    const newCollection = collection(db, collectionName)
@@ -73,4 +70,11 @@ export const dynamicSearch = async (collectionName, queryList) => {
       return data
    })
    return processedData
+}
+
+export const setManyAtSameTime = async (array, collection) => {
+   array.forEach((element) => {
+      batch.set(doc(db, collection, uuidv4()), element)
+   })
+   await batch.commit()
 }

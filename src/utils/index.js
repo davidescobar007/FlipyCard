@@ -8,11 +8,9 @@ export const getRandomFromArray = (array) => {
 
 export const toggleItemFromArray = (array, itemToToggle) => {
    let newArray = [...array]
-   if (typeof itemToToggle === "string") {
-      newArray.includes(itemToToggle)
-         ? (newArray = newArray.filter((item) => item !== itemToToggle))
-         : (newArray = [...array, itemToToggle])
-   }
+   newArray.includes(itemToToggle)
+      ? (newArray = newArray.filter((item) => item !== itemToToggle))
+      : (newArray = [...array, itemToToggle])
    return newArray
 }
 

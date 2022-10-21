@@ -6,22 +6,22 @@ export const createCategory = async (state, dispatch, payload) => {
    const { categories } = state
    await updateDocument(collection, id, category)
    !categories.includes(category) &&
-      dispatch(categoryActions.setCategory(category))
+      dispatch(categoryActionTypes.setCategory(category))
 }
 
 export const getCategories = (dispatch, payload) => {
    try {
       getDataByQuery(payload, "section", "german").then((dataList) => {
-         dispatch(categoryActions.setCategory(dataList))
+         dispatch(categoryActionTypes.setCategory(dataList))
          //TODO: to be fixed
-         // dispatch(categoryActions.setCategoriesId(data[0].id))
+         // dispatch(categoryActionTypes.setCategoriesId(data[0].id))
       })
    } catch (error) {
-      categoryActions.error()
+      categoryActionTypes.error()
    }
 }
 
-export const categoryActions = {
+export const categoryActionTypes = {
    setCategory: (payload) => ({
       type: types.SET_CATEGORIES,
       payload

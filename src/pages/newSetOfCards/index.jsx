@@ -6,12 +6,15 @@ import TableRow from "../../components/table/TableRow"
 import CustomInputComponent from "./customInputComponent"
 import Title from "../../components/title/title"
 import CategorySelector from "../../components/categorySelector"
+import { useContext } from "react"
+import { StoreContext } from "../../context/global.state"
 
 const tHeadData = ["Front Term", "Answer"]
 const initialListValue = [{ frontTerm: "", answer: "" }]
 
 export default function NewSet() {
    const [cardsList, setCardsList] = useState(initialListValue)
+   const { createCardsAtOnce } = useContext(StoreContext)
 
    const handleChange = (event, index) => {
       const element = event["target"]
@@ -20,6 +23,10 @@ export default function NewSet() {
       card[element.id] = element.innerText
       cardListCopy[index] = card
       setCardsList(cardListCopy)
+   }
+
+   const handleSubmit = () => {
+      createCardsAtOnce(cardsList)
    }
 
    return (
@@ -68,7 +75,7 @@ export default function NewSet() {
 
             <Button
                extraClassname="content-end my-5"
-               onClick={() => {}}
+               onClick={handleSubmit}
                type="button"
                typeOf="INFO"
             >

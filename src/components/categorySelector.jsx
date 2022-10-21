@@ -18,12 +18,14 @@ function CategorySelector() {
 
    return (
       <section className="mb-5">
-         <div className="d-flex cardSelector-container">
+         <div className=" flex overflow-x-auto py-2">
             {Array.isArray(categories) &&
                categories.map((item, index) => (
                   <button
-                     className={`cardSelector-button${
-                        categorySelected.includes(item) ? "_active" : ""
+                     className={`mr-2 whitespace-nowrap rounded-lg border-2 border-blue-900 px-3 text-blue-900 shadow-md ${
+                        categorySelected.includes(item)
+                           ? "bg-blue-900 text-gray-200"
+                           : ""
                      }`}
                      key={index}
                      onClick={() => selectCategory(item)}

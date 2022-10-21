@@ -11,7 +11,7 @@ function StoreProvider({ children }) {
    const [state, dispatch] = useReducer(storeReducer, initialStore)
 
    const getCategoryList = () =>
-      action.getCategories(dispatch, constants.CATEGORIES)
+      action.categoryActions.getCategories(dispatch, constants.CATEGORIES)
 
    const getCardsListByCategories = (categoryName) =>
       action.getCardsByCategories(
@@ -23,10 +23,13 @@ function StoreProvider({ children }) {
       )
 
    const saveNewCard = (cardData) =>
-      action.createCard(state, dispatch, constants.CARDS, cardData)
+      action.cardsActions.createCard(state, dispatch, constants.CARDS, cardData)
+
+   const createCardsAtOnce = (cardsList) =>
+      action.cardsActions.createCardsAtOnce(cardsList, constants.CARDS)
 
    const createNewCategory = (category) =>
-      action.createCategory(state, dispatch, {
+      action.categoryActions.createCategory(state, dispatch, {
          collection: constants.CATEGORIES,
          id: state.categoryId,
          category,
@@ -35,18 +38,20 @@ function StoreProvider({ children }) {
 
    const resetDynamicCards = (cards) => {
       dispatch(action.actionsHandler.cardActions.setDynamicCards([...cards]))
-      action.setRandomCard(dispatch, cards)
+      action.cardsActions.setRandomCard(dispatch, cards)
    }
 
    const nextRandomCard = (cardToBeDeleted) =>
-      action.setNextRandomCard(state, dispatch, cardToBeDeleted)
+      action.cardsActions.setNextRandomCard(state, dispatch, cardToBeDeleted)
 
    const updateCard = (newDataForRandomCard) =>
-      action.updateRandomCard(dispatch, newDataForRandomCard)
+      action.cardsActions.updateRandomCard(dispatch, newDataForRandomCard)
 
-   const deleteCurrentCard = () => action.deleteCard(state, dispatch)
+   const deleteCurrentCard = () =>
+      action.cardsActions.deleteCard(state, dispatch)
 
-   const trigerAsideMenu = () => dispatch(action.actionsHandler.trigerMenu())
+   const trigerAsideMenu = () =>
+      dispatch(action.actionHandlerTypes.trigerMenu())
    const getSections = () => action.sectionActions.getSections(dispatch)
    const setSection = (section) =>
       action.sectionActions.setSection(dispatch, section)
@@ -54,6 +59,7 @@ function StoreProvider({ children }) {
    const store = {
       state,
       saveNewCard,
+      createCardsAtOnce,
       updateCard,
       nextRandomCard,
       deleteCurrentCard,
