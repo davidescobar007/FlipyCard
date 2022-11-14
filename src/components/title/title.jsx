@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-export default function Title({ children, type = "h3", extraClassName }) {
+export default function Title({ children, type, extraClassName }) {
    const cssClass = `"text-blue-800 " ${extraClassName}`
    if (type === "h1") return <h1 className={cssClass}>{children}</h1>
    if (type === "h2") return <h2 className={cssClass}>{children}</h2>
@@ -17,5 +17,5 @@ Title.defaultProps = {
 Title.propTypes = {
    children: PropTypes.string.isRequired,
    extraClassName: PropTypes.string,
-   type: PropTypes.oneOf(["h1", "h2", "h3"]).isRequired
+   type: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5"]).isRequired
 }

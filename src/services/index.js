@@ -73,8 +73,12 @@ export const dynamicSearch = async (collectionName, queryList) => {
 }
 
 export const setManyAtSameTime = async (array, collection) => {
-   array.forEach((element) => {
-      batch.set(doc(db, collection, uuidv4()), element)
-   })
-   await batch.commit()
+   if (array.length < 400) {
+      array.forEach((element) => {
+         batch.set(doc(db, collection, uuidv4()), element)
+      })
+      await batch.commit()
+   } else {
+      alert("The number of items must be less than 400")
+   }
 }

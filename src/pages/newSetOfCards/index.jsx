@@ -8,6 +8,7 @@ import Title from "../../components/title/title"
 import CategorySelector from "../../components/categorySelector"
 import { useContext } from "react"
 import { StoreContext } from "../../context/global.state"
+import { useNavigate } from "react-router-dom"
 
 const tHeadData = ["Front Term", "Answer"]
 const initialListValue = [{ frontTerm: "", answer: "" }]
@@ -15,6 +16,7 @@ const initialListValue = [{ frontTerm: "", answer: "" }]
 export default function NewSet() {
    const [cardsList, setCardsList] = useState(initialListValue)
    const { createCardsAtOnce } = useContext(StoreContext)
+   const navigate = useNavigate()
 
    const handleChange = (event, index) => {
       const element = event["target"]
@@ -27,6 +29,8 @@ export default function NewSet() {
 
    const handleSubmit = () => {
       createCardsAtOnce(cardsList)
+      setCardsList(initialListValue)
+      navigate("/")
    }
 
    return (

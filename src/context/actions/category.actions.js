@@ -2,6 +2,7 @@ import { updateDocument, getDataByQuery } from "../../services"
 import { types } from "../global.reducer"
 
 export const createCategory = async (state, dispatch, payload) => {
+   console.log("trigered")
    const { collection, id, category } = payload
    const { categories } = state
    await updateDocument(collection, id, category)
@@ -9,9 +10,9 @@ export const createCategory = async (state, dispatch, payload) => {
       dispatch(categoryActionTypes.setCategory(category))
 }
 
-export const getCategories = (dispatch, payload) => {
+export const getCategories = (dispatch, collectionName) => {
    try {
-      getDataByQuery(payload, "section", "german").then((dataList) => {
+      getDataByQuery(collectionName, "section", "german").then((dataList) => {
          dispatch(categoryActionTypes.setCategory(dataList))
          //TODO: to be fixed
          // dispatch(categoryActionTypes.setCategoriesId(data[0].id))

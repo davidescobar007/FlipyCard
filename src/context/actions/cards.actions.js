@@ -4,7 +4,11 @@ import {
    setManyAtSameTime,
    updateDocument
 } from "../../services"
-import { getRandomFromArray } from "../../utils"
+import {
+   createDynamicArrayOfCards,
+   creteDinamicObject,
+   getRandomFromArray
+} from "../../utils"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
@@ -13,14 +17,23 @@ export const createCard = async (state, dispatch, collection, cardData) => {
    dispatch(cardActionTypes.setCards([...state.cards, cardData]))
 }
 
-export const createCardsAtOnce = async (cardList, collection) => {
-   await setManyAtSameTime(cardList, collection)
+export const createCardsAtOnce = async (state, cardList, collection) => {
+   if (state.categorySelected.length && state.selectedSection) {
+      const processedData = createDynamicArrayOfCards(
+         cardList,
+         state.selectedSection,
+         creteDinamicObject(state.categorySelected)
+      )
+      await setManyAtSameTime(processedData, collection)
+   } else {
+      alert("somethimb bad happend, try again later")
+   }
 }
 
 export const setNextRandomCard = (state, dispatch, cardToBeDeleted) => {
    let { dynamicCards } = state
    dynamicCards = dynamicCards.filter(
-      (card) => card.frontReference !== cardToBeDeleted.frontReference
+      (card) => card.frontTerm !== cardToBeDeleted.frontTerm
    )
    setRandomCard(dispatch, dynamicCards)
    dispatch(cardActionTypes.setDynamicCards(dynamicCards))

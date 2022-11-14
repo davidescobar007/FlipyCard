@@ -17,6 +17,7 @@ function CustomInputComponent({ itemText, ...props }) {
       </div>
    )
 }
+
 CustomInputComponent.defaultProps = {
    itemText: ""
 }

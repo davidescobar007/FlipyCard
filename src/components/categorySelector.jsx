@@ -8,27 +8,23 @@ function CategorySelector() {
       state: { categories, categorySelected }
    } = useContext(StoreContext)
 
-   const selectCategory = (category) => {
-      getCardsListByCategories(category)
-   }
-
    useEffect(() => {
       getCategoryList()
    }, [])
 
    return (
-      <section className="mb-5">
-         <div className=" flex overflow-x-auto py-2">
+      <section className="my-5">
+         <div className=" flex overflow-x-auto pb-2">
             {Array.isArray(categories) &&
                categories.map((item, index) => (
                   <button
-                     className={`mr-2 whitespace-nowrap rounded-lg border-2 border-blue-900 px-3 text-blue-900 shadow-md ${
+                     className={`mr-2 whitespace-nowrap rounded-2xl border-2 border-blue-900 px-3 text-blue-900 shadow-md ${
                         categorySelected.includes(item)
                            ? "bg-blue-900 text-gray-200"
                            : ""
                      }`}
                      key={index}
-                     onClick={() => selectCategory(item)}
+                     onClick={() => getCardsListByCategories(item)}
                   >
                      {item.name}
                   </button>

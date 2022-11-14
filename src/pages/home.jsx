@@ -1,11 +1,11 @@
-import ProgressBar from "@ramonak/react-progress-bar"
 import CardsContainer from "../components/card"
+import CategorySelector from "../components/categorySelector"
 
 export default function Home() {
    return (
-      <div>
-         <ProgressBar />
+      <section>
+         <CategorySelector />
          <CardsContainer />
-      </div>
+      </section>
    )
 }

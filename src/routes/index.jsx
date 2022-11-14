@@ -17,7 +17,7 @@ export default function Router() {
             />
             <Route
                element={
-                  <Suspense>
+                  <Suspense fallback={<>loading...</>}>
                      <NewSet />
                   </Suspense>
                }

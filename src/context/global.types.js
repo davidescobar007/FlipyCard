@@ -23,7 +23,9 @@ export const constants = {
    CATEGORIES: "categories",
    CARDS: "cards",
    CATEGORY: "category",
-   SECTIONS: "sections"
+   SECTIONS: "sections",
+   FRONT_TERM: "frontTerm",
+   ANSWER: "answer"
 }
 
 export const queryOperators = {

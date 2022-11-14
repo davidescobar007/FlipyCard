@@ -17,5 +17,8 @@ const sectionActions = {
       type: types.UPDATE_SECTIONS,
       payload
    }),
-   setSection: (payload) => ({ type: types.SET_SECTION, payload })
+   setSection: (payload) => ({
+      type: types.SET_SECTION,
+      payload
+   })
 }

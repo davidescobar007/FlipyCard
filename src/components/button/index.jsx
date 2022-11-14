@@ -6,13 +6,7 @@ const buttonTypes = {
    INFO: "border-blue-900 bg-blue-900 text-white"
 }
 
-function Button({
-   type = "button",
-   children,
-   typeOf,
-   extraClassname,
-   ...rest
-}) {
+function Button({ type, children, typeOf, extraClassname, ...rest }) {
    return (
       <button
          className={`my-1 rounded-sm border-2  px-4 py-1 shadow-md ${buttonTypes[typeOf]} ${extraClassname}`}
@@ -24,14 +18,16 @@ function Button({
    )
 }
 Button.defaultProps = {
-   extraClassname: ""
+   extraClassname: "",
+   type: "button",
+   typeOf: "PRIMARY"
 }
 
 Button.propTypes = {
    children: PropTypes.node.isRequired,
    extraClassname: PropTypes.string,
-   type: PropTypes.string.isRequired,
-   typeOf: PropTypes.oneOf(["PRIMARY", "INFO"]).isRequired
+   type: PropTypes.string,
+   typeOf: PropTypes.oneOf(["PRIMARY", "INFO"])
 }
 
 export default Button

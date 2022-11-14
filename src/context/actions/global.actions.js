@@ -1,4 +1,4 @@
-import { dynamicSearch } from "../../services"
+import { dynamicSearch, getDataByQuery } from "../../services"
 import { createDinamicArray, toggleItemFromArray } from "../../utils"
 import * as cardsActions from "./cards.actions"
 import * as categoryActions from "./category.actions"
@@ -31,9 +31,29 @@ const getCardsByCategories = (state, dispatch, collection, field, category) => {
    }
 }
 
+const getCategoriesBySections = (dispatch, payload, section) => {
+   try {
+      console.log(payload)
+      dispatch(actionHandlerTypes.setSection(section))
+      getDataByQuery(payload, "section", section).then((dataList) => {
+         dispatch(actionHandlerTypes.setCategory(dataList))
+      })
+   } catch (error) {
+      actionHandlerTypes.error()
+   }
+}
+
 const actionHandlerTypes = {
    trigerMenu: () => ({
       type: types.IS_MENU_OPEN
+   }),
+   setSection: (payload) => ({
+      type: types.SET_SECTION,
+      payload
+   }),
+   setCategory: (payload) => ({
+      type: types.SET_CATEGORIES,
+      payload
    }),
    error: () => ({
       type: types.SERVICE_ERROR
@@ -45,5 +65,6 @@ export {
    categoryActions,
    getCardsByCategories,
    cardsActions,
-   actionHandlerTypes
+   actionHandlerTypes,
+   getCategoriesBySections
 }

@@ -8,7 +8,7 @@ function App() {
    return (
       <StoreProvider>
          <BrowserRouter>
-            <div className="min-h-screen bg-slate-50">
+            <div className="min-h-screen bg-zinc-200">
                <Aside />
                <Navbar />
                <Router />
