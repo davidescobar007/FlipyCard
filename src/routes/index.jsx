@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react"
 import { Routes, Route } from "react-router-dom"
+import Loader from "../components/loader"
 
 const Home = lazy(() => import("../pages/home"))
 const NewSet = lazy(() => import("../pages/newSetOfCards/index"))
@@ -9,7 +10,7 @@ export default function Router() {
          <Routes>
             <Route
                element={
-                  <Suspense fallback={<>loading...</>}>
+                  <Suspense fallback={<Loader />}>
                      <Home />
                   </Suspense>
                }
@@ -17,7 +18,7 @@ export default function Router() {
             />
             <Route
                element={
-                  <Suspense fallback={<>loading...</>}>
+                  <Suspense fallback={<Loader />}>
                      <NewSet />
                   </Suspense>
                }

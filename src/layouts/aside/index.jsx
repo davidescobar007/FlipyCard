@@ -34,29 +34,37 @@ export default function Aside() {
                      </Title>
                   </Link>
                </li>
-               <li>
-                  <Title extraClassName="text-xl font-medium" type="h2">
-                     &#9656; My Sections
-                  </Title>
-               </li>
-               {sections.map((item, index) => (
-                  <li key={index} onClick={() => getCategoriesBySections(item)}>
-                     <p
-                        className={`m-1 cursor-pointer rounded-md pl-2 text-lg hover:bg-slate-300 ${
-                           item === selectedSection && "rounded-md bg-slate-300"
-                        }`}
-                        onClick={trigerAsideMenu}
-                     >
-                        {item}
-                     </p>
-                  </li>
-               ))}
+
                <li>
                   <Link onClick={trigerAsideMenu} to="/new-set">
                      <Title extraClassName="text-xl font-medium" type="h2">
                         Add new set of cards +
                      </Title>
                   </Link>
+               </li>
+
+               <li>
+                  <Title extraClassName="text-xl font-medium" type="h2">
+                     My Sections
+                  </Title>
+                  <ul>
+                     {sections.map((item, index) => (
+                        <li
+                           key={index}
+                           onClick={() => getCategoriesBySections(item)}
+                        >
+                           <p
+                              className={`m-1 cursor-pointer rounded-md pl-2 text-lg hover:bg-slate-300 ${
+                                 item === selectedSection &&
+                                 "rounded-md bg-slate-300"
+                              }`}
+                              onClick={trigerAsideMenu}
+                           >
+                              {item}
+                           </p>
+                        </li>
+                     ))}
+                  </ul>
                </li>
             </ul>
          </div>

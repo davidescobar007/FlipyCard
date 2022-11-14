@@ -11,7 +11,11 @@ function StoreProvider({ children }) {
    const [state, dispatch] = useReducer(storeReducer, initialStore)
 
    const getCategoryList = () =>
-      action.categoryActions.getCategories(dispatch, constants.CATEGORIES)
+      action.categoryActions.getCategories(
+         state,
+         dispatch,
+         constants.CATEGORIES
+      )
 
    const getCardsListByCategories = (categoryName) =>
       action.getCardsByCategories(

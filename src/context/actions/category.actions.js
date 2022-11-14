@@ -1,8 +1,8 @@
 import { updateDocument, getDataByQuery } from "../../services"
+import { getSortedObjectKeys } from "../../utils"
 import { types } from "../global.reducer"
 
 export const createCategory = async (state, dispatch, payload) => {
-   console.log("trigered")
    const { collection, id, category } = payload
    const { categories } = state
    await updateDocument(collection, id, category)
@@ -10,13 +10,14 @@ export const createCategory = async (state, dispatch, payload) => {
       dispatch(categoryActionTypes.setCategory(category))
 }
 
-export const getCategories = (dispatch, collectionName) => {
+export const getCategories = (state, dispatch, collectionName) => {
    try {
-      getDataByQuery(collectionName, "section", "german").then((dataList) => {
-         dispatch(categoryActionTypes.setCategory(dataList))
-         //TODO: to be fixed
-         // dispatch(categoryActionTypes.setCategoriesId(data[0].id))
-      })
+      getDataByQuery(collectionName, "section", state.selectedSection).then(
+         (dataList) => {
+            dataList = dataList.map((item) => getSortedObjectKeys(item))
+            dispatch(categoryActionTypes.setCategory(dataList))
+         }
+      )
    } catch (error) {
       categoryActionTypes.error()
    }

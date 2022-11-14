@@ -5,11 +5,21 @@ export const getRandomFromArray = (array) => {
    }
 }
 
+export const getSortedObjectKeys = (obj) =>
+   Object.keys(obj)
+      .sort()
+      .reduce((accumulator, key) => {
+         accumulator[key] = obj[key]
+
+         return accumulator
+      }, {})
+
 export const toggleItemFromArray = (array, itemToToggle) => {
    let newArray = [...array]
-   newArray.includes(itemToToggle)
-      ? (newArray = newArray.filter((item) => item !== itemToToggle))
-      : (newArray = [...array, itemToToggle])
+   let sortedItemToToggle = getSortedObjectKeys(itemToToggle)
+   newArray.includes(sortedItemToToggle)
+      ? (newArray = newArray.filter((item) => item !== sortedItemToToggle))
+      : (newArray = [...array, sortedItemToToggle])
    return newArray
 }
 

@@ -26,7 +26,7 @@ export const createCardsAtOnce = async (state, cardList, collection) => {
       )
       await setManyAtSameTime(processedData, collection)
    } else {
-      alert("somethimb bad happend, try again later")
+      alert("Please select at least one category")
    }
 }
 

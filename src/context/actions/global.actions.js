@@ -31,11 +31,10 @@ const getCardsByCategories = (state, dispatch, collection, field, category) => {
    }
 }
 
-const getCategoriesBySections = (dispatch, payload, section) => {
+const getCategoriesBySections = (dispatch, collectionName, section) => {
    try {
-      console.log(payload)
       dispatch(actionHandlerTypes.setSection(section))
-      getDataByQuery(payload, "section", section).then((dataList) => {
+      getDataByQuery(collectionName, "section", section).then((dataList) => {
          dispatch(actionHandlerTypes.setCategory(dataList))
       })
    } catch (error) {
