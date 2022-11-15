@@ -22,7 +22,6 @@ function StoreProvider({ children }) {
          state,
          dispatch,
          constants.CARDS,
-         constants.CATEGORY,
          categoryName
       )
 

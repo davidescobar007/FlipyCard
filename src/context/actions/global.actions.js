@@ -6,7 +6,7 @@ import * as sectionActions from "./section.actions"
 import { types } from "../global.reducer"
 import { queryOperators } from "../global.types"
 
-const getCardsByCategories = (state, dispatch, collection, field, category) => {
+const getCardsByCategories = (state, dispatch, collection, category) => {
    try {
       let categorySelected = toggleItemFromArray(
          state.categorySelected,
