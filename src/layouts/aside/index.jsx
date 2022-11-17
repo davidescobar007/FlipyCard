@@ -26,8 +26,8 @@ export default function Aside() {
             <RiCloseFill cursor="pointer" size="2em" />
          </div>
          <div className="h-screen w-full flex-shrink-0 p-3 py-5">
-            <ul>
-               <li>
+            <ul className="mt-10">
+               <li className="my-4">
                   <Link onClick={trigerAsideMenu} to="/">
                      <Title extraClassName="text-xl font-medium" type="h2">
                         Home
@@ -35,7 +35,7 @@ export default function Aside() {
                   </Link>
                </li>
 
-               <li>
+               <li className="my-4">
                   <Link onClick={trigerAsideMenu} to="/new-set">
                      <Title extraClassName="text-xl font-medium" type="h2">
                         Add new set of cards +
@@ -43,7 +43,7 @@ export default function Aside() {
                   </Link>
                </li>
 
-               <li>
+               <li className="my-4">
                   <Title extraClassName="text-xl font-medium" type="h2">
                      My Sections
                   </Title>

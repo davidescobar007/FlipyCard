@@ -1,10 +1,12 @@
 import { getCollectionList } from "../../services"
 import { constants, types } from "../global.types"
 
-export const getSections = (dispatch) => {
+export const getSections = (state, dispatch) => {
    getCollectionList(constants.SECTIONS).then((data) => {
       dispatch(sectionActions.getSection(data[0].data.sectionList))
-      dispatch(sectionActions.setSection(data[0].data.sectionList[0]))
+      if (!state.selectedSection) {
+         dispatch(sectionActions.setSection(data[0].data.sectionList[0]))
+      }
    })
 }
 

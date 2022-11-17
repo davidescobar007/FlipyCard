@@ -56,7 +56,7 @@ function StoreProvider({ children }) {
    const trigerAsideMenu = () =>
       dispatch(action.actionHandlerTypes.trigerMenu())
 
-   const getSections = () => action.sectionActions.getSections(dispatch)
+   const getSections = () => action.sectionActions.getSections(state, dispatch)
 
    const setSection = (section) =>
       action.sectionActions.setSection(dispatch, section)

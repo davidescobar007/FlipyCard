@@ -22,7 +22,9 @@ function CategorySelector() {
                      <button
                         className={`mr-2 whitespace-nowrap rounded-2xl border-2 border-blue-900 px-3 text-blue-900 shadow-md ${
                            Array.isArray(categorySelected) &&
-                           categorySelected.includes(item) &&
+                           categorySelected.some(
+                              (catSelected) => catSelected.name === item.name
+                           ) &&
                            "bg-blue-900 text-gray-200"
                         }`}
                         key={index}

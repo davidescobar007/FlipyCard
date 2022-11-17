@@ -20,7 +20,7 @@ export const toggleItemFromArray = (array, itemToToggle) => {
       (item) => item.name === itemToToggle.name
    )
    isItemInArray
-      ? (newArray = newArray.filter((item) => item !== itemToToggle))
+      ? (newArray = newArray.filter((item) => item.name !== itemToToggle.name))
       : (newArray = [...array, itemToToggle])
    return newArray
 }
