@@ -90,9 +90,9 @@ function Card({ frontReference, backReference, isFirstCard }) {
    }
 
    return (
-      <div className={`${animation}`}>
+      <div className={`md:mx-32 lg:mx-60 ${animation}`}>
          <CardFlipper flipDirection="horizontal" isFlipped={flip}>
-            <div className="rounded-lg bg-gray-50 p-3 shadow-xl">
+            <div className="rounded-xl bg-gray-50 p-3 shadow-xl">
                <CardHeader onClick={() => setDisplayForm(true)} />
                <div className="card-body text-center">
                   {displayForm ? (

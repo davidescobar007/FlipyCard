@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react"
 import { StoreContext } from "../context/global.state"
+import Button from "./button"
 
 function CategorySelector() {
    const {
@@ -19,19 +20,19 @@ function CategorySelector() {
             {Array.isArray(categories) &&
                categories.map((item, index) => {
                   return (
-                     <button
-                        className={`mr-2 whitespace-nowrap rounded-2xl border-2 border-blue-900 px-3 text-blue-900 shadow-md ${
-                           Array.isArray(categorySelected) &&
+                     <Button
+                        dangerouslyResetClassName
+                        extraClassname={`text-lg mr-2 font-medium whitespace-nowrap rounded-full border-2 px-3 border-blue-500 text-blue-500 shadow-md ${
                            categorySelected.some(
                               (catSelected) => catSelected.name === item.name
-                           ) &&
-                           "bg-blue-900 text-gray-200"
+                           ) && "bg-blue-500 !text-white"
                         }`}
                         key={index}
                         onClick={() => getCardsListByCategories(item)}
+                        typeOf="INFO"
                      >
                         {item.name}
-                     </button>
+                     </Button>
                   )
                })}
          </div>

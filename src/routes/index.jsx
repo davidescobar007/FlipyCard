@@ -6,7 +6,7 @@ const Home = lazy(() => import("../pages/home"))
 const NewSet = lazy(() => import("../pages/newSetOfCards/index"))
 export default function Router() {
    return (
-      <main className="px-3">
+      <main className="px-3 lg:px-20">
          <Routes>
             <Route
                element={
