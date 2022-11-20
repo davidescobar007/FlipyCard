@@ -7,7 +7,8 @@ import {
 import {
    createDynamicArrayOfCards,
    creteDinamicObject,
-   getRandomFromArray
+   getRandomFromArray,
+   updateObjInsideOfArray
 } from "../../utils"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
@@ -46,6 +47,15 @@ export const setRandomCard = (dispatch, listOfCards) => {
 
 export const updateRandomCard = (dispatch, cardData) => {
    updateDocument(constants.CARDS, cardData.id, cardData)
+   dispatch(cardActionTypes.setRandomCard(cardData))
+}
+
+export const updateCard = (state, dispatch, cardData) => {
+   const newArrayofDynamicCards = updateObjInsideOfArray(state.dynamicCards, cardData)
+   const newArrayOfCards = updateObjInsideOfArray(state.cards, cardData)
+   updateDocument(constants.CARDS, cardData.id, cardData)
+   dispatch(cardActionTypes.setCards(newArrayOfCards))
+   dispatch(cardActionTypes.setDynamicCards(newArrayofDynamicCards))
    dispatch(cardActionTypes.setRandomCard(cardData))
 }
 

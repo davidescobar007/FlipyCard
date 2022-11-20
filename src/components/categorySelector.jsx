@@ -10,7 +10,6 @@ function CategorySelector() {
    } = useContext(StoreContext)
 
    useEffect(() => {
-      console.log("getCategorylList useffect")
       getCategoryList()
    }, [selectedSection])
 

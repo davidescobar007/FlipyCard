@@ -59,3 +59,13 @@ export const createDynamicArrayOfCards = (listofCards, section, callBack) => {
    })
    return arr
 }
+
+export const updateObjInsideOfArray = (array, obj) =>{
+   const newIteratedArray = array.map((item) => {
+      if (item.id === obj.id) {
+         item = obj
+      }
+      return item
+   })
+return   newIteratedArray
+}

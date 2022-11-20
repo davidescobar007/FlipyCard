@@ -48,7 +48,7 @@ function StoreProvider({ children }) {
       action.cardsActions.setNextRandomCard(state, dispatch, cardToBeDeleted)
 
    const updateCard = (newDataForRandomCard) =>
-      action.cardsActions.updateRandomCard(dispatch, newDataForRandomCard)
+      action.cardsActions.updateCard(state,dispatch, newDataForRandomCard)
 
    const deleteCurrentCard = () =>
       action.cardsActions.deleteCard(state, dispatch)
