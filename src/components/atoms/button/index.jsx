@@ -2,8 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 
 const buttonTypes = {
-   PRIMARY: "border-green-600 text-white bg-green-600",
-   INFO: "border-blue-500 bg-blue-500 text-white"
+   PRIMARY: "btn-primary",
+   SECONDARY: "btn-secondary",
+   INFO: "btn-info"
 }
 
 function Button({
@@ -18,7 +19,7 @@ function Button({
       <button
          className={
             (dangerouslyResetClassName && extraClassname) ||
-            `my-1 rounded-lg border-2 px-4 py-1 text-lg shadow-md ${buttonTypes[typeOf]} ${extraClassname}`
+            `btn rounded-lg py-1 target:bg-transparent ${buttonTypes[typeOf]} ${extraClassname}`
          }
          {...rest}
          type={type}
@@ -28,18 +29,18 @@ function Button({
    )
 }
 Button.defaultProps = {
-   extraClassname: "",
    dangerouslyResetClassName: false,
+   extraClassname: "",
    type: "button",
    typeOf: "PRIMARY"
 }
 
 Button.propTypes = {
    children: PropTypes.node.isRequired,
+   dangerouslyResetClassName: PropTypes.bool,
    extraClassname: PropTypes.string,
    type: PropTypes.string,
-   typeOf: PropTypes.oneOf(["PRIMARY", "INFO"]),
-   dangerouslyResetClassName: PropTypes.bool
+   typeOf: PropTypes.oneOf(["PRIMARY", "INFO", "SECONDARY"])
 }
 
 export default Button

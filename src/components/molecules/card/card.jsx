@@ -1,11 +1,11 @@
 /* eslint-disable react/forbid-component-props */
 import PropTypes from "prop-types"
 import React, { useContext, useEffect, useState } from "react"
-import { StoreContext } from "../../context/global.state"
-import { constants } from "../../context/global.types"
-import CardFlipper from "../../features/flipCard"
-import Button from "../button"
-import Input from "../input"
+import { StoreContext } from "../../../context/global.state"
+import { constants } from "../../../context/global.types"
+import CardFlipper from "../../../features/flipCard"
+import Button from "../../atoms/button"
+import Input from "../../atoms/input"
 import CardBody from "./cardBody"
 import CardHeader from "./cardHeader"
 
@@ -79,7 +79,7 @@ function Card({ frontReference, backReference, isFirstCard }) {
                   <Button
                      onClick={() => setDisplayForm(true)}
                      type="submit"
-                     typeOf="INFO"
+                     typeOf="SECONDARY"
                   >
                      Save
                   </Button>

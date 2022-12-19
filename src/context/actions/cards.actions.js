@@ -51,7 +51,10 @@ export const updateRandomCard = (dispatch, cardData) => {
 }
 
 export const updateCard = (state, dispatch, cardData) => {
-   const newArrayofDynamicCards = updateObjInsideOfArray(state.dynamicCards, cardData)
+   const newArrayofDynamicCards = updateObjInsideOfArray(
+      state.dynamicCards,
+      cardData
+   )
    const newArrayOfCards = updateObjInsideOfArray(state.cards, cardData)
    updateDocument(constants.CARDS, cardData.id, cardData)
    dispatch(cardActionTypes.setCards(newArrayOfCards))

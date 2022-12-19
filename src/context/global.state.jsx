@@ -32,12 +32,7 @@ function StoreProvider({ children }) {
       action.cardsActions.createCardsAtOnce(state, cardsList, constants.CARDS)
 
    const createNewCategory = (category) =>
-      action.categoryActions.createCategory(state, dispatch, {
-         collection: constants.CATEGORIES,
-         id: state.categoryId,
-         category,
-         section: state.selectedSection
-      })
+      action.categoryActions.createCategory(state, dispatch, category)
 
    const resetDynamicCards = (cards) => {
       dispatch(action.cardsActions.cardActionTypes.setDynamicCards([...cards]))
@@ -48,7 +43,7 @@ function StoreProvider({ children }) {
       action.cardsActions.setNextRandomCard(state, dispatch, cardToBeDeleted)
 
    const updateCard = (newDataForRandomCard) =>
-      action.cardsActions.updateCard(state,dispatch, newDataForRandomCard)
+      action.cardsActions.updateCard(state, dispatch, newDataForRandomCard)
 
    const deleteCurrentCard = () =>
       action.cardsActions.deleteCard(state, dispatch)
@@ -63,6 +58,10 @@ function StoreProvider({ children }) {
 
    const getCategoriesBySections = (section) =>
       action.getCategoriesBySections(dispatch, constants.CATEGORIES, section)
+
+   const setUiTheme = () => {
+      dispatch(action.actionHandlerTypes.setUiTheme())
+   }
 
    const store = useMemo(
       () => ({
@@ -79,7 +78,8 @@ function StoreProvider({ children }) {
          trigerAsideMenu,
          getSections,
          setSection,
-         getCategoriesBySections
+         getCategoriesBySections,
+         setUiTheme
       }),
       [
          state,
@@ -95,7 +95,8 @@ function StoreProvider({ children }) {
          trigerAsideMenu,
          getSections,
          setSection,
-         getCategoriesBySections
+         getCategoriesBySections,
+         setUiTheme
       ]
    )
 

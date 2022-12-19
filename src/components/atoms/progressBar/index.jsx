@@ -8,7 +8,7 @@ export default function ProgressPercentage({ value }) {
          <ProgressBar
             animateOnRender
             baseBgColor="transparent"
-            bgColor="#16A340"
+            bgColor="#ff6978"
             completed={value}
             labelColor="transparent"
             transitionDuration="0.4s"
@@ -18,5 +18,5 @@ export default function ProgressPercentage({ value }) {
 }
 
 ProgressPercentage.propTypes = {
-   value: PropTypes.number
+   value: PropTypes.number.isRequired
 }

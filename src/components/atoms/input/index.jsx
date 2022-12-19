@@ -1,11 +1,13 @@
 import PropTypes from "prop-types"
+import React from "react"
 
-function Input({ type, extraClassName, ...rest }) {
+function Input({ type, extraClassName, innerRef, ...rest }) {
    return (
       <input
+         ref={innerRef}
          type={type}
          {...rest}
-         className={`w-full appearance-none border-b border-blue-900 bg-transparent p-2 leading-tight shadow-sm focus:bg-transparent focus:outline-none ${extraClassName}`}
+         className={"max-w-xs input input-bordered w-full " + extraClassName}
       />
    )
 }
@@ -17,6 +19,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
    extraClassName: PropTypes.string,
+   innerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
    type: PropTypes.string
 }
 

@@ -1,12 +1,12 @@
 import { lazy, Suspense } from "react"
 import { Routes, Route } from "react-router-dom"
-import Loader from "../components/loader"
+import Loader from "../components/atoms/loader"
 
 const Home = lazy(() => import("../pages/home"))
 const NewSet = lazy(() => import("../pages/newSetOfCards/index"))
 export default function Router() {
    return (
-      <main className="px-3 lg:px-20">
+      <main className="flex-grow px-3 lg:px-20">
          <Routes>
             <Route
                element={

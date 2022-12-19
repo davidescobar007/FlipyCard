@@ -1,13 +1,19 @@
-import { updateDocument, getDataByQuery } from "../../services"
+import { getDataByQuery, setDocument } from "../../services"
 import { getSortedObjectKeys } from "../../utils"
 import { types } from "../global.reducer"
+import { constants } from "../global.types"
 
-export const createCategory = async (state, dispatch, payload) => {
-   const { collection, id, category } = payload
+export const createCategory = (state, dispatch, category) => {
    const { categories } = state
-   await updateDocument(collection, id, category)
-   !categories.includes(category) &&
-      dispatch(categoryActionTypes.setCategory(category))
+   const newCategory = {
+      name: category,
+      section: state.selectedSection
+   }
+   setDocument(constants.CATEGORIES, newCategory)
+
+   !categories.some((item) => item.name === category) &&
+      dispatch(categoryActionTypes.setCategory([...categories, newCategory]))
+   document.getElementById("my-modal-4").checked = false // this close the modal once it is saved
 }
 
 export const getCategories = (state, dispatch, collectionName) => {

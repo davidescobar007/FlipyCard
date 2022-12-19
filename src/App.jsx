@@ -1,18 +1,19 @@
-import Navbar from "./layouts/navbar"
 import StoreProvider from "./context/global.state"
-import Aside from "./layouts/aside"
 import { BrowserRouter } from "react-router-dom"
-import Router from "./routes"
+import Drawer from "./layouts/drawer"
+import Navbar from "./layouts/navbar"
+import Router from "./routes/index"
+import Footer from "./layouts/footer"
 
 function App() {
    return (
       <StoreProvider>
          <BrowserRouter>
-            <div className="min-h-screen bg-zinc-200">
-               <Aside />
+            <Drawer>
                <Navbar />
                <Router />
-            </div>
+               <Footer />
+            </Drawer>
          </BrowserRouter>
       </StoreProvider>
    )

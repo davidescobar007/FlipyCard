@@ -9,7 +9,9 @@ const initialStore = {
    randomCard: null,
    isMenuOpen: false,
    sections: [],
-   selectedSection: null
+   selectedSection: null,
+   theme: "mytheme",
+   isDarkTheme: false
 }
 
 const globalReducer = (state, action) => {
@@ -89,6 +91,12 @@ const globalReducer = (state, action) => {
             ...state,
             selectedSection: action.payload
          }
+      case types.SET_THEME: {
+         return {
+            ...state,
+            isDarkTheme: !state.isDarkTheme
+         }
+      }
       default:
          return state
    }

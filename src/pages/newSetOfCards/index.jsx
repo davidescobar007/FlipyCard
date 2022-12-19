@@ -1,11 +1,11 @@
-import Table from "../../components/table"
-import Button from "../../components/button"
+import Table from "../../components/molecules/table"
+import Button from "../../components/atoms/button"
 import { useState } from "react"
-import TableDataCell from "../../components/table/TableDataCell"
-import TableRow from "../../components/table/TableRow"
+import TableDataCell from "../../components/molecules/table/TableDataCell"
+import TableRow from "../../components/molecules/table/TableRow"
 import CustomInputComponent from "./customInputComponent"
-import Title from "../../components/title/title"
-import CategorySelector from "../../components/categorySelector"
+import Title from "../../components/atoms/title/title"
+import CategorySelector from "../../components/molecules/categorySelector/categorySelector"
 import { useContext } from "react"
 import { StoreContext } from "../../context/global.state"
 import { useNavigate } from "react-router-dom"
@@ -35,17 +35,17 @@ export default function NewSet() {
 
    return (
       <>
-         <Title extraClassName="my-3" type="h3">
+         <Title
+            extraClassName="my-3 text-lg text-primary font-semibold"
+            type="h3"
+         >
             Select a category for the new set of cards
          </Title>
          <CategorySelector />
          <Table tableHeadProps={tHeadData}>
             <>
                {cardsList.map((item, index) => (
-                  <TableRow
-                     extraClassName={index % 2 === 0 ? "bg-white" : ""}
-                     key={index}
-                  >
+                  <TableRow key={index}>
                      <TableDataCell>
                         <CustomInputComponent
                            id="frontTerm"
@@ -78,10 +78,10 @@ export default function NewSet() {
             </Button>
 
             <Button
-               extraClassname="content-end my-5"
+               extraClassname="my-7"
                onClick={handleSubmit}
                type="button"
-               typeOf="INFO"
+               typeOf="SECONDARY"
             >
                Create
             </Button>

@@ -2,6 +2,8 @@
 import React, { useContext } from "react"
 import { useEffect } from "react"
 import { RiMenuLine } from "react-icons/ri"
+import { Link } from "react-router-dom"
+import Title from "../../components/atoms/title/title"
 import { StoreContext } from "../../context/global.state"
 
 function Navbar() {
@@ -12,25 +14,27 @@ function Navbar() {
    }, [])
 
    return (
-      <nav className="flex justify-between py-5 px-3">
-         <a href="#">
-            <h1 className="text-2xl font-semibold text-blue-900  ">
-               FlipyCard
-            </h1>
-         </a>
-         <div>
-            {/* TODO: login button to be implemented once login feature is done */}
-            {/* <button className="btn btn-outline-light" type="button">
-                  Log In
-               </button> */}
-            <RiMenuLine
-               className="text-gray-700"
-               cursor="pointer"
-               onClick={trigerAsideMenu}
-               size="2em"
-            />
+      <header className="navbar bg-base-100">
+         <div className="flex-1">
+            <Link to="/">
+               <Title
+                  extraClassName="text-3xl font-mono font-semibold"
+                  type="h1"
+               >
+                  FlipyCard
+               </Title>
+            </Link>
          </div>
-      </nav>
+         <div className="flex-none">
+            <ul className="menu menu-horizontal p-0">
+               <li>
+                  <label className="" htmlFor="my-drawer">
+                     <RiMenuLine onClick={trigerAsideMenu} size="2em" />
+                  </label>
+               </li>
+            </ul>
+         </div>
+      </header>
    )
 }
 

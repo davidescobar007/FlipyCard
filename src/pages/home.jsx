@@ -1,5 +1,5 @@
-import CardsContainer from "../components/card"
-import CategorySelector from "../components/categorySelector"
+import CardsContainer from "../components/molecules/card"
+import CategorySelector from "../components/molecules/categorySelector/categorySelector"
 
 export default function Home() {
    return (

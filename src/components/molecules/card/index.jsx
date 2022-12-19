@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react"
-import { StoreContext } from "../../context/global.state"
-import ProgressPercentage from "../progressBar"
+import { StoreContext } from "../../../context/global.state"
+import ProgressPercentage from "../../atoms/progressBar"
 import Card from "./card"
 import useSound from "use-sound"
-import sound from "../../../public/sound1.mp3"
-import finishSound1 from "../../../public/finishSound1.mp3"
-import Button from "../button"
+import sound from "../../../../public/sound1.mp3"
+import finishSound1 from "../../../../public/finishSound1.mp3"
+import Button from "../../atoms/button"
 
 function CardsContainer() {
    const {

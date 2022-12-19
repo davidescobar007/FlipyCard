@@ -1,73 +1,95 @@
-import { RiCloseFill } from "react-icons/ri"
+/* eslint-disable react/forbid-component-props */
 import { useContext } from "react"
 import { StoreContext } from "../../context/global.state"
 import { Link } from "react-router-dom"
-import Title from "../../components/title/title"
+import Title from "../../components/atoms/title/title"
+import { RiHomeHeartFill, RiHeartAddFill } from "react-icons/ri"
+import { TiChevronRight } from "react-icons/ti"
+import { useEffect } from "react"
+import { HiViewGridAdd } from "react-icons/hi"
 
 export default function Aside() {
    const {
       trigerAsideMenu,
       getSections,
       getCategoriesBySections,
-      state: { isMenuOpen, sections, selectedSection }
+      state: { sections, selectedSection }
    } = useContext(StoreContext)
 
-   const handleClick = () => {
-      trigerAsideMenu()
+   useEffect(() => {
       getSections()
-   }
+   }, [])
 
-   if (!isMenuOpen) {
-      return
-   }
    return (
-      <aside className="fixed z-10 flex min-h-screen w-full bg-white text-lg text-gray-700">
-         <div className="fixed right-0 my-4 mx-2" onClick={handleClick}>
-            <RiCloseFill cursor="pointer" size="2em" />
-         </div>
-         <div className="h-screen w-full flex-shrink-0 p-3 py-5">
-            <ul className="mt-10">
-               <li className="my-4">
-                  <Link onClick={trigerAsideMenu} to="/">
-                     <Title extraClassName="text-xl font-medium" type="h2">
-                        Home
-                     </Title>
-                  </Link>
-               </li>
-
-               <li className="my-4">
-                  <Link onClick={trigerAsideMenu} to="/new-set">
-                     <Title extraClassName="text-xl font-medium" type="h2">
-                        Add new set of cards +
-                     </Title>
-                  </Link>
-               </li>
-
-               <li className="my-4">
-                  <Title extraClassName="text-xl font-medium" type="h2">
-                     My Sections
+      <aside className="drawer-side">
+         <label
+            className="drawer-overlay"
+            htmlFor="my-drawer"
+            onClick={trigerAsideMenu}
+         />
+         <ul className="menu w-full bg-base-100 p-4 text-base-content lg:w-3/6">
+            <li>
+               <Link onClick={trigerAsideMenu} to="/">
+                  <Title extraClassName="text-2xl font-medium flex" type="h2">
+                     <RiHomeHeartFill className="mt-1 mr-3" />
+                     Home
                   </Title>
-                  <ul>
-                     {sections.map((item, index) => (
-                        <li
-                           key={index}
-                           onClick={() => getCategoriesBySections(item)}
+               </Link>
+            </li>
+            <li>
+               <Link onClick={trigerAsideMenu} to="/new-set">
+                  <Title extraClassName="text-2xl font-medium flex" type="h2">
+                     <RiHeartAddFill className="mt-1 mr-3" />
+                     Add new set of cards
+                  </Title>
+               </Link>
+            </li>
+            <li>
+               <div>
+                  <div className="collapse">
+                     <input type="checkbox" />
+                     <div className="focus:mi collapse-title p-0">
+                        <Title
+                           extraClassName="text-2xl flex font-medium"
+                           type="h2"
                         >
-                           <p
-                              className={`m-1 cursor-pointer rounded-md pl-2 text-lg hover:bg-slate-300 ${
-                                 item === selectedSection &&
-                                 "rounded-md bg-slate-300"
-                              }`}
-                              onClick={trigerAsideMenu}
-                           >
-                              {item}
-                           </p>
-                        </li>
-                     ))}
-                  </ul>
-               </li>
-            </ul>
-         </div>
+                           <TiChevronRight className="mt-1 mr-3" />
+                           My Sections
+                        </Title>
+                     </div>
+                     <div className="collapse-content">
+                        <ul>
+                           <li>
+                              <Title
+                                 extraClassName="text-xl flex font-medium"
+                                 type="h3"
+                              >
+                                 Add new section
+                                 <HiViewGridAdd className="mt-1 mr-3" />
+                              </Title>
+                           </li>
+                           {sections.map((item, index) => (
+                              <li
+                                 key={index}
+                                 onClick={() => getCategoriesBySections(item)}
+                              >
+                                 <p
+                                    className={`hover:bg-secundary m-1 cursor-pointer rounded-md pl-8 text-lg ${
+                                       item === selectedSection &&
+                                       "rounded-md bg-primary font-semibold text-neutral text-base-100"
+                                    }`}
+                                    onClick={trigerAsideMenu}
+                                 >
+                                    {item}
+                                 </p>
+                              </li>
+                           ))}
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ul>
       </aside>
    )
 }

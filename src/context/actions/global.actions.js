@@ -54,6 +54,9 @@ const actionHandlerTypes = {
       type: types.SET_CATEGORIES,
       payload
    }),
+   setUiTheme: () => ({
+      type: types.SET_THEME
+   }),
    error: () => ({
       type: types.SERVICE_ERROR
    })
