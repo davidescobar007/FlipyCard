@@ -25,8 +25,8 @@ function CategorySelector() {
             <div className="tooltip mt-2 mr-2" data-tip="Edit categories">
                <label className="swap-rotate swap">
                   <input type="checkbox" />
-                  <RiCheckFill className="swap-on h-10 w-10 rounded-full bg-secondary p-2 text-white" onClick={()=>{setIsEditOn(!isEditOn)}} />
-                  <RiEdit2Line  className="swap-off h-10 w-10 rounded-full border-2 border-secondary p-2 text-secondary" onClick={()=>{setIsEditOn(!isEditOn)}}/>
+                  <RiCheckFill className="swap-on h-10 w-10 rounded-full bg-secondary p-2 text-white" onClick={()=>{setIsEditOn(true)}} />
+                  <RiEdit2Line  className="swap-off h-10 w-10 rounded-full border-2 border-secondary p-2 text-secondary" onClick={()=>{setIsEditOn(false)}}/>
                </label>
             </div>
             {isEditOn ? (

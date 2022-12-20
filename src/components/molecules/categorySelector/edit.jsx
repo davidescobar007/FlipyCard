@@ -32,7 +32,7 @@ function EditCategory({ categories }) {
                return (
                   <div className="indicator mr-5" key={index}>
                      <span
-                        className="badge indicator-item badge-secondary rounded-full"
+                        className="badge indicator-item badge-secondary rounded-full animate__animated animate__fadeIn"
                         onClick={() => setCateogryToDelete(item)}
                      >
                         <label className="underline" htmlFor="deleteCategory">
