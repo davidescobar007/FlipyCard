@@ -63,6 +63,10 @@ function StoreProvider({ children }) {
       dispatch(action.actionHandlerTypes.setUiTheme())
    }
 
+   const deleteCategory = (category) => {
+      action.categoryActions.deleteCategory(state, dispatch, category)
+   }
+
    const store = useMemo(
       () => ({
          state,
@@ -79,7 +83,8 @@ function StoreProvider({ children }) {
          getSections,
          setSection,
          getCategoriesBySections,
-         setUiTheme
+         setUiTheme,
+         deleteCategory
       }),
       [
          state,
@@ -96,7 +101,8 @@ function StoreProvider({ children }) {
          getSections,
          setSection,
          getCategoriesBySections,
-         setUiTheme
+         setUiTheme,
+         deleteCategory
       ]
    )
 

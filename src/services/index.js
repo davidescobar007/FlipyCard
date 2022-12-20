@@ -57,9 +57,14 @@ export const updateDocument = async (collection, id, docData) => {
 
 export const getDataByQuery = async (collectionName, field, param) => {
    const reference = collection(db, collectionName)
-   const q = query(reference, where(field, "==", param))
-   const querySnapshot = await getDocs(q)
-   return querySnapshot.docs.map((doc) => doc.data())
+   const queryToExecute = query(reference, where(field, "==", param))
+   const querySnapshot = await getDocs(queryToExecute)
+   let processedData = querySnapshot.docs.map((doc) => {
+      let data = doc.data()
+      data.id = doc.id
+      return data
+   })
+   return processedData
 }
 
 export const deleteDocument = async (collectionName, id) => {

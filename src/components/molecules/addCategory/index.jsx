@@ -17,7 +17,7 @@ function AddSection() {
 
    return (
       <section className="my-3 flex justify-evenly">
-         <label className="underline" htmlFor="my-modal-4">
+         <label className="underline" htmlFor="addCategory">
             <Title
                extraClassName="font-semibold text-gray-600 text-sm"
                type="h4"
@@ -25,7 +25,7 @@ function AddSection() {
                Add category
             </Title>
          </label>
-         <Modal title="Add new category">
+         <Modal id="addCategory" title="Add new category">
             <form
                className="flex flex-wrap justify-center"
                onSubmit={handleSubmit}
@@ -37,7 +37,7 @@ function AddSection() {
                   name="createCategoryInput"
                   placeholder="New category name"
                />
-               <Button extraClassname="btn-wide" type='submit'>
+               <Button extraClassname="btn-wide" type="submit">
                   Add category
                </Button>
             </form>

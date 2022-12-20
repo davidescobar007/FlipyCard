@@ -1,5 +1,5 @@
-import { getDataByQuery, setDocument } from "../../services"
-import { getSortedObjectKeys } from "../../utils"
+import { getDataByQuery, setDocument, deleteDocument } from "../../services"
+import { getSortedObjectKeys, toggleItemFromArray } from "../../utils"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
@@ -29,6 +29,23 @@ export const getCategories = (state, dispatch, collectionName) => {
    }
 }
 
+export const deleteCategory = (state, dispatch, category) => {
+   const { categories } = state
+   const categoriesListWithDeletedItem = toggleItemFromArray(
+      categories,
+      category
+   )
+   try {
+      deleteDocument(constants.CATEGORIES, category.id).then(() => {
+         dispatch(
+            categoryActionTypes.deleteCategory(categoriesListWithDeletedItem)
+         )
+      })
+   } catch (error) {
+      categoryActionTypes.error()
+   }
+}
+
 export const categoryActionTypes = {
    setCategory: (payload) => ({
       type: types.SET_CATEGORIES,
@@ -44,6 +61,10 @@ export const categoryActionTypes = {
    }),
    selectCetegories: (payload) => ({
       type: types.CATEGORY_SELECTED,
+      payload
+   }),
+   deleteCategory: (payload) => ({
+      type: types.DELETE_CATEGORY,
       payload
    })
 }

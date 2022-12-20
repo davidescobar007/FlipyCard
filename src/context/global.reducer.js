@@ -71,6 +71,11 @@ const globalReducer = (state, action) => {
             ...state,
             categoryId: action.payload
          }
+      case types.DELETE_CATEGORY:
+         return {
+            ...state,
+            categories: action.payload
+         }
       case types.IS_MENU_OPEN:
          return {
             ...state,

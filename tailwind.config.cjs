@@ -4,7 +4,7 @@ module.exports = {
    theme: {
       extend: {},
       maxWidth: {
-         "1/2": "50%",
+         "1/2": "50%"
       }
    },
    plugins: [require("daisyui")],
