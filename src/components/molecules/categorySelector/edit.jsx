@@ -40,7 +40,7 @@ function EditCategory({ categories }) {
                      </span>
                      <Button
                         dangerouslyResetClassName
-                        extraClassname={`flex text-lg font-medium whitespace-nowrap rounded-full border-2 px-3 border-primary text-primary shadow-md`}
+                        extraClassname="flex text-lg font-medium whitespace-nowrap rounded-full border-2 px-3 border-primary text-primary shadow-md"
                         key={index}
                         typeOf="INFO"
                      >

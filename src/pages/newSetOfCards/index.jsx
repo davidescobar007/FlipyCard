@@ -3,12 +3,12 @@ import Button from "../../components/atoms/button"
 import { useState } from "react"
 import TableDataCell from "../../components/molecules/table/TableDataCell"
 import TableRow from "../../components/molecules/table/TableRow"
-import CustomInputComponent from "./customInputComponent"
 import Title from "../../components/atoms/title/title"
 import CategorySelector from "../../components/molecules/categorySelector"
 import { useContext } from "react"
 import { StoreContext } from "../../context/global.state"
 import { useNavigate } from "react-router-dom"
+import TextArea from "../../components/atoms/textArea"
 
 const tHeadData = ["Front Term", "Answer"]
 const initialListValue = [{ frontTerm: "", answer: "" }]
@@ -22,7 +22,7 @@ export default function NewSet() {
       const element = event["target"]
       const cardListCopy = [...cardsList]
       const card = { ...cardsList[index] }
-      card[element.id] = element.innerText
+      card[element.id] = element.value
       cardListCopy[index] = card
       setCardsList(cardListCopy)
    }
@@ -35,10 +35,7 @@ export default function NewSet() {
 
    return (
       <>
-         <Title
-            extraClassName="my-3 text-lg text-primary font-semibold"
-            type="h3"
-         >
+         <Title extraClassName="my-3 text-xl !text-neutral" type="h3">
             Select a category for the new set of cards
          </Title>
          <CategorySelector />
@@ -47,27 +44,31 @@ export default function NewSet() {
                {cardsList.map((item, index) => (
                   <TableRow key={index}>
                      <TableDataCell>
-                        <CustomInputComponent
+                        <TextArea
                            id="frontTerm"
-                           onInput={(event) => {
+                           onChange={(event) => {
                               handleChange(event, index)
                            }}
+                           placeholder="Enter text"
+                           rows={4}
                         />
                      </TableDataCell>
 
                      <TableDataCell>
-                        <CustomInputComponent
+                        <TextArea
                            id="answer"
-                           onInput={(event) => {
+                           onChange={(event) => {
                               handleChange(event, index)
                            }}
+                           placeholder="Enter the answer"
+                           rows={4}
                         />
                      </TableDataCell>
                   </TableRow>
                ))}
             </>
          </Table>
-         <div className="flex flex-wrap justify-end">
+         <div className="flex flex-wrap justify-end ">
             <Button
                extraClassname="w-full mt-5"
                onClick={() => setCardsList([...cardsList, initialListValue[0]])}

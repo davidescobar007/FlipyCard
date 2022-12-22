@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 export default function Table({ tableHeadProps, children }) {
    return (
-      <table className="w-full min-w-max table-fixed shadow-lg ">
+      <table className="w-full min-w-max table-fixed ">
          <thead>
             <tr className="bg-primary text-base leading-normal text-gray-50">
                {Array.isArray(tableHeadProps) &&

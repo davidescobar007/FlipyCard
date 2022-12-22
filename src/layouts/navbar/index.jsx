@@ -14,11 +14,11 @@ function Navbar() {
    }, [])
 
    return (
-      <header className="navbar bg-base-100">
+      <header className="navbar bg-base-100 border-b-2 fixed mb-4 z-10">
          <div className="flex-1">
             <Link to="/">
                <Title
-                  extraClassName="text-3xl font-mono font-semibold"
+                  extraClassName="text-3xl font-mono font-semibold text-accent"
                   type="h1"
                >
                   FlipyCard

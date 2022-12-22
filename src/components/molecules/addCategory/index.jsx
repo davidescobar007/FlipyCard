@@ -20,8 +20,8 @@ function AddSection() {
    return (
       <section className="my-3 flex justify-center">
          <label className="text-center" htmlFor="addCategory">
-            <HiViewGridAdd className="inline" size={25} />
-            <Title extraClassName="font-semibold text-sm text-success" type="h4">
+            <HiViewGridAdd className="border-2 rounded-full inline text-accent p-2 border-accent bg-secondary shadow-lg" size={45} />
+            <Title extraClassName="font-semibold text-lg !text-accent" type="h4">
                Add category
             </Title>
          </label>

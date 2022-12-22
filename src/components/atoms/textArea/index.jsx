@@ -1,20 +1,31 @@
-import { useRef } from "react"
+import PropTypes from "prop-types"
 
-export default function TextArea({ ...rest }) {
-   const textAreaRef = useRef()
-
+export default function TextArea({ extraClassName, innerRef, ...rest }) {
    const inputEvent = () => {
       //TODO: set auto height as number of textlenght in value - no rezising when a lot text is deleted
-      const scrollHeight = textAreaRef.current.scrollHeight
-      textAreaRef.current.style.height = scrollHeight + "px"
+      const scrollHeight = innerRef.current.scrollHeight
+      innerRef.current.style.height = scrollHeight + "px"
    }
    return (
       <textarea
-         className="h-auto w-full appearance-none border-b border-blue-900 bg-transparent p-2 leading-tight shadow-sm focus:bg-transparent focus:outline-none"
+         className={
+            "h-auto w-full  border-blue-900  p-1 leading-tight shadow-md focus:bg-secondary focus:outline-accent " +
+            extraClassName
+         }
          onInput={inputEvent}
-         ref={textAreaRef}
+         ref={innerRef}
          {...rest}
          //  value="hello world"
       />
    )
+}
+
+TextArea.defaultProps = {
+   extraClassName: "",
+   innerRef: null
+}
+
+TextArea.propTypes = {
+   extraClassName: PropTypes.string,
+   innerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) })
 }

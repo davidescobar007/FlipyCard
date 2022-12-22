@@ -9,7 +9,7 @@ function Footer() {
       state: { isDarkTheme }
    } = useContext(StoreContext)
    return (
-      <footer className="footer mt-40 items-center bg-neutral-focus p-4 text-neutral-content">
+      <footer className="footer mt-40 items-center bg-accent-focus p-4 text-neutral-content">
          <div>
             <p>Copyright © 2022 - All right reserved</p>
             <p className="flex">

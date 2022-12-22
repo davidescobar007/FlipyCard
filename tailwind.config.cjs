@@ -18,9 +18,9 @@ module.exports = {
          {
             mytheme: {
                primary: "#58cc02", //green
-               secondary: "#84d8ff", //light blue
-               accent: "#ac53ef", //medium blue
-               neutral: "#242533", //gray
+               secondary: "#ddf4ff", //light blue
+               accent: "#44ccff", //medium blue
+               neutral: "#777", //gray
                "base-100": "#FCFCFD", //white
                info: "#84d8ff", //same secondary blue
                success: "#58cc02", //same primary green
