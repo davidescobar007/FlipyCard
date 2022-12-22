@@ -1,22 +1,12 @@
-import { dynamicSearch } from "../../services"
+import { dynamicSearch, getDataByQuery } from "../../services"
 import { createDinamicArray, toggleItemFromArray } from "../../utils"
-import {
-   cardActions,
-   createCard,
-   deleteCard,
-   setNextRandomCard,
-   setRandomCard,
-   updateRandomCard
-} from "./cards.actions"
-import {
-   categoryActions,
-   createCategory,
-   getCategories
-} from "./category.actions"
+import * as cardsActions from "./cards.actions"
+import * as categoryActions from "./category.actions"
+import * as sectionActions from "./section.actions"
 import { types } from "../global.reducer"
 import { queryOperators } from "../global.types"
 
-const getCardsByCategories = (state, dispatch, collection, field, category) => {
+const getCardsByCategories = (state, dispatch, collection, category) => {
    try {
       let categorySelected = toggleItemFromArray(
          state.categorySelected,
@@ -27,19 +17,45 @@ const getCardsByCategories = (state, dispatch, collection, field, category) => {
             collection,
             createDinamicArray(categorySelected, queryOperators.EQUAL_TO)
          ).then((cardsArray) => {
-            dispatch(cardActions.setCards(cardsArray))
-            dispatch(cardActions.setDynamicCards([...cardsArray]))
-            setRandomCard(dispatch, cardsArray)
+            dispatch(cardsActions.cardActionTypes.setCards(cardsArray))
+            dispatch(
+               cardsActions.cardActionTypes.setDynamicCards([...cardsArray])
+            )
+            cardsActions.setRandomCard(dispatch, cardsArray)
          })
-      dispatch(categoryActions.selectCetegories(categorySelected))
+      dispatch(
+         categoryActions.categoryActionTypes.selectCetegories(categorySelected)
+      )
    } catch (error) {
-      actionsHandler.error()
+      actionHandlerTypes.error()
    }
 }
 
-const actionsHandler = {
+const getCategoriesBySections = (dispatch, collectionName, section) => {
+   try {
+      dispatch(actionHandlerTypes.setSection(section))
+      getDataByQuery(collectionName, "section", section).then((dataList) => {
+         dispatch(actionHandlerTypes.setCategory(dataList))
+      })
+   } catch (error) {
+      actionHandlerTypes.error()
+   }
+}
+
+const actionHandlerTypes = {
    trigerMenu: () => ({
       type: types.IS_MENU_OPEN
+   }),
+   setSection: (payload) => ({
+      type: types.SET_SECTION,
+      payload
+   }),
+   setCategory: (payload) => ({
+      type: types.SET_CATEGORIES,
+      payload
+   }),
+   setUiTheme: () => ({
+      type: types.SET_THEME
    }),
    error: () => ({
       type: types.SERVICE_ERROR
@@ -47,13 +63,10 @@ const actionsHandler = {
 }
 
 export {
-   createCard,
-   setNextRandomCard,
-   setRandomCard,
-   updateRandomCard,
-   deleteCard,
-   createCategory,
-   getCategories,
+   sectionActions,
+   categoryActions,
    getCardsByCategories,
-   actionsHandler
+   cardsActions,
+   actionHandlerTypes,
+   getCategoriesBySections
 }

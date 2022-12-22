@@ -12,13 +12,21 @@ export const types = {
    CREATE_CATEGORY: "CREATE_CATEGORY",
    DELETE_CATEGORY: "DELETE_CATEGORY",
    SERVICE_ERROR: "SERVICE_ERROR",
-   IS_MENU_OPEN: "IS_MENU_OPEN"
+   IS_MENU_OPEN: "IS_MENU_OPEN",
+   CREATE_SECTION: "CREATE_SECTION",
+   UPDATE_SECTIONS: "UPDATE_SECTIONS",
+   SELECTED_SECTION: "SELECTED_SECTION",
+   SET_SECTION: "SET_SECTION",
+   SET_THEME: "SET_THEME"
 }
 
 export const constants = {
    CATEGORIES: "categories",
    CARDS: "cards",
-   CATEGORY: "category"
+   CATEGORY: "category",
+   SECTIONS: "sections",
+   FRONT_TERM: "frontTerm",
+   ANSWER: "answer"
 }
 
 export const queryOperators = {

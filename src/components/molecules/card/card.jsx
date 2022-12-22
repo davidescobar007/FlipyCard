@@ -1,8 +1,15 @@
+/* eslint-disable react/forbid-component-props */
 import PropTypes from "prop-types"
 import React, { useContext, useEffect, useState } from "react"
-import { RiDeleteBin3Fill, RiEdit2Line } from "react-icons/ri"
-import { StoreContext } from "../context/global.state"
-import CardFlipper from "../features/flipCard"
+import { StoreContext } from "../../../context/global.state"
+import { constants } from "../../../context/global.types"
+import CardFlipper from "../../../features/flipCard"
+import Button from "../../atoms/button"
+import Input from "../../atoms/input"
+import CardBody from "./cardBody"
+import CardHeader from "./cardHeader"
+import Modal from "../modal"
+
 
 function Card({ frontReference, backReference, isFirstCard }) {
    const [animation, setAnimation] = useState("")
@@ -10,9 +17,9 @@ function Card({ frontReference, backReference, isFirstCard }) {
    const [displayForm, setDisplayForm] = useState(false)
    const [formData, setFormData] = useState(null)
    const {
+      deleteCurrentCard,
       state: { randomCard },
-      updateCard,
-      deleteCurrentCard
+      updateCard
    } = useContext(StoreContext)
 
    const handleChange = (e) => {
@@ -52,58 +59,33 @@ function Card({ frontReference, backReference, isFirstCard }) {
       // speechSynthesis.speak(msg)
    }, [])
 
-   const cardHeader = () => (
-      <div
-         className="card-header row justify-content-between"
-         style={{ margin: "0" }}
-      >
-         <div
-            className="col-1"
-            onClick={() => setDisplayForm(true)}
-            style={{ cursor: "pointer" }}
-         >
-            <RiEdit2Line />
-         </div>
-         <div
-            className="col-1"
-            onClick={deleteCurrentCard}
-            style={{ cursor: "pointer" }}
-         >
-            <RiDeleteBin3Fill />
-         </div>
-      </div>
-   )
-
    const cardForm = (isFrontReference, inputValue) => {
       return (
          <form
-            className="row row-cols-lg-auto g-3 justify-content-md-center"
+            className="g-3 justify-content-md-center my-5"
             onSubmit={setCurrentCard}
          >
             <div className="row g-3">
                <div className="col-12">
-                  <input
-                     className="form-control"
+                  <Input
                      defaultValue={inputValue}
-                     id="inputAddress"
                      name={
-                        isFrontReference ? "frontReference" : "backReference"
+                        isFrontReference
+                           ? constants.FRONT_TERM
+                           : constants.ANSWER
                      }
                      onChange={handleChange}
-                     type="text"
                   />
                </div>
-               <div className="col-12">
-                  <button
-                     className="m-3 btn btn-outline-primary btn-outline-light"
-                     onClick={() => setDisplayForm(false)}
-                     type="button"
+               <div className="my-3 flex justify-around">
+                  <Button onClick={() => setDisplayForm(false)}>Cancel</Button>
+                  <Button
+                     onClick={() => setDisplayForm(true)}
+                     type="submit"
+                     typeOf="SECONDARY"
                   >
-                     Cancel
-                  </button>
-                  <button className="m-3 btn btn-light" type="submit">
                      Save
-                  </button>
+                  </Button>
                </div>
             </div>
          </form>
@@ -111,42 +93,58 @@ function Card({ frontReference, backReference, isFirstCard }) {
    }
 
    return (
-      <div className={`col-11 col-md-6 ${animation}`}>
+      <div className={`md:mx-32 lg:mx-60 ${animation}`}>
+             <Modal id="deleteCard" title="Please comfirm.">
+            You are about to delete this card. Do you comfirm this action?
+            <div className="modal-action">
+               <label
+                  className="btn bg-secondary border-secondary text-neutral shadow-md"
+                  htmlFor="deleteCard"
+                  onClick={() => {
+                     deleteCurrentCard()
+                  }}
+               >
+                  Delete
+               </label>
+            </div>
+         </Modal>
          <CardFlipper flipDirection="horizontal" isFlipped={flip}>
-            <div className="card_glassmorphism card shadow rounded-4">
-               {cardHeader()}
+            <div className="rounded-xl p-3 shadow-xl">
+               <CardHeader onClick={() => setDisplayForm(true)} />
                <div className="card-body text-center">
                   {displayForm ? (
                      cardForm(true, frontReference)
                   ) : (
-                     <div
+                     <CardBody
                         onClick={() => setFlip(!flip)}
-                        style={{ cursor: "pointer" }}
-                     >
-                        <p className="card-text fs-1">{frontReference}</p>
-                     </div>
+                        reference={frontReference}
+                     />
                   )}
                </div>
             </div>
 
-            <div className="card card_glassmorphism rounded-4">
-               {cardHeader()}
+            <div className="rounded-lg bg-gray-50 p-3 shadow-xl">
+               <CardHeader onClick={() => setDisplayForm(true)} />
                <div className="card-body text-center">
                   {displayForm ? (
                      cardForm(false, backReference)
                   ) : (
-                     <div
+                     <CardBody
                         onClick={() => setFlip(!flip)}
-                        style={{ cursor: "pointer" }}
-                     >
-                        <p className="card-text fs-1">{backReference}</p>
-                     </div>
+                        reference={backReference}
+                     />
                   )}
                </div>
             </div>
          </CardFlipper>
       </div>
    )
+}
+
+Card.defaultProps = {
+   backReference: "",
+   frontReference: "",
+   isFirstCard: null
 }
 
 Card.propTypes = {

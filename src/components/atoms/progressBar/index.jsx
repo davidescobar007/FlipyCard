@@ -4,11 +4,11 @@ import ProgressBar from "@ramonak/react-progress-bar"
 
 export default function ProgressPercentage({ value }) {
    return (
-      <section className="col-12 text-center mb-5">
+      <section className="col-12 mb-5 text-center">
          <ProgressBar
             animateOnRender
             baseBgColor="transparent"
-            bgColor="#f8c537"
+            bgColor="#58cc02"
             completed={value}
             labelColor="transparent"
             transitionDuration="0.4s"
@@ -18,5 +18,5 @@ export default function ProgressPercentage({ value }) {
 }
 
 ProgressPercentage.propTypes = {
-   value: PropTypes.number
+   value: PropTypes.number.isRequired
 }

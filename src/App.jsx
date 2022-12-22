@@ -1,31 +1,20 @@
-import Navbar from "./components/navbar/navbar"
-import Collapse from "./components/collapse"
-import CategorySelector from "./components/categorySelector"
-// import CardsContainer from "./components/cardsContainer"
 import StoreProvider from "./context/global.state"
-// import Modal from "./components/modal"
-import Aside from "./components/aside/aside"
-import { lazy, Suspense } from "react"
-const Modal = lazy(() => import("./components/modal"))
-const CardsContainer = lazy(() => import("./components/cardsContainer"))
+import { BrowserRouter } from "react-router-dom"
+import Drawer from "./layouts/drawer"
+import Navbar from "./layouts/navbar"
+import Router from "./routes/index"
+import Footer from "./layouts/footer"
 
 function App() {
    return (
       <StoreProvider>
-         <div className="App">
-            <Aside />
-            <main className="container app_container">
+         <BrowserRouter>
+            <Drawer>
                <Navbar />
-               <CategorySelector />
-               <Collapse />
-               <Suspense fallback={<div>loading...</div>}>
-                  <Modal />
-               </Suspense>
-               <Suspense fallback={<div>loading...</div>}>
-                  <CardsContainer />
-               </Suspense>
-            </main>
-         </div>
+               <Router />
+               <Footer />
+            </Drawer>
+         </BrowserRouter>
       </StoreProvider>
    )
 }

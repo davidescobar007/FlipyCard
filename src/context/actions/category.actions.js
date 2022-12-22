@@ -1,26 +1,52 @@
-import { getCollectionList, updateDocument } from "../../services"
+import { getDataByQuery, setDocument, deleteDocument } from "../../services"
+import { getSortedObjectKeys, toggleItemFromArray } from "../../utils"
 import { types } from "../global.reducer"
+import { constants } from "../global.types"
 
-export const createCategory = async (state, dispatch, payload) => {
-   const { collection, id, category } = payload
+export const createCategory = (state, dispatch, category) => {
    const { categories } = state
-   await updateDocument(collection, id, category)
-   !categories.includes(category) &&
-      dispatch(categoryActions.setCategory(category))
+   const newCategory = {
+      name: category,
+      section: state.selectedSection
+   }
+   setDocument(constants.CATEGORIES, newCategory)
+
+   !categories.some((item) => item.name === category) &&
+      dispatch(categoryActionTypes.setCategory([...categories, newCategory]))
+   document.getElementById("my-modal-4").checked = false // this close the modal once it is saved
 }
 
-export const getCategories = (dispatch, payload) => {
+export const getCategories = (state, dispatch, collectionName) => {
    try {
-      getCollectionList(payload).then((data) => {
-         dispatch(categoryActions.setCategory(data[0].data.categoryList))
-         dispatch(categoryActions.setCategoriesId(data[0].id))
-      })
+      getDataByQuery(collectionName, "section", state.selectedSection).then(
+         (dataList) => {
+            dataList = dataList.map((item) => getSortedObjectKeys(item))
+            dispatch(categoryActionTypes.setCategory(dataList))
+         }
+      )
    } catch (error) {
-      categoryActions.error()
+      categoryActionTypes.error()
    }
 }
 
-export const categoryActions = {
+export const deleteCategory = (state, dispatch, category) => {
+   const { categories } = state
+   const categoriesListWithDeletedItem = toggleItemFromArray(
+      categories,
+      category
+   )
+   try {
+      deleteDocument(constants.CATEGORIES, category.id).then(() => {
+         dispatch(
+            categoryActionTypes.deleteCategory(categoriesListWithDeletedItem)
+         )
+      })
+   } catch (error) {
+      categoryActionTypes.error()
+   }
+}
+
+export const categoryActionTypes = {
    setCategory: (payload) => ({
       type: types.SET_CATEGORIES,
       payload
@@ -35,6 +61,10 @@ export const categoryActions = {
    }),
    selectCetegories: (payload) => ({
       type: types.CATEGORY_SELECTED,
+      payload
+   }),
+   deleteCategory: (payload) => ({
+      type: types.DELETE_CATEGORY,
       payload
    })
 }

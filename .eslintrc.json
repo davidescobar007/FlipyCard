@@ -23,8 +23,11 @@
       "react/jsx-no-bind": "off",
       "react/button-has-type": "off",
       "react/jsx-no-literals": "off",
-      // "react/function-component-definition": "off",
-      "react/require-default-props": "off", //to be changed to error
+      "react/require-default-props": "warn", //to be changed to error
+      "react/self-closing-comp": "error",
+      "react/jsx-props-no-spreading": "off",
+      "react/forbid-prop-types": "off",
+      "forbid-prop-types": "off",
       "react/no-array-index-key": "off",
       "unused-imports/no-unused-imports": "error",
       "unused-imports/no-unused-vars": [
@@ -36,5 +39,10 @@
             "argsIgnorePattern": "^_"
          }
       ]
+   },
+   "settings": {
+      "react": {
+         "version": "detect"
+      }
    }
 }

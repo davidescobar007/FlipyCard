@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from "react"
-import { StoreContext } from "../context/global.state"
-import ProgressPercentage from "./atomic/progressBar"
+import { StoreContext } from "../../../context/global.state"
+import ProgressPercentage from "../../atoms/progressBar"
 import Card from "./card"
 import useSound from "use-sound"
-import sound from "../../public/sound1.mp3"
-import finishSound1 from "../../public/finishSound1.mp3"
+import sound from "../../../../public/sound1.mp3"
+import finishSound1 from "../../../../public/finishSound1.mp3"
+import Button from "../../atoms/button"
+
 function CardsContainer() {
    const {
       state: { cards, categorySelected, randomCard, dynamicCards },
@@ -33,23 +35,22 @@ function CardsContainer() {
    }, [randomCard])
 
    return (
-      <div>
+      <section>
          {randomCard && (
             <ProgressPercentage value={calculateProgressPercentage()} />
          )}
          <div className="d-flex justify-content-center">
             {categorySelected && randomCard ? (
                <Card
-                  backReference={randomCard?.backReference}
-                  frontReference={randomCard?.frontReference}
+                  backReference={randomCard?.answer}
+                  frontReference={randomCard?.frontTerm}
                   isFirstCard={dynamicCards.length === cards.length}
                />
             ) : null}
          </div>
-         <div className="d-grid col-6 mx-auto mt-5">
+         <div className="mt-6 flex justify-center">
             {categorySelected ? (
-               <button
-                  className="btn btn-outline-light"
+               <Button
                   onClick={() => {
                      dynamicCards.length
                         ? nextRandomCard(randomCard)
@@ -57,12 +58,12 @@ function CardsContainer() {
                   }}
                >
                   {dynamicCards.length ? "Next" : "Click me to flip again"}
-               </button>
+               </Button>
             ) : (
                <h5>Select a category</h5>
             )}
          </div>
-      </div>
+      </section>
    )
 }
 
