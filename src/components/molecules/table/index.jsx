@@ -3,7 +3,7 @@ export default function Table({ tableHeadProps, children }) {
    return (
       <table className="w-full min-w-max table-fixed shadow-lg ">
          <thead>
-            <tr className="bg-secondary text-base leading-normal text-gray-50">
+            <tr className="bg-primary text-base leading-normal text-gray-50">
                {Array.isArray(tableHeadProps) &&
                   tableHeadProps.map((item) => (
                      <th className="py-3 px-6 text-left" key={item}>

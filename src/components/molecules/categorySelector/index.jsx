@@ -23,10 +23,20 @@ function CategorySelector() {
          <AddSection />
          <div className="flex flex-nowrap">
             <div className="tooltip mt-2 mr-2" data-tip="Edit categories">
-               <label className="swap-rotate swap">
+               <label className="swap swap-rotate">
                   <input type="checkbox" />
-                  <RiCheckFill className="swap-on h-10 w-10 rounded-full bg-secondary p-2 text-white" onClick={()=>{setIsEditOn(true)}} />
-                  <RiEdit2Line  className="swap-off h-10 w-10 rounded-full border-2 border-secondary p-2 text-secondary" onClick={()=>{setIsEditOn(false)}}/>
+                  <RiCheckFill
+                     className="swap-on h-10 w-10 rounded-full bg-primary p-2 text-white"
+                     onClick={() => {
+                        setIsEditOn(true)
+                     }}
+                  />
+                  <RiEdit2Line
+                     className="swap-off h-10 w-10 rounded-full border-2 border-primary p-2 text-primary"
+                     onClick={() => {
+                        setIsEditOn(false)
+                     }}
+                  />
                </label>
             </div>
             {isEditOn ? (
@@ -38,16 +48,16 @@ function CategorySelector() {
                         return (
                            <Button
                               dangerouslyResetClassName
-                              extraClassname={` flex text-lg mr-2 font-medium whitespace-nowrap rounded-full border-2 px-3 border-secondary text-secondary shadow-md  ${
+                              extraClassname={` flex text-lg mr-2 font-medium whitespace-nowrap rounded-full border-2 px-3 border-primary text-primary shadow-md  ${
                                  categorySelected.some(
                                     (catSelected) => catSelected.id === item.id
-                                 ) && "bg-secondary !text-white"
+                                 ) && "bg-primary !text-white"
                               }`}
                               key={index}
                               onClick={() => {
                                  getCardsListByCategories(item)
                               }}
-                              typeOf="INFO"
+                              typeOf="SECONDARY"
                            >
                               {item.name}
                            </Button>

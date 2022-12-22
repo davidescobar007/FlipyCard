@@ -14,17 +14,18 @@ module.exports = {
          "cmyk",
          "night",
          "winter",
+         "lemonade",
          {
-            day: {
-               primary: "#63adf2",
-               secondary: "#07004d",
-               accent: "#05f140",
-               neutral: "#1B1C27",
-               "base-100": "#fbf5f3",
-               info: "#54AEDE",
-               success: "#70DBB8",
-               warning: "#B9800E",
-               error: "#ff6978"
+            mytheme: {
+               primary: "#58cc02", //green
+               secondary: "#84d8ff", //light blue
+               accent: "#ac53ef", //medium blue
+               neutral: "#242533", //gray
+               "base-100": "#FCFCFD", //white
+               info: "#84d8ff", //same secondary blue
+               success: "#58cc02", //same primary green
+               warning: "#F5CE42", //orange
+               error: "#DC2855" //red
             }
          }
       ],

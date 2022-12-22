@@ -16,9 +16,7 @@ export const getSortedObjectKeys = (obj) =>
 
 export const toggleItemFromArray = (array, itemToToggle) => {
    let newArray = [...array]
-   const isItemInArray = newArray.some(
-      (item) => item.id === itemToToggle.id
-   )
+   const isItemInArray = newArray.some((item) => item.id === itemToToggle.id)
    isItemInArray
       ? (newArray = newArray.filter((item) => item.id !== itemToToggle.id))
       : (newArray = [...array, itemToToggle])

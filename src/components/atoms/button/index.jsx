@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 const buttonTypes = {
-   PRIMARY: "btn-primary",
+   PRIMARY: "btn-primary text-white",
    SECONDARY: "btn-secondary",
    INFO: "btn-info"
 }

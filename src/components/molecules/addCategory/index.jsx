@@ -1,9 +1,11 @@
+/* eslint-disable react/forbid-component-props */
 import Button from "../../atoms/button"
 import Title from "../../atoms/title/title"
 import Modal from "../modal"
 import Input from "../../atoms/input"
 import { useContext, useRef } from "react"
 import { StoreContext } from "../../../context/global.state"
+import { HiViewGridAdd } from "react-icons/hi"
 
 function AddSection() {
    const { createNewCategory } = useContext(StoreContext)
@@ -16,12 +18,10 @@ function AddSection() {
    }
 
    return (
-      <section className="my-3 flex justify-evenly">
-         <label className="underline" htmlFor="addCategory">
-            <Title
-               extraClassName="font-semibold text-gray-600 text-sm"
-               type="h4"
-            >
+      <section className="my-3 flex justify-center">
+         <label className="text-center" htmlFor="addCategory">
+            <HiViewGridAdd className="inline" size={25} />
+            <Title extraClassName="font-semibold text-sm text-success" type="h4">
                Add category
             </Title>
          </label>

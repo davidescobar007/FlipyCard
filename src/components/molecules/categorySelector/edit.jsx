@@ -12,9 +12,8 @@ function EditCategory({ categories }) {
    return (
       <div className="flex overflow-x-auto p-2 py-3">
          <Modal id="deleteCategory" title="Please comfirm.">
-            You are about to delete this category: <b>
-               {cateogryToDelete?.name}
-               </b>
+            You are about to delete this category:{" "}
+            <b>{cateogryToDelete?.name}</b>
             <div className="modal-action">
                <label
                   className="btn"
@@ -32,7 +31,7 @@ function EditCategory({ categories }) {
                return (
                   <div className="indicator mr-5" key={index}>
                      <span
-                        className="badge indicator-item badge-secondary rounded-full animate__animated animate__fadeIn"
+                        className="animate__animated animate__fadeIn badge indicator-item badge-primary rounded-full animate__faster"
                         onClick={() => setCateogryToDelete(item)}
                      >
                         <label className="underline" htmlFor="deleteCategory">
@@ -41,7 +40,7 @@ function EditCategory({ categories }) {
                      </span>
                      <Button
                         dangerouslyResetClassName
-                        extraClassname={` flex text-lg font-medium whitespace-nowrap rounded-full border-2 px-3 border-secondary text-secondary shadow-md`}
+                        extraClassname={`flex text-lg font-medium whitespace-nowrap rounded-full border-2 px-3 border-primary text-primary shadow-md`}
                         key={index}
                         typeOf="INFO"
                      >

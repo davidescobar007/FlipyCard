@@ -32,7 +32,7 @@ Modal.defaultProps = {
 
 Modal.propTypes = {
    children: PropTypes.any.isRequired,
-   id:PropTypes.string.isRequired,
+   id: PropTypes.string.isRequired,
    title: PropTypes.string
 }
 
