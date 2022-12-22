@@ -8,6 +8,8 @@ import Button from "../../atoms/button"
 import Input from "../../atoms/input"
 import CardBody from "./cardBody"
 import CardHeader from "./cardHeader"
+import Modal from "../modal"
+
 
 function Card({ frontReference, backReference, isFirstCard }) {
    const [animation, setAnimation] = useState("")
@@ -15,6 +17,7 @@ function Card({ frontReference, backReference, isFirstCard }) {
    const [displayForm, setDisplayForm] = useState(false)
    const [formData, setFormData] = useState(null)
    const {
+      deleteCurrentCard,
       state: { randomCard },
       updateCard
    } = useContext(StoreContext)
@@ -91,8 +94,22 @@ function Card({ frontReference, backReference, isFirstCard }) {
 
    return (
       <div className={`md:mx-32 lg:mx-60 ${animation}`}>
+             <Modal id="deleteCard" title="Please comfirm.">
+            You are about to delete this card. Do you comfirm this action?
+            <div className="modal-action">
+               <label
+                  className="btn bg-secondary border-secondary text-neutral shadow-md"
+                  htmlFor="deleteCard"
+                  onClick={() => {
+                     deleteCurrentCard()
+                  }}
+               >
+                  Delete
+               </label>
+            </div>
+         </Modal>
          <CardFlipper flipDirection="horizontal" isFlipped={flip}>
-            <div className="rounded-xl bg-gray-50 p-3 shadow-xl">
+            <div className="rounded-xl p-3 shadow-xl">
                <CardHeader onClick={() => setDisplayForm(true)} />
                <div className="card-body text-center">
                   {displayForm ? (

@@ -8,8 +8,9 @@ function Drawer({ children }) {
    const {
       state: { isMenuOpen, isDarkTheme }
    } = useContext(StoreContext)
+
    return (
-      <div className="" data-theme={!isDarkTheme ? "mytheme" : "lemonade"}>
+      <div className="bg-base-100" data-theme={!isDarkTheme ? "mytheme" : "lemonade"}>
          <div className="drawer">
             <input
                checked={isMenuOpen}

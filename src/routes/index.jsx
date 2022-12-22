@@ -4,6 +4,7 @@ import Loader from "../components/atoms/loader"
 
 const Home = lazy(() => import("../pages/home"))
 const NewSet = lazy(() => import("../pages/newSetOfCards/index"))
+
 export default function Router() {
    return (
       <main className="flex-grow px-4 md:px-10 lg:px-52 pt-28">

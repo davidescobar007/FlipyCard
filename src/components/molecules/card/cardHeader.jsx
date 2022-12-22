@@ -1,18 +1,20 @@
 /* eslint-disable react/forbid-component-props */
-import { useContext } from "react"
-import { StoreContext } from "../../../context/global.state"
 import { RiDeleteBin3Fill, RiEdit2Line } from "react-icons/ri"
 
 function CardHeader({ ...rest }) {
-   const { deleteCurrentCard } = useContext(StoreContext)
 
    return (
       <header className="flex justify-between">
-         <div {...rest} className="cursor-pointer">
-            <RiEdit2Line className="text-xl text-gray-700" />
+         <div
+            {...rest}
+            className="cursor-pointer rounded-lg border-2 border-accent bg-secondary p-1"
+         >
+            <RiEdit2Line className="text-accent" size={25} />
          </div>
-         <div className="cursor-pointer" onClick={deleteCurrentCard}>
-            <RiDeleteBin3Fill className="text-xl text-gray-700" />
+         <div className="cursor-pointer rounded-lg border-2 border-error  bg-warning p-1">
+            <label htmlFor="deleteCard">
+               <RiDeleteBin3Fill className="text-error" size={25} />
+            </label>
          </div>
       </header>
    )
