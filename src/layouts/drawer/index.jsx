@@ -10,7 +10,7 @@ function Drawer({ children }) {
    } = useContext(StoreContext)
 
    return (
-      <div className="bg-base-100" data-theme={!isDarkTheme ? "mytheme" : "lemonade"}>
+      <div className="bg-base-100" data-theme={!isDarkTheme ? "mytheme" : "night"}>
          <div className="drawer">
             <input
                checked={isMenuOpen}

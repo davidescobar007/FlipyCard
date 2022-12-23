@@ -18,7 +18,7 @@ function Navbar() {
          <div className="flex-1">
             <Link to="/">
                <Title
-                  extraClassName="text-3xl font-mono font-semibold text-accent"
+                  extraClassName="text-3xl font-mono font-extrabold text-accent"
                   type="h1"
                >
                   FlipyCard

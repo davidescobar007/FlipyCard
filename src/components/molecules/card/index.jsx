@@ -3,8 +3,8 @@ import { StoreContext } from "../../../context/global.state"
 import ProgressPercentage from "../../atoms/progressBar"
 import Card from "./card"
 import useSound from "use-sound"
-import sound from "../../../../public/sound1.mp3"
-import finishSound1 from "../../../../public/finishSound1.mp3"
+import sound from "/sound1.mp3"
+import finishSound1 from "/finishSound1.mp3"
 import Button from "../../atoms/button"
 
 function CardsContainer() {
@@ -14,8 +14,8 @@ function CardsContainer() {
       resetDynamicCards
    } = useContext(StoreContext)
 
-   const [play] = useSound(sound, { volume: 0.15 })
-   const [finishSound] = useSound(finishSound1, { volume: 0.15 })
+   const [play] = useSound(sound, { volume: 0.10 })
+   const [finishSound] = useSound(finishSound1, { volume: 0.10 })
 
    const calculateProgressPercentage = () => {
       let cardslength = cards.length
