@@ -15,7 +15,7 @@
       "ecmaVersion": "latest",
       "sourceType": "module"
    },
-   "plugins": ["react", "unused-imports"],
+   "plugins": ["react", "unused-imports", "simple-import-sort"],
    "rules": {
       "react/react-in-jsx-scope": "off",
       "react/jsx-max-depth": 0,
@@ -23,7 +23,7 @@
       "react/jsx-no-bind": "off",
       "react/button-has-type": "off",
       "react/jsx-no-literals": "off",
-      "react/require-default-props": "warn", //to be changed to error
+      "react/require-default-props": "warn",
       "react/self-closing-comp": "error",
       "react/jsx-props-no-spreading": "off",
       "react/forbid-prop-types": "off",
@@ -38,7 +38,9 @@
             "args": "after-used",
             "argsIgnorePattern": "^_"
          }
-      ]
+      ],
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error"
    },
    "settings": {
       "react": {
