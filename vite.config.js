@@ -18,31 +18,32 @@ export default defineConfig({
          manifest: {
             name: "FlipyCard the only app you need",
             short_name: "FlipyCard",
-            description: "FlipyCard is the best tool for flash cards, it will help ypu memorize anything you need!",
+            description:
+               "FlipyCard is the best tool for flash cards, it will help ypu memorize anything you need!",
             theme_color: "#58cc02",
             background_color: "#58cc02",
-            "icons": [
+            icons: [
                {
-                   "src": "/icon-192x192.png",
-                   "sizes": "192x192",
-                   "type": "image/png"
+                  src: "/icon-192x192.png",
+                  sizes: "192x192",
+                  type: "image/png"
                },
                {
-                   "src": "/icon-256x256.png",
-                   "sizes": "256x256",
-                   "type": "image/png"
+                  src: "/icon-256x256.png",
+                  sizes: "256x256",
+                  type: "image/png"
                },
                {
-                   "src": "/icon-384x384.png",
-                   "sizes": "384x384",
-                   "type": "image/png"
+                  src: "/icon-384x384.png",
+                  sizes: "384x384",
+                  type: "image/png"
                },
                {
-                   "src": "/icon-512x512.png",
-                   "sizes": "512x512",
-                   "type": "image/png"
+                  src: "/icon-512x512.png",
+                  sizes: "512x512",
+                  type: "image/png"
                }
-           ]
+            ]
          }
       }),
       react()

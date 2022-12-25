@@ -21,7 +21,7 @@ module.exports = {
                secondary: "#ddf4ff", //light blue
                accent: "#44ccff", //medium blue
                neutral: "#777", //gray
-               "base-100": "#FCFCFD", //white
+               "base-100": "#F1F1F4", //white
                info: "#84d8ff", //same secondary blue
                success: "#58cc02", //same primary green
                warning: "#F5CE42", //orange
