@@ -1,8 +1,8 @@
-import React from "react"
-import Aside from "../aside"
+import React, { useContext } from "react"
 import PropTypes from "prop-types"
-import { useContext } from "react"
+
 import { StoreContext } from "../../context/global.state"
+import Aside from "../aside"
 
 function Drawer({ children }) {
    const {
@@ -10,7 +10,10 @@ function Drawer({ children }) {
    } = useContext(StoreContext)
 
    return (
-      <div className="bg-base-100" data-theme={!isDarkTheme ? "mytheme" : "night"}>
+      <div
+         className="bg-base-100"
+         data-theme={!isDarkTheme ? "mytheme" : "night"}
+      >
          <div className="drawer">
             <input
                checked={isMenuOpen}

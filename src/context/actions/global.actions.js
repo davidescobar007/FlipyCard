@@ -1,10 +1,11 @@
 import { dynamicSearch, getDataByQuery } from "../../services"
 import { createDinamicArray, toggleItemFromArray } from "../../utils"
+import { types } from "../global.reducer"
+import { queryOperators } from "../global.types"
+
 import * as cardsActions from "./cards.actions"
 import * as categoryActions from "./category.actions"
 import * as sectionActions from "./section.actions"
-import { types } from "../global.reducer"
-import { queryOperators } from "../global.types"
 
 const getCardsByCategories = (state, dispatch, collection, category) => {
    try {
@@ -63,10 +64,10 @@ const actionHandlerTypes = {
 }
 
 export {
-   sectionActions,
+   actionHandlerTypes,
+   cardsActions,
    categoryActions,
    getCardsByCategories,
-   cardsActions,
-   actionHandlerTypes,
-   getCategoriesBySections
+   getCategoriesBySections,
+   sectionActions
 }

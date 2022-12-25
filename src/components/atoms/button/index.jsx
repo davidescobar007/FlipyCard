@@ -19,7 +19,7 @@ function Button({
       <button
          className={
             (dangerouslyResetClassName && extraClassname) ||
-            `btn rounded-lg py-1 target:bg-transparent shadow-md ${buttonTypes[typeOf]} ${extraClassname}`
+            `btn rounded-lg py-1 shadow-md target:bg-transparent ${buttonTypes[typeOf]} ${extraClassname}`
          }
          {...rest}
          type={type}

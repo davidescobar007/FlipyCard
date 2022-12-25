@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import * as React from "react"
-import { useEffect, useState, useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 function CardFlipper({
    cardStyles: { back, front },

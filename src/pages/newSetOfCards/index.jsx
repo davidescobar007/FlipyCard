@@ -1,21 +1,25 @@
-import Table from "../../components/molecules/table"
+import { useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+
 import Button from "../../components/atoms/button"
-import { useState } from "react"
-import TableDataCell from "../../components/molecules/table/TableDataCell"
-import TableRow from "../../components/molecules/table/TableRow"
+import TextArea from "../../components/atoms/textArea"
 import Title from "../../components/atoms/title/title"
 import CategorySelector from "../../components/molecules/categorySelector"
-import { useContext } from "react"
+import Stat from "../../components/molecules/stat"
+import Table from "../../components/molecules/table"
+import TableDataCell from "../../components/molecules/table/TableDataCell"
+import TableRow from "../../components/molecules/table/TableRow"
 import { StoreContext } from "../../context/global.state"
-import { useNavigate } from "react-router-dom"
-import TextArea from "../../components/atoms/textArea"
 
 const tHeadData = ["Front Term", "Answer"]
 const initialListValue = [{ frontTerm: "", answer: "" }]
 
 export default function NewSet() {
    const [cardsList, setCardsList] = useState(initialListValue)
-   const { createCardsAtOnce } = useContext(StoreContext)
+   const {
+      state: { selectedSection },
+      createCardsAtOnce
+   } = useContext(StoreContext)
    const navigate = useNavigate()
 
    const handleChange = (event, index) => {
@@ -32,6 +36,8 @@ export default function NewSet() {
       setCardsList(initialListValue)
       navigate("/")
    }
+
+   useEffect(() => {}, [])
 
    return (
       <>
@@ -68,7 +74,7 @@ export default function NewSet() {
                ))}
             </>
          </Table>
-         <div className="flex flex-wrap justify-end ">
+         <div className="flex flex-wrap justify-between">
             <Button
                extraClassname="w-full mt-5"
                onClick={() => setCardsList([...cardsList, initialListValue[0]])}
@@ -78,8 +84,10 @@ export default function NewSet() {
                Add Card +
             </Button>
 
+            <Stat NCards={cardsList.length} section={selectedSection} />
+
             <Button
-               extraClassname="my-7"
+               extraClassname="my-7 border-2 border-accent"
                onClick={handleSubmit}
                type="button"
                typeOf="SECONDARY"

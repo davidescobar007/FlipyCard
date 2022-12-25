@@ -1,21 +1,24 @@
 import React, { useContext, useEffect } from "react"
-import { StoreContext } from "../../../context/global.state"
-import ProgressPercentage from "../../atoms/progressBar"
-import Card from "./card"
 import useSound from "use-sound"
-import sound from "/sound1.mp3"
-import finishSound1 from "/finishSound1.mp3"
-import Button from "../../atoms/button"
 
-function CardsContainer() {
+import { StoreContext } from "../../../context/global.state"
+import Button from "../../atoms/button"
+import ProgressPercentage from "../../atoms/progressBar"
+
+import Card from "./card"
+
+import finishSound1 from "/finishSound1.mp3"
+import sound from "/sound1.mp3"
+
+export default function CardsContainer() {
    const {
       state: { cards, categorySelected, randomCard, dynamicCards },
       nextRandomCard,
       resetDynamicCards
    } = useContext(StoreContext)
 
-   const [play] = useSound(sound, { volume: 0.10 })
-   const [finishSound] = useSound(finishSound1, { volume: 0.10 })
+   const [play] = useSound(sound, { volume: 0.1 })
+   const [finishSound] = useSound(finishSound1, { volume: 0.1 })
 
    const calculateProgressPercentage = () => {
       let cardslength = cards.length
@@ -66,5 +69,3 @@ function CardsContainer() {
       </section>
    )
 }
-
-export default CardsContainer

@@ -1,12 +1,12 @@
 /* eslint-disable react/forbid-component-props */
-import { useContext } from "react"
-import { StoreContext } from "../../context/global.state"
-import { Link } from "react-router-dom"
-import Title from "../../components/atoms/title/title"
-import { RiHomeHeartFill, RiHeartAddFill } from "react-icons/ri"
-import { TiChevronRight } from "react-icons/ti"
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { HiViewGridAdd } from "react-icons/hi"
+import { RiHeartAddFill, RiHomeHeartFill } from "react-icons/ri"
+import { TiChevronRight } from "react-icons/ti"
+import { Link } from "react-router-dom"
+
+import Title from "../../components/atoms/title/title"
+import { StoreContext } from "../../context/global.state"
 
 export default function Aside() {
    const {
@@ -18,6 +18,7 @@ export default function Aside() {
 
    useEffect(() => {
       getSections()
+      console.log("siu")
    }, [])
 
    return (

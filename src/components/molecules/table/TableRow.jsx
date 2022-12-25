@@ -1,13 +1,7 @@
 import PropTypes from "prop-types"
 
 function TableRow({ extraClassName, children }) {
-   return (
-      <tr
-         className={`border-b  ${extraClassName}`}
-      >
-         {children}
-      </tr>
-   )
+   return <tr className={`border-b  ${extraClassName}`}>{children}</tr>
 }
 
 TableRow.defaultProps = {

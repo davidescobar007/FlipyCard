@@ -1,9 +1,11 @@
 /* eslint-disable react/forbid-component-props */
 import React, { useContext, useEffect, useState } from "react"
+import { RiCheckFill, RiEdit2Line } from "react-icons/ri"
+
 import { StoreContext } from "../../../context/global.state"
 import Button from "../../atoms/button"
 import AddSection from "../addCategory"
-import { RiEdit2Line, RiCheckFill } from "react-icons/ri"
+
 import EditCategory from "./edit"
 
 function CategorySelector() {

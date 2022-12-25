@@ -1,11 +1,12 @@
 /* eslint-disable react/forbid-component-props */
+import { useContext, useRef } from "react"
+import { HiViewGridAdd } from "react-icons/hi"
+
+import { StoreContext } from "../../../context/global.state"
 import Button from "../../atoms/button"
+import Input from "../../atoms/input"
 import Title from "../../atoms/title/title"
 import Modal from "../modal"
-import Input from "../../atoms/input"
-import { useContext, useRef } from "react"
-import { StoreContext } from "../../../context/global.state"
-import { HiViewGridAdd } from "react-icons/hi"
 
 function AddSection() {
    const { createNewCategory } = useContext(StoreContext)
@@ -20,8 +21,14 @@ function AddSection() {
    return (
       <section className="my-3 flex justify-center">
          <label className="text-center" htmlFor="addCategory">
-            <HiViewGridAdd className="border-2 rounded-full inline text-accent p-2 border-accent bg-secondary shadow-lg" size={45} />
-            <Title extraClassName="font-semibold text-lg !text-accent" type="h4">
+            <HiViewGridAdd
+               className="inline rounded-full border-2 border-accent bg-secondary p-2 text-accent shadow-lg"
+               size={45}
+            />
+            <Title
+               extraClassName="font-semibold text-lg !text-accent"
+               type="h4"
+            >
                Add category
             </Title>
          </label>
@@ -37,7 +44,7 @@ function AddSection() {
                   name="createCategoryInput"
                   placeholder="New category name"
                />
-               <Button extraClassname="btn-wide" type="submit">
+               <Button extraClassname="btn-wide text-base-100" typeOf="PRIMARY">
                   Add category
                </Button>
             </form>

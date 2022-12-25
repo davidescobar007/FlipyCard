@@ -1,4 +1,4 @@
-import { getDataByQuery, setDocument, deleteDocument } from "../../services"
+import { deleteDocument, getDataByQuery, setDocument } from "../../services"
 import { getSortedObjectKeys, toggleItemFromArray } from "../../utils"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"

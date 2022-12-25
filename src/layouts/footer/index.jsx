@@ -2,7 +2,9 @@
 /* eslint-disable react/forbid-component-props */
 import { useContext } from "react"
 import { RiLinkedinFill } from "react-icons/ri"
+
 import { StoreContext } from "../../context/global.state"
+
 function Footer() {
    const {
       setUiTheme,

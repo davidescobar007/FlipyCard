@@ -1,4 +1,5 @@
 import PropTypes from "prop-types"
+
 export default function Table({ tableHeadProps, children }) {
    return (
       <table className="w-full min-w-max table-fixed ">
