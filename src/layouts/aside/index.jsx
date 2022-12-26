@@ -1,16 +1,19 @@
 /* eslint-disable react/forbid-component-props */
 import { useContext, useEffect } from "react"
 import { HiViewGridAdd } from "react-icons/hi"
-import { RiHeartAddFill, RiHomeHeartFill } from "react-icons/ri"
+import { MdLibraryAdd } from "react-icons/md"
+import { RiHomeHeartFill } from "react-icons/ri"
 import { TiChevronRight } from "react-icons/ti"
 import { Link } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 
 import Title from "../../components/atoms/title/title"
+import ListItem from "../../components/molecules/listItem"
 import { StoreContext } from "../../context/global.state"
 
 export default function Aside() {
+   const location = useLocation()
    const {
-      trigerAsideMenu,
       getSections,
       getCategoriesBySections,
       state: { sections, selectedSection }
@@ -22,22 +25,28 @@ export default function Aside() {
 
    return (
       <aside className="fixed right-10 top-0 mt-20 w-2/6">
-         <ul className="menu text-base-content">
-            <li>
-               <Link onClick={trigerAsideMenu} to="/">
-                  <Title extraClassName="text-2xl font-medium flex" type="h2">
+         <ul>
+            <li className="my-1 rounded-md">
+               <Link to="/">
+                  <ListItem selected={location.pathname === "/"}>
                      <RiHomeHeartFill className="mt-1 mr-3" />
                      Home
-                  </Title>
+                  </ListItem>
                </Link>
             </li>
-            <li>
-               <Link onClick={trigerAsideMenu} to="/new-set">
-                  <Title extraClassName="text-2xl font-medium flex" type="h2">
-                     <RiHeartAddFill className="mt-1 mr-3" />
+            <li className="my-1 rounded-lg">
+               <Link to="/new-set">
+                  <ListItem selected={location.pathname === "/new-set"}>
+                     <MdLibraryAdd className="mt-1 mr-3" />
                      Add new set of cards
-                  </Title>
+                  </ListItem>
                </Link>
+            </li>
+            <li className="my-1">
+               <ListItem selected={false}>
+                  <HiViewGridAdd className="mt-1 mr-3" />
+                  Add categories
+               </ListItem>
             </li>
             <li>
                <div>
@@ -73,7 +82,6 @@ export default function Aside() {
                                        item === selectedSection &&
                                        "rounded-md bg-primary font-semibold text-base-100"
                                     }`}
-                                    onClick={trigerAsideMenu}
                                  >
                                     {item}
                                  </p>
