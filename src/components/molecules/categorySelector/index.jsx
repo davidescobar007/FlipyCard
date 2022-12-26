@@ -21,7 +21,7 @@ function CategorySelector() {
    }, [selectedSection])
 
    return (
-      <section className="py-6">
+      <section className="">
          <AddSection />
          <div className="flex flex-nowrap">
             <div className="tooltip mt-2 mr-2" data-tip="Edit categories">

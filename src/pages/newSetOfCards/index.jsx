@@ -41,40 +41,43 @@ export default function NewSet() {
 
    return (
       <>
-         <Title extraClassName="my-3 text-xl !text-neutral" type="h3">
+         <Title extraClassName="text-xl !text-neutral" type="h3">
             Select a category for the new set of cards
          </Title>
          <CategorySelector />
-         <Table tableHeadProps={tHeadData}>
-            <>
-               {cardsList.map((item, index) => (
-                  <TableRow key={index}>
-                     <TableDataCell>
-                        <TextArea
-                           id="frontTerm"
-                           onChange={(event) => {
-                              handleChange(event, index)
-                           }}
-                           placeholder="Enter text"
-                           rows={4}
-                        />
-                     </TableDataCell>
+         <div>
+            <Table tableHeadProps={tHeadData}>
+               <>
+                  {cardsList.map((item, index) => (
+                     <TableRow key={index}>
+                        <TableDataCell>
+                           <TextArea
+                              id="frontTerm"
+                              onChange={(event) => {
+                                 handleChange(event, index)
+                              }}
+                              placeholder="Enter text"
+                              rows={4}
+                           />
+                        </TableDataCell>
 
-                     <TableDataCell>
-                        <TextArea
-                           id="answer"
-                           onChange={(event) => {
-                              handleChange(event, index)
-                           }}
-                           placeholder="Enter the answer"
-                           rows={4}
-                        />
-                     </TableDataCell>
-                  </TableRow>
-               ))}
-            </>
-         </Table>
-         <div className="flex flex-wrap justify-between">
+                        <TableDataCell>
+                           <TextArea
+                              id="answer"
+                              onChange={(event) => {
+                                 handleChange(event, index)
+                              }}
+                              placeholder="Enter the answer"
+                              rows={4}
+                           />
+                        </TableDataCell>
+                     </TableRow>
+                  ))}
+               </>
+            </Table>
+         </div>
+
+         <div className="flex flex-wrap justify-between ">
             <Button
                extraClassname="w-full mt-5"
                onClick={() => setCardsList([...cardsList, initialListValue[0]])}

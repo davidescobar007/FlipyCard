@@ -18,17 +18,11 @@ export default function Aside() {
 
    useEffect(() => {
       getSections()
-      console.log("siu")
    }, [])
 
    return (
-      <aside className="drawer-side">
-         <label
-            className="drawer-overlay"
-            htmlFor="my-drawer"
-            onClick={trigerAsideMenu}
-         />
-         <ul className="menu w-full bg-base-100 p-4 text-base-content lg:w-3/6">
+      <aside className="fixed right-10 top-0 mt-20 w-2/6">
+         <ul className="menu text-base-content">
             <li>
                <Link onClick={trigerAsideMenu} to="/">
                   <Title extraClassName="text-2xl font-medium flex" type="h2">
@@ -49,7 +43,7 @@ export default function Aside() {
                <div>
                   <div className="collapse">
                      <input type="checkbox" />
-                     <div className="focus:mi collapse-title p-0">
+                     <div className="collapse-title p-0">
                         <Title
                            extraClassName="text-2xl flex font-medium"
                            type="h2"
@@ -77,7 +71,7 @@ export default function Aside() {
                                  <p
                                     className={`hover:bg-secundary m-1 cursor-pointer rounded-md pl-8 text-lg ${
                                        item === selectedSection &&
-                                       "rounded-md bg-primary font-semibold text-neutral text-base-100"
+                                       "rounded-md bg-primary font-semibold text-base-100"
                                     }`}
                                     onClick={trigerAsideMenu}
                                  >

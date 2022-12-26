@@ -94,7 +94,7 @@ function Card({ frontReference, backReference, isFirstCard }) {
    }
 
    return (
-      <div className={`md:mx-32 lg:mx-60 ${animation}`}>
+      <div className={` ${animation}`}>
          <Modal id="deleteCard" title="Please comfirm.">
             You are about to delete this card. Do you comfirm this action?
             <div className="modal-action">
