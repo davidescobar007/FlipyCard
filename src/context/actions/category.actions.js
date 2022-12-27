@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid"
+
 import { deleteDocument, getDataByQuery, setDocument } from "../../services"
 import { getSortedObjectKeys, toggleItemFromArray } from "../../utils"
 import { types } from "../global.reducer"
@@ -9,11 +11,12 @@ export const createCategory = (state, dispatch, category) => {
       name: category,
       section: state.selectedSection
    }
-   setDocument(constants.CATEGORIES, newCategory)
-
+   const id = uuidv4()
+   setDocument(constants.CATEGORIES, newCategory, id)
+   newCategory.id = id
    !categories.some((item) => item.name === category) &&
       dispatch(categoryActionTypes.setCategory([...categories, newCategory]))
-   document.getElementById("my-modal-4").checked = false // this close the modal once it is saved
+   document.getElementById("addCategory").checked = false // this close the modal once it is saved
 }
 
 export const getCategories = (state, dispatch, collectionName) => {

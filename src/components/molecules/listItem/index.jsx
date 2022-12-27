@@ -5,8 +5,8 @@ import Title from "../../atoms/title/title"
 function ListItem({ children, selected, ...props }) {
    return (
       <Title
-         extraClassName={`text-xl hover:bg-gray-200 cursor-pointer rounded-lg select-none my-2 p-2 font-medium flex !text-neutral ${
-            selected && "border-2 border-accent bg-secondary !text-accent"
+         extraClassName={`text-xl hover:bg-gray-200 cursor-pointer rounded-lg select-none my-2 p-2 font-medium flex !text-myCustom ${
+            selected && "border-2 border-accent bg-secondary hover:bg-secondary"
          }`}
          type="h2"
          {...props}

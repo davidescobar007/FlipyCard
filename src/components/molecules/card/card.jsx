@@ -99,7 +99,7 @@ function Card({ frontReference, backReference, isFirstCard }) {
             You are about to delete this card. Do you comfirm this action?
             <div className="modal-action">
                <label
-                  className="btn border-error bg-warning text-error shadow-md hover:bg-warning"
+                  className="btn border-2 border-error bg-transparent text-error shadow-md hover:bg-warning"
                   htmlFor="deleteCard"
                   onClick={() => {
                      deleteCurrentCard()

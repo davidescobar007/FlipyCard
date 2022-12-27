@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 
 import { StoreContext } from "../../context/global.state"
 
+import MmodalContainer from "./modalContainer"
+
 function Drawer({ children }) {
    const {
       state: { isDarkTheme }
@@ -14,6 +16,7 @@ function Drawer({ children }) {
          data-theme={isDarkTheme ? "night" : "mytheme"}
       >
          <div className="bg-base-100">{children}</div>
+         <MmodalContainer />
       </section>
    )
 }

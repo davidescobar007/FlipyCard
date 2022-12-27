@@ -14,7 +14,7 @@ function Navbar() {
    }, [])
 
    return (
-      <header className="navbar fixed z-10 border-b-2 bg-base-100">
+      <header className="navbar fixed z-10 h-14 border-b-2 bg-base-100">
          <div className="flex-1">
             <Link to="/">
                <Title

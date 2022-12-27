@@ -9,7 +9,7 @@ const NewSet = lazy(() => import("../pages/newSetOfCards/index"))
 
 export default function Router() {
    return (
-      <section className="mx-10 mt-20 flex flex-initial">
+      <section className="mx-10 mt-40 flex flex-initial">
          <main className="w-3/5">
             <Routes>
                <Route
