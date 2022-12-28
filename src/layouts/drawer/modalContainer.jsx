@@ -6,13 +6,20 @@ import Modal from "../../components/molecules/modal"
 import { StoreContext } from "../../context/global.state"
 
 function MmodalContainer() {
-   const { createNewCategory } = useContext(StoreContext)
-   const inputRef = useRef()
+   const { createNewCategory, createSection } = useContext(StoreContext)
+   const categoryInputRef = useRef()
+   const sectionInputRef = useRef()
 
-   const handleSubmit = (e) => {
+   const submitNewCategory = (e) => {
       e.preventDefault()
-      createNewCategory(inputRef.current.value)
-      inputRef.current.value = ""
+      createNewCategory(categoryInputRef.current.value)
+      categoryInputRef.current.value = ""
+   }
+
+   const submitNewSection = (e) => {
+      e.preventDefault()
+      createSection(sectionInputRef.current.value)
+      sectionInputRef.current.value = ""
    }
 
    return (
@@ -20,18 +27,18 @@ function MmodalContainer() {
          <Modal id="addCategory" title="Add new category">
             <form
                className="flex flex-wrap justify-center"
-               onSubmit={handleSubmit}
+               onSubmit={submitNewCategory}
             >
                <Input
                   extraClassName="my-5"
                   id="createCategoryInput"
-                  innerRef={inputRef}
+                  innerRef={categoryInputRef}
                   name="createCategoryInput"
                   placeholder="New category name"
                />
                <Button
                   extraClassname="btn-wide text-base-100"
-                  onClick={handleSubmit}
+                  onClick={submitNewCategory}
                   typeOf="PRIMARY"
                >
                   Add category
@@ -42,18 +49,18 @@ function MmodalContainer() {
          <Modal id="addSection" title="Add a new section">
             <form
                className="flex flex-wrap justify-center"
-               onSubmit={handleSubmit}
+               onSubmit={submitNewSection}
             >
                <Input
                   extraClassName="my-5"
                   id="createCategoryInput"
-                  innerRef={inputRef}
+                  innerRef={sectionInputRef}
                   name="createCategoryInput"
                   placeholder="New section name"
                />
                <Button
                   extraClassname="btn-wide"
-                  onClick={handleSubmit}
+                  onClick={submitNewSection}
                   typeOf="PRIMARY"
                >
                   Add section

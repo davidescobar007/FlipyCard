@@ -3,7 +3,7 @@ import { TiChevronLeft, TiChevronRight } from "react-icons/ti"
 
 import HoriZontalScroller from "../../components/molecules/horizontalScroller"
 import { StoreContext } from "../../context/global.state"
-function Option() {
+function SectionSelector() {
    const {
       getSections,
       getCategoriesBySections,
@@ -15,7 +15,7 @@ function Option() {
    }, [])
    return (
       <div className="fixed z-10 mt-16 flex w-full cursor-pointer select-none border-b-2 bg-base-100 py-1">
-         <div className="mx-10 flex">
+         <div className="mx-10 flex w-full">
             <div className="flex items-center">
                <TiChevronLeft />
             </div>
@@ -35,7 +35,7 @@ function Option() {
             </label>
 
             <HoriZontalScroller>
-               {sections.map((item, index) => (
+               {sections.data.map((item, index) => (
                   <div
                      className="mr-3 mt-2"
                      key={index}
@@ -49,7 +49,9 @@ function Option() {
                         onClick={() => getCategoriesBySections(item)}
                      >
                         <div className="stat-figure text-xl text-primary">
-                           🥰
+                           {/* &#10013;
+                           U+2691; */}
+                           {"\u{2622}"}
                         </div>
                         <div className="stat-value text-xl text-primary">
                            {item}
@@ -61,6 +63,7 @@ function Option() {
                   </div>
                ))}
             </HoriZontalScroller>
+
             <div className="flex items-center">
                <TiChevronRight />
             </div>
@@ -69,4 +72,4 @@ function Option() {
    )
 }
 
-export default Option
+export default SectionSelector

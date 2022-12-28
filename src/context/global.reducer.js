@@ -8,7 +8,11 @@ const initialStore = {
    dynamicCards: [],
    randomCard: null,
    isMenuOpen: false,
-   sections: [],
+   sections: {
+      data: [],
+      id: null,
+      userId: null
+   },
    selectedSection: null,
    theme: "mytheme",
    isDarkTheme: false

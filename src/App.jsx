@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom"
 import StoreProvider from "./context/global.state"
 import Drawer from "./layouts/drawer"
 import Navbar from "./layouts/navbar"
-import Option from "./layouts/options"
+import SectionSelector from "./layouts/sectionSelector"
 import Router from "./routes/index"
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
             <BrowserRouter>
                <Drawer>
                   <Navbar />
-                  <Option />
+                  <SectionSelector />
                   <Router />
                </Drawer>
             </BrowserRouter>
