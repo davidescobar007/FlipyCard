@@ -13,11 +13,8 @@
       "prepare": "husky install"
    },
    "dependencies": {
-      "@emoji-mart/data": "^1.1.0",
-      "@emoji-mart/react": "^1.1.0",
       "@ramonak/react-progress-bar": "^5.0.2",
       "daisyui": "^2.42.1",
-      "emoji-mart": "^5.4.0",
       "firebase": "^9.9.2",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",

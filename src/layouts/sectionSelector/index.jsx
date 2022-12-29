@@ -11,6 +11,7 @@ function SectionSelector() {
    } = useContext(StoreContext)
 
    useEffect(() => {
+      console.log(sections)
       getSections()
    }, [])
    return (
@@ -35,15 +36,15 @@ function SectionSelector() {
             </label>
 
             <HoriZontalScroller>
-               {sections.data.map((item, index) => (
+               {sections.map((item, index) => (
                   <div
                      className="mr-3 mt-2"
                      key={index}
-                     onClick={() => getCategoriesBySections(item)}
+                     // onClick={() => getCategoriesBySections(item.section)}
                   >
                      <div
                         className={`stat mx-2 rounded-xl border-2 border-accent p-1 hover:bg-gray-200  ${
-                           item === selectedSection &&
+                           item.id === selectedSection?.id &&
                            "bg-secondary hover:bg-secondary "
                         }`}
                         onClick={() => getCategoriesBySections(item)}
@@ -54,7 +55,7 @@ function SectionSelector() {
                            {"\u{2622}"}
                         </div>
                         <div className="stat-value text-xl text-primary">
-                           {item}
+                           {item.section}
                         </div>
                         <div className="stat-desc font-semibold text-gray-700">
                            <b>6</b> categories and <b>56</b> cards

@@ -21,14 +21,17 @@ export const createCategory = (state, dispatch, category) => {
 
 export const getCategories = (state, dispatch, collectionName) => {
    try {
-      getDataByQuery(collectionName, "section", state.selectedSection).then(
-         (dataList) => {
-            dataList = dataList.map((item) => getSortedObjectKeys(item))
-            dispatch(categoryActionTypes.setCategory(dataList))
-         }
-      )
+      getDataByQuery(
+         collectionName,
+         "section",
+         state.selectedSection.section
+      ).then((dataList) => {
+         console.log(dataList)
+         dataList = dataList.map((item) => getSortedObjectKeys(item))
+         dispatch(categoryActionTypes.setCategory(dataList))
+      })
    } catch (error) {
-      categoryActionTypes.error()
+      throw new Error()
    }
 }
 
