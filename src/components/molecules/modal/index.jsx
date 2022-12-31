@@ -2,10 +2,15 @@ import PropTypes from "prop-types"
 
 import Title from "../../atoms/title/title"
 
-function Modal({ title, children, id }) {
+function Modal({ title, children, id, onCheckboxChange }) {
    return (
       <>
-         <input className="modal-open modal-toggle" id={id} type="checkbox" />
+         <input
+            className="modal-open modal-toggle"
+            id={id}
+            onChange={onCheckboxChange}
+            type="checkbox"
+         />
          <label
             className="modal modal-middle cursor-pointer sm:modal-middle"
             htmlFor={id}
@@ -28,12 +33,14 @@ function Modal({ title, children, id }) {
 }
 
 Modal.defaultProps = {
+   onCheckboxChange: () => {},
    title: ""
 }
 
 Modal.propTypes = {
    children: PropTypes.any.isRequired,
    id: PropTypes.string.isRequired,
+   onCheckboxChange: PropTypes.any,
    title: PropTypes.string
 }
 

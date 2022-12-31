@@ -67,6 +67,10 @@ function StoreProvider({ children }) {
       action.categoryActions.deleteCategory(state, dispatch, category)
    }
 
+   const createSection = (section) => {
+      action.sectionActions.createSection(state, dispatch, section)
+   }
+
    const store = useMemo(
       () => ({
          state,
@@ -84,7 +88,8 @@ function StoreProvider({ children }) {
          setSection,
          getCategoriesBySections,
          setUiTheme,
-         deleteCategory
+         deleteCategory,
+         createSection
       }),
       [
          state,
@@ -102,7 +107,8 @@ function StoreProvider({ children }) {
          setSection,
          getCategoriesBySections,
          setUiTheme,
-         deleteCategory
+         deleteCategory,
+         createSection
       ]
    )
 

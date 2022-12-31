@@ -34,7 +34,7 @@ export default function CardsContainer() {
             return
          }
          finishSound()
-      }, 200)
+      }, 100)
    }, [randomCard])
 
    return (

@@ -40,9 +40,9 @@ export const getCollectionListByArray = async (
    return processedData
 }
 
-export const setDocument = async (collection, docData) => {
+export const setDocument = async (collection, docData, id = uuidv4()) => {
    try {
-      await setDoc(doc(db, collection, uuidv4()), docData)
+      await setDoc(doc(db, collection, id), docData)
    } catch (error) {
       throw new Error(error)
    }

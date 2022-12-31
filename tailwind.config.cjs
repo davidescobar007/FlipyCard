@@ -5,6 +5,10 @@ module.exports = {
       extend: {},
       maxWidth: {
          "1/2": "50%"
+      },
+      minWidth: {
+         36: "36px",
+         "100%": "100%"
       }
    },
    plugins: [require("daisyui")],
@@ -21,11 +25,12 @@ module.exports = {
                secondary: "#ddf4ff", //light blue
                accent: "#44ccff", //medium blue
                neutral: "#777", //gray
-               "base-100": "#F1F1F4", //white
+               "base-100": "#F8F9FC", //white
                info: "#84d8ff", //same secondary blue
                success: "#58cc02", //same primary green
                warning: "#F5CE42", //orange
-               error: "#DC2855" //red
+               error: "#DC2855", //red
+               myCustom: "#45D9B1"
             }
          }
       ],

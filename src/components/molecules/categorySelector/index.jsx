@@ -4,7 +4,6 @@ import { RiCheckFill, RiEdit2Line } from "react-icons/ri"
 
 import { StoreContext } from "../../../context/global.state"
 import Button from "../../atoms/button"
-import AddSection from "../addCategory"
 
 import EditCategory from "./edit"
 
@@ -21,11 +20,11 @@ function CategorySelector() {
    }, [selectedSection])
 
    return (
-      <section className="py-6">
-         <AddSection />
+      <section className="">
+         {/* <AddSection /> */}
          <div className="flex flex-nowrap">
-            <div className="tooltip mt-2 mr-2" data-tip="Edit categories">
-               <label className="swap swap-rotate">
+            <div className="tooltip  mr-2" data-tip="Edit categories">
+               <label className="swap-rotate swap">
                   <input type="checkbox" />
                   <RiCheckFill
                      className="swap-on h-10 w-10 rounded-full bg-primary p-2 text-white"
@@ -44,7 +43,7 @@ function CategorySelector() {
             {isEditOn ? (
                <EditCategory categories={categories} />
             ) : (
-               <div className=" flex overflow-x-auto p-2 py-3">
+               <div className=" py- flex overflow-x-auto pb-2">
                   {Array.isArray(categories) &&
                      categories.map((item, index) => {
                         return (

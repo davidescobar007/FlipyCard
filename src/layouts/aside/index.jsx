@@ -1,94 +1,45 @@
 /* eslint-disable react/forbid-component-props */
 import { useContext, useEffect } from "react"
-import { HiViewGridAdd } from "react-icons/hi"
-import { RiHeartAddFill, RiHomeHeartFill } from "react-icons/ri"
-import { TiChevronRight } from "react-icons/ti"
 import { Link } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 
-import Title from "../../components/atoms/title/title"
+import ListItem from "../../components/molecules/listItem"
 import { StoreContext } from "../../context/global.state"
 
 export default function Aside() {
-   const {
-      trigerAsideMenu,
-      getSections,
-      getCategoriesBySections,
-      state: { sections, selectedSection }
-   } = useContext(StoreContext)
+   const location = useLocation()
+   const { getSections } = useContext(StoreContext)
 
    useEffect(() => {
       getSections()
-      console.log("siu")
    }, [])
 
    return (
-      <aside className="drawer-side">
-         <label
-            className="drawer-overlay"
-            htmlFor="my-drawer"
-            onClick={trigerAsideMenu}
-         />
-         <ul className="menu w-full bg-base-100 p-4 text-base-content lg:w-3/6">
+      <aside className="bg-red-4000 w-64">
+         <ul className="fixed right-5 h-96 2xl:right-32">
             <li>
-               <Link onClick={trigerAsideMenu} to="/">
-                  <Title extraClassName="text-2xl font-medium flex" type="h2">
-                     <RiHomeHeartFill className="mt-1 mr-3" />
-                     Home
-                  </Title>
+               <Link to="/">
+                  <ListItem selected={location.pathname === "/"}>
+                     <span className="text-3xl">🎮</span>
+                     Practice
+                  </ListItem>
                </Link>
             </li>
-            <li>
-               <Link onClick={trigerAsideMenu} to="/new-set">
-                  <Title extraClassName="text-2xl font-medium flex" type="h2">
-                     <RiHeartAddFill className="mt-1 mr-3" />
+            <li className="my-4 rounded-lg">
+               <Link to="/new-set">
+                  <ListItem selected={location.pathname === "/new-set"}>
+                     <span className="text-3xl">🗂️</span>
                      Add new set of cards
-                  </Title>
+                  </ListItem>
                </Link>
             </li>
             <li>
-               <div>
-                  <div className="collapse">
-                     <input type="checkbox" />
-                     <div className="focus:mi collapse-title p-0">
-                        <Title
-                           extraClassName="text-2xl flex font-medium"
-                           type="h2"
-                        >
-                           <TiChevronRight className="mt-1 mr-3" />
-                           My Sections
-                        </Title>
-                     </div>
-                     <div className="collapse-content">
-                        <ul>
-                           <li>
-                              <Title
-                                 extraClassName="text-xl flex font-medium"
-                                 type="h3"
-                              >
-                                 Add new section
-                                 <HiViewGridAdd className="mt-1 mr-3" />
-                              </Title>
-                           </li>
-                           {sections.map((item, index) => (
-                              <li
-                                 key={index}
-                                 onClick={() => getCategoriesBySections(item)}
-                              >
-                                 <p
-                                    className={`hover:bg-secundary m-1 cursor-pointer rounded-md pl-8 text-lg ${
-                                       item === selectedSection &&
-                                       "rounded-md bg-primary font-semibold text-neutral text-base-100"
-                                    }`}
-                                    onClick={trigerAsideMenu}
-                                 >
-                                    {item}
-                                 </p>
-                              </li>
-                           ))}
-                        </ul>
-                     </div>
-                  </div>
-               </div>
+               <label className="text-center" htmlFor="addCategory">
+                  <ListItem selected={false}>
+                     <span className="text-3xl">🏷️</span>
+                     Add categories
+                  </ListItem>
+               </label>
             </li>
          </ul>
       </aside>

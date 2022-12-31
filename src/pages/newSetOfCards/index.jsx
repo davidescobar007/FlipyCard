@@ -1,11 +1,9 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import Button from "../../components/atoms/button"
 import TextArea from "../../components/atoms/textArea"
-import Title from "../../components/atoms/title/title"
 import CategorySelector from "../../components/molecules/categorySelector"
-import Stat from "../../components/molecules/stat"
 import Table from "../../components/molecules/table"
 import TableDataCell from "../../components/molecules/table/TableDataCell"
 import TableRow from "../../components/molecules/table/TableRow"
@@ -16,10 +14,7 @@ const initialListValue = [{ frontTerm: "", answer: "" }]
 
 export default function NewSet() {
    const [cardsList, setCardsList] = useState(initialListValue)
-   const {
-      state: { selectedSection },
-      createCardsAtOnce
-   } = useContext(StoreContext)
+   const { createCardsAtOnce } = useContext(StoreContext)
    const navigate = useNavigate()
 
    const handleChange = (event, index) => {
@@ -37,44 +32,42 @@ export default function NewSet() {
       navigate("/")
    }
 
-   useEffect(() => {}, [])
-
    return (
       <>
-         <Title extraClassName="my-3 text-xl !text-neutral" type="h3">
-            Select a category for the new set of cards
-         </Title>
          <CategorySelector />
-         <Table tableHeadProps={tHeadData}>
-            <>
-               {cardsList.map((item, index) => (
-                  <TableRow key={index}>
-                     <TableDataCell>
-                        <TextArea
-                           id="frontTerm"
-                           onChange={(event) => {
-                              handleChange(event, index)
-                           }}
-                           placeholder="Enter text"
-                           rows={4}
-                        />
-                     </TableDataCell>
+         <div>
+            <Table tableHeadProps={tHeadData}>
+               <>
+                  {cardsList.map((item, index) => (
+                     <TableRow key={index}>
+                        <TableDataCell>
+                           <TextArea
+                              id="frontTerm"
+                              onChange={(event) => {
+                                 handleChange(event, index)
+                              }}
+                              placeholder="Enter text"
+                              rows={4}
+                           />
+                        </TableDataCell>
 
-                     <TableDataCell>
-                        <TextArea
-                           id="answer"
-                           onChange={(event) => {
-                              handleChange(event, index)
-                           }}
-                           placeholder="Enter the answer"
-                           rows={4}
-                        />
-                     </TableDataCell>
-                  </TableRow>
-               ))}
-            </>
-         </Table>
-         <div className="flex flex-wrap justify-between">
+                        <TableDataCell>
+                           <TextArea
+                              id="answer"
+                              onChange={(event) => {
+                                 handleChange(event, index)
+                              }}
+                              placeholder="Enter the answer"
+                              rows={4}
+                           />
+                        </TableDataCell>
+                     </TableRow>
+                  ))}
+               </>
+            </Table>
+         </div>
+
+         <div className="flex flex-wrap justify-between ">
             <Button
                extraClassname="w-full mt-5"
                onClick={() => setCardsList([...cardsList, initialListValue[0]])}
@@ -83,8 +76,6 @@ export default function NewSet() {
             >
                Add Card +
             </Button>
-
-            <Stat NCards={cardsList.length} section={selectedSection} />
 
             <Button
                extraClassname="my-7 border-2 border-accent"
