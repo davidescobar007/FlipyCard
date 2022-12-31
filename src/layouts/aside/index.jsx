@@ -15,9 +15,9 @@ export default function Aside() {
    }, [])
 
    return (
-      <aside className="fixed right-10 top-0 mt-36 w-2/6">
-         <ul className=" mt-5">
-            <li className="my-1">
+      <aside className="bg-red-4000 w-64">
+         <ul className="fixed right-5 h-96 2xl:right-32">
+            <li>
                <Link to="/">
                   <ListItem selected={location.pathname === "/"}>
                      <span className="text-3xl">🎮</span>
@@ -25,7 +25,7 @@ export default function Aside() {
                   </ListItem>
                </Link>
             </li>
-            <li className="my-1 rounded-lg">
+            <li className="my-4 rounded-lg">
                <Link to="/new-set">
                   <ListItem selected={location.pathname === "/new-set"}>
                      <span className="text-3xl">🗂️</span>
@@ -33,7 +33,7 @@ export default function Aside() {
                   </ListItem>
                </Link>
             </li>
-            <li className="my-1">
+            <li>
                <label className="text-center" htmlFor="addCategory">
                   <ListItem selected={false}>
                      <span className="text-3xl">🏷️</span>

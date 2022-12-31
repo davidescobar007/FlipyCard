@@ -3,7 +3,7 @@ import CategorySelector from "../components/molecules/categorySelector"
 
 export default function Home() {
    return (
-      <section>
+      <section className="">
          <CategorySelector />
          <CardsContainer />
       </section>

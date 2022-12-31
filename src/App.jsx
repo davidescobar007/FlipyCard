@@ -1,7 +1,9 @@
 import { BrowserRouter } from "react-router-dom"
 
 import StoreProvider from "./context/global.state"
+import Aside from "./layouts/aside"
 import Drawer from "./layouts/drawer"
+import MmodalContainer from "./layouts/drawer/modalContainer"
 import Navbar from "./layouts/navbar"
 import SectionSelector from "./layouts/sectionSelector"
 import Router from "./routes/index"
@@ -11,11 +13,16 @@ function App() {
       <div>
          <StoreProvider>
             <BrowserRouter>
-               <Drawer>
-                  <Navbar />
-                  <SectionSelector />
-                  <Router />
-               </Drawer>
+               <MmodalContainer>
+                  <>
+                     <Navbar />
+                     <Drawer>
+                        <SectionSelector />
+                        <Router />
+                        <Aside />
+                     </Drawer>
+                  </>
+               </MmodalContainer>
             </BrowserRouter>
          </StoreProvider>
       </div>

@@ -9,7 +9,8 @@ export const createCategory = (state, dispatch, category) => {
    const { categories } = state
    const newCategory = {
       name: category,
-      section: state.selectedSection
+      section: state.selectedSection.section,
+      userId: ""
    }
    const id = uuidv4()
    setDocument(constants.CATEGORIES, newCategory, id)
@@ -31,7 +32,7 @@ export const getCategories = (state, dispatch, collectionName) => {
          dispatch(categoryActionTypes.setCategory(dataList))
       })
    } catch (error) {
-      throw new Error()
+      console.log(error)
    }
 }
 

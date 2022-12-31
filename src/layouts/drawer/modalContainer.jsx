@@ -1,12 +1,16 @@
 import { useContext, useRef } from "react"
+import PropTypes from "prop-types"
 
 import Button from "../../components/atoms/button"
 import Input from "../../components/atoms/input"
 import Modal from "../../components/molecules/modal"
 import { StoreContext } from "../../context/global.state"
-
-function MmodalContainer() {
-   const { createNewCategory, createSection } = useContext(StoreContext)
+function MmodalContainer({ children }) {
+   const {
+      createNewCategory,
+      createSection,
+      state: { isDarkTheme }
+   } = useContext(StoreContext)
    const categoryInputRef = useRef()
    const sectionInputRef = useRef()
 
@@ -23,7 +27,11 @@ function MmodalContainer() {
    }
 
    return (
-      <section>
+      <section
+         className="flex h-screen flex-col"
+         data-theme={isDarkTheme ? "night" : "mytheme"}
+      >
+         {children}
          <Modal id="addCategory" title="Add new category">
             <form
                className="flex flex-wrap justify-center"
@@ -69,6 +77,10 @@ function MmodalContainer() {
          </Modal>
       </section>
    )
+}
+
+MmodalContainer.propTypes = {
+   children: PropTypes.element.isRequired
 }
 
 export default MmodalContainer
