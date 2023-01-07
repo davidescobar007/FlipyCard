@@ -15,8 +15,8 @@ function SectionSelector() {
       getSections()
    }, [])
    return (
-      <aside className="bg-yellow-400r w-60 cursor-pointer select-none">
-         <div className="fixed">
+      <aside className="w-64 cursor-pointer select-none bg-yellow-400">
+         <div className="fixed right-5 h-96 2xl:right-32">
             <label className="" htmlFor="addSection">
                <div className="!hover:bg-secondary hover:scale-105">
                   <Stat

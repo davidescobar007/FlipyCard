@@ -17,9 +17,9 @@ function App() {
                   <>
                      <Navbar />
                      <Drawer>
-                        <SectionSelector />
-                        <Router />
                         <Aside />
+                        <Router />
+                        <SectionSelector />
                      </Drawer>
                   </>
                </MmodalContainer>

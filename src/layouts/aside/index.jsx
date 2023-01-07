@@ -15,8 +15,8 @@ export default function Aside() {
    }, [])
 
    return (
-      <aside className="bg-red-4000 w-64">
-         <ul className="fixed right-5 h-96 2xl:right-32">
+      <aside className="w-60 bg-red-400">
+         <ul className="fixed ">
             <li>
                <Link to="/">
                   <ListItem selected={location.pathname === "/"}>
