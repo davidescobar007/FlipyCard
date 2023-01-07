@@ -15,13 +15,13 @@ export default function Aside() {
    }, [])
 
    return (
-      <aside className="w-60 bg-red-400">
+      <aside className="w-16 bg-red-400 lg:w-52">
          <ul className="fixed ">
             <li>
                <Link to="/">
                   <ListItem selected={location.pathname === "/"}>
                      <span className="text-3xl">🎮</span>
-                     Practice
+                     <p className="hidden lg:block">Practice</p>
                   </ListItem>
                </Link>
             </li>
@@ -29,7 +29,7 @@ export default function Aside() {
                <Link to="/new-set">
                   <ListItem selected={location.pathname === "/new-set"}>
                      <span className="text-3xl">🗂️</span>
-                     Add new set of cards
+                     <p className="hidden lg:block">Add new cards</p>
                   </ListItem>
                </Link>
             </li>
@@ -37,7 +37,7 @@ export default function Aside() {
                <label className="text-center" htmlFor="addCategory">
                   <ListItem selected={false}>
                      <span className="text-3xl">🏷️</span>
-                     Add categories
+                     <p className="hidden lg:block">Add categories</p>
                   </ListItem>
                </label>
             </li>

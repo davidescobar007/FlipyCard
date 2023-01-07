@@ -3,16 +3,15 @@ import React, { useContext, useEffect, useState } from "react"
 import { RiCheckFill, RiEdit2Line } from "react-icons/ri"
 
 import { StoreContext } from "../../../context/global.state"
-import Button from "../../atoms/button"
 
+import CategoryList from "./categoryList"
 import EditCategory from "./edit"
 
 function CategorySelector() {
    const [isEditOn, setIsEditOn] = useState(false)
    const {
       getCategoryList,
-      getCardsListByCategories,
-      state: { categories, categorySelected, selectedSection }
+      state: { categories, selectedSection }
    } = useContext(StoreContext)
 
    useEffect(() => {
@@ -21,10 +20,9 @@ function CategorySelector() {
 
    return (
       <section className="">
-         {/* <AddSection /> */}
          <div className="flex flex-nowrap">
             <div className="tooltip  mr-2" data-tip="Edit categories">
-               <label className="swap-rotate swap">
+               <label className="swap swap-rotate">
                   <input type="checkbox" />
                   <RiCheckFill
                      className="swap-on h-10 w-10 rounded-full bg-primary p-2 text-white"
@@ -43,28 +41,7 @@ function CategorySelector() {
             {isEditOn ? (
                <EditCategory categories={categories} />
             ) : (
-               <div className=" py- flex overflow-x-auto pb-2">
-                  {Array.isArray(categories) &&
-                     categories.map((item, index) => {
-                        return (
-                           <Button
-                              dangerouslyResetClassName
-                              extraClassname={` flex text-lg mr-2 font-medium whitespace-nowrap rounded-full border-2 px-3 border-primary text-primary shadow-md  ${
-                                 categorySelected.some(
-                                    (catSelected) => catSelected.id === item.id
-                                 ) && "bg-primary !text-white"
-                              }`}
-                              key={index}
-                              onClick={() => {
-                                 getCardsListByCategories(item)
-                              }}
-                              typeOf="SECONDARY"
-                           >
-                              {item.name}
-                           </Button>
-                        )
-                     })}
-               </div>
+               <CategoryList categories={categories} />
             )}
          </div>
       </section>

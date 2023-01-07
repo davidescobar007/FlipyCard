@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 
 function HoriZontalScroller({ children }) {
-   return <nav className="flex flex-nowrap overflow-x-scroll">{children}</nav>
+   return <nav className=" flex flex-nowrap bg-red-500">{children}</nav>
 }
 
 HoriZontalScroller.propTypes = {
