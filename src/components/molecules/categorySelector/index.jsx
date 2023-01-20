@@ -31,7 +31,7 @@ function CategorySelector() {
          style={{ width: `${width}px` }}
       >
          <div className="tooltip  mr-2" data-tip="Edit categories">
-            <label className="swap-rotate swap">
+            <label className="swap swap-rotate">
                <input type="checkbox" />
                <RiCheckFill
                   className="swap-on h-10 w-10 rounded-full bg-primary p-2 text-white"
