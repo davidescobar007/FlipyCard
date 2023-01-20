@@ -27,7 +27,6 @@ export const getCategories = (state, dispatch, collectionName) => {
          "section",
          state.selectedSection.section
       ).then((dataList) => {
-         console.log(dataList)
          dataList = dataList.map((item) => getSortedObjectKeys(item))
          dispatch(categoryActionTypes.setCategory(dataList))
       })
