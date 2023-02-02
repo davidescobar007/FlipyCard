@@ -8,7 +8,7 @@ const NewSet = lazy(() => import("../pages/newSetOfCards/index"))
 
 export default function Router() {
    return (
-      <main className="w-7/12 bg-blue-400 px-20">
+      <main className="bg-blue-4000 w-full md:w-7/12 md:px-16">
          <Routes>
             <Route
                element={

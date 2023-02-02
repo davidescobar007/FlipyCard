@@ -1,32 +1,36 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react/forbid-component-props */
-import { RiLinkedinFill } from "react-icons/ri"
+import { Link, useLocation } from "react-router-dom"
 
+const selectedItem =
+   "border-2 rounded-lg p-1 border-accent bg-secondary hover:bg-secondary"
 function Footer() {
-   // const {
-   //    setUiTheme,
-   //    state: { isDarkTheme }
-   // } = useContext(StoreContext)
+   const location = useLocation()
    return (
-      <footer className="footer fixed bottom-0 mt-40 w-full items-center bg-accent-focus p-4 text-neutral-content">
-         <div>
-            <p>Copyright © 2022 - All right reserved</p>
-         </div>
-         <div>
-            <p className="flex text-sm">
-               Made with ❤️ by
-               <a href="">
-                  <RiLinkedinFill
-                     style={{ marginTop: "3px", marginLeft: "3px" }}
-                  />
-               </a>
-            </p>
-            {/* <input
-               checked={isDarkTheme}
-               className="toggle toggle-primary"
-               onChange={setUiTheme}
-               type="checkbox"
-            /> */}
+      <footer className=" md:hidden">
+         <div className="btm-nav">
+            <Link to="/">
+               <span
+                  className={`${
+                     location.pathname === "/" && selectedItem
+                  } text-3xl`}
+               >
+                  🎮
+               </span>
+            </Link>
+            <Link to="/new-set">
+               <span
+                  className={`${
+                     location.pathname === "/new-set" && selectedItem
+                  } text-3xl`}
+               >
+                  🗂️
+               </span>
+            </Link>
+            <label className="text-center" htmlFor="addCategory">
+               <span className="text-3xl">🏷️</span>
+            </label>
+            <Link to="/sections">
+               <span className="text-3xl">⚡</span>
+            </Link>
          </div>
       </footer>
    )
