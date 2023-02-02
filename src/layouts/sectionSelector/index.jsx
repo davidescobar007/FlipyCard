@@ -15,13 +15,13 @@ function SectionSelector() {
       getSections()
    }, [])
    return (
-      <aside className="w-64 cursor-pointer select-none bg-yellow-400">
+      <aside className="w-3/12 select-none bg-yellow-400 lg:w-3/12">
          <div className="fixed right-5 h-96 2xl:right-32">
             <label className="" htmlFor="addSection">
                <div className="!hover:bg-secondary hover:scale-105">
                   <Stat
                      emoji="⚡"
-                     extraClassName="bg-secondary "
+                     extraClassName="bg-secondary cursor-pointer"
                      text="Click me to add a new section"
                      title="Add Section"
                   />

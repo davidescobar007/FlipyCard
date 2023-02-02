@@ -15,7 +15,7 @@ export default function Aside() {
    }, [])
 
    return (
-      <aside className="w-16 bg-red-400 lg:w-52">
+      <aside className="bg-red-400 md:w-1/12 lg:w-2/12">
          <ul className="fixed ">
             <li>
                <Link to="/">

@@ -18,7 +18,7 @@ function Navbar() {
          <div className="flex-1">
             <Link to="/">
                <Title
-                  extraClassName="text-3xl flex font-mono font-extrabold text-accent"
+                  extraClassName="text-4xl flex font-mono font-extrabold text-accent"
                   type="h1"
                >
                   <p>Flipy</p>
