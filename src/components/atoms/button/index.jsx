@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 const buttonTypes = {
    PRIMARY: "btn-primary text-white",
-   SECONDARY: "btn-secondary text-neutral",
+   SECONDARY: "btn-secondary text-neutral hover:text-white",
    INFO: "btn-info"
 }
 

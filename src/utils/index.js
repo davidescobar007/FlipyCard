@@ -67,3 +67,10 @@ export const updateObjInsideOfArray = (array, obj) => {
    })
    return newIteratedArray
 }
+
+export const checkEveryHasString = (array) => {
+   const isArrayEmpty = array.some(
+      (item) => item.answer !== "" && item.frontTerm !== ""
+   )
+   return isArrayEmpty
+}

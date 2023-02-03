@@ -75,6 +75,17 @@ function MmodalContainer({ children }) {
                </Button>
             </form>
          </Modal>
+
+         <Modal id="addCardsWarning" title="Pay attention">
+            <p className="py-4 text-lg">
+               Please fill out all cards with text and answer
+            </p>
+            <div className="modal-action">
+               <label className="btn btn-warning" htmlFor="addCardsWarning">
+                  Close
+               </label>
+            </div>
+         </Modal>
       </section>
    )
 }
