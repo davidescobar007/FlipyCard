@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 
 const selectedItem =
-   "border-2 rounded-lg p-1 border-accent bg-secondary hover:bg-secondary"
+   "border-2 rounded-xl p-1 border-accent bg-secondary hover:bg-secondary"
 function Footer() {
    const location = useLocation()
    return (

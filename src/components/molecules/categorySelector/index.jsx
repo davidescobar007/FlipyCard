@@ -19,7 +19,7 @@ function CategorySelector() {
    }, [selectedSection])
 
    return (
-      <div className="flex flex-nowrap">
+      <div className="mb-5 flex flex-nowrap">
          <div className="tooltip mr-2" data-tip="Edit categories">
             <label className="swap swap-rotate">
                <input type="checkbox" />

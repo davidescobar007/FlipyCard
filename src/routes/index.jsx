@@ -5,6 +5,7 @@ import Loader from "../components/atoms/loader"
 
 const Home = lazy(() => import("../pages/home"))
 const NewSet = lazy(() => import("../pages/newSetOfCards/index"))
+const Sections = lazy(() => import("../pages/sections"))
 
 export default function Router() {
    return (
@@ -25,6 +26,14 @@ export default function Router() {
                   </Suspense>
                }
                path="/new-set"
+            />
+            <Route
+               element={
+                  <Suspense fallback={<Loader />}>
+                     <Sections />
+                  </Suspense>
+               }
+               path="/sections"
             />
          </Routes>
       </main>
