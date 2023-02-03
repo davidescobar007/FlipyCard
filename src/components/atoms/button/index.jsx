@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 const buttonTypes = {
    PRIMARY: "btn-primary text-white",
-   SECONDARY: "btn-secondary text-neutral",
+   SECONDARY: "btn-secondary text-neutral hover:text-white",
    INFO: "btn-info"
 }
 
@@ -19,7 +19,7 @@ function Button({
       <button
          className={
             (dangerouslyResetClassName && extraClassname) ||
-            `btn rounded-lg py-1 target:bg-transparent shadow-md ${buttonTypes[typeOf]} ${extraClassname}`
+            `btn rounded-lg py-1 shadow-md target:bg-transparent ${buttonTypes[typeOf]} ${extraClassname}`
          }
          {...rest}
          type={type}

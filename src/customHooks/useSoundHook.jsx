@@ -1,5 +1,6 @@
 import useSound from "use-sound"
-import sound from "../../public/sound1.mp3"
+
+import sound from "/sound1.mp3"
 
 //to be completed
 export default function useSoundHook() {

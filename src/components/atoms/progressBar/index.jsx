@@ -1,6 +1,6 @@
 import React from "react"
-import PropTypes from "prop-types"
 import ProgressBar from "@ramonak/react-progress-bar"
+import PropTypes from "prop-types"
 
 export default function ProgressPercentage({ value }) {
    return (

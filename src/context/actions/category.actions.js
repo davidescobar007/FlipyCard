@@ -1,4 +1,6 @@
-import { getDataByQuery, setDocument, deleteDocument } from "../../services"
+import { v4 as uuidv4 } from "uuid"
+
+import { deleteDocument, getDataByQuery, setDocument } from "../../services"
 import { getSortedObjectKeys, toggleItemFromArray } from "../../utils"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
@@ -7,25 +9,29 @@ export const createCategory = (state, dispatch, category) => {
    const { categories } = state
    const newCategory = {
       name: category,
-      section: state.selectedSection
+      section: state.selectedSection.section,
+      userId: ""
    }
-   setDocument(constants.CATEGORIES, newCategory)
-
+   const id = uuidv4()
+   setDocument(constants.CATEGORIES, newCategory, id)
+   newCategory.id = id
    !categories.some((item) => item.name === category) &&
       dispatch(categoryActionTypes.setCategory([...categories, newCategory]))
-   document.getElementById("my-modal-4").checked = false // this close the modal once it is saved
+   document.getElementById("addCategory").checked = false // this close the modal once it is saved
 }
 
 export const getCategories = (state, dispatch, collectionName) => {
    try {
-      getDataByQuery(collectionName, "section", state.selectedSection).then(
-         (dataList) => {
-            dataList = dataList.map((item) => getSortedObjectKeys(item))
-            dispatch(categoryActionTypes.setCategory(dataList))
-         }
-      )
+      getDataByQuery(
+         collectionName,
+         "section",
+         state.selectedSection.section
+      ).then((dataList) => {
+         dataList = dataList.map((item) => getSortedObjectKeys(item))
+         dispatch(categoryActionTypes.setCategory(dataList))
+      })
    } catch (error) {
-      categoryActionTypes.error()
+      console.log(error)
    }
 }
 

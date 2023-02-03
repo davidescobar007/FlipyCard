@@ -1,30 +1,20 @@
-import React from "react"
-import Aside from "../aside"
-import PropTypes from "prop-types"
 import { useContext } from "react"
+import PropTypes from "prop-types"
+
 import { StoreContext } from "../../context/global.state"
 
 function Drawer({ children }) {
    const {
-      state: { isMenuOpen, isDarkTheme }
+      state: { isDarkTheme }
    } = useContext(StoreContext)
 
    return (
-      <div className="bg-base-100" data-theme={!isDarkTheme ? "mytheme" : "lemonade"}>
-         <div className="drawer">
-            <input
-               checked={isMenuOpen}
-               className="drawer-toggle"
-               id="my-drawer"
-               readOnly
-               type="checkbox"
-            />
-            <div className="drawer-content flex h-screen flex-col">
-               {children}
-            </div>
-            <Aside />
-         </div>
-      </div>
+      <section
+         className="mt-24 flex justify-between bg-base-100 px-5 2xl:px-32"
+         data-theme={isDarkTheme ? "night" : "mytheme"}
+      >
+         {children}
+      </section>
    )
 }
 

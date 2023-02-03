@@ -2,7 +2,6 @@
 import { RiDeleteBin3Fill, RiEdit2Line } from "react-icons/ri"
 
 function CardHeader({ ...rest }) {
-
    return (
       <header className="flex justify-between">
          <div

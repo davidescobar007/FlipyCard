@@ -9,7 +9,7 @@ export default function TextArea({ extraClassName, innerRef, ...rest }) {
    return (
       <textarea
          className={
-            "h-auto w-full  border-blue-900  p-1 leading-tight shadow-md focus:bg-secondary focus:outline-accent " +
+            "h-auto w-full rounded-md border-blue-900 p-1  font-semibold leading-tight shadow-md focus:outline-accent " +
             extraClassName
          }
          onInput={inputEvent}

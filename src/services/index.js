@@ -1,15 +1,16 @@
-import { db, batch } from "./setup"
 import {
    collection,
-   getDocs,
-   setDoc,
+   deleteDoc,
    doc,
-   updateDoc,
+   getDocs,
    query,
-   where,
-   deleteDoc
+   setDoc,
+   updateDoc,
+   where
 } from "firebase/firestore/lite"
 import { v4 as uuidv4 } from "uuid"
+
+import { batch, db } from "./setup"
 
 export const getCollectionList = async (collectionName) => {
    const newCollection = collection(db, collectionName)
@@ -39,9 +40,9 @@ export const getCollectionListByArray = async (
    return processedData
 }
 
-export const setDocument = async (collection, docData) => {
+export const setDocument = async (collection, docData, id = uuidv4()) => {
    try {
-      await setDoc(doc(db, collection, uuidv4()), docData)
+      await setDoc(doc(db, collection, id), docData)
    } catch (error) {
       throw new Error(error)
    }

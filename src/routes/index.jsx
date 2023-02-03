@@ -1,13 +1,15 @@
 import { lazy, Suspense } from "react"
-import { Routes, Route } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
+
 import Loader from "../components/atoms/loader"
 
 const Home = lazy(() => import("../pages/home"))
 const NewSet = lazy(() => import("../pages/newSetOfCards/index"))
+const Sections = lazy(() => import("../pages/sections"))
 
 export default function Router() {
    return (
-      <main className="flex-grow px-4 md:px-10 lg:px-52 pt-28">
+      <main className="bg-blue-4000 w-full md:w-7/12 md:px-16">
          <Routes>
             <Route
                element={
@@ -24,6 +26,14 @@ export default function Router() {
                   </Suspense>
                }
                path="/new-set"
+            />
+            <Route
+               element={
+                  <Suspense fallback={<Loader />}>
+                     <Sections />
+                  </Suspense>
+               }
+               path="/sections"
             />
          </Routes>
       </main>

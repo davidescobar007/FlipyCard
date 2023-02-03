@@ -1,6 +1,6 @@
+import { createContext, useMemo, useReducer } from "react"
 import PropTypes from "prop-types"
-import { useMemo } from "react"
-import { createContext, useReducer } from "react"
+
 import * as action from "./actions/global.actions"
 import storeReducer, { initialStore } from "./global.reducer"
 import { constants } from "./global.types"
@@ -67,6 +67,10 @@ function StoreProvider({ children }) {
       action.categoryActions.deleteCategory(state, dispatch, category)
    }
 
+   const createSection = (section) => {
+      action.sectionActions.createSection(state, dispatch, section)
+   }
+
    const store = useMemo(
       () => ({
          state,
@@ -84,7 +88,8 @@ function StoreProvider({ children }) {
          setSection,
          getCategoriesBySections,
          setUiTheme,
-         deleteCategory
+         deleteCategory,
+         createSection
       }),
       [
          state,
@@ -102,7 +107,8 @@ function StoreProvider({ children }) {
          setSection,
          getCategoriesBySections,
          setUiTheme,
-         deleteCategory
+         deleteCategory,
+         createSection
       ]
    )
 

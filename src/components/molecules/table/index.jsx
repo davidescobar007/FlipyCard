@@ -1,12 +1,13 @@
 import PropTypes from "prop-types"
+
 export default function Table({ tableHeadProps, children }) {
    return (
-      <table className="w-full min-w-max table-fixed ">
+      <table className="w-full">
          <thead>
-            <tr className="bg-primary text-base leading-normal text-gray-50">
+            <tr className=" text-lg text-neutral">
                {Array.isArray(tableHeadProps) &&
                   tableHeadProps.map((item) => (
-                     <th className="py-3 px-6 text-left" key={item}>
+                     <th className="py-3 text-center" key={item}>
                         {item}
                      </th>
                   ))}

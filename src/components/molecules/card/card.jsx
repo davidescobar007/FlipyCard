@@ -1,15 +1,16 @@
 /* eslint-disable react/forbid-component-props */
-import PropTypes from "prop-types"
 import React, { useContext, useEffect, useState } from "react"
+import PropTypes from "prop-types"
+
 import { StoreContext } from "../../../context/global.state"
 import { constants } from "../../../context/global.types"
 import CardFlipper from "../../../features/flipCard"
 import Button from "../../atoms/button"
 import Input from "../../atoms/input"
-import CardBody from "./cardBody"
-import CardHeader from "./cardHeader"
 import Modal from "../modal"
 
+import CardBody from "./cardBody"
+import CardHeader from "./cardHeader"
 
 function Card({ frontReference, backReference, isFirstCard }) {
    const [animation, setAnimation] = useState("")
@@ -93,12 +94,12 @@ function Card({ frontReference, backReference, isFirstCard }) {
    }
 
    return (
-      <div className={`md:mx-32 lg:mx-60 ${animation}`}>
-             <Modal id="deleteCard" title="Please comfirm.">
+      <div className={`mt-10 ${animation}`}>
+         <Modal id="deleteCard" title="Please comfirm.">
             You are about to delete this card. Do you comfirm this action?
             <div className="modal-action">
                <label
-                  className="btn bg-secondary border-secondary text-neutral shadow-md"
+                  className="btn border-2 border-error bg-transparent text-error shadow-md hover:bg-warning"
                   htmlFor="deleteCard"
                   onClick={() => {
                      deleteCurrentCard()
@@ -109,7 +110,7 @@ function Card({ frontReference, backReference, isFirstCard }) {
             </div>
          </Modal>
          <CardFlipper flipDirection="horizontal" isFlipped={flip}>
-            <div className="rounded-xl p-3 shadow-xl">
+            <div className="rounded-xl bg-white p-3 shadow-xl">
                <CardHeader onClick={() => setDisplayForm(true)} />
                <div className="card-body text-center">
                   {displayForm ? (
@@ -123,7 +124,7 @@ function Card({ frontReference, backReference, isFirstCard }) {
                </div>
             </div>
 
-            <div className="rounded-lg bg-gray-50 p-3 shadow-xl">
+            <div className="rounded-xl bg-white p-3 shadow-xl">
                <CardHeader onClick={() => setDisplayForm(true)} />
                <div className="card-body text-center">
                   {displayForm ? (

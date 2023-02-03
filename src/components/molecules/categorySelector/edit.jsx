@@ -1,9 +1,10 @@
-import PropTypes from "prop-types"
-import Button from "../../atoms/button"
-import { RiDeleteBinFill } from "react-icons/ri"
-import Modal from "../modal"
 import { useContext, useState } from "react"
+import { RiDeleteBinFill } from "react-icons/ri"
+import PropTypes from "prop-types"
+
 import { StoreContext } from "../../../context/global.state"
+import Button from "../../atoms/button"
+import Modal from "../modal"
 
 function EditCategory({ categories }) {
    const [cateogryToDelete, setCateogryToDelete] = useState()
@@ -12,8 +13,11 @@ function EditCategory({ categories }) {
    return (
       <div className="flex overflow-x-auto p-2 py-3">
          <Modal id="deleteCategory" title="Please comfirm.">
-            You are about to delete this category:{" "}
-            <b>{cateogryToDelete?.name}</b>
+            <p className="text-lg">
+               You are about to delete this category:{" "}
+               <b>{cateogryToDelete?.name}. </b>
+               Do you comfirm this action?
+            </p>
             <div className="modal-action">
                <label
                   className="btn"
@@ -31,7 +35,7 @@ function EditCategory({ categories }) {
                return (
                   <div className="indicator mr-5" key={index}>
                      <span
-                        className="animate__animated animate__fadeIn badge indicator-item badge-primary rounded-full animate__faster"
+                        className="animate__animated animate__fadeIn animate__faster badge indicator-item badge-primary rounded-full text-base-100"
                         onClick={() => setCateogryToDelete(item)}
                      >
                         <label className="underline" htmlFor="deleteCategory">
