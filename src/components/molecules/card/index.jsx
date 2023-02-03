@@ -17,8 +17,8 @@ export default function CardsContainer() {
       resetDynamicCards
    } = useContext(StoreContext)
 
-   const [play] = useSound(sound, { volume: 0.1 })
-   const [finishSound] = useSound(finishSound1, { volume: 0.1 })
+   const [play] = useSound(sound, { volume: 0.35 })
+   const [finishSound] = useSound(finishSound1, { volume: 0.35 })
 
    const calculateProgressPercentage = () => {
       let cardslength = cards.length
@@ -33,7 +33,9 @@ export default function CardsContainer() {
             play()
             return
          }
-         finishSound()
+         if (cards.length > 0) {
+            finishSound()
+         }
       }, 100)
    }, [randomCard])
 
