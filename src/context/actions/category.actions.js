@@ -1,37 +1,41 @@
-import { v4 as uuidv4 } from "uuid"
-
-import { deleteDocument, getDataByQuery, setDocument } from "../../services"
+import {
+   pbCreateRecord,
+   pbDeleteRecord,
+   pbGetDataByQuery
+} from "../../services"
 import { getSortedObjectKeys, toggleItemFromArray } from "../../utils"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
-export const createCategory = (state, dispatch, category) => {
+export const createCategory = async (state, dispatch, category) => {
    const { categories } = state
    const newCategory = {
       name: category,
-      section: state.selectedSection.section,
-      userId: ""
+      packID: state.selectedSection.id
    }
-   const id = uuidv4()
-   setDocument(constants.CATEGORIES, newCategory, id)
-   newCategory.id = id
-   !categories.some((item) => item.name === category) &&
-      dispatch(categoryActionTypes.setCategory([...categories, newCategory]))
+   try {
+      const reponse = await pbCreateRecord(constants.CATEGORIES, newCategory)
+      !categories.some((item) => item.name === category) &&
+         dispatch(categoryActionTypes.setCategory([...categories, reponse]))
+   } catch (error) {
+      console.warn(error)
+      alert("error happened", error)
+   }
    document.getElementById("addCategory").checked = false // this close the modal once it is saved
 }
 
-export const getCategories = (state, dispatch, collectionName) => {
+export const getCategories = async (state, dispatch) => {
    try {
-      getDataByQuery(
-         collectionName,
-         "section",
-         state.selectedSection.section
-      ).then((dataList) => {
-         dataList = dataList.map((item) => getSortedObjectKeys(item))
-         dispatch(categoryActionTypes.setCategory(dataList))
-      })
+      const categories = await pbGetDataByQuery(
+         { collection: constants.CATEGORIES },
+         { field: "packID", param: state.selectedSection.id }
+      )
+      const categoriesSorted = categories.items.map((item) =>
+         getSortedObjectKeys(item)
+      )
+      dispatch(categoryActionTypes.setCategory(categoriesSorted))
    } catch (error) {
-      console.log(error)
+      console.warn(error)
    }
 }
 
@@ -42,7 +46,7 @@ export const deleteCategory = (state, dispatch, category) => {
       category
    )
    try {
-      deleteDocument(constants.CATEGORIES, category.id).then(() => {
+      pbDeleteRecord(constants.CATEGORIES, category.id).then(() => {
          dispatch(
             categoryActionTypes.deleteCategory(categoriesListWithDeletedItem)
          )

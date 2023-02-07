@@ -1,47 +1,46 @@
-import { dynamicSearch, getDataByQuery } from "../../services"
-import { createDinamicArray, toggleItemFromArray } from "../../utils"
+import { pbGetDataByQuery, pbGetList } from "../../services"
+import { queryStringAnsembler, toggleItemFromArray } from "../../utils"
 import { types } from "../global.reducer"
-import { queryOperators } from "../global.types"
+import { constants } from "../global.types"
 
 import * as cardsActions from "./cards.actions"
 import * as categoryActions from "./category.actions"
 import * as sectionActions from "./section.actions"
 
-const getCardsByCategories = (state, dispatch, collection, category) => {
+const getCardsByCategories = async (state, dispatch, collection, category) => {
    try {
       let categorySelected = toggleItemFromArray(
          state.categorySelected,
          category
       )
-      categorySelected.length &&
-         dynamicSearch(
-            collection,
-            createDinamicArray(categorySelected, queryOperators.EQUAL_TO)
-         ).then((cardsArray) => {
-            dispatch(cardsActions.cardActionTypes.setCards(cardsArray))
-            dispatch(
-               cardsActions.cardActionTypes.setDynamicCards([...cardsArray])
-            )
-            cardsActions.setRandomCard(dispatch, cardsArray)
-         })
+      const filterQuery = queryStringAnsembler("categoryID", categorySelected)
+      if (categorySelected.length) {
+         let cards = await pbGetList(collection, filterQuery)
+         dispatch(cardsActions.cardActionTypes.setCards(cards))
+         dispatch(cardsActions.cardActionTypes.setDynamicCards([...cards]))
+         cardsActions.setRandomCard(dispatch, cards)
+      }
       dispatch(
          categoryActions.categoryActionTypes.selectCetegories(categorySelected)
       )
    } catch (error) {
       actionHandlerTypes.error()
+      console.warn(error)
    }
 }
 
-const getCategoriesBySections = (dispatch, collectionName, section) => {
+const getCategoriesBySections = async (dispatch, collectionName, section) => {
    try {
+      dispatch(categoryActions.categoryActionTypes.selectCetegories([]))
       dispatch(actionHandlerTypes.setSection(section))
-      getDataByQuery(collectionName, "section", section.section).then(
-         (dataList) => {
-            dispatch(actionHandlerTypes.setCategory(dataList))
-         }
+      const categories = await pbGetDataByQuery(
+         { collection: constants.CATEGORIES },
+         { field: "packID", param: section.id }
       )
+      dispatch(actionHandlerTypes.setCategory(categories.items))
    } catch (error) {
       actionHandlerTypes.error()
+      console.warn(error)
    }
 }
 

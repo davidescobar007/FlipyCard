@@ -97,7 +97,7 @@ export default function NewSet() {
             <Modal id="addCards" title="Confirm above info">
                <p className="py-4 text-lg">
                   These cards will be created under{" "}
-                  <b>{selectedSection.section}</b> section with following
+                  <b>{selectedSection?.section}</b> section with following
                   categories:{" "}
                   {categorySelected.map(({ id, name }) => (
                      <>

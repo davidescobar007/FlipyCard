@@ -10,7 +10,6 @@ export const getSortedObjectKeys = (obj) =>
       .sort()
       .reduce((accumulator, key) => {
          accumulator[key] = obj[key]
-
          return accumulator
       }, {})
 
@@ -43,16 +42,14 @@ export const createDinamicArray = (array, operator) => {
    return newDinamicArray
 }
 
-export const createDynamicArrayOfCards = (listofCards, section, callBack) => {
+export const createDynamicArrayOfCards = (listofCards, category) => {
    let arr = []
    listofCards.map((item) => {
       arr.push({
          frontTerm: item.frontTerm,
          answer: item.answer,
-         userId: "",
          timesSeen: 0,
-         section,
-         category: callBack
+         categoryID: category
       })
    })
    return arr
@@ -73,4 +70,14 @@ export const checkEveryHasString = (array) => {
       (item) => item.answer !== "" && item.frontTerm !== ""
    )
    return isArrayEmpty
+}
+
+export const queryStringAnsembler = (field, array) => {
+   let queryString = ""
+   array.map(({ id }, index) => {
+      queryString += `${field} ?~ "${id}" ${
+         index !== array.length - 1 ? "&& " : ""
+      }`
+   })
+   return queryString
 }

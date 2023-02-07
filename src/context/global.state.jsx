@@ -29,7 +29,7 @@ function StoreProvider({ children }) {
       action.cardsActions.createCard(state, dispatch, constants.CARDS, cardData)
 
    const createCardsAtOnce = (cardsList) =>
-      action.cardsActions.createCardsAtOnce(state, cardsList, constants.CARDS)
+      action.cardsActions.createCardsAtOnce(state, cardsList)
 
    const createNewCategory = (category) =>
       action.categoryActions.createCategory(state, dispatch, category)

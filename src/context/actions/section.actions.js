@@ -1,28 +1,34 @@
-import { v4 as uuidv4 } from "uuid"
-
-import { getDataByQuery, setDocument } from "../../services"
+import { pbCreateRecord, pbGetList } from "../../services"
 import { constants, types } from "../global.types"
 
-export const getSections = (state, dispatch) => {
-   getDataByQuery(constants.SECTIONS, "userId", "").then((data) => {
+export const getSections = async (state, dispatch) => {
+   try {
+      const data = await pbGetList(constants.PACKS)
       dispatch(sectionActions.updateSection(data))
       if (!state.selectedSection) {
          dispatch(sectionActions.setSection(data[0]))
       }
-   })
+   } catch (error) {
+      console.warn(error)
+   }
 }
+
 export const createSection = (state, dispatch, section) => {
    const { sections } = state
-   const id = uuidv4()
-   const newSection = {
-      userId: "",
-      section,
-      isPublic: true // to be changed once there is sing up option
+   const newPack = {
+      userID: "g8rb1zowbrugehp",
+      name: section,
+      isPublic: true
    }
-   const newSectionList = [...sections, { ...newSection, id }]
-   setDocument(constants.SECTIONS, newSection, id)
-   dispatch(sectionActions.updateSection(newSectionList))
-   document.getElementById("addSection").checked = false // this close the modal once it is saved
+   try {
+      pbCreateRecord(newPack, constants.PACKS).then((data) => {
+         const newSectionList = [...sections, { ...data }]
+         dispatch(sectionActions.updateSection(newSectionList))
+      })
+      document.getElementById("addSection").checked = false // this close the modal once it is saved
+   } catch (error) {
+      console.warn(error)
+   }
 }
 
 export const setSection = (dispatch, section) => {

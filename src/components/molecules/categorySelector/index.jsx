@@ -10,12 +10,12 @@ import EditCategory from "./edit"
 function CategorySelector() {
    const [isEditOn, setIsEditOn] = useState(false)
    const {
-      getCategoryList,
+      getCategoriesBySections,
       state: { categories, selectedSection }
    } = useContext(StoreContext)
 
    useEffect(() => {
-      getCategoryList()
+      getCategoriesBySections(selectedSection)
    }, [selectedSection])
 
    return (

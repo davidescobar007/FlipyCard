@@ -11,7 +11,6 @@ function SectionSelector() {
    } = useContext(StoreContext)
 
    useEffect(() => {
-      console.log(sections)
       getSections()
    }, [])
    return (
@@ -44,7 +43,7 @@ function SectionSelector() {
                            ? `${categories.length} categories`
                            : " Start with me"
                      }
-                     title={item.section}
+                     title={item.name}
                   />
                ))}
             </div>

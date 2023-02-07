@@ -1,12 +1,6 @@
-import {
-   deleteDocument,
-   setDocument,
-   setManyAtSameTime,
-   updateDocument
-} from "../../services"
+import { pbCreateRecord, pbDeleteRecord, pbUpdateRecord } from "../../services"
 import {
    createDynamicArrayOfCards,
-   creteDinamicObject,
    getRandomFromArray,
    updateObjInsideOfArray
 } from "../../utils"
@@ -14,18 +8,20 @@ import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
 export const createCard = async (state, dispatch, collection, cardData) => {
-   await setDocument(collection, cardData)
+   await pbCreateRecord(collection, cardData)
    dispatch(cardActionTypes.setCards([...state.cards, cardData]))
 }
 
-export const createCardsAtOnce = async (state, cardList, collection) => {
+export const createCardsAtOnce = async (state, cardList) => {
    if (state.categorySelected.length && state.selectedSection) {
       const processedData = createDynamicArrayOfCards(
          cardList,
-         state.selectedSection,
-         creteDinamicObject(state.categorySelected)
+         state.categorySelected.map(({ id }) => id)
       )
-      await setManyAtSameTime(processedData, collection)
+      const promises = processedData.map((record) => {
+         return pbCreateRecord(constants.CARDS, record)
+      })
+      Promise.all(promises)
    } else {
       alert("Please select at least one category")
    }
@@ -33,9 +29,7 @@ export const createCardsAtOnce = async (state, cardList, collection) => {
 
 export const setNextRandomCard = (state, dispatch, cardToBeDeleted) => {
    let { dynamicCards } = state
-   dynamicCards = dynamicCards.filter(
-      (card) => card.frontTerm !== cardToBeDeleted.frontTerm
-   )
+   dynamicCards = dynamicCards.filter((card) => card.id !== cardToBeDeleted.id)
    setRandomCard(dispatch, dynamicCards)
    dispatch(cardActionTypes.setDynamicCards(dynamicCards))
 }
@@ -46,7 +40,7 @@ export const setRandomCard = (dispatch, listOfCards) => {
 }
 
 export const updateRandomCard = (dispatch, cardData) => {
-   updateDocument(constants.CARDS, cardData.id, cardData)
+   pbUpdateRecord(constants.CARDS, cardData.id, cardData)
    dispatch(cardActionTypes.setRandomCard(cardData))
 }
 
@@ -56,14 +50,14 @@ export const updateCard = (state, dispatch, cardData) => {
       cardData
    )
    const newArrayOfCards = updateObjInsideOfArray(state.cards, cardData)
-   updateDocument(constants.CARDS, cardData.id, cardData)
+   pbUpdateRecord(constants.CARDS, cardData.id, cardData)
    dispatch(cardActionTypes.setCards(newArrayOfCards))
    dispatch(cardActionTypes.setDynamicCards(newArrayofDynamicCards))
    dispatch(cardActionTypes.setRandomCard(cardData))
 }
 
 export const deleteCard = (state, dispatch) => {
-   deleteDocument(constants.CARDS, state.randomCard.id)
+   pbDeleteRecord(constants.CARDS, state.randomCard.id)
    dispatch(cardActionTypes.deleteCard())
    setNextRandomCard(state, dispatch, state.randomCard)
 }

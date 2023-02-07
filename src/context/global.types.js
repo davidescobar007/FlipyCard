@@ -25,6 +25,7 @@ export const constants = {
    CARDS: "cards",
    CATEGORY: "category",
    SECTIONS: "sections",
+   PACKS: "packs",
    FRONT_TERM: "frontTerm",
    ANSWER: "answer"
 }

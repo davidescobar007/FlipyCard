@@ -53,7 +53,7 @@ export default function Home() {
                               ? `${categories.length} categories`
                               : " Start with me"
                         }
-                        title={item.section}
+                        title={item.name}
                      />
                   </Link>
                ))}
