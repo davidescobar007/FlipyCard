@@ -29,9 +29,11 @@ const getCardsByCategories = async (state, dispatch, collection, category) => {
    }
 }
 
-const getCategoriesBySections = async (dispatch, collectionName, section) => {
-   try {
+const getCategoriesBySections = async (state, dispatch, section) => {
+   if (state.selectedSection?.id !== section?.id) {
       dispatch(categoryActions.categoryActionTypes.selectCetegories([]))
+   }
+   try {
       dispatch(actionHandlerTypes.setSection(section))
       const categories = await pbGetDataByQuery(
          { collection: constants.CATEGORIES },

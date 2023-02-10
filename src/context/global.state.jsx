@@ -57,7 +57,7 @@ function StoreProvider({ children }) {
       action.sectionActions.setSection(dispatch, section)
 
    const getCategoriesBySections = (section) =>
-      action.getCategoriesBySections(dispatch, constants.CATEGORIES, section)
+      action.getCategoriesBySections(state, dispatch, section)
 
    const setUiTheme = () => {
       dispatch(action.actionHandlerTypes.setUiTheme())

@@ -15,15 +15,13 @@
    "dependencies": {
       "@ramonak/react-progress-bar": "^5.0.2",
       "daisyui": "^2.42.1",
-      "firebase": "^9.9.2",
       "pocketbase": "^0.10.1",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
       "react-horizontal-scrolling-menu": "^3.2.3",
       "react-icons": "^4.7.1",
       "react-router-dom": "^6.4.2",
-      "use-sound": "^4.0.1",
-      "uuid": "^8.3.2"
+      "use-sound": "^4.0.1"
    },
    "devDependencies": {
       "@types/react": "^18.0.17",
