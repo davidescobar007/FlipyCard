@@ -16,10 +16,10 @@ export default defineConfig({
             "masked-icon.svg"
          ],
          manifest: {
-            name: "FlipyCard the only app you need",
+            name: "Study smart, study with Flipycard",
             short_name: "FlipyCard",
             description:
-               "FlipyCard is the best tool for flash cards, it will help ypu memorize anything you need!",
+               "FlipyCard is the best tool for flash cards, it will help you memorize anything you need!",
             theme_color: "#58cc02",
             background_color: "#58cc02",
             icons: [
