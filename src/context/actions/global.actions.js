@@ -46,6 +46,13 @@ const getCategoriesBySections = async (state, dispatch, section) => {
    }
 }
 
+const googleLoginSuccess = (credentialResponse) => {
+   console.log(credentialResponse)
+}
+//clientID
+// credential
+// select_by
+
 const actionHandlerTypes = {
    trigerMenu: () => ({
       type: types.IS_MENU_OPEN
@@ -72,5 +79,6 @@ export {
    categoryActions,
    getCardsByCategories,
    getCategoriesBySections,
+   googleLoginSuccess,
    sectionActions
 }

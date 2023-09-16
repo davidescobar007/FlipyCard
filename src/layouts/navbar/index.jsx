@@ -30,6 +30,7 @@ function Navbar() {
             <ul className="menu menu-horizontal p-0">
                <li>
                   <Button typeOf="PRIMARY">Sign Up</Button>
+                  {/* <GButton /> */}
                </li>
             </ul>
          </div>

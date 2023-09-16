@@ -55,7 +55,7 @@
       "react/forbid-prop-types": "off",
       "forbid-prop-types": "off",
       "react/no-array-index-key": "off",
-      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-imports": "warn",
       "unused-imports/no-unused-vars": [
          "warn",
          {

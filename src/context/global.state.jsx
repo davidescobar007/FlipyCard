@@ -71,6 +71,10 @@ function StoreProvider({ children }) {
       action.sectionActions.createSection(state, dispatch, section)
    }
 
+   const googleLoginSuccess = (credentialResponse) => {
+      action.googleLoginSuccess(credentialResponse)
+   }
+
    const store = useMemo(
       () => ({
          state,
@@ -89,7 +93,8 @@ function StoreProvider({ children }) {
          getCategoriesBySections,
          setUiTheme,
          deleteCategory,
-         createSection
+         createSection,
+         googleLoginSuccess
       }),
       [
          state,
@@ -108,7 +113,8 @@ function StoreProvider({ children }) {
          getCategoriesBySections,
          setUiTheme,
          deleteCategory,
-         createSection
+         createSection,
+         googleLoginSuccess
       ]
    )
 
