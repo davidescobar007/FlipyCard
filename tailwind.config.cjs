@@ -12,7 +12,7 @@ module.exports = {
          "100%": "100%"
       }
    },
-   plugins: [require("daisyui")],
+   plugins: [require("@tailwindcss/typography"), require("daisyui")],
    daisyui: {
       styled: true,
       themes: [

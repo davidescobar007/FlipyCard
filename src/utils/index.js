@@ -81,3 +81,7 @@ export const queryStringAnsembler = (field, array) => {
    })
    return queryString
 }
+
+export const textToArrayConverter = (text) => {
+   return text.split(" ")
+}

@@ -1,18 +1,11 @@
 /* eslint-disable react/forbid-component-props */
-import React, { useContext, useEffect } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 
 import Button from "../../components/atoms/button"
 import Title from "../../components/atoms/title/title"
-import { StoreContext } from "../../context/global.state"
 
 function Navbar() {
-   const { getSections } = useContext(StoreContext)
-
-   useEffect(() => {
-      getSections()
-   }, [])
-
    return (
       <header className="navbar fixed z-10 flex h-14 border-b-2 bg-base-100 shadow-sm">
          <div className="flex-1">

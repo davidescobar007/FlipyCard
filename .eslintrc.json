@@ -57,7 +57,7 @@
       "react/no-array-index-key": "off",
       "unused-imports/no-unused-imports": "warn",
       "unused-imports/no-unused-vars": [
-         "warn",
+         "error",
          {
             "vars": "all",
             "varsIgnorePattern": "^_",
@@ -65,6 +65,7 @@
             "argsIgnorePattern": "^_"
          }
       ],
+      "no-unused-vars": "warn",
       "simple-import-sort/imports": "warn",
       "simple-import-sort/exports": "warn"
    },
