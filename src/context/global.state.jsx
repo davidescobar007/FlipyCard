@@ -10,29 +10,11 @@ const StoreContext = createContext()
 function StoreProvider({ children }) {
    const [state, dispatch] = useReducer(storeReducer, initialStore)
 
-   const getCategoryList = () =>
-      action.categoryActions.getCategories(
-         state,
-         dispatch,
-         constants.CATEGORIES
-      )
-
-   const getCardsListByCategories = (categoryName) =>
-      action.getCardsByCategories(
-         state,
-         dispatch,
-         constants.CARDS,
-         categoryName
-      )
-
    const saveNewCard = (cardData) =>
       action.cardsActions.createCard(state, dispatch, constants.CARDS, cardData)
 
    const createCardsAtOnce = (cardsList) =>
       action.cardsActions.createCardsAtOnce(state, cardsList)
-
-   const createNewCategory = (category) =>
-      action.categoryActions.createCategory(state, dispatch, category)
 
    const resetDynamicCards = (cards) => {
       dispatch(action.cardsActions.cardActionTypes.setDynamicCards([...cards]))
@@ -48,32 +30,25 @@ function StoreProvider({ children }) {
    const deleteCurrentCard = () =>
       action.cardsActions.deleteCard(state, dispatch)
 
-   const trigerAsideMenu = () =>
-      dispatch(action.actionHandlerTypes.trigerMenu())
-
-   const getSections = () => action.sectionActions.getSections(state, dispatch)
-
-   const setSection = (section) =>
-      action.sectionActions.setSection(dispatch, section)
-
-   const getCategoriesBySections = (section) =>
-      action.getCategoriesBySections(state, dispatch, section)
-
    const setUiTheme = () => {
       dispatch(action.actionHandlerTypes.setUiTheme())
-   }
-
-   const deleteCategory = (category) => {
-      action.categoryActions.deleteCategory(state, dispatch, category)
-   }
-
-   const createSection = (section) => {
-      action.sectionActions.createSection(state, dispatch, section)
    }
 
    const googleLoginSuccess = (credentialResponse) => {
       action.googleLoginSuccess(credentialResponse)
    }
+
+   const getArticlesList = () =>
+      action.articlesActions.getArticlesList(dispatch)
+
+   const setSelectedArticle = (article) =>
+      action.articlesActions.setSelectedArticle(article, dispatch)
+
+   const setSelectedWord = (word) =>
+      action.articlesActions.setSelectedWord(word, state.selectedWord, dispatch)
+
+   const resetTranslation = () =>
+      action.articlesActions.resetTranslation(dispatch)
 
    const store = useMemo(
       () => ({
@@ -83,18 +58,13 @@ function StoreProvider({ children }) {
          updateCard,
          nextRandomCard,
          deleteCurrentCard,
-         getCategoryList,
-         getCardsListByCategories,
-         createNewCategory,
          resetDynamicCards,
-         trigerAsideMenu,
-         getSections,
-         setSection,
-         getCategoriesBySections,
          setUiTheme,
-         deleteCategory,
-         createSection,
-         googleLoginSuccess
+         googleLoginSuccess,
+         getArticlesList,
+         setSelectedArticle,
+         setSelectedWord,
+         resetTranslation
       }),
       [
          state,
@@ -103,18 +73,13 @@ function StoreProvider({ children }) {
          updateCard,
          nextRandomCard,
          deleteCurrentCard,
-         getCategoryList,
-         getCardsListByCategories,
-         createNewCategory,
          resetDynamicCards,
-         trigerAsideMenu,
-         getSections,
-         setSection,
-         getCategoriesBySections,
          setUiTheme,
-         deleteCategory,
-         createSection,
-         googleLoginSuccess
+         googleLoginSuccess,
+         getArticlesList,
+         setSelectedArticle,
+         setSelectedWord,
+         resetTranslation
       ]
    )
 

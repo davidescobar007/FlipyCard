@@ -1,15 +1,14 @@
 import { types } from "./global.types"
 
 const initialStore = {
-   categories: [],
-   categorySelected: [],
-   categoryId: null,
    cards: [],
-   dynamicCards: [],
    randomCard: null,
+   dynamicCards: [],
+   articles: [],
+   selectedArticle: {},
+   selectedWord: "",
+   selectedWordTranslation: {},
    isMenuOpen: false,
-   sections: [],
-   selectedSection: null,
    theme: "mytheme",
    isDarkTheme: false
 }
@@ -51,55 +50,40 @@ const globalReducer = (state, action) => {
             ...state,
             randomCard: initialStore.randomCard
          }
-      case types.SET_CATEGORIES:
-         return {
-            ...state,
-            categories: action.payload
-         }
-      case types.CREATE_CATEGORY:
-         return {
-            ...state,
-            categories: [...state.categories, action.payload]
-         }
-      case types.CATEGORY_SELECTED:
-         return {
-            ...state,
-            categorySelected: action.payload
-         }
-      case types.CATEGORY_ID:
-         return {
-            ...state,
-            categoryId: action.payload
-         }
-      case types.DELETE_CATEGORY:
-         return {
-            ...state,
-            categories: action.payload
-         }
       case types.IS_MENU_OPEN:
          return {
             ...state,
             isMenuOpen: !state.isMenuOpen
          }
-      case types.CREATE_SECTION:
-         return {
-            ...state,
-            sections: action.payload
-         }
-      case types.UPDATE_SECTIONS:
-         return {
-            ...state,
-            sections: action.payload
-         }
-      case types.SET_SECTION:
-         return {
-            ...state,
-            selectedSection: action.payload
-         }
       case types.SET_THEME: {
          return {
             ...state,
             isDarkTheme: !state.isDarkTheme
+         }
+      }
+      case types.SET_ARTICLES: {
+         return {
+            ...state,
+            articles: action.payload
+         }
+      }
+      case types.SET_SELECTED_ARTICLE: {
+         return {
+            ...state,
+            selectedArticle: action.payload
+         }
+      }
+      case types.SET_SELECTED_WORD: {
+         return {
+            ...state,
+            selectedWord: action.payload
+         }
+      }
+      case types.UPDATE_TRANSLATION: {
+         return {
+            ...state,
+            selectedWord: initialStore.selectedWord,
+            selectedWordTranslation: initialStore.selectedWordTranslation
          }
       }
       default:
