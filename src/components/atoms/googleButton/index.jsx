@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable unused-imports/no-unused-vars */
 import { useCallback, useContext, useState } from "react"
 import { LoginSocialGoogle } from "reactjs-social-login"
 
 import { StoreContext } from "../../../context/global.state"
 export default function GButton() {
-   const { googleLoginSuccess } = useContext(StoreContext)
+   const { _googleLoginSuccess } = useContext(StoreContext)
    const [provider, setProvider] = useState("")
    const [profile, setProfile] = useState()
 
@@ -12,13 +12,13 @@ export default function GButton() {
       alert("login start")
    }, [])
 
-   const onLogoutSuccess = useCallback(() => {
+   const _onLogoutSuccess = useCallback(() => {
       setProfile(null)
       setProvider("")
       alert("logout success")
    }, [])
 
-   const onLogout = useCallback(() => {}, [])
+   const _onLogout = useCallback(() => {}, [])
 
    return (
       <LoginSocialGoogle
