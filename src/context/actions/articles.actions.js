@@ -1,6 +1,7 @@
 import { aiModelRequest, pbGetList } from "../../services"
-import { getWordsTranslationFetchImplementation } from "../../services/implementation"
 import { types } from "../global.types"
+
+import { searchTranslationFromSources } from "./translations.actions"
 
 const getAiArticle = async () => {
    const data = await aiModelRequest({
@@ -32,7 +33,8 @@ const setSelectedArticle = async (article, dispatch) => {
 const setSelectedWord = async (word, selectedWordInState, dispatch) => {
    try {
       dispatch(articleActionTypes.setSelectedWord(word))
-      selectedWordInState !== word && getWordsTranslation(dispatch)
+      selectedWordInState !== word &&
+         searchTranslationFromSources(word, dispatch)
    } catch (error) {
       console.error(error)
       throw error
@@ -48,11 +50,7 @@ const resetTranslation = async (dispatch) => {
    }
 }
 
-const getWordsTranslation = (_dispatch) => {
-   getWordsTranslationFetchImplementation("arbeiten")
-}
-
-export const articleActionTypes = {
+const articleActionTypes = {
    setArticles: (payload) => ({
       type: types.SET_ARTICLES,
       payload
@@ -70,7 +68,6 @@ export const articleActionTypes = {
 export {
    getAiArticle,
    getArticlesList,
-   getWordsTranslation,
    resetTranslation,
    setSelectedArticle,
    setSelectedWord

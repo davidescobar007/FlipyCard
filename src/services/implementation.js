@@ -7,15 +7,17 @@ export const getWordsTranslationFetchImplementation = async (
 ) => {
    const urlCompletion = `${urls.linguatools}query=${wordToTranslate}&langpair=de-es`
    try {
-      const translationData = await fetchData(
-         "GET",
-         urlCompletion,
-         null,
-         headers
-      )
-      console.log(translationData)
-      return translationData
+      if (wordToTranslate !== "" || wordToTranslate !== " ") {
+         const translationData = await fetchData(
+            "GET",
+            urlCompletion,
+            null,
+            headers
+         )
+         return translationData
+      }
    } catch (error) {
+      console.log(error)
       return error
    }
 }

@@ -82,8 +82,8 @@ const globalReducer = (state, action) => {
       case types.UPDATE_TRANSLATION: {
          return {
             ...state,
-            selectedWord: initialStore.selectedWord,
-            selectedWordTranslation: initialStore.selectedWordTranslation
+            // selectedWord: initialStore.selectedWord,
+            selectedWordTranslation: action.payload
          }
       }
       default:

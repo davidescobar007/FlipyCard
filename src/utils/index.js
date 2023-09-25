@@ -82,6 +82,23 @@ export const queryStringAnsembler = (field, array) => {
    return queryString
 }
 
-export const textToArrayConverter = (text) => {
-   return text.split(" ")
+export const removePunctuation = (inputString) => {
+   return inputString.replace(/[.,#!$%^&*;:{}=\-_`~()?"'„“\\]/g, "")
+}
+
+export const transformData = (inputData) => {
+   const transformedData = {
+      data: []
+   }
+
+   for (const item of inputData) {
+      const [german, spanish] = item.map((text) => text.replace(/<\/?b>/g, ""))
+
+      transformedData.data.push({
+         german: german,
+         spanish: spanish
+      })
+   }
+
+   return transformedData
 }

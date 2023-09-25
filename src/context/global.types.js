@@ -31,7 +31,8 @@ export const constants = {
    SECTIONS: "sections",
    PACKS: "packs",
    FRONT_TERM: "frontTerm",
-   ANSWER: "answer"
+   ANSWER: "answer",
+   VOCABULARY: "vocabulary"
 }
 
 export const queryOperators = {

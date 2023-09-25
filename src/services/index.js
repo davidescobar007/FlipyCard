@@ -6,7 +6,7 @@ export const pbGetList = async (collection, filter = null) => {
    return records
 }
 
-export const pbGetDataByQuery = async (
+export const pbGetSingleRecord = async (
    { collection, page, perPage },
    { field, param }
 ) => {
@@ -39,9 +39,9 @@ export const fetchData = async (method, url, body = null, headers = {}) => {
       if (body) options.body = JSON.stringify(body)
 
       const response = await fetch(url, options)
-      const data = await response.json()
+      const data = await response
 
-      if (!response.ok) throw new Error(data.message || "Something went wrong")
+      if (!response.ok) return new Error(data || "Something went wrong")
 
       return data
    } catch (error) {

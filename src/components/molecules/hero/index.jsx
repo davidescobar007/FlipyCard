@@ -13,7 +13,7 @@ export default function Hero({ image, title, text_content, level = [] }) {
    }, [])
 
    return (
-      <div className="flex justify-between">
+      <>
          <div className="hero bg-base-100">
             <div className="hero-content text-center">
                <div className="max-w-md">
@@ -24,22 +24,25 @@ export default function Hero({ image, title, text_content, level = [] }) {
                         {item}
                      </div>
                   ))}
-                  <p className="mb-24 cursor-pointer py-6 text-justify text-lg">
-                     {text_content.split(" ").map((word, index) => (
-                        <span
-                           className=" pb-1 pl-1 duration-300 hover:rounded-lg hover:bg-accent hover:ease-in-out"
-                           key={`${word}${index}`}
-                           onClick={() => setSelectedWord(word)}
-                        >
-                           {`${word} `}
-                        </span>
-                     ))}
+                  <p className="mb-24 py-6 text-justify text-lg">
+                     {text_content
+                        .replace(/\./g, ". ")
+                        .split(" ")
+                        .map((word, index) => (
+                           <span
+                              className=" cursor-pointer pb-1 pl-1 duration-300 hover:rounded-lg hover:bg-accent hover:ease-in-out"
+                              key={`${word}${index}`}
+                              onClick={() => setSelectedWord(word)}
+                           >
+                              {`${word} `}
+                           </span>
+                        ))}
                   </p>
                </div>
             </div>
          </div>
          <WordSpecification />
-      </div>
+      </>
    )
 }
 

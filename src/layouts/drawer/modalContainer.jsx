@@ -7,8 +7,8 @@ import Modal from "../../components/molecules/modal"
 import { StoreContext } from "../../context/global.state"
 function MmodalContainer({ children }) {
    const {
-      createNewCategory,
-      createSection,
+      // createNewCategory,
+      // createSection,
       state: { isDarkTheme }
    } = useContext(StoreContext)
    const categoryInputRef = useRef()
@@ -16,13 +16,13 @@ function MmodalContainer({ children }) {
 
    const submitNewCategory = (e) => {
       e.preventDefault()
-      createNewCategory(categoryInputRef.current.value)
+      // createNewCategory(categoryInputRef.current.value)
       categoryInputRef.current.value = ""
    }
 
    const submitNewSection = (e) => {
       e.preventDefault()
-      createSection(sectionInputRef.current.value)
+      // createSection(sectionInputRef.current.value)
       sectionInputRef.current.value = ""
    }
 
