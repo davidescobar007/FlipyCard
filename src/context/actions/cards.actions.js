@@ -1,9 +1,5 @@
 import { pbCreateRecord, pbDeleteRecord, pbUpdateRecord } from "../../services"
-import {
-   createDynamicArrayOfCards,
-   getRandomFromArray,
-   updateObjInsideOfArray
-} from "../../utils"
+import { createDynamicArrayOfCards, getRandomFromArray, updateObjInsideOfArray } from "../../utils"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
@@ -45,10 +41,7 @@ export const updateRandomCard = (dispatch, cardData) => {
 }
 
 export const updateCard = (state, dispatch, cardData) => {
-   const newArrayofDynamicCards = updateObjInsideOfArray(
-      state.dynamicCards,
-      cardData
-   )
+   const newArrayofDynamicCards = updateObjInsideOfArray(state.dynamicCards, cardData)
    const newArrayOfCards = updateObjInsideOfArray(state.cards, cardData)
    pbUpdateRecord(constants.CARDS, cardData.id, cardData)
    dispatch(cardActionTypes.setCards(newArrayOfCards))

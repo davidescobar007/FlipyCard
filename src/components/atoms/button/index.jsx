@@ -7,14 +7,7 @@ const buttonTypes = {
    INFO: "btn-info"
 }
 
-function Button({
-   type,
-   children,
-   typeOf,
-   extraClassname,
-   dangerouslyResetClassName,
-   ...rest
-}) {
+function Button({ type, children, typeOf, extraClassname, dangerouslyResetClassName, ...rest }) {
    return (
       <button
          className={

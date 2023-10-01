@@ -13,8 +13,7 @@ function StoreProvider({ children }) {
    const saveNewCard = (cardData) =>
       action.cardsActions.createCard(state, dispatch, constants.CARDS, cardData)
 
-   const createCardsAtOnce = (cardsList) =>
-      action.cardsActions.createCardsAtOnce(state, cardsList)
+   const createCardsAtOnce = (cardsList) => action.cardsActions.createCardsAtOnce(state, cardsList)
 
    const resetDynamicCards = (cards) => {
       dispatch(action.cardsActions.cardActionTypes.setDynamicCards([...cards]))
@@ -27,8 +26,7 @@ function StoreProvider({ children }) {
    const updateCard = (newDataForRandomCard) =>
       action.cardsActions.updateCard(state, dispatch, newDataForRandomCard)
 
-   const deleteCurrentCard = () =>
-      action.cardsActions.deleteCard(state, dispatch)
+   const deleteCurrentCard = () => action.cardsActions.deleteCard(state, dispatch)
 
    const setUiTheme = () => {
       dispatch(action.actionHandlerTypes.setUiTheme())
@@ -38,8 +36,7 @@ function StoreProvider({ children }) {
       action.googleLoginSuccess(credentialResponse)
    }
 
-   const getArticlesList = () =>
-      action.articlesActions.getArticlesList(dispatch)
+   const getArticlesList = () => action.articlesActions.getArticlesList(dispatch)
 
    const setSelectedArticle = (article) =>
       action.articlesActions.setSelectedArticle(article, dispatch)
@@ -47,8 +44,9 @@ function StoreProvider({ children }) {
    const setSelectedWord = (word) =>
       action.articlesActions.setSelectedWord(word, state.selectedWord, dispatch)
 
-   const resetTranslation = () =>
-      action.articlesActions.resetTranslation(dispatch)
+   const resetTranslation = () => action.articlesActions.resetTranslation(dispatch)
+
+   const getSingleArticle = (id) => action.articlesActions.getSingleArticle(id, dispatch)
 
    const store = useMemo(
       () => ({
@@ -64,7 +62,8 @@ function StoreProvider({ children }) {
          getArticlesList,
          setSelectedArticle,
          setSelectedWord,
-         resetTranslation
+         resetTranslation,
+         getSingleArticle
       }),
       [
          state,
@@ -79,13 +78,12 @@ function StoreProvider({ children }) {
          getArticlesList,
          setSelectedArticle,
          setSelectedWord,
-         resetTranslation
+         resetTranslation,
+         getSingleArticle
       ]
    )
 
-   return (
-      <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
-   )
+   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
 }
 
 StoreProvider.propTypes = {

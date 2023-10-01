@@ -6,12 +6,8 @@ function Stat({ extraClassName, handleClick, emoji, title, text }) {
          className={`stat mr-3 w-48 rounded-2xl border-2 border-accent p-1 hover:bg-gray-200  lg:w-64 ${extraClassName}`}
          onClick={() => handleClick()}
       >
-         <div className="stat-figure hidden text-xl text-primary lg:block">
-            {emoji}
-         </div>
-         <div className="stat-value  block truncate text-xl text-primary ">
-            {title}
-         </div>
+         <div className="stat-figure hidden text-xl text-primary lg:block">{emoji}</div>
+         <div className="stat-value  block truncate text-xl text-primary ">{title}</div>
          <div className="stat-desc font-semibold text-gray-700">{text}</div>
       </div>
    )

@@ -14,8 +14,7 @@ function EditCategory({ categories }) {
       <div className="flex overflow-x-auto p-2 py-3">
          <Modal id="deleteCategory" title="Please comfirm.">
             <p className="text-lg">
-               You are about to delete this category:{" "}
-               <b>{cateogryToDelete?.name}. </b>
+               You are about to delete this category: <b>{cateogryToDelete?.name}. </b>
                Do you comfirm this action?
             </p>
             <div className="modal-action">

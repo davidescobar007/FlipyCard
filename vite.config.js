@@ -10,11 +10,7 @@ export default defineConfig({
          workbox: {
             globPatterns: ["**/*.{js,css,html,ico,png,svg}"]
          },
-         includeAssets: [
-            "favicon.ico",
-            "apple-touch-icon.png",
-            "masked-icon.svg"
-         ],
+         includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
          manifest: {
             name: "Study smart, study with Flipycard",
             short_name: "FlipyCard",

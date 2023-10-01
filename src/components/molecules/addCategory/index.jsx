@@ -25,18 +25,12 @@ function AddSection() {
                className="inline rounded-full border-2 border-accent bg-secondary p-2 text-accent shadow-lg"
                size={45}
             />
-            <Title
-               extraClassName="font-semibold text-lg !text-accent"
-               type="h4"
-            >
+            <Title extraClassName="font-semibold text-lg !text-accent" type="h4">
                Add category
             </Title>
          </label>
          <Modal id="addCategory" title="Add new category">
-            <form
-               className="flex flex-wrap justify-center"
-               onSubmit={handleSubmit}
-            >
+            <form className="flex flex-wrap justify-center" onSubmit={handleSubmit}>
                <Input
                   extraClassName="my-5"
                   id="createCategoryInput"

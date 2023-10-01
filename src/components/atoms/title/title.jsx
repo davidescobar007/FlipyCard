@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 
 export default function Title({ children, type, extraClassName }) {
-   const cssClass = `font-bold text-2xl ${extraClassName}`
+   const cssClass = `${extraClassName}`
 
    const title = {
       h1: <h1 className={cssClass}>{children}</h1>,

@@ -19,7 +19,7 @@ export default function Learn() {
       <div>
          {articles.map(({ level, image, text_content, title, id }) => {
             return (
-               <Link key={id} to="/article">
+               <Link key={id} to={`/article/${id}`}>
                   <Card
                      content={text_content}
                      image={image}

@@ -8,11 +8,11 @@ export default function Aside() {
    const location = useLocation()
 
    return (
-      <aside className="hidden bg-red-400 md:block md:w-1/12 lg:w-2/12">
+      <aside className="bg-red-4000 hidden md:block md:w-1/12 lg:w-2/12">
          <ul className="fixed ">
             <li>
-               <Link to="/">
-                  <ListItem selected={location.pathname === "/"}>
+               <Link to="/learn">
+                  <ListItem selected={location.pathname === "/article"}>
                      <span className="mb-2 text-3xl">📖</span>
                      <p className="hidden lg:block">Learn</p>
                   </ListItem>

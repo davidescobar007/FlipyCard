@@ -66,18 +66,14 @@ export const updateObjInsideOfArray = (array, obj) => {
 }
 
 export const checkEveryHasString = (array) => {
-   const isArrayEmpty = array.some(
-      (item) => item.answer !== "" && item.frontTerm !== ""
-   )
+   const isArrayEmpty = array.some((item) => item.answer !== "" && item.frontTerm !== "")
    return isArrayEmpty
 }
 
 export const queryStringAnsembler = (field, array) => {
    let queryString = ""
    array.map(({ id }, index) => {
-      queryString += `${field} ?~ "${id}" ${
-         index !== array.length - 1 ? "&& " : ""
-      }`
+      queryString += `${field} ?~ "${id}" ${index !== array.length - 1 ? "&& " : ""}`
    })
    return queryString
 }

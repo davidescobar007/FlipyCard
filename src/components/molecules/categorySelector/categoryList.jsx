@@ -17,9 +17,8 @@ function CategoryList({ categories }) {
                   <Button
                      dangerouslyResetClassName
                      extraClassname={` flex text-lg mr-3 font-medium whitespace-nowrap rounded-full border-2 px-3 border-primary text-primary shadow-md  ${
-                        categorySelected.some(
-                           (catSelected) => catSelected.id === item.id
-                        ) && "bg-primary !text-white"
+                        categorySelected.some((catSelected) => catSelected.id === item.id) &&
+                        "bg-primary !text-white"
                      }`}
                      key={index}
                      onClick={() => {

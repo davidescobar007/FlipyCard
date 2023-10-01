@@ -6,12 +6,9 @@ export const pbGetList = async (collection, filter = null) => {
    return records
 }
 
-export const pbGetSingleRecord = async (
-   { collection, page, perPage },
-   { field, param }
-) => {
+export const pbGetSingleRecord = async ({ collection, page, perPage }, { field, param }) => {
    const records = await pb.collection(collection).getList(page, perPage, {
-      filter: `${field} = "${param}"`
+      filter: `${field} ?~ "${param}"`
    })
    return records
 }

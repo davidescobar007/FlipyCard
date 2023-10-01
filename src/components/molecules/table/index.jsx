@@ -13,9 +13,7 @@ export default function Table({ tableHeadProps, children }) {
                   ))}
             </tr>
          </thead>
-         <tbody className="text-base font-light text-gray-600">
-            {children}
-         </tbody>
+         <tbody className="text-base font-light text-gray-600">{children}</tbody>
       </table>
    )
 }

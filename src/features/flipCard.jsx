@@ -35,25 +35,15 @@ function CardFlipper({
    const getComponent = (key) => {
       // eslint-disable-next-line react/prop-types
       if (children.length !== 2) {
-         throw new Error(
-            "Component ReactCardFlip requires 2 children to function"
-         )
+         throw new Error("Component ReactCardFlip requires 2 children to function")
       }
       return children[key]
    }
 
-   const frontRotateY = `rotateY(${
-      infinite ? rotation : isFlipped ? 180 : 0
-   }deg)`
-   const backRotateY = `rotateY(${
-      infinite ? rotation + 180 : isFlipped ? 0 : -180
-   }deg)`
-   const frontRotateX = `rotateX(${
-      infinite ? rotation : isFlipped ? 180 : 0
-   }deg)`
-   const backRotateX = `rotateX(${
-      infinite ? rotation + 180 : isFlipped ? 0 : -180
-   }deg)`
+   const frontRotateY = `rotateY(${infinite ? rotation : isFlipped ? 180 : 0}deg)`
+   const backRotateY = `rotateY(${infinite ? rotation + 180 : isFlipped ? 0 : -180}deg)`
+   const frontRotateX = `rotateX(${infinite ? rotation : isFlipped ? 180 : 0}deg)`
+   const backRotateX = `rotateX(${infinite ? rotation + 180 : isFlipped ? 0 : -180}deg)`
 
    const styles = {
       back: {
@@ -85,8 +75,7 @@ function CardFlipper({
          left: "0",
          position: isFlipped ? "absolute" : "relative",
          top: "0",
-         transform:
-            flipDirection === "horizontal" ? frontRotateY : frontRotateX,
+         transform: flipDirection === "horizontal" ? frontRotateY : frontRotateX,
          transformStyle: "preserve-3d",
          transition: `${flipSpeedBackToFront}s`,
          width: "100%",
@@ -96,10 +85,7 @@ function CardFlipper({
    }
 
    return (
-      <div
-         className={getContainerClassName}
-         style={{ ...styles.container, ...containerStyle }}
-      >
+      <div className={getContainerClassName} style={{ ...styles.container, ...containerStyle }}>
          <div className="react-card-flipper" style={styles.flipper}>
             <div className="react-card-front" style={styles.front}>
                {getComponent(0)}

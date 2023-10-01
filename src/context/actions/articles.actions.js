@@ -1,5 +1,5 @@
-import { aiModelRequest, pbGetList } from "../../services"
-import { types } from "../global.types"
+import { aiModelRequest, pbGetList, pbGetSingleRecord } from "../../services"
+import { constants, types } from "../global.types"
 
 import { searchTranslationFromSources } from "./translations.actions"
 
@@ -21,6 +21,20 @@ const getArticlesList = async (dispatch) => {
    }
 }
 
+const getSingleArticle = async (id, dispatch) => {
+   try {
+      const params1 = { collection: constants.ARTICLES, page: 1, perPage: 1 }
+      const params2 = {
+         field: "id",
+         param: id
+      }
+      const article = await pbGetSingleRecord(params1, params2)
+      dispatch(articleActionTypes.setSelectedArticle(article.items[0]))
+   } catch (error) {
+      console.log(error)
+   }
+}
+
 const setSelectedArticle = async (article, dispatch) => {
    try {
       dispatch(articleActionTypes.setSelectedArticle(article))
@@ -33,8 +47,7 @@ const setSelectedArticle = async (article, dispatch) => {
 const setSelectedWord = async (word, selectedWordInState, dispatch) => {
    try {
       dispatch(articleActionTypes.setSelectedWord(word))
-      selectedWordInState !== word &&
-         searchTranslationFromSources(word, dispatch)
+      selectedWordInState !== word && searchTranslationFromSources(word, dispatch)
    } catch (error) {
       console.error(error)
       throw error
@@ -68,6 +81,7 @@ const articleActionTypes = {
 export {
    getAiArticle,
    getArticlesList,
+   getSingleArticle,
    resetTranslation,
    setSelectedArticle,
    setSelectedWord

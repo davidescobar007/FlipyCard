@@ -11,10 +11,7 @@ function Modal({ title, children, id, onCheckboxChange }) {
             onChange={onCheckboxChange}
             type="checkbox"
          />
-         <label
-            className="modal modal-middle cursor-pointer sm:modal-middle"
-            htmlFor={id}
-         >
+         <label className="modal modal-middle cursor-pointer sm:modal-middle" htmlFor={id}>
             <div className="modal-box relative" htmlFor="">
                <label
                   className="btn btn-circle btn-sm absolute right-2 top-2 border-2 border-primary bg-transparent font-bold text-primary"

@@ -3,10 +3,7 @@ import PropTypes from "prop-types"
 import Title from "../../atoms/title/title"
 export default function Card({ image, title, content, level = [], ...rest }) {
    return (
-      <article
-         className="card card-side mb-8 cursor-pointer bg-base-100 shadow-xl"
-         {...rest}
-      >
+      <article className="card card-side mb-8 cursor-pointer bg-white shadow-lg" {...rest}>
          <figure>
             <div className="avatar">
                <div className="w-40 rounded">
@@ -22,7 +19,7 @@ export default function Card({ image, title, content, level = [], ...rest }) {
                      {item}
                   </div>
                ))}
-               <p className="mt-1 line-clamp-2">{content}</p>
+               <p className="mt-1 line-clamp-1">{content}</p>
             </article>
          </div>
       </article>

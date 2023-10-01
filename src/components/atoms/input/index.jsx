@@ -19,8 +19,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
    extraClassName: PropTypes.string,
-   innerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-      .isRequired,
+   innerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
    type: PropTypes.string
 }
 

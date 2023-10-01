@@ -9,7 +9,7 @@ const _Sections = lazy(() => import("../pages/sections"))
 const Article = lazy(() => import("../pages/article"))
 export default function Router() {
    return (
-      <main className="w-full bg-blue-400 md:w-7/12 md:px-16 md:pr-0">
+      <main className="bg-blue-4000 w-full md:w-7/12">
          <Routes>
             <Route
                element={
@@ -17,15 +17,16 @@ export default function Router() {
                      <Learn />
                   </Suspense>
                }
-               path="/"
+               path="/learn/"
             />
+
             <Route
                element={
                   <Suspense fallback={<Loader />}>
                      <Article />
                   </Suspense>
                }
-               path="/article"
+               path="/article/:id"
             />
             {/* <Route
                element={
