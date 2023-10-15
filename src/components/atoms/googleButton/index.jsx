@@ -8,8 +8,8 @@ export default function GButton() {
    const [provider, setProvider] = useState("")
    const [profile, setProfile] = useState()
 
-   const onLoginStart = useCallback(() => {
-      alert("login start")
+   const onLoginStart = useCallback((data) => {
+      alert(data)
    }, [])
 
    const _onLogoutSuccess = useCallback(() => {
@@ -25,11 +25,12 @@ export default function GButton() {
          access_type="offline"
          client_id={import.meta.env.VITE_REACT_APP_GG_APP_ID || ""}
          discoveryDocs="claims_supported"
-         onLoginStart={onLoginStart}
+         // onLoginStart={(data) => console.log(data)}
          onReject={(err) => {
             console.log(err)
          }}
          onResolve={({ provider, data }) => {
+            console.log({ provider, data })
             setProvider(provider)
             setProfile(data)
          }}

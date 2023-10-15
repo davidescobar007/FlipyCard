@@ -1,8 +1,6 @@
 export const getRandomFromArray = (array) => {
    const random = Math.floor(Math.random() * array.length)
-   return {
-      random: array[random]
-   }
+   return array[random]
 }
 
 export const getSortedObjectKeys = (obj) =>

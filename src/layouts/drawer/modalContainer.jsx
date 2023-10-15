@@ -38,11 +38,7 @@ function MmodalContainer({ children }) {
                   name="createCategoryInput"
                   placeholder="New category name"
                />
-               <Button
-                  extraClassname="btn-wide text-base-100"
-                  onClick={submitNewCategory}
-                  typeOf="PRIMARY"
-               >
+               <Button extraClassname="btn-wide text-base-100" onClick={submitNewCategory} typeOf="PRIMARY">
                   Add category
                </Button>
             </form>

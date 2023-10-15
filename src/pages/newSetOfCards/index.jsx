@@ -96,8 +96,8 @@ export default function NewSet() {
             </label>
             <Modal id="addCards" title="Confirm above info">
                <p className="py-4 text-lg">
-                  These cards will be created under <b>{selectedSection?.section}</b> section with
-                  following categories:{" "}
+                  These cards will be created under <b>{selectedSection?.section}</b> section with following
+                  categories:{" "}
                   {categorySelected.map(({ id, name }) => (
                      <>
                         <b key={id}>{name}, </b>{" "}
@@ -105,11 +105,7 @@ export default function NewSet() {
                   ))}
                </p>
                <div className="modal-action">
-                  <label
-                     className="btn btn-primary text-white"
-                     htmlFor="addCards"
-                     onClick={handleSubmit}
-                  >
+                  <label className="btn btn-primary text-white" htmlFor="addCards" onClick={handleSubmit}>
                      Create
                   </label>
                </div>

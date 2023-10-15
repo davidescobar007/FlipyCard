@@ -1,4 +1,6 @@
 /* eslint-disable no-useless-catch */
+import { queryOperators } from "../context/global.types"
+
 import { aiModel, pb } from "./setup"
 
 export const pbGetList = async (collection, filter = null) => {
@@ -6,9 +8,12 @@ export const pbGetList = async (collection, filter = null) => {
    return records
 }
 
-export const pbGetSingleRecord = async ({ collection, page, perPage }, { field, param }) => {
+export const pbGetSingleRecord = async (
+   { collection, page, perPage },
+   { field, param, operator = queryOperators.EQUAL_TO }
+) => {
    const records = await pb.collection(collection).getList(page, perPage, {
-      filter: `${field} ?~ "${param}"`
+      filter: `${field} ${operator} "${param}"`
    })
    return records
 }

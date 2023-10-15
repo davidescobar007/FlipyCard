@@ -5,12 +5,7 @@ import Title from "../../atoms/title/title"
 function Modal({ title, children, id, onCheckboxChange }) {
    return (
       <>
-         <input
-            className="modal-open modal-toggle"
-            id={id}
-            onChange={onCheckboxChange}
-            type="checkbox"
-         />
+         <input className="modal-open modal-toggle" id={id} onChange={onCheckboxChange} type="checkbox" />
          <label className="modal modal-middle cursor-pointer sm:modal-middle" htmlFor={id}>
             <div className="modal-box relative" htmlFor="">
                <label

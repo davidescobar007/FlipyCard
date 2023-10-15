@@ -8,6 +8,7 @@ const initialStore = {
    selectedArticle: {},
    selectedWord: "",
    selectedWordTranslation: {},
+   quizz: [],
    isMenuOpen: false,
    theme: "mytheme",
    isDarkTheme: false
@@ -84,6 +85,12 @@ const globalReducer = (state, action) => {
             ...state,
             // selectedWord: initialStore.selectedWord,
             selectedWordTranslation: action.payload
+         }
+      }
+      case types.SET_QUIZZ: {
+         return {
+            ...state,
+            quizz: action.payload
          }
       }
       default:

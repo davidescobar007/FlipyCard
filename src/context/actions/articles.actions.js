@@ -5,8 +5,7 @@ import { searchTranslationFromSources } from "./translations.actions"
 
 const getAiArticle = async () => {
    const data = await aiModelRequest({
-      content:
-         "you are a blogger and will write an article about the city of Prague in b2 german  in 150 words"
+      content: "you are a blogger and will write an article about the city of Prague in b2 german  in 150 words"
    })
    console.log(data)
 }
@@ -78,11 +77,4 @@ const articleActionTypes = {
    })
 }
 
-export {
-   getAiArticle,
-   getArticlesList,
-   getSingleArticle,
-   resetTranslation,
-   setSelectedArticle,
-   setSelectedWord
-}
+export { getAiArticle, getArticlesList, getSingleArticle, resetTranslation, setSelectedArticle, setSelectedWord }

@@ -43,15 +43,11 @@ export default function Home() {
                      <Stat
                         emoji={emojiList[index]}
                         extraClassName={
-                           item.id === selectedSection?.id
-                              ? "bg-secondary hover:bg-secondary my-2"
-                              : "my-2"
+                           item.id === selectedSection?.id ? "bg-secondary hover:bg-secondary my-2" : "my-2"
                         }
                         handleClick={() => getCategoriesBySections(item)}
                         text={
-                           item.id === selectedSection?.id
-                              ? `${categories.length} categories`
-                              : " Start with me"
+                           item.id === selectedSection?.id ? `${categories.length} categories` : " Start with me"
                         }
                         title={item.name}
                      />

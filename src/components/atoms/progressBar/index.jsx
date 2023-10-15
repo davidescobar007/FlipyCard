@@ -7,10 +7,10 @@ export default function ProgressPercentage({ value }) {
       <section className="col-12 mb-5 text-center">
          <ProgressBar
             animateOnRender
-            baseBgColor="transparent"
+            // baseBgColor="transparent"
             bgColor="#58cc02"
             completed={value}
-            labelColor="transparent"
+            // labelColor="transparent"
             transitionDuration="0.4s"
          />
       </section>

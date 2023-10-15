@@ -26,9 +26,7 @@ const getWordsTranslationFromDB = async (wordToTranslate, dispatch) => {
 
 const getWordsTranslationFromAPI = async (wordToTranslate, dispatch) => {
    try {
-      const translation = await getWordsTranslationFetchImplementation(
-         removePunctuation(wordToTranslate)
-      )
+      const translation = await getWordsTranslationFetchImplementation(removePunctuation(wordToTranslate))
       dispatch(translationActionTypes.setArticles(translation.data))
       return translation
    } catch (error) {

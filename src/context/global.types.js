@@ -21,7 +21,8 @@ export const types = {
    SET_ARTICLES: "SET_ARTICLES",
    SET_SELECTED_ARTICLE: "SET_SELECTED_ARTICLE",
    SET_SELECTED_WORD: "SET_SELECTED_WORD",
-   UPDATE_TRANSLATION: "UPDATE_TRANSLATION"
+   UPDATE_TRANSLATION: "UPDATE_TRANSLATION",
+   SET_QUIZZ: "SET_QUIZZ"
 }
 
 export const constants = {
@@ -33,13 +34,15 @@ export const constants = {
    FRONT_TERM: "frontTerm",
    ANSWER: "answer",
    VOCABULARY: "vocabulary",
-   ARTICLES: "articles"
+   ARTICLES: "articles",
+   QUIZZES: "quizzes"
 }
 
 export const queryOperators = {
    LESS_THAN: "<",
    LESS_THAN_OR_EQUAL_TO: "<=",
-   EQUAL_TO: "==",
+   EQUAL_TO: "=",
+   LIKE: "~",
    GREATER_THAN: ">",
    GREATER_THAN_EQUAL_TO: ">=",
    NOT_EQUAL_TO: "!=",

@@ -7,9 +7,10 @@ const Learn = lazy(() => import("../pages/learn"))
 const _NewSet = lazy(() => import("../pages/newSetOfCards/index"))
 const _Sections = lazy(() => import("../pages/sections"))
 const Article = lazy(() => import("../pages/article"))
+const Quiz = lazy(() => import("../pages/quiz"))
 export default function Router() {
    return (
-      <main className="bg-blue-4000 w-full md:w-7/12">
+      <main className="bg-blue-4000 w-full pb-20 md:w-7/12">
          <Routes>
             <Route
                element={
@@ -17,7 +18,7 @@ export default function Router() {
                      <Learn />
                   </Suspense>
                }
-               path="/learn/"
+               path="/learn"
             />
 
             <Route
@@ -27,6 +28,14 @@ export default function Router() {
                   </Suspense>
                }
                path="/article/:id"
+            />
+            <Route
+               element={
+                  <Suspense fallback={<Loader />}>
+                     <Quiz />
+                  </Suspense>
+               }
+               path="/quiz/:id"
             />
             {/* <Route
                element={

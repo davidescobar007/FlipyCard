@@ -11,6 +11,7 @@ export default function Article() {
          selectedArticle: { image, title, text_content, level }
       }
    } = useContext(StoreContext)
+
    const { id } = useParams()
 
    useEffect(() => {

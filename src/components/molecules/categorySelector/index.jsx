@@ -37,11 +37,7 @@ function CategorySelector() {
                />
             </label>
          </div>
-         {isEditOn ? (
-            <EditCategory categories={categories} />
-         ) : (
-            <CategoryList categories={categories} />
-         )}
+         {isEditOn ? <EditCategory categories={categories} /> : <CategoryList categories={categories} />}
       </div>
    )
 }

@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from "react"
+import { Link, useParams } from "react-router-dom"
 import PropTypes from "prop-types"
 
 import { StoreContext } from "../../../context/global.state"
 import Badge from "../../atoms/badge"
+import Button from "../../atoms/button"
 import Title from "../../atoms/title/title"
 import ImageCard from "../imageCard"
 export default function Hero({ image, title, text_content, level = [] }) {
    const { setSelectedWord, resetTranslation } = useContext(StoreContext)
    const [currentWordIntext, setCurrentWordIntext] = useState(null)
-
+   let { id } = useParams()
    useEffect(() => {
       return () => {
          resetTranslation()
@@ -54,6 +56,11 @@ export default function Hero({ image, title, text_content, level = [] }) {
                            </span>
                         ))}
                   </p>
+                  <footer className="mt-5">
+                     <Link to={`/quiz/${id}`}>
+                        <Button>Quiz Anfangen 📝</Button>
+                     </Link>
+                  </footer>
                </div>
             </div>
          </div>

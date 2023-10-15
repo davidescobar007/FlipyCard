@@ -19,10 +19,7 @@ export default function ImageCard({ image, title, level }) {
             backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.5003342401413691) 0%, rgba(65,65,65,0.35747709728422616) 100%), url(${image})`
          }}
       >
-         <Title
-            extraClassName="text-2xl w-full text-start text-white leading-7 font-medium"
-            type="h3"
-         >
+         <Title extraClassName="text-2xl w-full text-start text-white leading-7 font-medium" type="h3">
             {title}
          </Title>
          <div className="mt-2 w-11/12">

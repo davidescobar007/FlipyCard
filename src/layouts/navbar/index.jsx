@@ -3,6 +3,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 import Button from "../../components/atoms/button"
+import GButton from "../../components/atoms/googleButton"
 import Title from "../../components/atoms/title/title"
 function Navbar() {
    return (
@@ -19,7 +20,7 @@ function Navbar() {
             <ul className="menu menu-horizontal p-0">
                <li>
                   <Button typeOf="PRIMARY">Sign Up</Button>
-                  {/* <GButton /> */}
+                  <GButton />
                </li>
             </ul>
          </div>

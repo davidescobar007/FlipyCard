@@ -6,7 +6,7 @@ export default function Card({ image, title, content, level = [], ...rest }) {
       <article className="card card-side mb-8 cursor-pointer bg-white shadow-lg" {...rest}>
          <figure>
             <div className="avatar">
-               <div className="w-40 rounded">
+               <div className="w-52 rounded">
                   <img src={image} />
                </div>
             </div>

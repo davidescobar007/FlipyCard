@@ -10,8 +10,7 @@ const StoreContext = createContext()
 function StoreProvider({ children }) {
    const [state, dispatch] = useReducer(storeReducer, initialStore)
 
-   const saveNewCard = (cardData) =>
-      action.cardsActions.createCard(state, dispatch, constants.CARDS, cardData)
+   const saveNewCard = (cardData) => action.cardsActions.createCard(state, dispatch, constants.CARDS, cardData)
 
    const createCardsAtOnce = (cardsList) => action.cardsActions.createCardsAtOnce(state, cardsList)
 
@@ -38,15 +37,15 @@ function StoreProvider({ children }) {
 
    const getArticlesList = () => action.articlesActions.getArticlesList(dispatch)
 
-   const setSelectedArticle = (article) =>
-      action.articlesActions.setSelectedArticle(article, dispatch)
+   const setSelectedArticle = (article) => action.articlesActions.setSelectedArticle(article, dispatch)
 
-   const setSelectedWord = (word) =>
-      action.articlesActions.setSelectedWord(word, state.selectedWord, dispatch)
+   const setSelectedWord = (word) => action.articlesActions.setSelectedWord(word, state.selectedWord, dispatch)
 
    const resetTranslation = () => action.articlesActions.resetTranslation(dispatch)
 
    const getSingleArticle = (id) => action.articlesActions.getSingleArticle(id, dispatch)
+
+   const getSingleQuizz = (id) => action.quizzesActions.getSingleQuizz(id, dispatch)
 
    const store = useMemo(
       () => ({
@@ -63,24 +62,10 @@ function StoreProvider({ children }) {
          setSelectedArticle,
          setSelectedWord,
          resetTranslation,
-         getSingleArticle
+         getSingleArticle,
+         getSingleQuizz
       }),
-      [
-         state,
-         saveNewCard,
-         createCardsAtOnce,
-         updateCard,
-         nextRandomCard,
-         deleteCurrentCard,
-         resetDynamicCards,
-         setUiTheme,
-         googleLoginSuccess,
-         getArticlesList,
-         setSelectedArticle,
-         setSelectedWord,
-         resetTranslation,
-         getSingleArticle
-      ]
+      [state]
    )
 
    return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
