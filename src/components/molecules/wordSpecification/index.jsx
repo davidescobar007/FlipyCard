@@ -26,11 +26,16 @@ export default function WordSpecification() {
                      {selectedWord}
                   </Title>
                   <div className="right-5 mt-1 flex w-2/12 cursor-pointer justify-end">
-                     <label className="swap">
-                        <input type="checkbox" />
-                        <RiSave2Fill className="swap-on h-6 w-6 fill-current" />
-                        <RiSave2Line className="swap-off h-6 w-6 fill-current" />
-                     </label>
+                     <div
+                        className="tooltip tooltip-left"
+                        data-tip="Para crear tu vocabulario, es nesecario iniciar sesion. "
+                     >
+                        <label className="swap">
+                           <input type="checkbox" />
+                           <RiSave2Fill className="swap-on h-6 w-6 fill-current" />
+                           <RiSave2Line className="swap-off h-6 w-6 fill-current" />
+                        </label>
+                     </div>
                   </div>
                   <div className="mt-3">
                      <Title extraClassName="font-medium text-lg" type="h4">
@@ -45,7 +50,7 @@ export default function WordSpecification() {
                </>
             ) : (
                <Title extraClassName="text-lg  w-10/12 font-medium" type="h3">
-                  You can select any word now from the text
+                  Selecciona cualquier palabra del texto para ver la traduccion
                </Title>
             )}
          </section>

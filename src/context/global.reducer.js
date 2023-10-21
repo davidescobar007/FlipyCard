@@ -1,6 +1,8 @@
 import { types } from "./global.types"
 
 const initialStore = {
+   authMethods: [],
+   user: null,
    cards: [],
    randomCard: null,
    dynamicCards: [],
@@ -16,6 +18,16 @@ const initialStore = {
 
 const globalReducer = (state, action) => {
    switch (action.type) {
+      case types.SET_AUTH_METHODS:
+         return {
+            ...state,
+            authMethods: action.payload
+         }
+      case types.SET_USER:
+         return {
+            ...state,
+            user: action.payload
+         }
       case types.SET_CARDS:
          return {
             ...state,

@@ -22,7 +22,6 @@
       "react-horizontal-scrolling-menu": "^3.2.3",
       "react-icons": "^4.7.1",
       "react-router-dom": "^6.4.2",
-      "reactjs-social-login": "^2.6.2",
       "use-sound": "^4.0.1"
    },
    "devDependencies": {

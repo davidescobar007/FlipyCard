@@ -47,6 +47,14 @@ function StoreProvider({ children }) {
 
    const getSingleQuizz = (id) => action.quizzesActions.getSingleQuizz(id, dispatch)
 
+   const getLoginMethods = () => action.usersActions.getLoginMethods(dispatch)
+
+   const googleLogin = () => action.usersActions.googleLogin(dispatch)
+
+   const logOut = () => action.usersActions.logOut(dispatch)
+
+   const updateUserState = () => action.usersActions.updateUserState(dispatch)
+
    const store = useMemo(
       () => ({
          state,
@@ -63,7 +71,11 @@ function StoreProvider({ children }) {
          setSelectedWord,
          resetTranslation,
          getSingleArticle,
-         getSingleQuizz
+         getSingleQuizz,
+         getLoginMethods,
+         googleLogin,
+         logOut,
+         updateUserState
       }),
       [state]
    )

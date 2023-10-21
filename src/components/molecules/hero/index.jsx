@@ -56,7 +56,7 @@ export default function Hero({ image, title, text_content, level = [] }) {
                            </span>
                         ))}
                   </p>
-                  <footer className="mt-5">
+                  <footer className="mt-5 lg:hidden">
                      <Link to={`/quiz/${id}`}>
                         <Button>Quiz Anfangen 📝</Button>
                      </Link>

@@ -17,7 +17,7 @@ export default function QuizQuestion({ arrayOfQuestions }) {
       setTimeout(() => {
          getRandomObject()
          setIsOptionRated(false)
-      }, 200)
+      }, 2000)
       setIsOptionRated(true)
    }
 

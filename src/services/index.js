@@ -58,3 +58,17 @@ export const aiModelRequest = async ({ content }) => {
    })
    return response
 }
+
+export const pbSignUp = async (provider, code, codeVerifier, redirectUrl) => {
+   const resultLoginData = await pb.collection("users").authWithOAuth2(provider, code, codeVerifier, redirectUrl)
+   return resultLoginData
+}
+
+export const pbListAuthMethods = async () => {
+   const methods = await pb.collection("users").listAuthMethods()
+   return methods
+}
+
+export const pbLogOut = () => {
+   pb.authStore.clear()
+}
