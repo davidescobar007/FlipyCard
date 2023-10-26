@@ -6,11 +6,12 @@
       "system": false,
       "schema": [
          {
+            "system": false,
             "id": "users_name",
             "name": "name",
             "type": "text",
-            "system": false,
             "required": false,
+            "presentable": false,
             "unique": false,
             "options": {
                "min": null,
@@ -19,20 +20,23 @@
             }
          },
          {
+            "system": false,
             "id": "users_avatar",
             "name": "avatar",
             "type": "file",
-            "system": false,
             "required": false,
+            "presentable": false,
             "unique": false,
             "options": {
                "maxSelect": 1,
                "maxSize": 5242880,
                "mimeTypes": ["image/jpeg", "image/png", "image/svg+xml", "image/gif", "image/webp"],
-               "thumbs": null
+               "thumbs": null,
+               "protected": false
             }
          }
       ],
+      "indexes": [],
       "listRule": "id = @request.auth.id",
       "viewRule": "id = @request.auth.id",
       "createRule": "",
@@ -50,160 +54,326 @@
       }
    },
    {
-      "id": "8j7scle47ibts84",
-      "name": "packs",
+      "id": "4xmmq88amuqe0sa",
+      "name": "articles",
       "type": "base",
       "system": false,
       "schema": [
          {
-            "id": "nx8lg0cq",
-            "name": "name",
-            "type": "text",
             "system": false,
-            "required": true,
+            "id": "y3cdss85",
+            "name": "title",
+            "type": "text",
+            "required": false,
+            "presentable": false,
             "unique": false,
             "options": {
-               "min": 1,
-               "max": 100,
+               "min": null,
+               "max": null,
                "pattern": ""
             }
          },
          {
-            "id": "rh5lajho",
-            "name": "isPublic",
-            "type": "bool",
             "system": false,
+            "id": "9ydqusem",
+            "name": "text_content",
+            "type": "text",
             "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "dfrriuuz",
+            "name": "quiz",
+            "type": "json",
+            "required": false,
+            "presentable": false,
             "unique": false,
             "options": {}
          },
          {
-            "id": "u2mimoic",
-            "name": "userID",
-            "type": "relation",
             "system": false,
+            "id": "heqwsp0b",
+            "name": "image",
+            "type": "url",
             "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "exceptDomains": null,
+               "onlyDomains": null
+            }
+         },
+         {
+            "system": false,
+            "id": "1yzidy0o",
+            "name": "completed",
+            "type": "bool",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {}
+         },
+         {
+            "system": false,
+            "id": "ptz0twzk",
+            "name": "level",
+            "type": "select",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "maxSelect": 2,
+               "values": ["A1", "A2", "B1", "B2", "C1"]
+            }
+         }
+      ],
+      "indexes": [],
+      "listRule": "",
+      "viewRule": null,
+      "createRule": null,
+      "updateRule": null,
+      "deleteRule": null,
+      "options": {}
+   },
+   {
+      "id": "jjau031qziiyjq7",
+      "name": "vocabulary",
+      "type": "base",
+      "system": false,
+      "schema": [
+         {
+            "system": false,
+            "id": "tiy4tk03",
+            "name": "german_translation",
+            "type": "text",
+            "required": true,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "hj0e48sf",
+            "name": "spanish_translation",
+            "type": "text",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "ycjooibf",
+            "name": "english_translation",
+            "type": "text",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "e0wr0mn9",
+            "name": "conjugation",
+            "type": "json",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {}
+         },
+         {
+            "system": false,
+            "id": "cnwabmsu",
+            "name": "user",
+            "type": "relation",
+            "required": false,
+            "presentable": false,
             "unique": false,
             "options": {
                "collectionId": "_pb_users_auth_",
                "cascadeDelete": false,
-               "maxSelect": 1,
-               "displayFields": []
+               "minSelect": null,
+               "maxSelect": null,
+               "displayFields": null
+            }
+         },
+         {
+            "system": false,
+            "id": "ku8gb4c8",
+            "name": "last_time_seen",
+            "type": "date",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": "",
+               "max": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "4dtut5a9",
+            "name": "examples",
+            "type": "json",
+            "required": true,
+            "presentable": false,
+            "unique": false,
+            "options": {}
+         },
+         {
+            "system": false,
+            "id": "wmxmfzhk",
+            "name": "type_of_word",
+            "type": "text",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
             }
          }
       ],
+      "indexes": [],
       "listRule": "",
       "viewRule": "",
       "createRule": "",
       "updateRule": "",
-      "deleteRule": "",
+      "deleteRule": null,
       "options": {}
    },
    {
-      "id": "xjf9b0jciw5krwh",
-      "name": "categories",
+      "id": "njv0jav9axsjzy4",
+      "name": "quizzes",
       "type": "base",
       "system": false,
       "schema": [
          {
-            "id": "bldh4pod",
-            "name": "name",
-            "type": "text",
             "system": false,
-            "required": true,
+            "id": "ismh8iwp",
+            "name": "article_id",
+            "type": "relation",
+            "required": false,
+            "presentable": false,
             "unique": false,
             "options": {
-               "min": 1,
-               "max": 100,
-               "pattern": ""
+               "collectionId": "4xmmq88amuqe0sa",
+               "cascadeDelete": false,
+               "minSelect": null,
+               "maxSelect": 1,
+               "displayFields": null
             }
          },
          {
-            "id": "4agt1uyy",
-            "name": "packID",
-            "type": "relation",
             "system": false,
+            "id": "we4b6hwl",
+            "name": "questions",
+            "type": "json",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {}
+         }
+      ],
+      "indexes": [],
+      "listRule": "",
+      "viewRule": null,
+      "createRule": null,
+      "updateRule": null,
+      "deleteRule": null,
+      "options": {}
+   },
+   {
+      "id": "g9gcx6b5vs66kxg",
+      "name": "studyVocabulary",
+      "type": "base",
+      "system": false,
+      "schema": [
+         {
+            "system": false,
+            "id": "qdvvo8vf",
+            "name": "user_id",
+            "type": "relation",
             "required": true,
+            "presentable": true,
             "unique": false,
             "options": {
-               "collectionId": "8j7scle47ibts84",
+               "collectionId": "_pb_users_auth_",
                "cascadeDelete": false,
+               "minSelect": null,
                "maxSelect": 1,
-               "displayFields": []
+               "displayFields": null
+            }
+         },
+         {
+            "system": false,
+            "id": "jv74ueip",
+            "name": "word_id",
+            "type": "relation",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "collectionId": "jjau031qziiyjq7",
+               "cascadeDelete": false,
+               "minSelect": null,
+               "maxSelect": 1,
+               "displayFields": null
+            }
+         },
+         {
+            "system": false,
+            "id": "jxkfdpse",
+            "name": "last_time_seen",
+            "type": "date",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": "",
+               "max": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "tj4pr7x1",
+            "name": "level",
+            "type": "select",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "maxSelect": 1,
+               "values": ["easy", "medium", "hard"]
             }
          }
       ],
+      "indexes": [],
       "listRule": "",
       "viewRule": "",
       "createRule": "",
       "updateRule": null,
-      "deleteRule": "",
-      "options": {}
-   },
-   {
-      "id": "7s531kqymozne2t",
-      "name": "cards",
-      "type": "base",
-      "system": false,
-      "schema": [
-         {
-            "id": "r4qee3sb",
-            "name": "categoryID",
-            "type": "relation",
-            "system": false,
-            "required": true,
-            "unique": false,
-            "options": {
-               "collectionId": "xjf9b0jciw5krwh",
-               "cascadeDelete": true,
-               "maxSelect": 20,
-               "displayFields": []
-            }
-         },
-         {
-            "id": "j5q02mg3",
-            "name": "frontTerm",
-            "type": "text",
-            "system": false,
-            "required": true,
-            "unique": false,
-            "options": {
-               "min": 1,
-               "max": 500,
-               "pattern": ""
-            }
-         },
-         {
-            "id": "dh3l6x22",
-            "name": "answer",
-            "type": "text",
-            "system": false,
-            "required": true,
-            "unique": false,
-            "options": {
-               "min": 1,
-               "max": 500,
-               "pattern": ""
-            }
-         },
-         {
-            "id": "anthjzch",
-            "name": "timesSeen",
-            "type": "number",
-            "system": false,
-            "required": false,
-            "unique": false,
-            "options": {
-               "min": null,
-               "max": null
-            }
-         }
-      ],
-      "listRule": "",
-      "viewRule": "",
-      "createRule": "",
-      "updateRule": "",
-      "deleteRule": "",
+      "deleteRule": null,
       "options": {}
    }
 ]
