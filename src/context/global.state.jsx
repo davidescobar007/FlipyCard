@@ -55,6 +55,10 @@ function StoreProvider({ children }) {
 
    const updateUserState = () => action.usersActions.updateUserState(dispatch)
 
+   const saveVocabularyToStudy = () => action.translationsAction.saveVocabularyToStudy(state, dispatch)
+
+   const handleErrorModal = (message) => action.handleErrorModal(dispatch, message)
+
    const store = useMemo(
       () => ({
          state,
@@ -75,7 +79,9 @@ function StoreProvider({ children }) {
          getLoginMethods,
          googleLogin,
          logOut,
-         updateUserState
+         updateUserState,
+         saveVocabularyToStudy,
+         handleErrorModal
       }),
       [state]
    )

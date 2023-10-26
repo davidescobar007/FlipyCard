@@ -1,6 +1,8 @@
 import { pbListAuthMethods, pbLogOut, pbSignUp } from "../../services"
 import { types } from "../global.reducer"
 
+import { handleErrorModal } from "./global.actions"
+
 const getLoginMethods = async (dispatch) => {
    const authMethods = await pbListAuthMethods()
    localStorage.setItem("provider", JSON.stringify(authMethods?.authProviders))
@@ -9,8 +11,13 @@ const getLoginMethods = async (dispatch) => {
 
 const updateUserState = (dispatch) => {
    const user = localStorage.getItem("user")
+   const pbModel = JSON.parse(localStorage.getItem("pocketbase_auth"))
    if (user) {
       const { meta } = JSON.parse(user)
+      const {
+         model: { id }
+      } = pbModel
+      meta.userId = id
       dispatch(actionHandlerTypes.setUser(meta))
    }
 }
@@ -31,7 +38,7 @@ const googleLogin = async (dispatch) => {
          localStorage.setItem("user", JSON.stringify(user))
          dispatch(actionHandlerTypes.setUser(user.meta))
       } catch (error) {
-         console.warn(error)
+         handleErrorModal(dispatch, error)
       }
    }
 }
@@ -42,7 +49,7 @@ const logOut = (dispatch) => {
       localStorage.removeItem("user")
       dispatch(actionHandlerTypes.setUser(null))
    } catch (error) {
-      console.log(error)
+      handleErrorModal(dispatch, error)
    }
 }
 

@@ -96,13 +96,19 @@ const globalReducer = (state, action) => {
          return {
             ...state,
             // selectedWord: initialStore.selectedWord,
-            selectedWordTranslation: action.payload
+            selectedWordTranslation: action?.payload || {}
          }
       }
       case types.SET_QUIZZ: {
          return {
             ...state,
             quizz: action.payload
+         }
+      }
+      case types.SERVICE_ERROR: {
+         return {
+            ...state,
+            errorModalText: action.payload
          }
       }
       default:

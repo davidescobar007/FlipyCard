@@ -1,6 +1,7 @@
 import { aiModelRequest, pbGetList, pbGetSingleRecord } from "../../services"
 import { constants, types } from "../global.types"
 
+import { handleErrorModal } from "./global.actions"
 import { searchTranslationFromSources } from "./translations.actions"
 
 const getAiArticle = async () => {
@@ -15,8 +16,7 @@ const getArticlesList = async (dispatch) => {
       const data = await pbGetList("articles")
       dispatch(articleActionTypes.setArticles(data))
    } catch (error) {
-      console.error(error)
-      throw error
+      handleErrorModal(dispatch, error)
    }
 }
 
@@ -30,7 +30,7 @@ const getSingleArticle = async (id, dispatch) => {
       const article = await pbGetSingleRecord(params1, params2)
       dispatch(articleActionTypes.setSelectedArticle(article.items[0]))
    } catch (error) {
-      console.log(error)
+      handleErrorModal(dispatch, error)
    }
 }
 
@@ -38,8 +38,7 @@ const setSelectedArticle = async (article, dispatch) => {
    try {
       dispatch(articleActionTypes.setSelectedArticle(article))
    } catch (error) {
-      console.error(error)
-      throw error
+      handleErrorModal(dispatch, error)
    }
 }
 
@@ -48,8 +47,7 @@ const setSelectedWord = async (word, selectedWordInState, dispatch) => {
       dispatch(articleActionTypes.setSelectedWord(word))
       selectedWordInState !== word && searchTranslationFromSources(word, dispatch)
    } catch (error) {
-      console.error(error)
-      throw error
+      handleErrorModal(dispatch, error)
    }
 }
 
@@ -57,8 +55,7 @@ const resetTranslation = async (dispatch) => {
    try {
       dispatch({ type: types.UPDATE_TRANSLATION })
    } catch (error) {
-      console.error(error)
-      throw error
+      handleErrorModal(dispatch, error)
    }
 }
 

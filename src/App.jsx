@@ -1,4 +1,5 @@
 import { BrowserRouter } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
 
 import StoreProvider from "./context/global.state"
 import AsideLeft from "./layouts/asideLeft"
@@ -24,6 +25,14 @@ function App() {
                      </Drawer>
                      <Footer />
                   </>
+                  <ToastContainer
+                     autoClose={5000}
+                     closeOnClick
+                     hideProgressBar={false}
+                     newestOnTop={false}
+                     position="bottom-right"
+                     rtl={false}
+                  />
                </MmodalContainer>
             </BrowserRouter>
          </StoreProvider>

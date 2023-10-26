@@ -1,3 +1,4 @@
+import { RiCloseFill } from "react-icons/ri"
 import PropTypes from "prop-types"
 
 import Title from "../../atoms/title/title"
@@ -8,11 +9,8 @@ function Modal({ title, children, id, onCheckboxChange }) {
          <input className="modal-open modal-toggle" id={id} onChange={onCheckboxChange} type="checkbox" />
          <label className="modal modal-middle cursor-pointer sm:modal-middle" htmlFor={id}>
             <div className="modal-box relative" htmlFor="">
-               <label
-                  className="btn btn-circle btn-sm absolute right-2 top-2 border-2 border-primary bg-transparent font-bold text-primary"
-                  htmlFor={id}
-               >
-                  X
+               <label className="absolute right-2 top-2 text-3xl" htmlFor={id}>
+                  <RiCloseFill />
                </label>
                <Title extraClassName="text-2xl font-semibold mb-3" type="h3">
                   {title}

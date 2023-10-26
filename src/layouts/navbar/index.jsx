@@ -30,7 +30,7 @@ function Navbar() {
       <header className="navbar fixed z-10 flex h-14 border-b-2 bg-base-100 shadow-sm">
          <div className="navbar bg-base-100">
             <div className="flex-1">
-               <a className="btn btn-ghost text-xl normal-case">daisyUI</a>
+               <a className="btn btn-ghost text-xl normal-case">LingoDeutsch</a>
             </div>
             <div className="flex-none gap-2">
                {user != null ? (
