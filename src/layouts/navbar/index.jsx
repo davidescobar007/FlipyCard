@@ -66,7 +66,7 @@ function Navbar() {
                   <div>
                      {authMethods.map((provider) => (
                         <a
-                           className="btn btn-primary"
+                           className="btn btn-outline btn-primary"
                            href={`${provider.authUrl}http://localhost:5173/learn`}
                            key={provider.authUrl}
                            role="button"
@@ -74,7 +74,8 @@ function Navbar() {
                            <span className="mr-1 text-xl">
                               <FcGoogle />
                            </span>
-                           Log in with Google
+                           <span className="block font-bold md:hidden">Log in</span>
+                           <span className="hidden font-bold md:block">Log in with Google</span>
                         </a>
                      ))}
                   </div>

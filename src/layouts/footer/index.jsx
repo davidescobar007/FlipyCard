@@ -9,14 +9,14 @@ function Footer() {
             <Link to="/learn">
                <span className={`${location.pathname === "/learn" && selectedItem} text-3xl`}>📖</span>
             </Link>
-            <Link to="/new-set">
-               <span className={`${location.pathname === "/new-set" && selectedItem} text-3xl`}>🗂️</span>
+            <Link to="/practice">
+               <span className={`${location.pathname === "/practice" && selectedItem} text-3xl`}>💪</span>
             </Link>
-            <label className="text-center" htmlFor="addCategory">
-               <span className="text-3xl">🏷️</span>
-            </label>
+            {/* <label className="text-center" htmlFor="addCategory">
+               <span className="text-3xl">🏆</span>
+            </label> */}
             <Link to="/sections">
-               <span className="text-3xl">⚡</span>
+               <span className="text-3xl">🏆</span>
             </Link>
          </div>
       </footer>

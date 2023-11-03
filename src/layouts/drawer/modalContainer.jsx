@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import Modal from "../../components/molecules/modal"
 import { StoreContext } from "../../context/global.state"
-function MmodalContainer({ children }) {
+function ModalContainer({ children }) {
    const {
       state: { isDarkTheme, errorModalText }
    } = useContext(StoreContext)
@@ -23,8 +23,8 @@ function MmodalContainer({ children }) {
    )
 }
 
-MmodalContainer.propTypes = {
+ModalContainer.propTypes = {
    children: PropTypes.any.isRequired
 }
 
-export default MmodalContainer
+export default ModalContainer

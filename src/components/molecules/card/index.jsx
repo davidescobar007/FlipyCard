@@ -1,3 +1,4 @@
+import { LazyLoadImage } from "react-lazy-load-image-component"
 import PropTypes from "prop-types"
 
 import Title from "../../atoms/title/title"
@@ -7,7 +8,11 @@ export default function Card({ image, title, content, level = [], ...rest }) {
          <figure>
             <div className="avatar">
                <div className="w-52 rounded">
-                  <img src={image} />
+                  <LazyLoadImage
+                     alt={image}
+                     height={50}
+                     src={image} // use normal <img> attributes as props
+                  />
                </div>
             </div>
          </figure>

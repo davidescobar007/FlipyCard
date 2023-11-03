@@ -1,6 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 import { Route, Routes } from "react-router-dom"
 
+import Score from "../../components/molecules/score"
 import WordSpecification from "../../components/molecules/wordSpecification"
 
 function AsideRight() {
@@ -9,6 +10,7 @@ function AsideRight() {
          <div className="fixed">
             <Routes>
                <Route element={<WordSpecification />} path="/article/:id" />
+               <Route element={<Score />} path="/practice" />
             </Routes>
          </div>
       </aside>

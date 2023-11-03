@@ -28,7 +28,8 @@ function useRandomObjectFromArray(initialArray) {
       let arrayLength = filteredArray.length - 1
       let percentage = (arrayLength / length) * 100
       percentage = 100 - percentage
-      setProgressPercentage(percentage)
+      // if (percentage > 100) percentage = 0
+      setProgressPercentage(Math.round(percentage))
    }
 
    const getRandomObject = () => {

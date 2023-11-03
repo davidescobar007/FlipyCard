@@ -1,11 +1,11 @@
 import { toast } from "react-toastify"
 
-import { pbCreateRecord, pbGetSingleRecord } from "../../services"
+import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery } from "../../services"
 import { getWordsTranslationFetchImplementation } from "../../services/implementation"
 import { debounce, removePunctuation } from "../../utils"
 import { constants, types } from "../global.types"
 
-import { handleErrorModal } from "./global.actions"
+import { actionLoaders, handleErrorModal } from "./global.actions"
 
 const resetTranslation = async (dispatch) => {
    try {
@@ -16,14 +16,14 @@ const resetTranslation = async (dispatch) => {
 }
 
 const getWordsTranslationFromDB = async (wordToTranslate, dispatch) => {
-   const params1 = { collection: constants.VOCABULARY, page: 1, perPage: 1 }
-   const params2 = {
+   const _params1 = { collection: constants.VOCABULARY }
+   const _params2 = {
       field: "conjugation.allConjugations",
       param: removePunctuation(wordToTranslate)
    }
 
-   const translation = await pbGetSingleRecord(params1, params2)
-   dispatch(translationActionTypes.setArticles(translation.items[0]))
+   const translation = await pbGetSingleRecordQuery(constants.VOCABULARY, removePunctuation(wordToTranslate))
+   dispatch(translationActionTypes.setArticles(translation))
    return translation
 }
 
@@ -47,22 +47,37 @@ const saveTranslationToDB = async (translation, dispatch) => {
 }
 
 const searchTranslationFromSources = async (wordToTranslate, dispatch) => {
+   dispatch(actionLoaders.loadingWordTranslation(true))
    const translationFromDB = await getWordsTranslationFromDB(wordToTranslate, dispatch)
    if (translationFromDB.items.length == 0) {
       const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
       if (translationFromAPI.status === 204) {
          handleErrorModal(dispatch, "Unfortunally we have no found any translation for that word ")
+         dispatch(actionLoaders.loadingWordTranslation(false))
          return
       }
       translationFromAPI.data && saveTranslationToDB(translationFromAPI.data, dispatch)
    }
+   dispatch(actionLoaders.loadingWordTranslation(false))
 }
 
-const saveVocabularyToStudy = (state, dispatch) => {
+const checkVocaBularyExist = async (userId, wordId) => {
+   const wordIsSaved = pbGetList(constants.STUDY_VOCABULARY, {
+      filter: `user_id = "${userId}" && word_id = "${wordId}"`
+   })
+   return wordIsSaved
+}
+
+const saveVocabularyToStudy = async (state, dispatch) => {
    try {
-      if (state?.user?.userId !== null && state?.selectedWordTranslation?.id) {
+      if (state?.user?.id && state?.selectedWordTranslation?.id) {
+         const valueExists = await checkVocaBularyExist(state.user.id, state.selectedWordTranslation.id)
+         if (valueExists.length) {
+            toast.info("Already saved in your vocabulary.")
+            return
+         }
          const data = {
-            user_id: state.user.userId,
+            user_id: state.user.id,
             word_id: state.selectedWordTranslation.id,
             last_time_seen: null,
             level: null

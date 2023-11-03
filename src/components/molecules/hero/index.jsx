@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 import { Link, useParams } from "react-router-dom"
 import PropTypes from "prop-types"
 
@@ -26,7 +27,12 @@ export default function Hero({ image, title, text_content, level = [] }) {
          <div className="hero-content p-0 text-center">
             <div className="max-w-md">
                <div className="hidden md:block">
-                  <img className="rounded-lg" height={50} src={image} />
+                  <LazyLoadImage
+                     alt={image}
+                     height={50}
+                     src={image} // use normal <img> attributes as props
+                  />
+                  {/* <img className="rounded-lg" height={50} loading="eager" src={image} /> */}
                   <Title extraClassName="font-medium text-2xl my-3">{title}</Title>
                   {level.map((item) => (
                      <Badge key={item}>{item}</Badge>
@@ -56,7 +62,7 @@ export default function Hero({ image, title, text_content, level = [] }) {
                            </span>
                         ))}
                   </p>
-                  <footer className="mt-5 lg:hidden">
+                  <footer className="mb-28 mt-7 lg:hidden">
                      <Link to={`/quiz/${id}`}>
                         <Button>Quiz Anfangen 📝</Button>
                      </Link>

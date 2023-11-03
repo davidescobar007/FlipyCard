@@ -107,8 +107,8 @@ CardFlipper.defaultProps = {
    cardZIndex: "auto",
    containerStyle: {},
    flipDirection: "horizontal",
-   flipSpeedBackToFront: 0.6,
-   flipSpeedFrontToBack: 0.6,
+   flipSpeedBackToFront: 0.9,
+   flipSpeedFrontToBack: 0.9,
    infinite: false,
    isFlipped: false
 }

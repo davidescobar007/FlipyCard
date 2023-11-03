@@ -1,16 +1,34 @@
 /* eslint-disable react/forbid-component-props */
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { RiSave2Fill, RiSave2Line } from "react-icons/ri"
 import PropTypes from "prop-types"
 
 import { StoreContext } from "../../../context/global.state"
+import { constants } from "../../../context/global.types"
 import Badge from "../../atoms/badge"
 import Title from "../../atoms/title/title"
 
 export default function ImageCard({ image, title, level }) {
    const {
-      state: { selectedWord, selectedWordTranslation }
+      handleErrorModal,
+      saveVocabularyToStudy,
+      state: { selectedWord, selectedWordTranslation, user }
    } = useContext(StoreContext)
+   const [isTranslationSaved, setIsTranslationSaved] = useState(false)
+
+   const handleSaveTranslation = () => {
+      if (!user) {
+         handleErrorModal(constants.NEED_SIGN_UP)
+      }
+      if (selectedWordTranslation?.id && user) {
+         saveVocabularyToStudy()
+         setIsTranslationSaved(true)
+      }
+   }
+
+   useEffect(() => {
+      setIsTranslationSaved(false)
+   }, [selectedWord])
 
    return (
       <article
@@ -28,10 +46,12 @@ export default function ImageCard({ image, title, level }) {
             </Title>
          </div>
          {selectedWord && (
-            <label className="swap mt-2 w-1/12 justify-end">
-               <input type="checkbox" />
-               <RiSave2Fill className="swap-on h-8 w-8 fill-current text-white" />
-               <RiSave2Line className="swap-off h-8 w-8 fill-current text-white" />
+            <label className=" mt-2 w-1/12 justify-end" onClick={handleSaveTranslation}>
+               {isTranslationSaved ? (
+                  <RiSave2Fill className="swap-on h-8 w-8 fill-current text-white" />
+               ) : (
+                  <RiSave2Line className="swap-off h-8 w-8 fill-current text-white" />
+               )}
             </label>
          )}
          <Title extraClassName="text-lg text-white w-full text-start font-medium" type="h4">

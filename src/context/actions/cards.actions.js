@@ -1,85 +1,31 @@
-import { pbCreateRecord, pbDeleteRecord, pbUpdateRecord } from "../../services"
-import { createDynamicArrayOfCards, getRandomFromArray, updateObjInsideOfArray } from "../../utils"
+import { pbGetList, pbUpdateRecord } from "../../services"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
-export const createCard = async (state, dispatch, collection, cardData) => {
-   await pbCreateRecord(collection, cardData)
-   dispatch(cardActionTypes.setCards([...state.cards, cardData]))
-}
+import { handleErrorModal } from "./global.actions"
 
-export const createCardsAtOnce = async (state, cardList) => {
-   if (state.categorySelected.length && state.selectedSection) {
-      const processedData = createDynamicArrayOfCards(
-         cardList,
-         state.categorySelected.map(({ id }) => id)
-      )
-      const promises = processedData.map((record) => {
-         return pbCreateRecord(constants.CARDS, record)
+const getCardsList = async (user, dispatch) => {
+   try {
+      const cardsList = await pbGetList(constants.STUDY_VOCABULARY, {
+         filter: `user_id = "${user.id}"`,
+         expand: "word_id",
+         fields: "expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen"
       })
-      Promise.all(promises)
-   } else {
-      alert("Please select at least one category")
+      dispatch(cardActionTypes.setCards(cardsList))
+   } catch (error) {
+      handleErrorModal(dispatch, constants.NEED_SIGN_UP)
    }
 }
 
-export const setNextRandomCard = (state, dispatch, cardToBeDeleted) => {
-   let { dynamicCards } = state
-   dynamicCards = dynamicCards.filter((card) => card.id !== cardToBeDeleted.id)
-   setRandomCard(dispatch, dynamicCards)
-   dispatch(cardActionTypes.setDynamicCards(dynamicCards))
-}
-
-export const setRandomCard = (dispatch, listOfCards) => {
-   const { random } = getRandomFromArray(listOfCards)
-   dispatch(cardActionTypes.setRandomCard(random))
-}
-
-export const updateRandomCard = (dispatch, cardData) => {
-   pbUpdateRecord(constants.CARDS, cardData.id, cardData)
-   dispatch(cardActionTypes.setRandomCard(cardData))
-}
-
-export const updateCard = (state, dispatch, cardData) => {
-   const newArrayofDynamicCards = updateObjInsideOfArray(state.dynamicCards, cardData)
-   const newArrayOfCards = updateObjInsideOfArray(state.cards, cardData)
-   pbUpdateRecord(constants.CARDS, cardData.id, cardData)
-   dispatch(cardActionTypes.setCards(newArrayOfCards))
-   dispatch(cardActionTypes.setDynamicCards(newArrayofDynamicCards))
-   dispatch(cardActionTypes.setRandomCard(cardData))
-}
-
-export const deleteCard = (state, dispatch) => {
-   pbDeleteRecord(constants.CARDS, state.randomCard.id)
-   dispatch(cardActionTypes.deleteCard())
-   setNextRandomCard(state, dispatch, state.randomCard)
+const updateCard = async (card) => {
+   await pbUpdateRecord(constants.STUDY_VOCABULARY, card.id, card)
 }
 
 export const cardActionTypes = {
-   createCard: (payload) => ({
-      type: types.CREATE_CARD,
-      payload
-   }),
    setCards: (payload) => ({
       type: types.SET_CARDS,
       payload
-   }),
-   setDynamicCards: (payload) => ({
-      type: types.SET_DYNAMICCARDS,
-      payload
-   }),
-   setRandomCard: (payload) => ({
-      type: types.SET_RANDOM_CARD,
-      payload
-   }),
-   updateRandomCard: (payload) => ({
-      type: types.UPDATE_RANDOM_CARD,
-      payload
-   }),
-   deleteCard: () => ({
-      type: types.DELETE_CARD
-   }),
-   error: () => ({
-      type: types.SERVICE_ERROR
    })
 }
+
+export { getCardsList, updateCard }

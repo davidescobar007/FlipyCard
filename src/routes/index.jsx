@@ -8,6 +8,7 @@ const Learn = lazy(() => import("../pages/learn"))
 // const _Sections = lazy(() => import("../pages/sections"))
 const Article = lazy(() => import("../pages/article"))
 const Quiz = lazy(() => import("../pages/quiz"))
+const Practice = lazy(() => import("../pages/practice"))
 const ProtectedRoute = lazy(() => import("../components/molecules/protectedRoute"))
 export default function Router() {
    return (
@@ -40,22 +41,16 @@ export default function Router() {
                }
                path="/quiz/:id"
             />
-            {/* <Route
-               element={
-                  <Suspense fallback={<Loader />}>
-                     <NewSet />
-                  </Suspense>
-               }
-               path="/new-set"
-            />
             <Route
                element={
                   <Suspense fallback={<Loader />}>
-                     <Sections />
+                     <ProtectedRoute>
+                        <Practice />
+                     </ProtectedRoute>
                   </Suspense>
                }
-               path="/sections"
-            /> */}
+               path="/practice"
+            />
          </Routes>
       </main>
    )

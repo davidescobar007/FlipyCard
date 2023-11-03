@@ -1,7 +1,8 @@
-import { useContext } from "react"
+import React from "react"
 
-export function useDispatchFromContext(context) {
-   const dispatch = useContext(context)
+import storeReducer from "../global.reducer"
+export function useDispatchFromContext() {
+   const [, dispatch] = React.useContext(storeReducer, {})
    if (dispatch === undefined) {
       throw new Error("Context must provide a dispatch function")
    }

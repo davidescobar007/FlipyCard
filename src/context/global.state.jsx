@@ -10,27 +10,32 @@ const StoreContext = createContext()
 function StoreProvider({ children }) {
    const [state, dispatch] = useReducer(storeReducer, initialStore)
 
+   //TODO: to be deleted
    const saveNewCard = (cardData) => action.cardsActions.createCard(state, dispatch, constants.CARDS, cardData)
 
+   //TODO: to be deleted
    const createCardsAtOnce = (cardsList) => action.cardsActions.createCardsAtOnce(state, cardsList)
 
+   //TODO: to be deleted
    const resetDynamicCards = (cards) => {
       dispatch(action.cardsActions.cardActionTypes.setDynamicCards([...cards]))
       action.cardsActions.setRandomCard(dispatch, cards)
    }
 
+   //TODO: to be deleted
    const nextRandomCard = (cardToBeDeleted) =>
       action.cardsActions.setNextRandomCard(state, dispatch, cardToBeDeleted)
 
-   const updateCard = (newDataForRandomCard) =>
-      action.cardsActions.updateCard(state, dispatch, newDataForRandomCard)
+   const updateCard = (card) => action.cardsActions.updateCard(card)
 
+   //TODO: to be deleted
    const deleteCurrentCard = () => action.cardsActions.deleteCard(state, dispatch)
 
    const setUiTheme = () => {
       dispatch(action.actionHandlerTypes.setUiTheme())
    }
 
+   //TODO: to be deleted
    const googleLoginSuccess = (credentialResponse) => {
       action.googleLoginSuccess(credentialResponse)
    }
@@ -59,6 +64,12 @@ function StoreProvider({ children }) {
 
    const handleErrorModal = (message) => action.handleErrorModal(dispatch, message)
 
+   const getCardsList = () => action.cardsActions.getCardsList(state.user, dispatch)
+
+   const updateUserScore = (id, record) => action.usersActions.updateUserScore(id, record)
+
+   const getScoreList = () => action.getScoreList(dispatch)
+
    const store = useMemo(
       () => ({
          state,
@@ -81,7 +92,10 @@ function StoreProvider({ children }) {
          logOut,
          updateUserState,
          saveVocabularyToStudy,
-         handleErrorModal
+         handleErrorModal,
+         getCardsList,
+         updateUserScore,
+         getScoreList
       }),
       [state]
    )

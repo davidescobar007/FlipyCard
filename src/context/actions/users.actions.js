@@ -1,7 +1,26 @@
-import { pbListAuthMethods, pbLogOut, pbSignUp } from "../../services"
+import {
+   pbCreateRecord,
+   pbGetSingleRecordQuery,
+   pbListAuthMethods,
+   pbLogOut,
+   pbSignUp,
+   pbUpdateRecord
+} from "../../services"
 import { types } from "../global.reducer"
+import { constants } from "../global.types"
 
 import { handleErrorModal } from "./global.actions"
+
+const updateUserScore = async (id, _record) => {
+   const params1 = { collection: constants.SCORE }
+   const params2 = {
+      field: "user_id",
+      param: id
+   }
+   const userScore = await pbGetSingleRecordQuery(params1, params2)
+   console.log(userScore)
+   // await pbUpdateRecord(constants.SCORE, id, record)
+}
 
 const getLoginMethods = async (dispatch) => {
    const authMethods = await pbListAuthMethods()
@@ -10,15 +29,14 @@ const getLoginMethods = async (dispatch) => {
 }
 
 const updateUserState = (dispatch) => {
-   const user = localStorage.getItem("user")
    const pbModel = JSON.parse(localStorage.getItem("pocketbase_auth"))
-   if (user) {
-      const { meta } = JSON.parse(user)
-      const {
-         model: { id }
-      } = pbModel
-      meta.userId = id
-      dispatch(actionHandlerTypes.setUser(meta))
+   try {
+      if (pbModel) {
+         const { model } = pbModel
+         dispatch(actionHandlerTypes.setUser(model))
+      }
+   } catch (error) {
+      handleErrorModal(dispatch, error)
    }
 }
 
@@ -35,8 +53,15 @@ const googleLogin = async (dispatch) => {
       const codeVerifier = provider[0].codeVerifier
       try {
          const user = await pbSignUp(provName, code, codeVerifier, redirectUrl)
-         localStorage.setItem("user", JSON.stringify(user))
-         dispatch(actionHandlerTypes.setUser(user.meta))
+         user?.record?.id && pbCreateRecord(constants.SCORE, { user_id: user.record.id })
+         if (!user.record.avatarUrl && !user.record.name) {
+            user.record.avatarUrl = user.meta.avatarUrl
+            user.record.name = user.meta.name
+            const updatedUSer = await pbUpdateRecord(constants.USERS, user.record.id, user.record)
+            dispatch(actionHandlerTypes.setUser(updatedUSer))
+            return
+         }
+         dispatch(actionHandlerTypes.setUser(user.record))
       } catch (error) {
          handleErrorModal(dispatch, error)
       }
@@ -64,4 +89,4 @@ const actionHandlerTypes = {
    })
 }
 
-export { getLoginMethods, googleLogin, logOut, updateUserState }
+export { getLoginMethods, googleLogin, logOut, updateUserScore, updateUserState }

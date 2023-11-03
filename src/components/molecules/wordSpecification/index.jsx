@@ -5,19 +5,30 @@ import { RiSave2Fill, RiSave2Line } from "react-icons/ri"
 import { Link, useParams } from "react-router-dom"
 
 import { StoreContext } from "../../../context/global.state"
+import { constants } from "../../../context/global.types"
 import Button from "../../atoms/button"
+import Loader from "../../atoms/loader"
 import Title from "../../atoms/title/title"
 export default function WordSpecification() {
    const {
       saveVocabularyToStudy,
-      state: { selectedWord, selectedWordTranslation }
+      handleErrorModal,
+      state: {
+         selectedWord,
+         selectedWordTranslation,
+         user,
+         isLoading: { wordTranslation }
+      }
    } = useContext(StoreContext)
 
    const [isTranslationSaved, setIsTranslationSaved] = useState(false)
    let { id } = useParams()
 
    const handleSaveTranslation = () => {
-      if (selectedWordTranslation?.id) {
+      if (!user) {
+         handleErrorModal(constants.NEED_SIGN_UP)
+      }
+      if (selectedWordTranslation?.id && user) {
          saveVocabularyToStudy()
          setIsTranslationSaved(true)
       }
@@ -48,14 +59,20 @@ export default function WordSpecification() {
                      </label>
                   </div>
                   <div className="mt-3">
-                     <Title extraClassName="font-medium text-lg" type="h4">
-                        *{selectedWordTranslation?.spanish_translation || ""}
-                     </Title>
+                     {wordTranslation ? (
+                        <Loader />
+                     ) : (
+                        <>
+                           <Title extraClassName="font-medium text-lg" type="h4">
+                              *{selectedWordTranslation?.spanish_translation || ""}
+                           </Title>
 
-                     <p className="text-md mt-4 text-justify font-normal">
-                        <span className="font-medium">Z.B. </span>
-                        {selectedWordTranslation?.examples?.data[1]?.german}
-                     </p>
+                           <p className="text-md mt-4 text-justify font-normal">
+                              <span className="font-medium">Z.B. </span>
+                              {selectedWordTranslation?.examples?.data[1]?.german}
+                           </p>
+                        </>
+                     )}
                   </div>
                </>
             ) : (

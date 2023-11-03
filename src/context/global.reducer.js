@@ -3,9 +3,8 @@ import { types } from "./global.types"
 const initialStore = {
    authMethods: [],
    user: null,
+   scoreList: [],
    cards: [],
-   randomCard: null,
-   dynamicCards: [],
    articles: [],
    selectedArticle: {},
    selectedWord: "",
@@ -13,7 +12,13 @@ const initialStore = {
    quizz: [],
    isMenuOpen: false,
    theme: "mytheme",
-   isDarkTheme: false
+   isDarkTheme: false,
+   isLoading: {
+      wordTranslation: false,
+      articleList: false,
+      article: false,
+      cards: false
+   }
 }
 
 const globalReducer = (state, action) => {
@@ -32,36 +37,6 @@ const globalReducer = (state, action) => {
          return {
             ...state,
             cards: action.payload
-         }
-      case types.SET_DYNAMICCARDS:
-         return {
-            ...state,
-            dynamicCards: action.payload
-         }
-      case types.CREATE_CARD:
-         return {
-            ...state,
-            cards: [...state.cards, action.payload]
-         }
-      case types.SET_RANDOM_CARD:
-         return {
-            ...state,
-            randomCard: action.payload
-         }
-      case types.UPDATE_CARDS:
-         return {
-            ...state,
-            cards: action.payload
-         }
-      case types.UPDATE_RANDOM_CARD:
-         return {
-            ...state,
-            randomCard: action.payload
-         }
-      case types.DELETE_CARD:
-         return {
-            ...state,
-            randomCard: initialStore.randomCard
          }
       case types.IS_MENU_OPEN:
          return {
@@ -95,7 +70,6 @@ const globalReducer = (state, action) => {
       case types.UPDATE_TRANSLATION: {
          return {
             ...state,
-            // selectedWord: initialStore.selectedWord,
             selectedWordTranslation: action?.payload || {}
          }
       }
@@ -109,6 +83,21 @@ const globalReducer = (state, action) => {
          return {
             ...state,
             errorModalText: action.payload
+         }
+      }
+      case types.SET_SCORE_LIST: {
+         return {
+            ...state,
+            scoreList: action.payload
+         }
+      }
+      case types.LOADING_WORD_TRANSLATION: {
+         return {
+            ...state,
+            isLoading: {
+               ...state.isLoading,
+               wordTranslation: action.payload
+            }
          }
       }
       default:

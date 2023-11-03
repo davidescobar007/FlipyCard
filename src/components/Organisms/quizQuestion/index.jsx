@@ -1,13 +1,18 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import PropTypes from "prop-types"
 
+import { StoreContext } from "../../../context/global.state"
 import useRandomObjectFromArray from "../../../customHooks/useRandomObject"
 import Button from "../../atoms/button"
 import ProgressPercentage from "../../atoms/progressBar"
 import Title from "../../atoms/title/title"
-import InputCheckGroup from "../inputCheckGroup"
+import InputCheckGroup from "../../molecules/inputCheckGroup"
 
 export default function QuizQuestion({ arrayOfQuestions }) {
+   const {
+      updateUserScore,
+      state: { user }
+   } = useContext(StoreContext)
    const { randomObject, getRandomObject, progressPercentage } = useRandomObjectFromArray(arrayOfQuestions)
    const [checkedOption, setCheckedOption] = useState()
    const [isOptionRated, setIsOptionRated] = useState(false)
@@ -26,6 +31,9 @@ export default function QuizQuestion({ arrayOfQuestions }) {
       if (option === randomObject?.correct_answer) {
          setTotalRating(totalRating + 1)
       }
+      if (!randomObject?.question) {
+         updateUserScore(user.id)
+      }
    }
 
    const handleInputState = (inputValue) => {
@@ -40,7 +48,7 @@ export default function QuizQuestion({ arrayOfQuestions }) {
       }
       return inputState
    }
-   // ipconfig | findstr IPv4
+
    return (
       <div className="">
          {randomObject?.question ? (

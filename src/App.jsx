@@ -5,7 +5,7 @@ import StoreProvider from "./context/global.state"
 import AsideLeft from "./layouts/asideLeft"
 import AsideRight from "./layouts/asideRight"
 import Drawer from "./layouts/drawer"
-import MmodalContainer from "./layouts/drawer/modalContainer"
+import ModalContainer from "./layouts/drawer/modalContainer"
 import Footer from "./layouts/footer"
 import Navbar from "./layouts/navbar"
 import Router from "./routes/index"
@@ -15,7 +15,7 @@ function App() {
       <div>
          <StoreProvider>
             <BrowserRouter>
-               <MmodalContainer>
+               <ModalContainer>
                   <>
                      <Navbar />
                      <Drawer>
@@ -33,7 +33,7 @@ function App() {
                      position="bottom-right"
                      rtl={false}
                   />
-               </MmodalContainer>
+               </ModalContainer>
             </BrowserRouter>
          </StoreProvider>
       </div>

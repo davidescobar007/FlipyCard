@@ -12,7 +12,7 @@ export default function Aside() {
          <ul className="fixed ">
             <li>
                <Link to="/learn">
-                  <ListItem selected={location.pathname === "/article"}>
+                  <ListItem selected={location.pathname === "/learn"}>
                      <span className="mb-2 text-3xl">📖</span>
                      <p className="hidden lg:block">Learn</p>
                   </ListItem>
@@ -21,7 +21,7 @@ export default function Aside() {
             <li className="my-4 rounded-lg">
                <Link to="/practice">
                   <ListItem selected={location.pathname === "/practice"}>
-                     <span className="text-3xl">🤓</span>
+                     <span className="text-3xl">💪</span>
                      <p className="hidden lg:block">Practice</p>
                   </ListItem>
                </Link>

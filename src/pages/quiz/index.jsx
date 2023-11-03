@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 
-import QuizQuestion from "../../components/molecules/quizQuestion"
+import QuizQuestion from "../../components/Organisms/quizQuestion"
 import { StoreContext } from "../../context/global.state"
 
 export default function Quiz() {

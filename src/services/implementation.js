@@ -4,7 +4,7 @@ import { transformData } from "../utils"
 import { fetchData } from "."
 
 export const getWordsTranslationFetchImplementation = async (wordToTranslate) => {
-   const urlCompletion = `${urls.linguatools}query=${wordToTranslate}&langpair=de-es`
+   const urlCompletion = `${urls.linguatools}query=${wordToTranslate}&langpair=de-en`
    try {
       if (wordToTranslate !== "" || wordToTranslate !== " ") {
          const translationData = await fetchData("GET", urlCompletion, null, headers)

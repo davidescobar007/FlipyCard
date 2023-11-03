@@ -22,13 +22,8 @@ const getArticlesList = async (dispatch) => {
 
 const getSingleArticle = async (id, dispatch) => {
    try {
-      const params1 = { collection: constants.ARTICLES, page: 1, perPage: 1 }
-      const params2 = {
-         field: "id",
-         param: id
-      }
-      const article = await pbGetSingleRecord(params1, params2)
-      dispatch(articleActionTypes.setSelectedArticle(article.items[0]))
+      const article = await pbGetSingleRecord(constants.ARTICLES, id)
+      dispatch(articleActionTypes.setSelectedArticle(article))
    } catch (error) {
       handleErrorModal(dispatch, error)
    }
