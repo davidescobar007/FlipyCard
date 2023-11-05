@@ -6,6 +6,7 @@ function useRandomObjectFromArray(initialArray) {
    const [filteredArray, setFilteredArray] = useState([...initialArray])
    const [randomObject, setRandomObject] = useState(null)
    const [progressPercentage, setProgressPercentage] = useState(0)
+   const [filteringComplete, setFilteringComplete] = useState(false)
 
    useEffect(() => {
       if (initialArray && initialArray.length > 0) {
@@ -21,6 +22,9 @@ function useRandomObjectFromArray(initialArray) {
       const newFilteredArray = filteredArray.filter((item) => item !== selectedObject)
       setRandomObject(selectedObject)
       setFilteredArray(newFilteredArray)
+      if (filteredArray.length === 0) {
+         setFilteringComplete(true)
+      }
    }
 
    const handleArrayProgress = () => {
@@ -38,7 +42,7 @@ function useRandomObjectFromArray(initialArray) {
       return
    }
 
-   return { randomObject, getRandomObject, progressPercentage }
+   return { randomObject, getRandomObject, progressPercentage, filteringComplete }
 }
 
 export default useRandomObjectFromArray

@@ -66,7 +66,7 @@ function StoreProvider({ children }) {
 
    const getCardsList = () => action.cardsActions.getCardsList(state.user, dispatch)
 
-   const updateUserScore = (id, record) => action.usersActions.updateUserScore(id, record)
+   const updateUserScore = (id, newScore) => action.usersActions.updateUserScore(id, newScore)
 
    const getScoreList = () => action.getScoreList(dispatch)
 

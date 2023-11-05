@@ -1,4 +1,5 @@
 import { useContext, useState } from "react"
+import { useEffect } from "react"
 import PropTypes from "prop-types"
 
 import { StoreContext } from "../../../context/global.state"
@@ -13,12 +14,13 @@ export default function QuizQuestion({ arrayOfQuestions }) {
       updateUserScore,
       state: { user }
    } = useContext(StoreContext)
-   const { randomObject, getRandomObject, progressPercentage } = useRandomObjectFromArray(arrayOfQuestions)
+   const { randomObject, getRandomObject, progressPercentage, filteringComplete } =
+      useRandomObjectFromArray(arrayOfQuestions)
    const [checkedOption, setCheckedOption] = useState()
    const [isOptionRated, setIsOptionRated] = useState(false)
    const [totalRating, setTotalRating] = useState(0)
 
-   const checkAnswerifCorrect = () => {
+   const checkAnswerIfCorrect = () => {
       setTimeout(() => {
          getRandomObject()
          setIsOptionRated(false)
@@ -31,10 +33,15 @@ export default function QuizQuestion({ arrayOfQuestions }) {
       if (option === randomObject?.correct_answer) {
          setTotalRating(totalRating + 1)
       }
-      if (!randomObject?.question) {
-         updateUserScore(user.id)
-      }
    }
+
+   useEffect(() => {
+      if (filteringComplete) {
+         console.log("filteringComplete")
+         const score = (totalRating * 100) / arrayOfQuestions.length
+         updateUserScore(user.id, score)
+      }
+   }, [filteringComplete])
 
    const handleInputState = (inputValue) => {
       let inputState = ""
@@ -70,7 +77,7 @@ export default function QuizQuestion({ arrayOfQuestions }) {
                      )
                   }
                })}
-               <Button onClick={() => checkAnswerifCorrect()}>Check Answer</Button>
+               <Button onClick={() => checkAnswerIfCorrect()}>Check Answer</Button>
             </>
          ) : (
             <Title extraClassName="font-medium text-2xl mb-5 animate__animated animate__backInRight">
