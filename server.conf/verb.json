@@ -1,140 +1,68 @@
 {
-   "allConjugations": [
-      "abgeben",
-      "gebe ab",
-      "gibst ab",
-      "gibt ab",
-      "geben ab",
-      "gebt ab",
-      "geben ab",
-      "gab ab",
-      "gabst ab",
-      "gab ab",
-      "gaben ab",
-      "gabt ab",
-      "gaben ab",
-      "abgegeben",
-      "abgebend",
-      "gebe ab",
-      "gibst ab",
-      "gibt ab",
-      "geben ab",
-      "gebt ab",
-      "geben ab",
-      "würde abgeben",
-      "würdest abgeben",
-      "würde abgeben",
-      "würden abgeben",
-      "würdet abgeben",
-      "würden abgeben"
-   ],
-   "infinitiv": {
-      "german": "abgeben",
-      "spanish": "entregar"
+   "Konjunktiv1": {
+      "du": "gibst",
+      "er/sie/es": "gibt",
+      "ich": "gebe",
+      "ihr": "gebt",
+      "sie/Sie": "geben",
+      "wir": "geben"
    },
-   "present_tense": {
-      "ich": {
-         "german": "gebe ab - abgebe",
-         "spanish": "entrego"
-      },
-      "du": {
-         "german": "gibst ab - abgibst",
-         "spanish": "entregas"
-      },
-      "er/sie/es": {
-         "german": "gibt ab - abgibt",
-         "spanish": "entrega"
-      },
-      "wir": {
-         "german": "geben ab - abgeben",
-         "spanish": "entregamos"
-      },
-      "ihr": {
-         "german": "gebt ab - abgebt",
-         "spanish": "entregáis"
-      },
-      "sie/Sie": {
-         "german": "geben ab - abgeben",
-         "spanish": "entregan"
-      }
+   "Konjunktiv2": {
+      "du": "gäbest",
+      "er/sie/es": "gäbe",
+      "ich": "gäbe",
+      "ihr": "gäbet",
+      "sie/Sie": "gäben",
+      "wir": "gäben"
    },
+
+   "infinitiv": "geben",
+   "zu_Infinitiv": "",
+   "participle": "gebend",
    "past_tense": {
-      "ich": {
-         "german": "gab ab - abgab",
-         "spanish": "entregué"
-      },
-      "du": {
-         "german": "gabst ab - abgabst",
-         "spanish": "entregaste"
-      },
-      "er/sie/es": {
-         "german": "gab ab - abgab",
-         "spanish": "entregó"
-      },
-      "wir": {
-         "german": "gaben ab - abgaben",
-         "spanish": "entregamos"
-      },
-      "ihr": {
-         "german": "gabt ab - abgabt",
-         "spanish": "entregastéis"
-      },
-      "sie/Sie": {
-         "german": "gaben ab - abgaben",
-         "spanish": "entregaron"
-      }
+      "du": "gabst",
+      "er/sie/es": "gab",
+      "ich": "gab",
+      "ihr": "gabt",
+      "sie/Sie": "gaben",
+      "wir": "gaben"
    },
-   "perfect_tense": {
-      "german": "abgegeben",
-      "spanish": "entregado"
+   "perfect_tense": "gegeben",
+   "present_tense": {
+      "du": "gibst",
+      "er/sie/es": "gibt",
+      "ich": "gebe",
+      "ihr": "gebt",
+      "sie/Sie": "geben",
+      "wir": "geben"
    },
-   "participle": {
-      "german": "abgebend",
-      "spanish": "entregando"
-   },
-   "konjunktiv1": {
-      "ich": {
-         "german": "gebe ab - abgebe",
-         "spanish": "entrego"
-      },
-      "du": {
-         "german": "gibst ab - abgebest",
-         "spanish": "entregas"
-      },
-      "er/sie/es": {
-         "german": "gibt ab - abgebe",
-         "spanish": "entrega"
-      },
-      "wir": {
-         "german": "geben ab - abgeben",
-         "spanish": "entregamos"
-      },
-      "ihr": {
-         "german": "gebt ab - abgebet",
-         "spanish": "entregáis"
-      },
-      "sie/Sie": {
-         "german": "geben ab - abgeben",
-         "spanish": "entregan"
-      }
-   },
-   "konjunktiv2": {
-      "ich": {
-         "german": "würde abgeben",
-         "spanish": "entregaría"
-      },
-      "du": {
-         "german": "würdest abgeben",
-         "spanish": "entregarías"
-      },
-      "er/sie/es": {
-         "german": "würde abgeben",
-         "spanish": "entregaría"
-      },
-      "wir": {
-         "german": "würden abgeben",
-         "spanish": "entregaríamos"
-      },
-      "ihr": {}
-   }
+   "allConjugations": [
+      "geben",
+      "gebe",
+      "gibst",
+      "gibt",
+      "geben",
+      "gebt",
+      "geben",
+      "gab",
+      "gabst",
+      "gab",
+      "gaben",
+      "gabt",
+      "gaben",
+      "gegeben",
+      "gebend",
+      "gebe",
+      "gibst",
+      "gebe",
+      "geben",
+      "gebt",
+      "geben",
+      "gab",
+      "gabst",
+      "gab",
+      "gaben",
+      "gabt",
+      "gaben"
+   ]
 }

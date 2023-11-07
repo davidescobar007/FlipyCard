@@ -1,4 +1,3 @@
-import { LazyLoadImage } from "react-lazy-load-image-component"
 import PropTypes from "prop-types"
 
 import Title from "../../atoms/title/title"
@@ -8,11 +7,30 @@ export default function Card({ image, title, content, level = [], ...rest }) {
          <figure>
             <div className="avatar">
                <div className="w-52 rounded">
-                  <LazyLoadImage
+                  <picture>
+                     <source
+                        srcSet={`"${image}?width=100 100w, ${image}?width=200 200w, ${image}?width=400 400w, ${image}?width=500 500w"`}
+                        type="image/webp"
+                     />
+                     <source
+                        srcSet={`"${image}?width=100 100w, ${image}?width=200 200w, ${image}?width=400 400w, ${image}?width=500 500w"`}
+                        type="image/avif"
+                     />
+                     <img
+                        alt={image}
+                        decoding="async"
+                        height={50}
+                        loading="lazy"
+                        sizes="(max-width: 500px) 100vw, 50vw"
+                        src={image}
+                        srcSet={`"${image}?width=100 100w, ${image}?width=200 200w, ${image}?width=400 400w, ${image}?width=500 500w"`}
+                     />
+                  </picture>
+                  {/* <LazyLoadImage
                      alt={image}
                      height={50}
                      src={image} // use normal <img> attributes as props
-                  />
+                  /> */}
                </div>
             </div>
          </figure>
@@ -24,7 +42,7 @@ export default function Card({ image, title, content, level = [], ...rest }) {
                      {item}
                   </div>
                ))}
-               <p className="mt-1 line-clamp-1">{content}</p>
+               <p className="mt-1 line-clamp-2">{content}</p>
             </article>
          </div>
       </article>

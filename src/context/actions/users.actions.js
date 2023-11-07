@@ -12,12 +12,12 @@ import { constants } from "../global.types"
 import { handleErrorModal } from "./global.actions"
 
 const updateUserScore = async (id, newScore) => {
-   const params1 = { collection: constants.SCORE }
-   const params2 = {
+   const params = {
+      collection: constants.SCORE,
       field: "user_id",
       param: id
    }
-   const userScore = await pbGetSingleRecordQuery(params1, params2)
+   const userScore = await pbGetSingleRecordQuery(params)
    const currentScore = Number(userScore.score)
    userScore.score = currentScore + Number(newScore)
    await pbUpdateRecord(constants.SCORE, userScore.id, userScore)

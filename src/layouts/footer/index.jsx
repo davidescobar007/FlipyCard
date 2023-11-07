@@ -12,10 +12,7 @@ function Footer() {
             <Link to="/practice">
                <span className={`${location.pathname === "/practice" && selectedItem} text-3xl`}>💪</span>
             </Link>
-            {/* <label className="text-center" htmlFor="addCategory">
-               <span className="text-3xl">🏆</span>
-            </label> */}
-            <Link to="/sections">
+            <Link to="/score">
                <span className="text-3xl">🏆</span>
             </Link>
          </div>

@@ -38,6 +38,10 @@ export default function WordSpecification() {
       setIsTranslationSaved(false)
    }, [selectedWord])
 
+   const objectHasOwnKey = Object.keys(selectedWordTranslation?.examples || {}).some(
+      (key) => selectedWordTranslation?.examples[key] === ""
+   )
+
    return (
       <div className="fixed md:right-5 md:w-8/32 lg:w-5/24 xl:w-6/32 2xl:right-32">
          <section className=" flex flex-wrap justify-between rounded-2xl border-2 border-accent bg-secondary p-2 ">
@@ -69,7 +73,7 @@ export default function WordSpecification() {
 
                            <p className="text-md mt-4 text-justify font-normal">
                               <span className="font-medium">Z.B. </span>
-                              {selectedWordTranslation?.examples?.data[1]?.german}
+                              {!objectHasOwnKey && selectedWordTranslation?.examples?.data[1]?.german}
                            </p>
                         </>
                      )}

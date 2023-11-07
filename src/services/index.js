@@ -16,10 +16,13 @@ export const pbGetSingleRecord = async (collection, recordId, expand = null) => 
    return records
 }
 
-export const pbGetSingleRecordQuery = async (
-   { collection },
-   { field, operator = queryOperators.EQUAL_TO, param, ...rest }
-) => {
+export const pbGetSingleRecordQuery = async ({
+   collection,
+   field,
+   operator = queryOperators.EQUAL_TO,
+   param,
+   ...rest
+}) => {
    const records = await pb.collection(collection).getFirstListItem(`${field} ${operator} "${param}"`, { ...rest })
    return records
 }

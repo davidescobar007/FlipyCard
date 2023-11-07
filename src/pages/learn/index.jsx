@@ -16,7 +16,7 @@ export default function Learn() {
       getArticlesList()
    }, [])
    return (
-      <div>
+      <div className="lg:pr-4">
          {articles.map(({ level, image, text_content, title, id }) => {
             return (
                <Link key={id} to={`/article/${id}`}>

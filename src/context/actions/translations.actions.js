@@ -16,15 +16,24 @@ const resetTranslation = async (dispatch) => {
 }
 
 const getWordsTranslationFromDB = async (wordToTranslate, dispatch) => {
-   const _params1 = { collection: constants.VOCABULARY }
-   const _params2 = {
-      field: "conjugation.allConjugations",
-      param: removePunctuation(wordToTranslate)
-   }
+   try {
+      const params = {
+         collection: constants.VOCABULARY,
+         field: "conjugation.allConjugations",
+         operator: "~",
+         param: removePunctuation(wordToTranslate)
+      }
 
-   const translation = await pbGetSingleRecordQuery(constants.VOCABULARY, removePunctuation(wordToTranslate))
-   dispatch(translationActionTypes.setArticles(translation))
-   return translation
+      const translation = await pbGetSingleRecordQuery(params)
+      dispatch(translationActionTypes.setArticles(translation))
+      return translation
+   } catch (error) {
+      if (String(error) === "ClientResponseError 404: The requested resource wasn't found.") {
+         return null
+      } else {
+         handleErrorModal(dispatch, error)
+      }
+   }
 }
 
 const getWordsTranslationFromAPI = async (wordToTranslate, dispatch) => {
@@ -49,7 +58,7 @@ const saveTranslationToDB = async (translation, dispatch) => {
 const searchTranslationFromSources = async (wordToTranslate, dispatch) => {
    dispatch(actionLoaders.loadingWordTranslation(true))
    const translationFromDB = await getWordsTranslationFromDB(wordToTranslate, dispatch)
-   if (translationFromDB.items.length == 0) {
+   if (!translationFromDB) {
       const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
       if (translationFromAPI.status === 204) {
          handleErrorModal(dispatch, "Unfortunally we have no found any translation for that word ")

@@ -2,6 +2,7 @@ import { pbGetList } from "../../services"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
+import { flattenObj } from "./actions.utils"
 import * as articlesActions from "./articles.actions"
 import * as cardsActions from "./cards.actions"
 import * as quizzesActions from "./quizzes.actions"
@@ -9,7 +10,7 @@ import * as translationsAction from "./translations.actions"
 import * as usersActions from "./users.actions"
 
 const handleErrorModal = (dispatch, message) => {
-   dispatch(actionHandlerTypes.error(message))
+   dispatch(actionHandlerTypes.error(String(message)))
    console.warn(message)
    let inputs = document.getElementById("modalWarning")
    inputs.checked = true
@@ -17,8 +18,17 @@ const handleErrorModal = (dispatch, message) => {
 
 const getScoreList = async (dispatch) => {
    try {
-      const scoreList = await pbGetList(constants.SCORE)
-      dispatch(actionHandlerTypes.setScoreList(scoreList))
+      const scoreList = await pbGetList(constants.SCORE, {
+         expand: "user_id",
+         fields: "expand.user_id.username,score",
+         sort: "-score"
+      })
+      const resolveScoreList = scoreList.map((item, index) => {
+         item.position = index + 1
+         return flattenObj(item)
+      })
+      console.log(resolveScoreList)
+      dispatch(actionHandlerTypes.setScoreList(resolveScoreList))
    } catch (error) {
       handleErrorModal(dispatch, error)
    }
