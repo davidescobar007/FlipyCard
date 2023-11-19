@@ -77,7 +77,7 @@ export const queryStringAnsembler = (field, array) => {
 }
 
 export const removePunctuation = (inputString) => {
-   return inputString.replace(/[.,#!$%^&*;:{}=\-_`~()?"'„“\\]/g, "")
+   return inputString.replace(/[.,#!$%^&*;:{}=\-_`~()?"'„“\\\r\n]/g, "")
 }
 
 export const transformData = (inputData) => {

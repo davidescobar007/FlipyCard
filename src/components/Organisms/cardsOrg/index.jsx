@@ -64,12 +64,12 @@ function CardsOrg({ cards }) {
                   </div>
                   <footer className="mt-6 flex w-full content-between justify-center">
                      <div className="btn-group">
-                        <button className="btn btn-accent btn-outline" onClick={() => handleNextCard("easy")}>
+                        <button className="btn btn-outline btn-accent" onClick={() => handleNextCard("easy")}>
                            <span className="mr-1 text-lg">🙂</span>
                            Fácil
                         </button>
                         <button
-                           className="btn btn-primary btn-outline mx-1"
+                           className="btn btn-outline btn-primary mx-1"
                            onClick={() => handleNextCard("medium")}
                         >
                            <span className="mr-1 text-lg">🤔</span> Normal

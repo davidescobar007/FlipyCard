@@ -39,7 +39,7 @@ function Navbar() {
          </div>
          <div className="flex-none gap-2">
             {user != null ? (
-               <div className="dropdown-end dropdown">
+               <div className="dropdown dropdown-end">
                   <label className="avatar btn btn-circle btn-ghost" tabIndex={0}>
                      <div className="w-10 rounded-full">
                         <img src={user.avatarUrl} />
