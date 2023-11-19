@@ -77,7 +77,7 @@ export default function QuizQuestion({ arrayOfQuestions }) {
                      )
                   }
                })}
-               <Button onClick={() => checkAnswerIfCorrect()}>Check Answer</Button>
+               <Button onClick={() => checkAnswerIfCorrect()}>{t("quiz.checkAnswer")}</Button>
             </>
          ) : (
             <Title extraClassName="font-medium text-2xl mb-5 animate__animated animate__backInRight">

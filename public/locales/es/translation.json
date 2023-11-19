@@ -1,44 +1,42 @@
 {
-   "article": {},
    "learn": {
-      "wordSpecification": "Selecciona cualquier palabra del texto para ver la traduccion",
+      "wordSpecification": "Selecciona cualquier palabra del texto para ver la traducción",
       "startQuiz": "Empezar quiz"
    },
    "practice": {
       "cardStat": {
-         "easy": "Facil",
+         "easy": "Fácil",
          "medium": "Medio",
-         "hard": "Dificil"
+         "hard": "Difícil"
       },
-      "noVocabulary": "Aun no tienes vocabulario guardado en tu libreria",
+      "noVocabulary": "Aun no tienes vocabulario guardado en tu librería",
       "startAgain": "Empezar de nuevo",
       "cards": "cartas"
    },
    "quiz": {
       "checkAnswer": "Revisar respuesta",
-      "quizResult": "Tuviste {{totalRating}} de {{numberOfQuestions}}. Tu calificación es: "
+      "quizResult": "Tuviste {{totalRating}} de {{numberOfQuestions}} correctas. Tu calificación es: "
    },
-   "header": {},
-   "footer": {},
    "score": {
       "title": "Tabla de puntos",
       "span": "puntos"
    },
    "translation": {
-      "notFoundTranslation": "Lo sentimos, pero no hemos encontrado traduccion en nuestros servidores para la palabra que buscas.",
+      "notFoundTranslation": "Lo sentimos, pero no hemos encontrado traducción en nuestros servidores para la palabra que buscas.",
       "alreadySaved": "Ya esta guardada en tu vocabulario.",
-      "saved": "Guardado en tu vocabulario con exito."
+      "saved": "Guardado en tu vocabulario con éxito."
    },
    "constants": {
-      "needSignUp": "Necesitas iniciar sesion para usar esta caracteriztica."
+      "needSignUp": "Necesitas iniciar sesión para usar esta característica."
    },
    "menu": {
-      "logIn": "Iniciar sesion",
+      "logIn": "Iniciar sesión",
       "loginWithGoogle": "Iniciar con Google",
       "logOut": "Salir",
       "profile": "Perfil",
       "learn": "Aprender",
       "practice": "Practicar",
-      "changeLanguage": "Español"
+      "spanishOption": "Español",
+      "germanOption": "Alemán"
    }
 }

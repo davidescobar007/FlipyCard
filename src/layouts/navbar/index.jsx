@@ -3,13 +3,14 @@ import React, { useEffect } from "react"
 import { useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { FcGoogle } from "react-icons/fc"
+import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { TbLanguage, TbLogout, TbUser } from "react-icons/tb"
 import { Link, useNavigate } from "react-router-dom"
 
 import Title from "../../components/atoms/title/title"
 import { StoreContext } from "../../context/global.state"
 function Navbar() {
-   const { t } = useTranslation()
+   const { t, i18n } = useTranslation()
    const navigate = useNavigate()
    const params = new URL(window.location).searchParams
    const {
@@ -40,15 +41,56 @@ function Navbar() {
             </Title>
          </div>
          <div className="flex-none gap-2">
+            <div className="dropdown dropdown-end dropdown-bottom">
+               <label className="btn btn-ghost m-1 " tabIndex={0}>
+                  <span className=" text-2xl">
+                     <TbLanguage />
+                  </span>
+                  <span className="text-xl">
+                     <MdOutlineKeyboardArrowDown className="text-gray-600" />
+                  </span>
+               </label>
+               <ul
+                  className="menu-sm dropdown-content menu rounded-box mt-3 w-52 bg-base-100 p-2 shadow-md"
+                  tabIndex={0}
+               >
+                  <li>
+                     <div className="justify-between" onClick={() => i18n.changeLanguage("de")}>
+                        {t("menu.germanOption")}
+                        <span className="text-lg">
+                           <img
+                              alt="German flag"
+                              loading="lazy"
+                              src="https://flagsapi.com/DE/flat/64.png"
+                              width="25"
+                           />
+                        </span>
+                     </div>
+                  </li>
+                  <li>
+                     <div className="justify-between" onClick={() => i18n.changeLanguage("es")}>
+                        {t("menu.spanishOption")}
+                        <span className="text-lg">
+                           <img
+                              alt="Spain flag"
+                              loading="lazy"
+                              src="https://flagsapi.com/ES/flat/64.png"
+                              width="25"
+                           />
+                        </span>
+                     </div>
+                  </li>
+               </ul>
+            </div>
             {user != null ? (
-               <div className="dropdown dropdown-end">
+               <div className="dropdown-end dropdown">
                   <label className="avatar btn btn-circle btn-ghost" tabIndex={0}>
                      <div className="w-10 rounded-full">
                         <img src={user.avatarUrl} />
                      </div>
                   </label>
                   <ul
-                     className="menu-sm  dropdown-content menu rounded-box mt-3 w-52 bg-base-100 p-2 shadow"
+                     className="menu-sm dropdown-content menu rounded-box mt-3 w-52 bg-base-100 p-2 shadow"
                      tabIndex={0}
                   >
                      <li>
@@ -56,14 +98,6 @@ function Navbar() {
                            {t("menu.profile")}
                            <span className="text-lg">
                               <TbUser />
-                           </span>
-                        </Link>
-                     </li>
-                     <li>
-                        <Link className="justify-between" onClick={() => logOut()} to="/learn">
-                           {t("menu.changeLanguage")}
-                           <span className="text-lg">
-                              <TbLanguage />
                            </span>
                         </Link>
                      </li>

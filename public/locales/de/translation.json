@@ -1,0 +1,42 @@
+{
+   "learn": {
+      "wordSpecification": "Wähle ein beliebiges Wort im Text aus, um die Übersetzung zu sehen",
+      "startQuiz": "Quiz starten"
+   },
+   "practice": {
+      "cardStat": {
+         "easy": "Einfach",
+         "medium": "Mittel",
+         "hard": "Schwer"
+      },
+      "noVocabulary": "Du hast noch kein Vokabular in deiner Bibliothek gespeichert",
+      "startAgain": "Von vorne beginnen",
+      "cards": "Karten"
+   },
+   "quiz": {
+      "checkAnswer": "Antwort überprüfen",
+      "quizResult": "Du hattest {{totalRating}} von {{numberOfQuestions}} korrekt. Deine Bewertung ist: "
+   },
+   "score": {
+      "title": "Punktetabelle",
+      "span": "Punkte"
+   },
+   "translation": {
+      "notFoundTranslation": "Es tut uns leid, aber wir haben keine Übersetzung für das gesuchte Wort auf unseren Servern gefunden.",
+      "alreadySaved": "Bereits in deinem Vokabular gespeichert.",
+      "saved": "Erfolgreich in deinem Vokabular gespeichert."
+   },
+   "constants": {
+      "needSignUp": "Du musst dich anmelden, um diese Funktion zu verwenden."
+   },
+   "menu": {
+      "logIn": "Einloggen",
+      "loginWithGoogle": "Mit Google einloggen",
+      "logOut": "Ausloggen",
+      "profile": "Profil",
+      "learn": "Lernen",
+      "practice": "Üben",
+      "spanishOption": "Spanisch",
+      "germanOption": "Deutsch"
+   }
+}
