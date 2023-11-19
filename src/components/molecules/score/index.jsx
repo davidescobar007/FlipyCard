@@ -1,8 +1,10 @@
 import { useContext, useEffect } from "react"
+import { useTranslation } from "react-i18next"
 
 import { StoreContext } from "../../../context/global.state"
 import Title from "../../atoms/title/title"
 function Score() {
+   const { t } = useTranslation()
    const {
       getScoreList,
       state: { scoreList, user }
@@ -19,7 +21,7 @@ function Score() {
    return (
       <>
          <Title extraClassName="font-medium text-xl my-3">
-            Tabla de puntos <span className="text-3xl">🏆</span>
+            {t("score.title")} <span className="text-3xl">🏆</span>
          </Title>
          <ul className="w-full">
             {scoreList.map(({ username, score, position }, index) => (
@@ -33,7 +35,9 @@ function Score() {
                      <div className="stat-title">
                         <span className="font-bold">{position}</span> - {username}
                      </div>
-                     <div className="stat-value text-lg">{score} puntos</div>
+                     <div className="stat-value text-lg">
+                        {score} {t("score.span")}
+                     </div>
                   </div>
                </li>
             ))}

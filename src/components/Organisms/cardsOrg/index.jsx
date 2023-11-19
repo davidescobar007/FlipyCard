@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useContext } from "react"
+import { useTranslation } from "react-i18next"
 import PropTypes from "prop-types"
 import useSound from "use-sound"
 
@@ -15,6 +16,7 @@ import cardSound from "/cardSound.mp3"
 import flipSound from "/flipSound.mp3"
 
 function CardsOrg({ cards }) {
+   const { t } = useTranslation()
    const { randomObject, getRandomObject, progressPercentage } = useRandomObjectFromArray(cards)
    const [isFlipped, setIsFlipped] = useState(false)
    const [animation, setAnimation] = useState("")
@@ -50,7 +52,7 @@ function CardsOrg({ cards }) {
             <div className="flex columns-1 flex-col justify-center">
                <CardsStats />
                {/* TODO: onclick to restart  useRandomObjectFromArray customhook*/}
-               <Button onClick={() => location.reload()}>Start Again</Button>
+               <Button onClick={() => location.reload()}>{t("practice.startAgain")}</Button>
             </div>
          ) : (
             randomObject && (
@@ -66,16 +68,16 @@ function CardsOrg({ cards }) {
                      <div className="btn-group">
                         <button className="btn btn-outline btn-accent" onClick={() => handleNextCard("easy")}>
                            <span className="mr-1 text-lg">🙂</span>
-                           Fácil
+                           {t("practice.cardStat.easy")}
                         </button>
                         <button
                            className="btn btn-outline btn-primary mx-1"
                            onClick={() => handleNextCard("medium")}
                         >
-                           <span className="mr-1 text-lg">🤔</span> Normal
+                           <span className="mr-1 text-lg">🤔</span> {t("practice.cardStat.medium")}
                         </button>
                         <button className="btn btn-outline btn-warning" onClick={() => handleNextCard("hard")}>
-                           <span className="mr-1 text-lg">😰</span> Difícil
+                           <span className="mr-1 text-lg">😰</span> {t("practice.cardStat.hard")}
                         </button>
                      </div>
                   </footer>

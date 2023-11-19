@@ -1,14 +1,15 @@
 /* eslint-disable react/forbid-component-props */
 import { useContext, useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { RiSave2Fill, RiSave2Line } from "react-icons/ri"
 import PropTypes from "prop-types"
 
 import { StoreContext } from "../../../context/global.state"
-import { constants } from "../../../context/global.types"
 import Badge from "../../atoms/badge"
 import Title from "../../atoms/title/title"
-
 export default function ImageCard({ image, title, level }) {
+   const { t } = useTranslation()
+
    const {
       handleErrorModal,
       saveVocabularyToStudy,
@@ -18,7 +19,7 @@ export default function ImageCard({ image, title, level }) {
 
    const handleSaveTranslation = () => {
       if (!user) {
-         handleErrorModal(constants.NEED_SIGN_UP)
+         handleErrorModal(t("constants.needSignUp"))
       }
       if (selectedWordTranslation?.id && user) {
          saveVocabularyToStudy()

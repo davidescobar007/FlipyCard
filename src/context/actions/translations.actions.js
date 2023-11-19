@@ -1,4 +1,5 @@
 import { toast } from "react-toastify"
+import i18next from "i18next"
 
 import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery } from "../../services"
 import { getWordsTranslationFetchImplementation } from "../../services/implementation"
@@ -7,6 +8,7 @@ import { constants, types } from "../global.types"
 
 import { actionLoaders, handleErrorModal } from "./global.actions"
 
+const { t } = i18next
 const resetTranslation = async (dispatch) => {
    try {
       dispatch({ type: types.UPDATE_TRANSLATION })
@@ -70,7 +72,7 @@ const searchTranslationFromSources = async (wordToTranslate, dispatch) => {
       if (!translationFromDb) {
          const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
          if (translationFromAPI.status === 204) {
-            handleErrorModal(dispatch, "Unfortunately we have no found any translation for that word ")
+            handleErrorModal(dispatch, t("translation.notFoundTranslation"))
             dispatch(actionLoaders.loadingWordTranslation(false))
             return
          }
@@ -94,7 +96,7 @@ const saveVocabularyToStudy = async (state, dispatch) => {
       if (state?.user?.id && state?.selectedWordTranslation?.id) {
          const valueExists = await checkVocaBularyExist(state.user.id, state.selectedWordTranslation.id)
          if (valueExists.length) {
-            toast.info("Already saved in your vocabulary.")
+            toast.info(t("translation.alreadySaved"))
             return
          }
          const data = {
@@ -104,9 +106,9 @@ const saveVocabularyToStudy = async (state, dispatch) => {
             level: null
          }
          debounce(pbCreateRecord(constants.STUDY_VOCABULARY, data))
-         toast.success("Saved to your vocabulary.")
+         toast.success(t("translation.saved"))
       } else {
-         handleErrorModal(dispatch, constants.NEED_SIGN_UP)
+         handleErrorModal(dispatch, t("constants.needSignUp"))
       }
    } catch (error) {
       handleErrorModal(dispatch, error)

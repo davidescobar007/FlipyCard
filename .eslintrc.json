@@ -16,7 +16,7 @@
          "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
          "rules": {
             "simple-import-sort/imports": [
-               "error",
+               "warn",
                {
                   "groups": [
                      // Packages `react` related packages come first.
@@ -57,7 +57,7 @@
       "react/no-array-index-key": "off",
       "unused-imports/no-unused-imports": "warn",
       "unused-imports/no-unused-vars": [
-         "error",
+         "warn",
          {
             "vars": "all",
             "varsIgnorePattern": "^_",

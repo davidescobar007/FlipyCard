@@ -1,0 +1,44 @@
+{
+   "article": {},
+   "learn": {
+      "wordSpecification": "Selecciona cualquier palabra del texto para ver la traduccion",
+      "startQuiz": "Empezar quiz"
+   },
+   "practice": {
+      "cardStat": {
+         "easy": "Facil",
+         "medium": "Medio",
+         "hard": "Dificil"
+      },
+      "noVocabulary": "Aun no tienes vocabulario guardado en tu libreria",
+      "startAgain": "Empezar de nuevo",
+      "cards": "cartas"
+   },
+   "quiz": {
+      "checkAnswer": "Revisar respuesta",
+      "quizResult": "Tuviste {{totalRating}} de {{numberOfQuestions}}. Tu calificación es: "
+   },
+   "header": {},
+   "footer": {},
+   "score": {
+      "title": "Tabla de puntos",
+      "span": "puntos"
+   },
+   "translation": {
+      "notFoundTranslation": "Lo sentimos, pero no hemos encontrado traduccion en nuestros servidores para la palabra que buscas.",
+      "alreadySaved": "Ya esta guardada en tu vocabulario.",
+      "saved": "Guardado en tu vocabulario con exito."
+   },
+   "constants": {
+      "needSignUp": "Necesitas iniciar sesion para usar esta caracteriztica."
+   },
+   "menu": {
+      "logIn": "Iniciar sesion",
+      "loginWithGoogle": "Iniciar con Google",
+      "logOut": "Salir",
+      "profile": "Perfil",
+      "learn": "Aprender",
+      "practice": "Practicar",
+      "changeLanguage": "Español"
+   }
+}

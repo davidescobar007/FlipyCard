@@ -1,13 +1,15 @@
 /* eslint-disable react/forbid-component-props */
 import React, { useEffect } from "react"
 import { useContext } from "react"
+import { useTranslation } from "react-i18next"
 import { FcGoogle } from "react-icons/fc"
-import { TbLogout, TbUser } from "react-icons/tb"
+import { TbLanguage, TbLogout, TbUser } from "react-icons/tb"
 import { Link, useNavigate } from "react-router-dom"
 
 import Title from "../../components/atoms/title/title"
 import { StoreContext } from "../../context/global.state"
 function Navbar() {
+   const { t } = useTranslation()
    const navigate = useNavigate()
    const params = new URL(window.location).searchParams
    const {
@@ -51,7 +53,7 @@ function Navbar() {
                   >
                      <li>
                         <Link className="justify-between" to="/profile">
-                           Profile
+                           {t("menu.profile")}
                            <span className="text-lg">
                               <TbUser />
                            </span>
@@ -59,7 +61,15 @@ function Navbar() {
                      </li>
                      <li>
                         <Link className="justify-between" onClick={() => logOut()} to="/learn">
-                           Log out
+                           {t("menu.changeLanguage")}
+                           <span className="text-lg">
+                              <TbLanguage />
+                           </span>
+                        </Link>
+                     </li>
+                     <li>
+                        <Link className="justify-between" onClick={() => logOut()} to="/learn">
+                           {t("menu.logOut")}
                            <span className="text-lg">
                               <TbLogout />
                            </span>
@@ -79,8 +89,8 @@ function Navbar() {
                         <span className="mr-1 text-xl">
                            <FcGoogle />
                         </span>
-                        <span className="block font-bold md:hidden">Log in</span>
-                        <span className="hidden font-bold md:block">Log in with Google</span>
+                        <span className="block font-bold md:hidden">{t("menu.logIn")}</span>
+                        <span className="hidden font-bold md:block">{t("menu.loginWithGoogle")}</span>
                      </a>
                   ))}
                </div>

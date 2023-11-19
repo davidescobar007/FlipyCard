@@ -31,8 +31,7 @@ export const constants = {
    VOCABULARY: "vocabulary",
    ARTICLES: "articles",
    QUIZZES: "quizzes",
-   STUDY_VOCABULARY: "studyVocabulary",
-   NEED_SIGN_UP: "You need to be loged in to use this feature!"
+   STUDY_VOCABULARY: "studyVocabulary"
 }
 
 export const queryOperators = {

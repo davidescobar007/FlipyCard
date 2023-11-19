@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { Link, useParams } from "react-router-dom"
 import PropTypes from "prop-types"
@@ -9,6 +10,7 @@ import Button from "../../atoms/button"
 import Title from "../../atoms/title/title"
 import ImageCard from "../imageCard"
 export default function Hero({ image, title, text_content, level = [] }) {
+   const { t } = useTranslation()
    const { setSelectedWord, resetTranslation } = useContext(StoreContext)
    const [currentWordIntext, setCurrentWordIntext] = useState(null)
    let { id } = useParams()
@@ -64,7 +66,7 @@ export default function Hero({ image, title, text_content, level = [] }) {
                   </p>
                   <footer className="mb-28 mt-7 lg:hidden">
                      <Link to={`/quiz/${id}`}>
-                        <Button>Quiz Anfangen 📝</Button>
+                        <Button>{t("learn.startQuiz")} 📝</Button>
                      </Link>
                   </footer>
                </div>

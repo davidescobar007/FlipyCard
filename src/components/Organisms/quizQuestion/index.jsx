@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { useEffect } from "react"
+import { useTranslation } from "react-i18next"
 import PropTypes from "prop-types"
 
 import { StoreContext } from "../../../context/global.state"
@@ -8,8 +9,8 @@ import Button from "../../atoms/button"
 import ProgressPercentage from "../../atoms/progressBar"
 import Title from "../../atoms/title/title"
 import InputCheckGroup from "../../molecules/inputCheckGroup"
-
 export default function QuizQuestion({ arrayOfQuestions }) {
+   const { t } = useTranslation()
    const {
       updateUserScore,
       state: { user }
@@ -55,7 +56,6 @@ export default function QuizQuestion({ arrayOfQuestions }) {
       }
       return inputState
    }
-
    return (
       <div className="">
          {randomObject?.question ? (
@@ -81,7 +81,7 @@ export default function QuizQuestion({ arrayOfQuestions }) {
             </>
          ) : (
             <Title extraClassName="font-medium text-2xl mb-5 animate__animated animate__backInRight">
-               You got {totalRating} right out of {arrayOfQuestions.length}. Your score is:{" "}
+               {t("quiz.quizResult", { totalRating, numberOfQuestions: arrayOfQuestions.length })}
                <span className="font-bold">{(totalRating * 100) / arrayOfQuestions.length}</span>
             </Title>
          )}

@@ -1,11 +1,10 @@
-import React from "react"
-import { useContext } from "react"
-import { useEffect } from "react"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import { StoreContext } from "../../../context/global.state"
 
 function CardsStats() {
+   const { t } = useTranslation()
    const {
       getCardsList,
       state: { cards }
@@ -27,20 +26,20 @@ function CardsStats() {
    return (
       <div className="stats mb-6 w-full shadow">
          <div className="stat place-items-center p-1 py-3">
-            <div className="stat-title font-medium">🙂 Easy</div>
+            <div className="stat-title font-medium">🙂 {t("practice.cardStat.easy")}</div>
             <div className="stat-value cursor-pointer select-none text-accent">{easyCards.length}</div>
-            <div className="stat-desc mt-1 text-sm">cards</div>
+            <div className="stat-desc mt-1 text-sm">{t("practice.cards")}</div>
          </div>
          <div className="stat place-items-center p-1 py-3">
-            <div className="stat-title font-medium">🤔 Medium</div>
+            <div className="stat-title font-medium">🤔 {t("practice.cardStat.medium")}</div>
             <div className="stat-value cursor-pointer select-none text-primary">{mediumCards.length}</div>
-            <div className="stat-desc mt-1 text-sm">cards</div>
+            <div className="stat-desc mt-1 text-sm">{t("practice.cards")}</div>
          </div>
 
          <div className="stat place-items-center p-1 py-3">
-            <div className="stat-title font-medium">😰 Hard</div>
+            <div className="stat-title font-medium">😰 {t("practice.cardStat.hard")}</div>
             <div className="stat-value cursor-pointer select-none text-warning">{hardCards.length}</div>
-            <div className="stat-desc mt-1 text-sm">cards</div>
+            <div className="stat-desc mt-1 text-sm">{t("practice.cards")}</div>
          </div>
       </div>
    )

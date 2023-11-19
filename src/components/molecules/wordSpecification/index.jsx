@@ -1,15 +1,16 @@
 /* eslint-disable react/forbid-component-props */
 import React, { useContext, useEffect } from "react"
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { RiSave2Fill, RiSave2Line } from "react-icons/ri"
 import { Link, useParams } from "react-router-dom"
 
 import { StoreContext } from "../../../context/global.state"
-import { constants } from "../../../context/global.types"
 import Button from "../../atoms/button"
 import Loader from "../../atoms/loader"
 import Title from "../../atoms/title/title"
 export default function WordSpecification() {
+   const { t } = useTranslation()
    const {
       saveVocabularyToStudy,
       handleErrorModal,
@@ -26,7 +27,7 @@ export default function WordSpecification() {
 
    const handleSaveTranslation = () => {
       if (!user) {
-         handleErrorModal(constants.NEED_SIGN_UP)
+         handleErrorModal(t("constants.needSignUp"))
       }
       if (selectedWordTranslation?.id && user) {
          saveVocabularyToStudy()
@@ -81,13 +82,13 @@ export default function WordSpecification() {
                </>
             ) : (
                <Title extraClassName="text-lg  w-10/12 font-medium" type="h3">
-                  Selecciona cualquier palabra del texto para ver la traduccion
+                  {t("learn.wordSpecification")}
                </Title>
             )}
          </section>
          <div className=" mt-3">
             <Link to={`/quiz/${id}`}>
-               <Button>Quiz Anfangen 📝</Button>
+               <Button>{t("learn.startQuiz")} 📝</Button>
             </Link>
          </div>
       </div>

@@ -1,3 +1,5 @@
+import i18next from "i18next"
+
 import { pbGetList, pbUpdateRecord } from "../../services"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
@@ -13,7 +15,7 @@ const getCardsList = async (user, dispatch) => {
       })
       dispatch(cardActionTypes.setCards(cardsList))
    } catch (error) {
-      handleErrorModal(dispatch, constants.NEED_SIGN_UP)
+      handleErrorModal(dispatch, i18next.t("constants.needSignUp"))
    }
 }
 

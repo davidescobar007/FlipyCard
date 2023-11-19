@@ -1,4 +1,3 @@
-import React from "react"
 import ProgressBar from "@ramonak/react-progress-bar"
 import PropTypes from "prop-types"
 
