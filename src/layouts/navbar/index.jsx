@@ -33,7 +33,7 @@ function Navbar() {
    return (
       <header className="border-b-1 navbar fixed z-10 flex h-14 border-neutral bg-base-100 shadow-md">
          <div className="flex-1">
-            <div className="w-16  select-none">
+            <div className="hidden  w-16 select-none md:block">
                <img alt="heart with german flag colors" src="/public/logo.png" />
             </div>
             <Title extraClassName=" select-none text-xl font-bold flex content-center" type="h1">
@@ -116,7 +116,7 @@ function Navbar() {
                   {authMethods.map((provider) => (
                      <a
                         className="btn btn-outline btn-primary"
-                        href={`${provider.authUrl}http://localhost:5173/learn`}
+                        href={`${provider.authUrl + import.meta.env.VITE_ENVIRONMENT}/learn`}
                         key={provider.authUrl}
                         role="button"
                      >

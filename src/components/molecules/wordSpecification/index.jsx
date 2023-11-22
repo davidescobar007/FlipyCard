@@ -1,5 +1,5 @@
 /* eslint-disable react/forbid-component-props */
-import React, { useContext, useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { RiSave2Fill, RiSave2Line } from "react-icons/ri"

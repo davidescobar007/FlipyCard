@@ -33,7 +33,9 @@ function Score() {
                   >
                      <div className="stat-figure text-3xl text-secondary">{scoreMedals[index + 1] || "⚡"}</div>
                      <div className="stat-title">
-                        <span className="font-bold">{position}</span> - {username}
+                        <span className="font-bold">
+                           {position} - {username}
+                        </span>
                      </div>
                      <div className="stat-value text-lg">
                         {score} {t("score.span")}

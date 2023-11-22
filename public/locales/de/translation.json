@@ -38,5 +38,9 @@
       "practice": "Üben",
       "spanishOption": "Spanisch",
       "germanOption": "Deutsch"
+   },
+   "home": {
+      "tittle": "Ein Weg, deinen Wortschatz im Deutsch zu trainieren, ist durch Lesen und Wiederholung!",
+      "button": "Beginne hier"
    }
 }

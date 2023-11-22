@@ -9,10 +9,19 @@ const Quiz = lazy(() => import("../pages/quiz"))
 const Practice = lazy(() => import("../pages/practice"))
 const ProtectedRoute = lazy(() => import("../components/molecules/protectedRoute"))
 const Score = lazy(() => import("../pages/score"))
+const Home = lazy(() => import("../pages/home"))
 export default function Router() {
    return (
       <main className="bg-blue-4000 w-full pb-20 md:w-7/12">
          <Routes>
+            <Route
+               element={
+                  <Suspense fallback={<Loader />}>
+                     <Home />
+                  </Suspense>
+               }
+               path="/"
+            />
             <Route
                element={
                   <Suspense fallback={<Loader />}>
