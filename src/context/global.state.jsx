@@ -43,6 +43,8 @@ function StoreProvider({ children }) {
 
    const getScoreList = () => action.getScoreList(dispatch)
 
+   const updateUSer = (user) => action.usersActions.updateUSer(dispatch, user)
+
    const store = useMemo(
       () => ({
          state,
@@ -62,7 +64,8 @@ function StoreProvider({ children }) {
          handleErrorModal,
          getCardsList,
          updateUserScore,
-         getScoreList
+         getScoreList,
+         updateUSer
       }),
       [state]
    )

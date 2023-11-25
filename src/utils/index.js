@@ -108,3 +108,16 @@ export function debounce(func, delay = 500) {
       }, delay)
    }
 }
+
+export function areObjectsDistinct(obj1, obj2) {
+   const keys = new Set([...Object.keys(obj1), ...Object.keys(obj2)])
+   for (const key of keys) {
+      if (obj1[key] !== obj2[key]) {
+         // TODO: uncomment following line when checking for differences between two objects
+         // TODO: when committing, must be always commented
+         // console.log(`Diferencia en ${key}: ${obj1[key]} !== ${obj2[key]}`)
+         return true
+      }
+   }
+   return false
+}

@@ -1,25 +1,38 @@
 import PropTypes from "prop-types"
 
-function Input({ type, extraClassName, innerRef, ...rest }) {
+function InputAtom({ type, extraClassName, inputId, withLabel, labelText, ...rest }) {
    return (
-      <input
-         ref={innerRef}
-         type={type}
-         {...rest}
-         className={"max-w-xs input input-bordered w-full " + extraClassName}
-      />
+      <div className="my-3">
+         {withLabel && (
+            <label className="label" htmlFor={inputId}>
+               <span className="label-text font-semibold">{labelText}</span>
+            </label>
+         )}
+         <input
+            className={"max-w-xs input input-bordered w-full " + extraClassName}
+            id={inputId}
+            name={inputId}
+            type={type}
+            {...rest}
+         />
+      </div>
    )
 }
 
-Input.defaultProps = {
+InputAtom.defaultProps = {
    extraClassName: "",
-   type: "text"
+   inputId: "",
+   labelText: "",
+   type: null,
+   withLabel: false
 }
 
-Input.propTypes = {
+InputAtom.propTypes = {
    extraClassName: PropTypes.string,
-   innerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
-   type: PropTypes.string
+   inputId: PropTypes.string || PropTypes.any,
+   labelText: PropTypes.string,
+   type: PropTypes.string,
+   withLabel: PropTypes.bool
 }
 
-export default Input
+export default InputAtom

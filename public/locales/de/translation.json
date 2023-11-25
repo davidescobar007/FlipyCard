@@ -42,5 +42,13 @@
    "home": {
       "tittle": "Ein Weg, deinen Wortschatz im Deutsch zu trainieren, ist durch Lesen und Wiederholung!",
       "button": "Beginne hier"
+   },
+   "profile": {
+      "saveButton": "updaten",
+      "cancelButton": "abbrechen",
+      "alias": "Spitzname",
+      "name": "Name",
+      "email": "Email",
+      "success": "Profil erfolgreich aktualisiert"
    }
 }

@@ -1,3 +1,6 @@
+import { toast } from "react-toastify"
+import i18next from "i18next"
+
 import {
    pbCreateRecord,
    pbGetSingleRecordQuery,
@@ -10,6 +13,34 @@ import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
 import { handleErrorModal } from "./global.actions"
+
+const { t } = i18next
+const getScore = async (dispatch, userId) => {
+   try {
+      const response = await pbGetSingleRecordQuery({
+         collection: constants.SCORE,
+         field: "user_id",
+         param: userId,
+         fields: "score"
+      })
+      const { score } = response
+      return score
+   } catch (error) {
+      handleErrorModal(dispatch, error)
+   }
+}
+
+const updateUSer = async (dispatch, user) => {
+   try {
+      const updatedUser = await pbUpdateRecord(constants.USERS, user.id, user)
+      updateUserState(dispatch)
+      if (updatedUser) {
+         toast.success(t("profile.success"))
+      }
+   } catch (error) {
+      handleErrorModal(dispatch, error)
+   }
+}
 
 const updateUserScore = async (id, newScore) => {
    const params = {
@@ -29,11 +60,13 @@ const getLoginMethods = async (dispatch) => {
    dispatch(actionHandlerTypes.setAuthMethods(authMethods?.authProviders))
 }
 
-const updateUserState = (dispatch) => {
+const updateUserState = async (dispatch) => {
    const pbModel = JSON.parse(localStorage.getItem("pocketbase_auth"))
    try {
       if (pbModel) {
          const { model } = pbModel
+         const userScore = await getScore(dispatch, model.id)
+         model["userScore"] = userScore
          dispatch(actionHandlerTypes.setUser(model))
       }
    } catch (error) {
@@ -59,6 +92,8 @@ const googleLogin = async (dispatch) => {
             user.record.avatarUrl = user.meta.avatarUrl
             user.record.name = user.meta.name
             const updatedUSer = await pbUpdateRecord(constants.USERS, user.record.id, user.record)
+            const userScore = await getScore(dispatch, updatedUSer.id)
+            console.log(userScore)
             dispatch(actionHandlerTypes.setUser(updatedUSer))
             return
          }
@@ -90,4 +125,4 @@ const actionHandlerTypes = {
    })
 }
 
-export { getLoginMethods, googleLogin, logOut, updateUserScore, updateUserState }
+export { getLoginMethods, googleLogin, logOut, updateUSer, updateUserScore, updateUserState }

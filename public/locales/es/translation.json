@@ -42,5 +42,13 @@
    "home": {
       "tittle": "¡Una forma de entrenar tu vocabulario en alemán mediante la lectura y la repetición!",
       "button": "Empieza aquí"
+   },
+   "profile": {
+      "saveButton": "actualizar",
+      "cancelButton": "cancelar",
+      "alias": "Sobrenombre",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "success": "Perfil actualizado con éxito"
    }
 }

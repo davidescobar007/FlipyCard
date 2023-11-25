@@ -51,6 +51,14 @@ export default function Aside() {
                }
                path="/quiz/:id"
             />
+            <Route
+               element={
+                  <Suspense fallback="loading...">
+                     <Menu />
+                  </Suspense>
+               }
+               path="/profile"
+            />
          </Routes>
       </aside>
    )
