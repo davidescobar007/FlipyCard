@@ -27,7 +27,6 @@ const getScoreList = async (dispatch) => {
          item.position = index + 1
          return flattenObj(item)
       })
-      console.log(resolveScoreList)
       dispatch(actionHandlerTypes.setScoreList(resolveScoreList))
    } catch (error) {
       handleErrorModal(dispatch, error)
