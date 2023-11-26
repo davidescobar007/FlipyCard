@@ -79,12 +79,6 @@ const globalReducer = (state, action) => {
             quizz: action.payload
          }
       }
-      case types.SERVICE_ERROR: {
-         return {
-            ...state,
-            errorModalText: action.payload
-         }
-      }
       case types.SET_SCORE_LIST: {
          return {
             ...state,

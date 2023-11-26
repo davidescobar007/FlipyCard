@@ -9,11 +9,13 @@ import * as quizzesActions from "./quizzes.actions"
 import * as translationsAction from "./translations.actions"
 import * as usersActions from "./users.actions"
 
-const handleErrorModal = (dispatch, message) => {
-   dispatch(actionHandlerTypes.error(String(message)))
+const handleErrorModal = (message) => {
    console.warn(message)
    let inputs = document.getElementById("modalWarning")
+   let titleElement = document.getElementById("modalTextContent")
    inputs.checked = true
+   titleElement.innerHTML = ""
+   titleElement.appendChild(document.createTextNode(message))
 }
 
 const getScoreList = async (dispatch) => {
@@ -29,7 +31,7 @@ const getScoreList = async (dispatch) => {
       })
       dispatch(actionHandlerTypes.setScoreList(resolveScoreList))
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 

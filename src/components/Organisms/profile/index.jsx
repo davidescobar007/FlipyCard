@@ -53,7 +53,7 @@ function ProfileOrganism() {
             <InputAtom
                id="username"
                labelText={t("profile.alias")}
-               maxLength="18"
+               maxLength="13"
                name="username"
                onChange={handleChange}
                placeHolder={`@${userCopy.username}`}

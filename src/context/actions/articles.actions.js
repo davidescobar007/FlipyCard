@@ -16,7 +16,7 @@ const getArticlesList = async (dispatch) => {
       const data = await pbGetList("articles")
       dispatch(articleActionTypes.setArticles(data))
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 
@@ -25,7 +25,7 @@ const getSingleArticle = async (id, dispatch) => {
       const article = await pbGetSingleRecord(constants.ARTICLES, id)
       dispatch(articleActionTypes.setSelectedArticle(article))
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 
@@ -33,7 +33,7 @@ const setSelectedArticle = async (article, dispatch) => {
    try {
       dispatch(articleActionTypes.setSelectedArticle(article))
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 
@@ -42,7 +42,7 @@ const setSelectedWord = async (word, selectedWordInState, dispatch) => {
       dispatch(articleActionTypes.setSelectedWord(word))
       selectedWordInState !== word && searchTranslationFromSources(word, dispatch)
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 
@@ -50,7 +50,7 @@ const resetTranslation = async (dispatch) => {
    try {
       dispatch({ type: types.UPDATE_TRANSLATION })
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 

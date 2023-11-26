@@ -5,14 +5,14 @@ import Modal from "../../components/molecules/modal"
 import { StoreContext } from "../../context/global.state"
 function ModalContainer({ children }) {
    const {
-      state: { isDarkTheme, errorModalText }
+      state: { isDarkTheme }
    } = useContext(StoreContext)
 
    return (
       <section className="flex h-screen flex-col" data-theme={isDarkTheme ? "night" : "mytheme"}>
          {children}
          <Modal id="modalWarning" title="Ooops!">
-            <p className="py-4 text-lg">{errorModalText}</p>
+            <p className="py-4 text-lg" id="modalTextContent" />
             <div className="modal-action">
                <label className="btn btn-warning" htmlFor="modalWarning">
                   Close

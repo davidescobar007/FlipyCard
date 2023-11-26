@@ -12,10 +12,10 @@ export default defineConfig({
          },
          includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
          manifest: {
-            name: "Study smart, study with Flipycard",
-            short_name: "FlipyCard",
+            name: "Study smart, study with LingoDeutsch",
+            short_name: "LingoDeutsch",
             description:
-               "FlipyCard is the best tool for flash cards, it will help you memorize anything you need!",
+               "LingoDeutsch is the best tool for flash cards, it will help you memorize anything you need!",
             theme_color: "#58cc02",
             background_color: "#58cc02",
             icons: [

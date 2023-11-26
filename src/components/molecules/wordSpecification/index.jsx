@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 import { RiSave2Fill, RiSave2Line } from "react-icons/ri"
 import { Link, useParams } from "react-router-dom"
 
+import { handleErrorModal } from "../../../context/actions/global.actions"
 import { StoreContext } from "../../../context/global.state"
 import Button from "../../atoms/button"
 import Loader from "../../atoms/loader"
@@ -13,7 +14,6 @@ export default function WordSpecification() {
    const { t } = useTranslation()
    const {
       saveVocabularyToStudy,
-      handleErrorModal,
       state: {
          selectedWord,
          selectedWordTranslation,

@@ -26,7 +26,7 @@ const getScore = async (dispatch, userId) => {
       const { score } = response
       return score
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 
@@ -38,7 +38,7 @@ const updateUSer = async (dispatch, user) => {
          toast.success(t("profile.success"))
       }
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 
@@ -70,7 +70,7 @@ const updateUserState = async (dispatch) => {
          dispatch(actionHandlerTypes.setUser(model))
       }
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 
@@ -93,13 +93,15 @@ const googleLogin = async (dispatch) => {
             user.record.name = user.meta.name
             const updatedUSer = await pbUpdateRecord(constants.USERS, user.record.id, user.record)
             const userScore = await getScore(dispatch, updatedUSer.id)
-            console.log(userScore)
+            updatedUSer["userScore"] = userScore
             dispatch(actionHandlerTypes.setUser(updatedUSer))
             return
          }
+         const userScore = await getScore(dispatch, user.record.id)
+         user.record["userScore"] = userScore
          dispatch(actionHandlerTypes.setUser(user.record))
       } catch (error) {
-         handleErrorModal(dispatch, error)
+         handleErrorModal(error)
       }
    }
 }
@@ -110,7 +112,7 @@ const logOut = (dispatch) => {
       localStorage.removeItem("user")
       dispatch(actionHandlerTypes.setUser(null))
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 

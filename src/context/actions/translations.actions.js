@@ -13,7 +13,7 @@ const resetTranslation = async (dispatch) => {
    try {
       dispatch({ type: types.UPDATE_TRANSLATION })
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 
@@ -26,7 +26,7 @@ const getWordsTranslationFromDB = async (wordToTranslate, params, dispatch) => {
       if (String(error) === "ClientResponseError 404: The requested resource wasn't found.") {
          return null
       } else {
-         handleErrorModal(dispatch, error)
+         handleErrorModal(error)
       }
    }
 }
@@ -36,7 +36,7 @@ const getWordsTranslationFromAPI = async (wordToTranslate, dispatch) => {
       const translation = await getWordsTranslationFetchImplementation(removePunctuation(wordToTranslate))
       return translation
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 
@@ -46,7 +46,7 @@ const saveTranslationToDB = async (translation, dispatch) => {
       dispatch(translationActionTypes.setTranslation(recordCreated))
       return recordCreated
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 
@@ -72,7 +72,7 @@ const searchTranslationFromSources = async (wordToTranslate, dispatch) => {
       if (!translationFromDb) {
          const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
          if (translationFromAPI.status === 204) {
-            handleErrorModal(dispatch, t("translation.notFoundTranslation"))
+            handleErrorModal(t("translation.notFoundTranslation"))
             dispatch(actionLoaders.loadingWordTranslation(false))
             return
          }
@@ -108,10 +108,10 @@ const saveVocabularyToStudy = async (state, dispatch) => {
          debounce(pbCreateRecord(constants.STUDY_VOCABULARY, data))
          toast.success(t("translation.saved"))
       } else {
-         handleErrorModal(dispatch, t("constants.needSignUp"))
+         handleErrorModal(t("constants.needSignUp"))
       }
    } catch (error) {
-      handleErrorModal(dispatch, error)
+      handleErrorModal(error)
    }
 }
 

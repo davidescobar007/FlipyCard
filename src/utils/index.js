@@ -80,19 +80,31 @@ export const removePunctuation = (inputString) => {
    return inputString.replace(/[.,#!$%^&*;:{}=\-_`~()?"'„“\\\r\n]/g, "")
 }
 
-export const transformData = (inputData) => {
-   const transformedData = {
-      data: []
-   }
+export const extractAndSortSentences = (inputData) => {
+   const transformedData = { data: [] }
 
-   for (const item of inputData) {
-      const [german, spanish] = item.map((text) => text.replace(/<\/?b>/g, ""))
+   inputData.slice(0, 3).forEach((item) => {
+      const sentences = item?.sentences
+      if (sentences) {
+         const firstFiveShortest = sentences
+            .map((sentence) => {
+               if (Array.isArray(sentence) && sentence.length >= 2) {
+                  return {
+                     german: sentence[0].replace(/<\/?b>/g, ""),
+                     spanish: sentence[1].replace(/<\/?b>/g, "")
+                  }
+               }
+               return null
+            })
+            .filter((sentence) => sentence !== null)
+            .sort((a, b) => a.german.length - b.german.length)
+            .slice(0, 5)
 
-      transformedData.data.push({
-         german: german,
-         spanish: spanish
-      })
-   }
+         transformedData.data = transformedData.data
+            .concat(firstFiveShortest)
+            .sort((a, b) => a.german.length - b.german.length)
+      }
+   })
 
    return transformedData
 }
@@ -114,8 +126,8 @@ export function areObjectsDistinct(obj1, obj2) {
    for (const key of keys) {
       if (obj1[key] !== obj2[key]) {
          // TODO: uncomment following line when checking for differences between two objects
-         // TODO: when committing, must be always commented
-         // console.log(`Diferencia en ${key}: ${obj1[key]} !== ${obj2[key]}`)
+         // TODO: when committing, this must be always commented
+         // console.log(`Difference in ${key}: ${obj1[key]} !== ${obj2[key]}`)
          return true
       }
    }

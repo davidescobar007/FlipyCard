@@ -1,8 +1,7 @@
 import { headers, urls } from "../context/global.types"
-import { transformData } from "../utils"
+import { extractAndSortSentences } from "../utils"
 
 import { fetchData } from "."
-
 export const getWordsTranslationFetchImplementation = async (wordToTranslate) => {
    const urlCompletion = `${urls.linguatools}query=${wordToTranslate}&langpair=de-es`
    try {
@@ -10,13 +9,28 @@ export const getWordsTranslationFetchImplementation = async (wordToTranslate) =>
          const translationData = await fetchData("GET", urlCompletion, null, headers)
          let result = await translationData.text()
          result = result ? JSON.parse(result) : null
+
+         if (!Array.isArray(result) || result.length === 0) {
+            const transformedResult = {
+               data: null,
+               status: translationData.status
+            }
+            return transformedResult
+         }
+
+         const german_translation = result && result[0].l1_text
+         const spanish_translation = result
+            .map((item, index) => (index < 3 && item.l2_text ? item.l2_text : ""))
+            .filter(Boolean)
+            .join(", ")
+
          const data = {
-            german_translation: result && result[0].l1_text,
-            spanish_translation: result && result[0].l2_text,
+            german_translation,
+            spanish_translation,
             english_translation: null,
             user: null,
             type_of_word: result && result[0].wortart,
-            examples: result && result[0]?.sentences && transformData(result[0].sentences)
+            examples: result && extractAndSortSentences(result)
          }
 
          const transformedResult = {

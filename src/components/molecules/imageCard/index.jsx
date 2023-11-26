@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { RiSave2Fill, RiSave2Line } from "react-icons/ri"
 import PropTypes from "prop-types"
 
+import { handleErrorModal } from "../../../context/actions/global.actions"
 import { StoreContext } from "../../../context/global.state"
 import Badge from "../../atoms/badge"
 import Title from "../../atoms/title/title"
@@ -11,7 +12,6 @@ export default function ImageCard({ image, title, level }) {
    const { t } = useTranslation()
 
    const {
-      handleErrorModal,
       saveVocabularyToStudy,
       state: { selectedWord, selectedWordTranslation, user }
    } = useContext(StoreContext)

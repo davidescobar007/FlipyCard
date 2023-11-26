@@ -35,8 +35,6 @@ function StoreProvider({ children }) {
 
    const saveVocabularyToStudy = () => action.translationsAction.saveVocabularyToStudy(state, dispatch)
 
-   const handleErrorModal = (message) => action.handleErrorModal(dispatch, message)
-
    const getCardsList = () => action.cardsActions.getCardsList(state.user, dispatch)
 
    const updateUserScore = (id, newScore) => action.usersActions.updateUserScore(id, newScore)
@@ -61,7 +59,6 @@ function StoreProvider({ children }) {
          logOut,
          updateUserState,
          saveVocabularyToStudy,
-         handleErrorModal,
          getCardsList,
          updateUserScore,
          getScoreList,
