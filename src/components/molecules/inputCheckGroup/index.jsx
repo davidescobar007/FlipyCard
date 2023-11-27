@@ -1,4 +1,3 @@
-import React from "react"
 import PropTypes from "prop-types"
 export default function InputCheckGroup({ text, name, inputState, ...rest }) {
    const inputStyles = {

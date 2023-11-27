@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import * as React from "react"
 import { useEffect, useMemo, useState } from "react"
 
 function CardFlipper({

@@ -5,8 +5,6 @@ import "./i18n"
 
 import App from "./App"
 
-import "/public/styles/animate.scss"
-import "/public/styles/customAnimations.scss"
 import "./main.scss"
 import "react-toastify/dist/ReactToastify.css"
 

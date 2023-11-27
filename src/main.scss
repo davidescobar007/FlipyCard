@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "../public/styles/animate.scss";
+@import "../public/styles/customAnimations.scss";
 
 body {
    height: 100%;

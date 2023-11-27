@@ -1,5 +1,5 @@
 /* eslint-disable react/forbid-component-props */
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { FcGoogle } from "react-icons/fc"
@@ -34,11 +34,15 @@ function Navbar() {
       <header className="border-b-1 navbar fixed z-10 flex h-14 border-neutral bg-base-100 shadow-md">
          <div className="flex-1">
             <div className="hidden  w-16 select-none md:block">
-               <img alt="heart with german flag colors" src="/public/logo.png" />
+               <Link to="/">
+                  <img alt="heart with german flag colors" src="/logo.png" />
+               </Link>
             </div>
-            <Title extraClassName=" select-none text-xl font-bold flex content-center" type="h1">
-               LingoDeutsch
-            </Title>
+            <Link to="/">
+               <Title extraClassName=" select-none text-xl font-bold flex content-center" type="h1">
+                  LingoDeutsch
+               </Title>
+            </Link>
          </div>
          <div className="flex-none gap-2">
             <div className="dropdown dropdown-end dropdown-bottom">

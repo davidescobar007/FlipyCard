@@ -10,14 +10,14 @@ export default function HomeOrganism() {
       <section className="mt-10 flex flex-wrap items-center justify-center">
          <div className="floating flex flex-wrap justify-center">
             <div className="bg-green-4000 flex justify-center">
-               <img alt="map of Germany in cartoon style" src="/public/germany.png" width={110} />
+               <img alt="map of Germany in cartoon style" src="/germany.png" width={110} />
             </div>
             <div className="flex w-full justify-center">
                <div className="bg-green-4000">
-                  <img alt="map of Switzerland in cartoon style" src="/public/switzerland.png" width={150} />
+                  <img alt="map of Switzerland in cartoon style" src="/switzerland.png" width={150} />
                </div>
                <div className="bg-yellow-4000">
-                  <img alt="map of Austria in cartoon style" src="/public/austria.png" width={200} />
+                  <img alt="map of Austria in cartoon style" src="/austria.png" width={200} />
                </div>
             </div>
          </div>
