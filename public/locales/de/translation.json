@@ -50,5 +50,12 @@
       "name": "Name",
       "email": "Email",
       "success": "Profil erfolgreich aktualisiert"
+   },
+   "data": {
+      "german_translation": "Wort",
+      "level": "Niveau",
+      "times_seen": "Häufigkeit",
+      "delete": "Löschen",
+      "tableTitle": "Ein Blick auf deine Statistiken."
    }
 }

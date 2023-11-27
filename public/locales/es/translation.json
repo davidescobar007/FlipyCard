@@ -50,5 +50,12 @@
       "name": "Nombre",
       "email": "Correo electrónico",
       "success": "Perfil actualizado con éxito"
+   },
+   "data": {
+      "german_translation": "Palabra",
+      "level": "Nivel",
+      "times_seen": "Veces visto",
+      "delete": "Eliminar",
+      "tableTitle": "Un vistazo a tus estadísticas"
    }
 }

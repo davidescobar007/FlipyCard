@@ -31,7 +31,7 @@ const getWordsTranslationFromDB = async (wordToTranslate, params, dispatch) => {
    }
 }
 
-const getWordsTranslationFromAPI = async (wordToTranslate, dispatch) => {
+const getWordsTranslationFromAPI = async (wordToTranslate) => {
    try {
       const translation = await getWordsTranslationFetchImplementation(removePunctuation(wordToTranslate))
       return translation
@@ -91,7 +91,7 @@ const checkVocaBularyExist = async (userId, wordId) => {
    return wordIsSaved
 }
 
-const saveVocabularyToStudy = async (state, dispatch) => {
+const saveVocabularyToStudy = async (state) => {
    try {
       if (state?.user?.id && state?.selectedWordTranslation?.id) {
          const valueExists = await checkVocaBularyExist(state.user.id, state.selectedWordTranslation.id)
