@@ -79,9 +79,9 @@ const googleLogin = async (dispatch) => {
    if (params.get("state")) {
       const redirectUrl = window.location.origin + "/learn"
       const provider = JSON.parse(localStorage.getItem("provider"))
-      // if (provider.state !== params.get("state")) {
-      //    throw "State parameters don't match."
-      // }
+      if (provider.state !== params.get("state")) {
+         throw "State parameters don't match."
+      }
       const provName = provider[0].name
       const code = params.get("code")
       const codeVerifier = provider[0].codeVerifier
