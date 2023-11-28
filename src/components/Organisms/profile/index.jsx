@@ -25,10 +25,6 @@ function ProfileOrganism() {
       getCardsList()
    }, [])
 
-   useEffect(() => {
-      console.log(cards)
-   }, [cards])
-
    const handleChange = (e) => {
       const { name, value } = e.target
       setUserInfo((prevValues) => ({ ...prevValues, [name]: value.replace(/[@ ]+/g, "") }))
