@@ -7,6 +7,7 @@ import { handleErrorModal } from "../../../context/actions/global.actions"
 function ProtectedRoute({ children }) {
    const { t } = useTranslation()
    const { model } = JSON.parse(localStorage.getItem("pocketbase_auth"))
+   console.log(model)
    if (!model?.username) {
       handleErrorModal(t("constants.needSignUp"))
       return <Navigate to="/learn" />
