@@ -43,11 +43,11 @@ function ProfileOrganism() {
       <section className="flex flex-col items-center justify-center">
          <div className="avatar">
             <div className="w-24 rounded-full">
-               <img alt="profile pic" src={user.avatarUrl} />
+               <img alt="profile pic" src={user?.avatarUrl} />
             </div>
          </div>
          <Title extraClassName="mt-4" type="h4">
-            {t("score.span")}: <span className="text-lg font-bold">{user.userScore} ✨</span>
+            {t("score.span")}: <span className="text-lg font-bold">{user?.userScore} ✨</span>
          </Title>
 
          <form className="form-control my-2 mb-10 flex w-full flex-wrap md:w-7/12" onSubmit={handleSubmit}>
@@ -57,7 +57,7 @@ function ProfileOrganism() {
                labelText={t("profile.name")}
                name="name"
                onChange={handleChange}
-               placeholder={userCopy.name}
+               placeholder={userCopy?.name}
                value={userInfo?.name}
                withLabel
             />
@@ -67,7 +67,7 @@ function ProfileOrganism() {
                maxLength="13"
                name="username"
                onChange={handleChange}
-               placeholder={`@${userCopy.username}`}
+               placeholder={`@${userCopy?.username}`}
                value={`@${userInfo?.username}`}
                withLabel
             />
@@ -77,7 +77,7 @@ function ProfileOrganism() {
                labelText={t("profile.email")}
                name="email"
                onChange={handleChange}
-               placeholder={userCopy.email}
+               placeholder={userCopy?.email}
                value={userInfo?.email}
                withLabel
             />

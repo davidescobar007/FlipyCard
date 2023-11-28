@@ -90,7 +90,7 @@ function Navbar() {
                <div className="dropdown-end dropdown">
                   <label className="avatar btn btn-circle btn-ghost" tabIndex={0}>
                      <div className="w-10 rounded-full">
-                        <img src={user.avatarUrl} />
+                        <img src={user?.avatarUrl} />
                      </div>
                   </label>
                   <ul
