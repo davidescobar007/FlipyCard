@@ -11,6 +11,7 @@ function ProtectedRoute({ children }) {
    if (user?.model?.username) {
       return children
    } else {
+      console.log("localstorage_noStorage", user)
       handleErrorModal(t("constants.needSignUp"))
       return <Navigate to="/learn" />
    }
