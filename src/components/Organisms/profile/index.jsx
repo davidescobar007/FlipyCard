@@ -38,7 +38,7 @@ function ProfileOrganism() {
    return (
       <>
          {console.log("userCopy", userCopy)}
-         {Object.keys(userCopy).length > 0 && (
+         {userCopy?.username !== undefined && (
             <section className="flex flex-col items-center justify-center">
                <div className="avatar">
                   <div className="w-24 rounded-full">
