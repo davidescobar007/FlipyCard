@@ -6,17 +6,16 @@ import { handleErrorModal } from "../../../context/actions/global.actions"
 
 function ProtectedRoute({ children }) {
    const { t } = useTranslation()
-   const { model } = JSON.parse(localStorage.getItem("pocketbase_auth"))
+   const user = JSON.parse(localStorage.getItem("pocketbase_auth"))
    const handleRedirect = () => {
-      console.log(model)
+      console.log(user?.model)
+   }
+   if (user?.model?.username) {
+      return children
+   } else {
       handleErrorModal(t("constants.needSignUp"))
       return <Navigate to="/learn" />
    }
-   if (!model?.username) {
-      handleRedirect()
-      return
-   }
-   return children
 }
 
 ProtectedRoute.propTypes = {
