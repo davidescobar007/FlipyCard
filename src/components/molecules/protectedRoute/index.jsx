@@ -12,7 +12,7 @@ function ProtectedRoute({ children }) {
       return children
    } else {
       console.log("localstorage_noStorage", user)
-      handleErrorModal(t("constants.needSignUp"))
+      handleErrorModal(t("constants.needSignUp.siu"))
       return <Navigate to="/learn" />
    }
 }
