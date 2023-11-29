@@ -64,7 +64,26 @@ function StoreProvider({ children }) {
          getScoreList,
          updateUSer
       }),
-      [state]
+      [
+         state,
+         updateCard,
+         setUiTheme,
+         getArticlesList,
+         setSelectedArticle,
+         setSelectedWord,
+         resetTranslation,
+         getSingleArticle,
+         getSingleQuizz,
+         getLoginMethods,
+         googleLogin,
+         logOut,
+         updateUserState,
+         saveVocabularyToStudy,
+         getCardsList,
+         updateUserScore,
+         getScoreList,
+         updateUSer
+      ]
    )
 
    return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
