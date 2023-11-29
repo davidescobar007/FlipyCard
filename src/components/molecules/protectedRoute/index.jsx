@@ -7,9 +7,7 @@ import { handleErrorModal } from "../../../context/actions/global.actions"
 function ProtectedRoute({ children }) {
    const { t } = useTranslation()
    const user = JSON.parse(localStorage.getItem("pocketbase_auth"))
-   const handleRedirect = () => {
-      console.log(user?.model)
-   }
+   console.log("localstorage", user)
    if (user?.model?.username) {
       return children
    } else {
