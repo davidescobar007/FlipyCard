@@ -9,12 +9,12 @@ function Practice() {
    const { t } = useTranslation()
    const {
       getCardsList,
-      state: { cards }
+      state: { cards, user }
    } = useContext(StoreContext)
 
    useEffect(() => {
-      getCardsList()
-   }, [])
+      user?.id && getCardsList()
+   }, [user])
 
    return (
       <section className="flex justify-center ">

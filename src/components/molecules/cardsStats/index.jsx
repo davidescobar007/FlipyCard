@@ -7,15 +7,15 @@ function CardsStats() {
    const { t } = useTranslation()
    const {
       getCardsList,
-      state: { cards }
+      state: { cards, user }
    } = useContext(StoreContext)
    const [easyCards, setEasyCards] = useState([])
    const [mediumCards, setMediumCards] = useState([])
    const [hardCards, setHardCards] = useState([])
 
    useEffect(() => {
-      getCardsList()
-   }, [])
+      user?.id && getCardsList()
+   }, [user])
 
    useEffect(() => {
       setEasyCards(cards.filter((card) => card.level === "easy"))

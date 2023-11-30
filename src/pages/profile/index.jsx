@@ -11,8 +11,8 @@ function Profile() {
    } = useContext(StoreContext)
 
    useEffect(() => {
-      getCardsList()
-   }, [])
+      user?.id && getCardsList()
+   }, [user])
 
    delete user?.updated
    delete user?.expand
