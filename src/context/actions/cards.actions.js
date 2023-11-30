@@ -8,16 +8,20 @@ import { handleErrorModal } from "./global.actions"
 
 const getCardsList = async (user, dispatch) => {
    try {
-      const cardsList = await pbGetList(constants.STUDY_VOCABULARY, {
-         filter: `user_id = "${user.id}"`,
-         expand: "word_id",
-         fields:
-            "expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen,times_seen"
-      })
-      console.log("getCardsList", { user, cardsList })
-      dispatch(cardActionTypes.setCards(cardsList))
+      if (user.id) {
+         const cardsList = await pbGetList(constants.STUDY_VOCABULARY, {
+            filter: `user_id = "${user.id}"`,
+            expand: "word_id",
+            fields:
+               "expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen,times_seen"
+         })
+         console.log("getCardsList", { user, cardsList })
+         dispatch(cardActionTypes.setCards(cardsList))
+      } else {
+         handleErrorModal(i18next.t("constants.needSignUp"))
+      }
    } catch (error) {
-      handleErrorModal(i18next.t("constants.needSignUp"))
+      handleErrorModal(error)
    }
 }
 
