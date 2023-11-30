@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-const useLocalStoragePropertyExists = (propertyName) => {
-   const [propertyExists, setPropertyExists] = useState(false)
+export function useLocalStorage(itemName, initialValue) {
+   const localStorageItem = localStorage.getItem(itemName)
+   let parsedItem
 
-   useEffect(() => {
-      const checkPropertyExists = () => {
-         const localStorageValue = localStorage.getItem(propertyName)
-         setPropertyExists(!!localStorageValue)
-      }
-      checkPropertyExists()
+   if (!localStorageItem) {
+      localStorage.setItem(itemName, JSON.stringify(initialValue))
+      parsedItem = initialValue
+   } else {
+      parsedItem = JSON.parse(localStorageItem)
+   }
 
-      const handleStorageChange = () => {
-         checkPropertyExists()
-      }
+   const [item, setItem] = useState(parsedItem)
 
-      window.addEventListener("storage", handleStorageChange)
+   const saveItem = (newItem) => {
+      const stringifiedItem = JSON.stringify(newItem)
+      localStorage.setItem(itemName, stringifiedItem)
+      setItem(newItem)
+   }
 
-      return () => {
-         window.removeEventListener("storage", handleStorageChange)
-      }
-   }, [])
-
-   return propertyExists
+   return [item, saveItem]
 }
-
-export default useLocalStoragePropertyExists
