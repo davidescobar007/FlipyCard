@@ -35,7 +35,7 @@ function StoreProvider({ children }) {
 
    const saveVocabularyToStudy = () => action.translationsAction.saveVocabularyToStudy(state, dispatch)
 
-   const getCardsList = () => action.cardsActions.getCardsList(state.user, dispatch)
+   const getCardsList = () => action.cardsActions.getCardsList(state, dispatch)
 
    const updateUserScore = (id, newScore) => action.usersActions.updateUserScore(id, newScore)
 
@@ -64,26 +64,7 @@ function StoreProvider({ children }) {
          getScoreList,
          updateUSer
       }),
-      [
-         state,
-         updateCard,
-         setUiTheme,
-         getArticlesList,
-         setSelectedArticle,
-         setSelectedWord,
-         resetTranslation,
-         getSingleArticle,
-         getSingleQuizz,
-         getLoginMethods,
-         googleLogin,
-         logOut,
-         updateUserState,
-         saveVocabularyToStudy,
-         getCardsList,
-         updateUserScore,
-         getScoreList,
-         updateUSer
-      ]
+      [state]
    )
 
    return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
