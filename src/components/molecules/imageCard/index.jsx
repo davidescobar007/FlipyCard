@@ -19,7 +19,7 @@ export default function ImageCard({ image, title, level }) {
 
    const handleSaveTranslation = () => {
       if (!user) {
-         handleErrorModal(t("constants.needSignUp1"))
+         handleErrorModal(t("constants.needSignUp"))
       }
       if (selectedWordTranslation?.id && user) {
          saveVocabularyToStudy()
