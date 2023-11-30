@@ -15,7 +15,6 @@ const getCardsList = async ({ user }, dispatch) => {
             fields:
                "expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen,times_seen"
          })
-         console.log("getCardsList", { user, cardsList })
          dispatch(cardActionTypes.setCards(cardsList))
       } else {
          handleErrorModal(i18next.t("constants.needSignUp" + " to get your cards list"))

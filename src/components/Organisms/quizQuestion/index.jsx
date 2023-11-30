@@ -38,7 +38,6 @@ export default function QuizQuestion({ arrayOfQuestions }) {
 
    useEffect(() => {
       if (filteringComplete) {
-         console.log("filteringComplete")
          const score = (totalRating * 100) / arrayOfQuestions.length
          updateUserScore(user.id, score)
       }
