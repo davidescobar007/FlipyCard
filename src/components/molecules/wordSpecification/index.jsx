@@ -27,7 +27,7 @@ export default function WordSpecification() {
 
    const handleSaveTranslation = () => {
       if (!user) {
-         handleErrorModal(t("constants.needSignUp"))
+         handleErrorModal(t("constants.needSignUp2"))
       }
       if (selectedWordTranslation?.id && user) {
          saveVocabularyToStudy()

@@ -108,7 +108,7 @@ const saveVocabularyToStudy = async (state) => {
          debounce(pbCreateRecord(constants.STUDY_VOCABULARY, data))
          toast.success(t("translation.saved"))
       } else {
-         handleErrorModal(t("constants.needSignUp"))
+         handleErrorModal(t("constants.needSignUp4"))
       }
    } catch (error) {
       handleErrorModal(error)

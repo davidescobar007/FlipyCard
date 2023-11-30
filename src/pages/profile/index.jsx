@@ -1,10 +1,23 @@
+import { useContext } from "react"
+import { useEffect } from "react"
+
 import ProfileOrganism from "../../components/Organisms/profile"
-import { useLocalStorage } from "../../customHooks/useLocalStorage"
+import { StoreContext } from "../../context/global.state"
 
 function Profile() {
-   const [{ model }] = useLocalStorage("pocketbase_auth", {})
-   console.log("model", model)
-   return <div>{model?.username && <ProfileOrganism user={model} />}</div>
+   const {
+      getCardsList,
+      state: { cards, user }
+   } = useContext(StoreContext)
+
+   useEffect(() => {
+      getCardsList()
+   }, [])
+
+   delete user.updated
+   delete user.expand
+
+   return <div>{user?.username && <ProfileOrganism cards={cards} user={user} />}</div>
 }
 
 export default Profile
