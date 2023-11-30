@@ -14,8 +14,8 @@ function Profile() {
       getCardsList()
    }, [])
 
-   delete user.updated
-   delete user.expand
+   delete user?.updated
+   delete user?.expand
 
    return <div>{user?.username && <ProfileOrganism cards={cards} user={user} />}</div>
 }
