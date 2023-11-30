@@ -18,7 +18,7 @@ const getCardsList = async ({ user }, dispatch) => {
          console.log("getCardsList", { user, cardsList })
          dispatch(cardActionTypes.setCards(cardsList))
       } else {
-         handleErrorModal(i18next.t("constants.needSignUp"))
+         handleErrorModal(i18next.t("constants.needSignUp" + " to get your cards list"))
       }
    } catch (error) {
       handleErrorModal(error)
