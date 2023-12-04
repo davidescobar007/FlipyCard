@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { LazyLoadImage } from "react-lazy-load-image-component"
 import { Link, useParams } from "react-router-dom"
 import PropTypes from "prop-types"
 
 import { StoreContext } from "../../../context/global.state"
+import { constants } from "../../../context/global.types"
 import Badge from "../../atoms/badge"
 import Button from "../../atoms/button"
+import PictureAtom from "../../atoms/picture"
 import Title from "../../atoms/title/title"
 import ImageCard from "../imageCard"
 export default function Hero({ image, title, text_content, level = [] }) {
@@ -29,10 +30,10 @@ export default function Hero({ image, title, text_content, level = [] }) {
          <div className="hero-content p-0 text-center">
             <div className="max-w-md">
                <div className="hidden md:block">
-                  <LazyLoadImage
-                     alt={image}
-                     height={50}
-                     src={image} // use normal <img> attributes as props
+                  <PictureAtom
+                     image={`${import.meta.env.VITE_API_ENVIRONMENT}/api/files/${
+                        constants.ARTICLES
+                     }/${id}/${image}`}
                   />
                   {/* <img className="rounded-lg" height={50} loading="eager" src={image} /> */}
                   <Title extraClassName="font-medium text-2xl my-3">{title}</Title>
@@ -64,7 +65,7 @@ export default function Hero({ image, title, text_content, level = [] }) {
                            </span>
                         ))}
                   </p>
-                  <footer className="mb-28 mt-7 lg:hidden">
+                  <footer className="tooltip tooltip-accent mb-28 mt-7 lg:hidden" data-tip={t("learn.earnPoints")}>
                      <Link to={`/quiz/${id}`}>
                         <Button>{t("learn.startQuiz")} 📝</Button>
                      </Link>

@@ -8,7 +8,7 @@ export default function Article() {
    const {
       getSingleArticle,
       state: {
-         selectedArticle: { image, title, text_content, level }
+         selectedArticle: { title, text_content, level, imageFile }
       }
    } = useContext(StoreContext)
 
@@ -18,5 +18,5 @@ export default function Article() {
       getSingleArticle(id)
    }, [])
 
-   return title && <Hero image={image} level={level} text_content={text_content} title={title} />
+   return imageFile && <Hero image={imageFile} level={level} text_content={text_content} title={title} />
 }

@@ -1,6 +1,7 @@
 /* eslint-disable react/forbid-component-props */
 import { useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { BsInfoCircleFill } from "react-icons/bs"
 import { RiSave2Fill, RiSave2Line } from "react-icons/ri"
 import PropTypes from "prop-types"
 
@@ -35,14 +36,23 @@ export default function ImageCard({ image, title, level }) {
       <article
          className="flex h-44 flex-wrap bg-cover p-3"
          style={{
-            backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.5003342401413691) 0%, rgba(65,65,65,0.35747709728422616) 100%), url(${image})`
+            backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(65,65,65,0.35) 100%), url(${image})`
          }}
       >
          <Title extraClassName="text-2xl w-full text-start text-white leading-7 font-medium" type="h3">
             {title}
          </Title>
+         <span />
          <div className="mt-2 w-11/12">
-            <Title extraClassName="text-xl text-start text-white underline font-medium" type="h3">
+            <Title extraClassName="text-xl text-start text-white underline font-medium flex" type="h3">
+               {selectedWord && (
+                  <span
+                     className="tooltip tooltip-right tooltip-info"
+                     data-tip={t("learn.wordSpecificationTooltip")}
+                  >
+                     <BsInfoCircleFill className="mr-3 mt-2 text-white" />
+                  </span>
+               )}
                {selectedWord}
             </Title>
          </div>
@@ -58,6 +68,7 @@ export default function ImageCard({ image, title, level }) {
          <Title extraClassName="text-lg text-white w-full text-start font-medium" type="h4">
             {selectedWordTranslation?.spanish_translation || ""}
          </Title>
+
          <div className="flex w-full justify-end">
             {level.map((item) => (
                <Badge key={item}>{item}</Badge>

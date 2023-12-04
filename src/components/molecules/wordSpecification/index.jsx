@@ -52,7 +52,8 @@ export default function WordSpecification() {
                      {selectedWord}
                   </Title>
                   <div
-                     className="right-5 mt-1 flex w-2/12 cursor-pointer justify-end"
+                     className="tooltip tooltip-left tooltip-accent right-5 mt-1 flex w-2/12 cursor-pointer justify-end"
+                     data-tip={t("learn.wordSpecificationTooltip")}
                      onClick={handleSaveTranslation}
                   >
                      <label className="">
@@ -86,7 +87,7 @@ export default function WordSpecification() {
                </Title>
             )}
          </section>
-         <div className=" mt-3">
+         <div className="tooltip tooltip-left tooltip-accent mt-3" data-tip={t("learn.earnPoints")}>
             <Link to={`/quiz/${id}`}>
                <Button>{t("learn.startQuiz")} 📝</Button>
             </Link>

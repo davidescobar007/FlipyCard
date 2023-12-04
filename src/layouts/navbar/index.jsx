@@ -33,13 +33,13 @@ function Navbar() {
    return (
       <header className="border-b-1 navbar fixed z-10 flex h-14 border-neutral bg-base-100 shadow-md">
          <div className="flex-1">
-            <div className="hidden  w-16 select-none md:block">
+            <div className="w-16 select-none">
                <Link to="/">
                   <img alt="heart with german flag colors" src="/logo.png" />
                </Link>
             </div>
             <Link to="/">
-               <Title extraClassName=" select-none text-xl font-bold flex content-center" type="h1">
+               <Title extraClassName="hidden md:block select-none text-xl font-bold flex content-center" type="h1">
                   LingoDeutsch
                </Title>
             </Link>

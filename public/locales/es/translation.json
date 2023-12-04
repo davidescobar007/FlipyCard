@@ -1,7 +1,9 @@
 {
    "learn": {
       "wordSpecification": "Selecciona cualquier palabra del texto para ver la traducción",
-      "startQuiz": "Empezar quiz"
+      "startQuiz": "Empezar quiz",
+      "wordSpecificationTooltip": "Al guardar esta palabra, podrás repasarla en la sección: Practicar",
+      "earnPoints": "Obtén puntos al completar este quiz."
    },
    "practice": {
       "cardStat": {
@@ -9,7 +11,7 @@
          "medium": "Medio",
          "hard": "Difícil"
       },
-      "noVocabulary": "Aun no tienes vocabulario guardado en tu librería",
+      "noVocabulary": "Aun no tienes vocabulario guardado en tu librería, puedes empezar leyendo algún articulo para iniciar con tu vocabulario.",
       "startAgain": "Empezar de nuevo",
       "cards": "cartas"
    },

@@ -87,7 +87,6 @@ const googleLogin = async (dispatch) => {
       const codeVerifier = provider[0].codeVerifier
       try {
          const user = await pbSignUp(provName, code, codeVerifier, redirectUrl)
-         console.log(user)
          user?.record?.id && pbCreateRecord(constants.SCORE, { user_id: user.record.id })
          if (!user.record.avatarUrl && !user.record.name) {
             user.record.avatarUrl = user.meta.avatarUrl
