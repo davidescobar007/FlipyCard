@@ -55,7 +55,7 @@ function Navbar() {
                   </span>
                </label>
                <ul
-                  className="menu-sm dropdown-content menu rounded-box mt-3 w-52 bg-base-100 p-2 shadow-md"
+                  className="menu dropdown-content menu-sm mt-3 w-52 rounded-box bg-base-100 p-2 shadow-md"
                   tabIndex={0}
                >
                   <li>
@@ -94,7 +94,7 @@ function Navbar() {
                      </div>
                   </label>
                   <ul
-                     className="menu-sm dropdown-content menu rounded-box mt-3 w-52 bg-base-100 p-2 shadow"
+                     className="menu dropdown-content menu-sm mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
                      tabIndex={0}
                   >
                      <li>

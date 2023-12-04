@@ -14,7 +14,6 @@
    },
    "dependencies": {
       "@ramonak/react-progress-bar": "^5.0.2",
-      "daisyui": "^2.42.1",
       "debounce": "^1.2.1",
       "i18next": "^23.7.6",
       "i18next-browser-languagedetector": "^7.2.0",
@@ -38,6 +37,7 @@
       "@vitejs/plugin-react": "^2.0.1",
       "autoprefixer": "^10.4.12",
       "cz-conventional-changelog": "^3.3.0",
+      "daisyui": "^4.4.19",
       "eslint": "^8.22.0",
       "eslint-config-prettier": "^8.5.0",
       "eslint-plugin-react": "^7.30.1",
