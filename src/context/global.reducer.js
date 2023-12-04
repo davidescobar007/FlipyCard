@@ -94,6 +94,15 @@ const globalReducer = (state, action) => {
             }
          }
       }
+      case types.LOADING_ARTICLE_LIST: {
+         return {
+            ...state,
+            isLoading: {
+               ...state.isLoading,
+               articleList: action.payload
+            }
+         }
+      }
       default:
          return state
    }

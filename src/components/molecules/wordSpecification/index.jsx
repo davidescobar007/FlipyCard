@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom"
 import { handleErrorModal } from "../../../context/actions/global.actions"
 import { StoreContext } from "../../../context/global.state"
 import Button from "../../atoms/button"
-import Loader from "../../atoms/loader"
+import { Loader } from "../../atoms/loader"
 import Title from "../../atoms/title/title"
 export default function WordSpecification() {
    const { t } = useTranslation()
