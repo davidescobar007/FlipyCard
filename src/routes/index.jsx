@@ -78,6 +78,7 @@ export default function Router() {
             <Route
                element={
                   <Suspense fallback={<PracticeLoader />}>
+                     <PracticeLoader />
                      <ProtectedRoute>
                         <Practice />
                      </ProtectedRoute>

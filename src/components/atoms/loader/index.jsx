@@ -35,7 +35,7 @@ export function CardLoader() {
 export function PracticeLoader() {
    return (
       <div className="flex w-full flex-wrap justify-center">
-         <div className="lg:w-10/12">
+         <div className="w-full lg:w-10/12">
             <div className="skeleton mb-4 h-5 w-full" />
             <div className="skeleton mb-5 h-24 w-full" />
             <div className="flex w-full justify-center gap-2">
