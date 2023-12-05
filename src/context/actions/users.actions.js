@@ -12,7 +12,7 @@ import {
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
-import { handleErrorModal } from "./global.actions"
+import { actionLoaders, handleErrorModal } from "./global.actions"
 
 const { t } = i18next
 const getScore = async (dispatch, userId) => {
@@ -64,10 +64,12 @@ const updateUserState = async (dispatch) => {
    const pbModel = JSON.parse(localStorage.getItem("pocketbase_auth"))
    try {
       if (pbModel) {
+         dispatch(actionLoaders.loadingProfile(true))
          const { model } = pbModel
          const userScore = await getScore(dispatch, model.id)
          model["userScore"] = userScore
          dispatch(actionHandlerTypes.setUser(model))
+         dispatch(actionLoaders.loadingProfile(false))
       }
    } catch (error) {
       handleErrorModal(error)

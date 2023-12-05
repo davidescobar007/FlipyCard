@@ -25,24 +25,20 @@ export default function Hero({ image, title, text_content, level = [] }) {
    const smStyles = "mx-auto mt-1 sm:h-[calc(100vh-40vh)] sm:pb-0"
    const mdStyles = "md:top-0 md:pb-5 md:relative md:h-min md:overflow-auto"
 
+   const imageURL = `${import.meta.env.VITE_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${id}/${image}`
    return (
       <div className="hero bg-base-100">
          <div className="hero-content p-0 text-center">
             <div className="max-w-md">
                <div className="hidden md:block">
-                  <PictureAtom
-                     image={`${import.meta.env.VITE_API_ENVIRONMENT}/api/files/${
-                        constants.ARTICLES
-                     }/${id}/${image}`}
-                  />
-                  {/* <img className="rounded-lg" height={50} loading="eager" src={image} /> */}
+                  <PictureAtom image={imageURL} />
                   <Title extraClassName="font-medium text-2xl my-3">{title}</Title>
                   {level.map((item) => (
                      <Badge key={item}>{item}</Badge>
                   ))}
                </div>
                <div className="fixed inset-x-0 top-16 z-10 mx-auto w-full md:hidden">
-                  <ImageCard image={image} level={level} title={title} />
+                  <ImageCard image={imageURL} level={level} title={title} />
                </div>
 
                <div className={`${smStyles} ${mdStyles} ${xsStyles}`}>

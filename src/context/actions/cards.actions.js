@@ -4,11 +4,12 @@ import { pbGetList, pbUpdateRecord } from "../../services"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
-import { handleErrorModal } from "./global.actions"
+import { actionLoaders, handleErrorModal } from "./global.actions"
 
 const getCardsList = async ({ user }, dispatch) => {
    try {
       if (user?.id) {
+         dispatch(actionLoaders.loadingCards(true))
          const cardsList = await pbGetList(constants.STUDY_VOCABULARY, {
             filter: `user_id = "${user.id}"`,
             expand: "word_id",
@@ -16,8 +17,9 @@ const getCardsList = async ({ user }, dispatch) => {
                "expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen,times_seen"
          })
          dispatch(cardActionTypes.setCards(cardsList))
+         dispatch(actionLoaders.loadingCards(false))
       } else {
-         handleErrorModal(i18next.t("constants.needSignUp" + " to get your cards list"))
+         handleErrorModal(i18next.t("constants.needSignUp"))
       }
    } catch (error) {
       handleErrorModal(error)

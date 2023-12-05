@@ -1,7 +1,14 @@
 import { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
 
-import { CardLoader, Loader } from "../components/atoms/loader"
+import {
+   ArticleLoader,
+   CardLoader,
+   Loader,
+   PracticeLoader,
+   ProfileLoader,
+   QuizzLoader
+} from "../components/atoms/loader"
 
 const Learn = lazy(() => import("../pages/learn"))
 const Article = lazy(() => import("../pages/article"))
@@ -25,7 +32,7 @@ export default function Router() {
             />
             <Route
                element={
-                  <Suspense fallback={<Loader />}>
+                  <Suspense fallback={<ProfileLoader />}>
                      <ProtectedRoute>
                         <Profile />
                      </ProtectedRoute>
@@ -52,7 +59,7 @@ export default function Router() {
 
             <Route
                element={
-                  <Suspense fallback={<Loader />}>
+                  <Suspense fallback={<ArticleLoader />}>
                      <Article />
                   </Suspense>
                }
@@ -60,7 +67,7 @@ export default function Router() {
             />
             <Route
                element={
-                  <Suspense fallback={<Loader />}>
+                  <Suspense fallback={<QuizzLoader />}>
                      <ProtectedRoute>
                         <Quiz />
                      </ProtectedRoute>
@@ -70,7 +77,7 @@ export default function Router() {
             />
             <Route
                element={
-                  <Suspense fallback={<Loader />}>
+                  <Suspense fallback={<PracticeLoader />}>
                      <ProtectedRoute>
                         <Practice />
                      </ProtectedRoute>

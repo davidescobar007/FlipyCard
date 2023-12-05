@@ -22,34 +22,32 @@ export default function Learn() {
    }, [])
    return (
       <div className="lg:pr-4">
-         {!isLoading ? (
-            <CardLoader />
-         ) : (
-            articles.map(({ level, image, text_content, title, id, imageFile }) => {
-               return (
-                  <Link key={id} to={`/article/${id}`}>
-                     <Card
-                        content={text_content}
-                        id={id}
-                        image={`${import.meta.env.VITE_API_ENVIRONMENT}/api/files/${
-                           constants.ARTICLES
-                        }/${id}/${imageFile}`}
-                        level={level}
-                        onClick={() =>
-                           setSelectedArticle({
-                              level,
-                              image,
-                              text_content,
-                              title,
-                              id
-                           })
-                        }
-                        title={title}
-                     />
-                  </Link>
-               )
-            })
-         )}
+         {isLoading
+            ? Array.from({ length: 5 }).map((_i, index) => <CardLoader key={index} />)
+            : articles.map(({ level, image, text_content, title, id, imageFile }) => {
+                 return (
+                    <Link key={id} to={`/article/${id}`}>
+                       <Card
+                          content={text_content}
+                          id={id}
+                          image={`${import.meta.env.VITE_API_ENVIRONMENT}/api/files/${
+                             constants.ARTICLES
+                          }/${id}/${imageFile}`}
+                          level={level}
+                          onClick={() =>
+                             setSelectedArticle({
+                                level,
+                                image,
+                                text_content,
+                                title,
+                                id
+                             })
+                          }
+                          title={title}
+                       />
+                    </Link>
+                 )
+              })}
       </div>
    )
 }

@@ -25,8 +25,10 @@ const getArticlesList = async (dispatch) => {
 
 const getSingleArticle = async (id, dispatch) => {
    try {
+      dispatch(actionLoaders.loadingArticle(true))
       const article = await pbGetSingleRecord(constants.ARTICLES, id)
       dispatch(articleActionTypes.setSelectedArticle(article))
+      dispatch(actionLoaders.loadingArticle(false))
    } catch (error) {
       handleErrorModal(error)
    }

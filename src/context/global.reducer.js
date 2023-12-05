@@ -17,7 +17,9 @@ const initialStore = {
       wordTranslation: false,
       articleList: false,
       article: false,
-      cards: false
+      cards: false,
+      profile: false,
+      quizz: false
    }
 }
 
@@ -100,6 +102,42 @@ const globalReducer = (state, action) => {
             isLoading: {
                ...state.isLoading,
                articleList: action.payload
+            }
+         }
+      }
+      case types.LOADING_CARDS: {
+         return {
+            ...state,
+            isLoading: {
+               ...state.isLoading,
+               cards: action.payload
+            }
+         }
+      }
+      case types.LOADING_ARTICLE: {
+         return {
+            ...state,
+            isLoading: {
+               ...state.isLoading,
+               article: action.payload
+            }
+         }
+      }
+      case types.LOADING_PROFILE: {
+         return {
+            ...state,
+            isLoading: {
+               ...state.isLoading,
+               profile: action.payload
+            }
+         }
+      }
+      case types.LOADING_QUIZZ: {
+         return {
+            ...state,
+            isLoading: {
+               ...state.isLoading,
+               quizz: action.payload
             }
          }
       }
