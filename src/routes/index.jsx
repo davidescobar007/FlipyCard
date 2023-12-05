@@ -20,7 +20,7 @@ const Home = lazy(() => import("../pages/home"))
 const Profile = lazy(() => import("../pages/profile"))
 export default function Router() {
    return (
-      <main className="bg-blue-4000 w-full pb-20 md:w-7/12">
+      <main className="bg-blue-4000 w-full pb-20 md:w-7/12 lg:px-4">
          <Routes>
             <Route
                element={

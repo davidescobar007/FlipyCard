@@ -20,8 +20,8 @@ function Score() {
    }
    return (
       <>
-         <Title extraClassName="font-medium text-xl my-3">
-            {t("score.title")} <span className="text-3xl">🏆</span>
+         <Title extraClassName="font-medium text-xl mb-3 -mt-3 underline">
+            {t("score.title")} <span className="text-3xl" />
          </Title>
          <ul className="w-full">
             {scoreList.map(({ username, score, position }, index) => (

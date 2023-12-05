@@ -9,7 +9,7 @@ import ListItem from "../../components/molecules/listItem"
 
 export default function Aside() {
    return (
-      <aside className="bg-red-4000 hidden md:block md:w-1/12 lg:w-2/12">
+      <aside className="hidden md:block md:w-1/12 lg:w-2/12">
          <Routes>
             <Route
                element={

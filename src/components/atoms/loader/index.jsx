@@ -1,31 +1,30 @@
 /* eslint-disable react/no-multi-comp */
-import "./styles.scss"
 
 export function Loader() {
    return (
-      <div className="animate-pulse">
-         <div className="mb-2.5 h-2.5 w-24 rounded-full bg-gray-300 dark:bg-gray-600" />
-         <div className="mb-2.5 h-2.5 w-36 rounded-full bg-gray-300 dark:bg-gray-600" />
-         <div className="mb-2.5 h-2.5 w-36 rounded-full bg-gray-300 dark:bg-gray-600" />
+      <div className="gap-3">
+         <div className="skeleton mb-3 h-2.5 w-24 bg-slate-400" />
+         <div className="skeleton mb-3 h-2.5 w-36 bg-slate-400" />
+         <div className="skeleton mb-3 h-2.5 w-36 bg-slate-400" />
       </div>
    )
 }
 
 export function CardLoader() {
    return (
-      <article className="card card-side mb-8 h-40 bg-white shadow-lg">
+      <article className="card card-side mb-8 h-48 bg-white shadow-lg">
          <figure>
             <div className="avatar">
-               <div className="w-44">
+               <div className="w-52">
                   <div className="skeleton h-full w-full rounded-none" />
                </div>
             </div>
          </figure>
          <div className="card-body p-4">
             <article className="prose">
-               <div className="skeleton mb-3 h-5 w-full" />
+               <div className="skeleton my-3 h-5 w-full" />
                <div className="skeleton mb-3 h-3 w-10" />
-               <div className="skeleton mb-2 h-3 w-full" />
+               <div className="skeleton my-2 h-3 w-full" />
                <div className="skeleton mb-2 h-3 w-11/12" />
             </article>
          </div>
@@ -35,13 +34,15 @@ export function CardLoader() {
 
 export function PracticeLoader() {
    return (
-      <div className="w-full content-center lg:w-10/12">
-         <div className="skeleton mb-4 h-5 w-full" />
-         <div className="skeleton mb-5 h-24 w-full" />
-         <div className="flex justify-center gap-2">
-            <div className="skeleton h-9 w-2/12" />
-            <div className="skeleton h-9 w-2/12" />
-            <div className="skeleton h-9 w-2/12" />
+      <div className="flex w-full flex-wrap justify-center">
+         <div className="lg:w-10/12">
+            <div className="skeleton mb-4 h-5 w-full" />
+            <div className="skeleton mb-5 h-24 w-full" />
+            <div className="flex w-full justify-center gap-2">
+               <div className="skeleton h-9 w-2/12" />
+               <div className="skeleton h-9 w-2/12" />
+               <div className="skeleton h-9 w-2/12" />
+            </div>
          </div>
       </div>
    )

@@ -21,9 +21,9 @@ export default function Learn() {
       getArticlesList()
    }, [])
    return (
-      <div className="lg:pr-4">
+      <div>
          {isLoading
-            ? Array.from({ length: 5 }).map((_i, index) => <CardLoader key={index} />)
+            ? Array.from({ length: 3 }).map((_i, index) => <CardLoader key={index} />)
             : articles.map(({ level, image, text_content, title, id, imageFile }) => {
                  return (
                     <Link key={id} to={`/article/${id}`}>
