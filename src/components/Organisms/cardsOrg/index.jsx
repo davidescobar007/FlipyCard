@@ -67,17 +67,17 @@ function CardsOrg({ cards }) {
                   <footer className="mt-6 flex w-full content-between justify-center">
                      <div className="btn-group">
                         <button className="btn btn-outline btn-accent" onClick={() => handleNextCard("easy")}>
-                           <span className="mr-1 text-lg">🙂</span>
+                           <span className="text-lg">🙂</span>
                            {t("practice.cardStat.easy")}
                         </button>
                         <button
                            className="btn btn-outline btn-primary mx-1"
                            onClick={() => handleNextCard("medium")}
                         >
-                           <span className="mr-1 text-lg">🤔</span> {t("practice.cardStat.medium")}
+                           <span className="text-lg">🤔</span> {t("practice.cardStat.medium")}
                         </button>
                         <button className="btn btn-outline btn-warning" onClick={() => handleNextCard("hard")}>
-                           <span className="mr-1 text-lg">😰</span> {t("practice.cardStat.hard")}
+                           <span className="text-lg">😰</span> {t("practice.cardStat.hard")}
                         </button>
                      </div>
                   </footer>
