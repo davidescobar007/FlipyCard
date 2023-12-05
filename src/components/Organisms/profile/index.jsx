@@ -17,7 +17,10 @@ function ProfileOrganism({ user, cards }) {
 
    const handleChange = (e) => {
       const { name, value } = e.target
-      setUserInfo((prevValues) => ({ ...prevValues, [name]: value.replace(/[@ ]+/g, "") }))
+      setUserInfo((prevValues) => ({
+         ...prevValues,
+         [name]: name === "username" ? value.replace(/[@ ]+/g, "") : value
+      }))
    }
 
    const handleSubmit = (event) => {
@@ -38,9 +41,9 @@ function ProfileOrganism({ user, cards }) {
 
          <form className="form-control my-2 mb-10 flex w-full flex-wrap md:w-7/12" onSubmit={handleSubmit}>
             <InputAtom
-               disabled
                id="name"
                labelText={t("profile.name")}
+               maxLength="30"
                name="name"
                onChange={handleChange}
                placeholder={userCopy?.name}
