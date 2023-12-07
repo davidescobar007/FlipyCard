@@ -14,7 +14,7 @@ function CardsStats() {
    const [hardCards, setHardCards] = useState([])
 
    useEffect(() => {
-      user?.id && getCardsList()
+      user?.id && getCardsList(false)
    }, [user])
 
    useEffect(() => {

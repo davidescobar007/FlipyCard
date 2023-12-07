@@ -6,10 +6,10 @@ import { constants } from "../global.types"
 
 import { actionLoaders, handleErrorModal } from "./global.actions"
 
-const getCardsList = async ({ user }, dispatch) => {
+const getCardsList = async ({ user }, dispatch, willItLoad = true) => {
    try {
       if (user?.id) {
-         dispatch(actionLoaders.loadingCards(true))
+         dispatch(actionLoaders.loadingCards(willItLoad))
          const cardsList = await pbGetList(constants.STUDY_VOCABULARY, {
             filter: `user_id = "${user.id}"`,
             expand: "word_id",

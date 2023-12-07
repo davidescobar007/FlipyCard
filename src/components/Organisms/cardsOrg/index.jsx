@@ -17,7 +17,7 @@ import flipSound from "/flipSound.mp3"
 
 function CardsOrg({ cards }) {
    const { t } = useTranslation()
-   const { randomObject, getRandomObject, progressPercentage } = useRandomObjectFromArray(cards)
+   let { randomObject, getRandomObject, progressPercentage } = useRandomObjectFromArray(cards)
    const [isFlipped, setIsFlipped] = useState(false)
    const [animation, setAnimation] = useState("")
    const { german_translation, spanish_translation } = randomObject?.expand?.word_id || {}
@@ -65,18 +65,24 @@ function CardsOrg({ cards }) {
                      </CardFlipper>
                   </div>
                   <footer className="mt-6 flex w-full content-between justify-center">
-                     <div className="btn-group">
-                        <button className="btn btn-outline btn-accent" onClick={() => handleNextCard("easy")}>
+                     <div className="btn-group flex gap-1 md:gap-3">
+                        <button
+                           className="btn btn-outline btn-accent px-2 md:px-4"
+                           onClick={() => handleNextCard("easy")}
+                        >
                            <span className="text-lg">🙂</span>
                            {t("practice.cardStat.easy")}
                         </button>
                         <button
-                           className="btn btn-outline btn-primary mx-1"
+                           className="btn btn-outline btn-primary px-2 md:px-4"
                            onClick={() => handleNextCard("medium")}
                         >
                            <span className="text-lg">🤔</span> {t("practice.cardStat.medium")}
                         </button>
-                        <button className="btn btn-outline btn-warning" onClick={() => handleNextCard("hard")}>
+                        <button
+                           className="btn btn-outline btn-warning px-2 md:px-4"
+                           onClick={() => handleNextCard("hard")}
+                        >
                            <span className="text-lg">😰</span> {t("practice.cardStat.hard")}
                         </button>
                      </div>

@@ -35,7 +35,7 @@ function StoreProvider({ children }) {
 
    const saveVocabularyToStudy = () => action.translationsAction.saveVocabularyToStudy(state, dispatch)
 
-   const getCardsList = () => action.cardsActions.getCardsList(state, dispatch)
+   const getCardsList = (willItLoad) => action.cardsActions.getCardsList(state, dispatch, willItLoad)
 
    const updateUserScore = (id, newScore) => action.usersActions.updateUserScore(id, newScore)
 
