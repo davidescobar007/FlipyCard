@@ -16,11 +16,14 @@ function DashBoardOrganism({ data }) {
       (a, b) => levelValues[b.level] - levelValues[a.level]
    )
    const { t } = useTranslation()
+
+   const translatedData = processedData.map((item) => ({ ...item, level: t(`practice.cardStat.${item.level}`) }))
+
    return (
       <div className="w-full">
          <TableAtom
             columns={columns}
-            data={processedData}
+            data={translatedData}
             displayIndex={false}
             extraClassname="table-compact"
             title={t("data.tableTitle")}
