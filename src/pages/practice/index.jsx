@@ -18,19 +18,13 @@ function Practice() {
    } = useContext(StoreContext)
 
    useEffect(() => {
-      console.log("siu")
       if (user.id) {
          getCardsList()
       }
    }, [user])
 
-   useEffect(() => {
-      // console.log({ cards, user, isLoadingCards })
-   }, [])
-
    return (
       <section className="flex justify-center ">
-         {console.log("Practice render")}
          {isLoadingCards ? (
             <PracticeLoader />
          ) : cards.length > 0 ? (

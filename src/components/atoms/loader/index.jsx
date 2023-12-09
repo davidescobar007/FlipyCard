@@ -34,14 +34,19 @@ export function CardLoader() {
 
 export function PracticeLoader() {
    return (
-      <div className="flex w-full flex-wrap justify-center">
+      <div className="mt-3 flex w-full flex-wrap justify-center">
          <div className="w-full lg:w-10/12">
-            <div className="skeleton mb-4 h-5 w-full" />
-            <div className="skeleton mb-5 h-24 w-full" />
-            <div className="flex w-full justify-center gap-2">
-               <div className="skeleton h-9 w-2/12" />
-               <div className="skeleton h-9 w-2/12" />
-               <div className="skeleton h-9 w-2/12" />
+            <div className="mb-7 flex w-full justify-start gap-2">
+               <div className="skeleton h-5 w-2/12 md:w-3/32" />
+               <div className="skeleton h-5 w-2/12 md:w-3/32" />
+               <div className="skeleton h-5 w-2/12 md:w-3/32" />
+            </div>
+            <div className="skeleton mb-5 h-5 w-full" />
+            <div className="skeleton mb-6 h-24 w-full" />
+            <div className="flex w-full justify-center gap-1">
+               <div className="skeleton h-12 w-5/24 md:w-2/12" />
+               <div className="skeleton h-12 w-5/24 md:w-2/12" />
+               <div className="skeleton h-12 w-5/24 md:w-2/12" />
             </div>
          </div>
       </div>

@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 
 import { StoreContext } from "../../../context/global.state"
 import useRandomObjectFromArray from "../../../customHooks/useRandomObject"
+import { getPercentage } from "../../../utils"
 import Button from "../../atoms/button"
 import ProgressPercentage from "../../atoms/progressBar"
 import Title from "../../atoms/title/title"
@@ -15,12 +16,12 @@ export default function QuizQuestion({ arrayOfQuestions }) {
       updateUserScore,
       state: { user }
    } = useContext(StoreContext)
-   const { randomObject, getRandomObject, progressPercentage, filteringComplete } =
+   const { randomObject, getRandomObject, filteredArrayLength, filteringComplete } =
       useRandomObjectFromArray(arrayOfQuestions)
    const [checkedOption, setCheckedOption] = useState()
    const [isOptionRated, setIsOptionRated] = useState(false)
    const [totalRating, setTotalRating] = useState(0)
-
+   const progressPercentage = getPercentage(filteredArrayLength, arrayOfQuestions.length)
    const checkAnswerIfCorrect = () => {
       setTimeout(() => {
          getRandomObject()

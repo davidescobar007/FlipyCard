@@ -13,7 +13,8 @@
       },
       "noVocabulary": "Aun no tienes vocabulario guardado en tu librería, puedes empezar leyendo algún articulo para iniciar con tu vocabulario.",
       "startAgain": "Empezar de nuevo",
-      "cards": "cartas"
+      "cards": "cartas",
+      "noFilterResult": "No cuentas con vocabulario de nivel {{level}} aún"
    },
    "quiz": {
       "checkAnswer": "Revisar respuesta",

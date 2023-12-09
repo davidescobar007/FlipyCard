@@ -17,7 +17,7 @@ const initialStore = {
       wordTranslation: false,
       articleList: false,
       article: false,
-      cards: false,
+      cards: true,
       profile: false,
       quizz: false
    }

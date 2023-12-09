@@ -32,7 +32,8 @@ export const constants = {
    VOCABULARY: "vocabulary",
    ARTICLES: "articles",
    QUIZZES: "quizzes",
-   STUDY_VOCABULARY: "studyVocabulary"
+   STUDY_VOCABULARY: "studyVocabulary",
+   DELAY: 500
 }
 
 export const queryOperators = {

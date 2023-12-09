@@ -1,6 +1,7 @@
 import React from "react"
 
 import storeReducer from "../global.reducer"
+import { constants } from "../global.types"
 export function useDispatchFromContext() {
    const [, dispatch] = React.useContext(storeReducer, {})
    if (dispatch === undefined) {
@@ -26,4 +27,12 @@ export const flattenObj = (input) => {
       }
    }
    return result
+}
+
+export async function delay(duration = constants.DELAY) {
+   await new Promise((resolve) => {
+      setTimeout(() => {
+         resolve()
+      }, duration)
+   })
 }

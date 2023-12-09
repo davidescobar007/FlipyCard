@@ -99,3 +99,17 @@ export function filterProperties(arr, propertiesToKeep) {
       return newObj
    })
 }
+
+export const getPercentage = (number1, number2) => {
+   if (typeof number1 !== "number" || typeof number2 !== "number" || number2 === 0) {
+      return 0
+   }
+   if (number1 === 0) {
+      return 100
+   }
+
+   const partial = (number1 / number2) * 100
+   const percentage = Math.round(100 - partial)
+
+   return Math.max(0, percentage)
+}

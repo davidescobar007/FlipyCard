@@ -1,21 +1,28 @@
+import { toast } from "react-toastify"
 import i18next from "i18next"
 
 import { pbGetList, pbUpdateRecord } from "../../services"
 import { types } from "../global.reducer"
 import { constants } from "../global.types"
 
+import { delay } from "./actions.utils"
 import { actionLoaders, handleErrorModal } from "./global.actions"
-
-const getCardsList = async ({ user }, dispatch, willItLoad = true) => {
+const getCardsList = async ({ user }, dispatch, willItLoad = true, filter) => {
    try {
       if (user?.id) {
          dispatch(actionLoaders.loadingCards(willItLoad))
          const cardsList = await pbGetList(constants.STUDY_VOCABULARY, {
-            filter: `user_id = "${user.id}"`,
+            filter: `user_id = "${user.id}" ${filter ? `&& level="${filter}"` : ""}`,
             expand: "word_id",
             fields:
                "expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen,times_seen,level_history"
          })
+         await delay()
+         if (filter && cardsList.length === 0) {
+            toast.info(i18next.t("practice.noFilterResult", { level: i18next.t(`practice.cardStat.${filter}`) }))
+            dispatch(actionLoaders.loadingCards(false))
+            return
+         }
          dispatch(cardActionTypes.setCards(cardsList))
          dispatch(actionLoaders.loadingCards(false))
       } else {
