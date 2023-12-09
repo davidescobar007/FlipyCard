@@ -52,34 +52,32 @@ const saveTranslationToDB = async (translation, dispatch) => {
 
 const searchTranslationFromSources = async (wordToTranslate, dispatch) => {
    dispatch(actionLoaders.loadingWordTranslation(true))
-   const params = (field, operator) => ({
-      collection: constants.VOCABULARY,
-      field,
-      operator,
-      param: removePunctuation(wordToTranslate)
-   })
+
    const exactTranslationFromDB = await getWordsTranslationFromDB(
       wordToTranslate,
-      params("german_translation", "~"),
+      { collection: constants.VOCABULARY, field: "german_translation", operator: "~" },
       dispatch
    )
-   if (!exactTranslationFromDB) {
-      const translationFromDb = await getWordsTranslationFromDB(
-         wordToTranslate,
-         params("conjugation.allConjugations", "~"),
-         dispatch
-      )
-      if (!translationFromDb) {
-         const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
-         if (translationFromAPI.status === 204) {
-            handleErrorModal(t("translation.notFoundTranslation"))
-            dispatch(actionLoaders.loadingWordTranslation(false))
-            return
-         }
-         if (translationFromAPI.data) {
-            saveTranslationToDB(translationFromAPI.data, dispatch)
-         }
-      }
+   const similarTranslationFromDB = await getWordsTranslationFromDB(
+      wordToTranslate,
+      { collection: constants.VOCABULARY, field: "conjugation.allConjugations", operator: "~" },
+      dispatch
+   )
+   const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
+   if (exactTranslationFromDB) {
+      dispatch(actionLoaders.loadingWordTranslation(false))
+      return
+   } else if (similarTranslationFromDB) {
+      dispatch(actionLoaders.loadingWordTranslation(false))
+      return
+   } else if (translationFromAPI.data) {
+      saveTranslationToDB(translationFromAPI.data, dispatch)
+      dispatch(actionLoaders.loadingWordTranslation(false))
+      return
+   } else if (translationFromAPI.status === 204) {
+      handleErrorModal(t("translation.notFoundTranslation"))
+      dispatch(actionLoaders.loadingWordTranslation(false))
+      return
    }
    dispatch(actionLoaders.loadingWordTranslation(false))
 }
