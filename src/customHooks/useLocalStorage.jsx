@@ -19,5 +19,10 @@ export function useLocalStorage(itemName, initialValue) {
       setItem(newItem)
    }
 
-   return [item, saveItem]
+   const clearItem = () => {
+      localStorage.removeItem(itemName)
+      setItem(null)
+   }
+
+   return [item, saveItem, clearItem]
 }

@@ -6,6 +6,7 @@ import { PracticeLoader } from "../../components/atoms/loader"
 import Title from "../../components/atoms/title/title"
 import CardsOrg from "../../components/Organisms/cardsOrg"
 import { StoreContext } from "../../context/global.state"
+import { useLocalStorage } from "../../customHooks/useLocalStorage"
 function Practice() {
    const { t } = useTranslation()
    const {
@@ -17,9 +18,11 @@ function Practice() {
       }
    } = useContext(StoreContext)
 
+   const [localStorageLevel] = useLocalStorage("selectedLevel", "")
+
    useEffect(() => {
       if (user.id) {
-         getCardsList()
+         getCardsList(true, localStorageLevel ? localStorageLevel : null)
       }
    }, [user])
 

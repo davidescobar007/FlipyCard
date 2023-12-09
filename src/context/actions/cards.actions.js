@@ -7,27 +7,45 @@ import { constants } from "../global.types"
 
 import { delay } from "./actions.utils"
 import { actionLoaders, handleErrorModal } from "./global.actions"
-const getCardsList = async ({ user }, dispatch, willItLoad = true, filter) => {
+const getCardsList = async ({ user, cards }, dispatch, shouldShowLoadingIndicator = true, filter) => {
    try {
-      if (user?.id) {
-         dispatch(actionLoaders.loadingCards(willItLoad))
-         const cardsList = await pbGetList(constants.STUDY_VOCABULARY, {
-            filter: `user_id = "${user.id}" ${filter ? `&& level="${filter}"` : ""}`,
-            expand: "word_id",
-            fields:
-               "expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen,times_seen,level_history"
-         })
-         await delay()
-         if (filter && cardsList.length === 0) {
-            toast.info(i18next.t("practice.noFilterResult", { level: i18next.t(`practice.cardStat.${filter}`) }))
-            dispatch(actionLoaders.loadingCards(false))
-            return
-         }
-         dispatch(cardActionTypes.setCards(cardsList))
-         dispatch(actionLoaders.loadingCards(false))
-      } else {
+      if (!user?.id) {
          handleErrorModal(i18next.t("constants.needSignUp"))
+         return
       }
+      dispatch(actionLoaders.loadingCards(shouldShowLoadingIndicator))
+      const fields =
+         "expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen,times_seen,level_history"
+
+      const cardsNoLevelFilter = await pbGetList(constants.STUDY_VOCABULARY, {
+         filter: `user_id = "${user.id}"`,
+         expand: "word_id",
+         fields
+      })
+
+      const cardsWithLevelFilter = await pbGetList(constants.STUDY_VOCABULARY, {
+         filter: `user_id = "${user.id}" && level="${filter}"`,
+         expand: "word_id",
+         fields
+      })
+      await delay()
+      if (filter && cardsWithLevelFilter.length) {
+         dispatch(cardActionTypes.setCards(cardsWithLevelFilter))
+         dispatch(actionLoaders.loadingCards(false))
+         return
+      } else if (filter && !cardsWithLevelFilter.length) {
+         dispatch(cardActionTypes.setCards(cardsNoLevelFilter))
+         localStorage.removeItem("selectedLevel")
+         toast.info(i18next.t("practice.noFilterResult", { level: i18next.t(`practice.cardStat.${filter}`) }))
+         dispatch(actionLoaders.loadingCards(false))
+         return
+      } else if (!filter) {
+         dispatch(cardActionTypes.setCards(cardsNoLevelFilter))
+         dispatch(actionLoaders.loadingCards(false))
+         return
+      }
+      dispatch(cardActionTypes.setCards(cards || cardsNoLevelFilter))
+      dispatch(actionLoaders.loadingCards(false))
    } catch (error) {
       handleErrorModal(error)
    }
