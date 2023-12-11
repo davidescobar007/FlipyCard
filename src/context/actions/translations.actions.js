@@ -89,17 +89,17 @@ const checkVocaBularyExist = async (userId, wordId) => {
    return wordIsSaved
 }
 
-const saveVocabularyToStudy = async (state) => {
+const saveVocabularyToStudy = async ({ user, selectedWordTranslation }) => {
    try {
-      if (state?.user?.id && state?.selectedWordTranslation?.id) {
-         const valueExists = await checkVocaBularyExist(state.user.id, state.selectedWordTranslation.id)
+      if (user?.id && selectedWordTranslation?.id) {
+         const valueExists = await checkVocaBularyExist(user.id, selectedWordTranslation.id)
          if (valueExists.length) {
             toast.info(t("translation.alreadySaved"))
             return
          }
          const data = {
-            user_id: state.user.id,
-            word_id: state.selectedWordTranslation.id,
+            user_id: user.id,
+            word_id: selectedWordTranslation.id,
             last_time_seen: null,
             level: null
          }

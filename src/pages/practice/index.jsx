@@ -21,7 +21,7 @@ function Practice() {
    const [localStorageLevel] = useLocalStorage("selectedLevel", "")
 
    useEffect(() => {
-      if (user.id) {
+      if (user?.id) {
          getCardsList(true, localStorageLevel ? localStorageLevel : null)
       }
    }, [user])
