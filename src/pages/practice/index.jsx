@@ -22,7 +22,7 @@ function Practice() {
 
    useEffect(() => {
       if (user?.id) {
-         getCardsList(true, localStorageLevel ? localStorageLevel : null)
+         getCardsList(true, localStorageLevel || null)
       }
    }, [user])
 

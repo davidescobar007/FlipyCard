@@ -1,8 +1,8 @@
 {
    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
    "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.fixAll.eslint": true
+      "source.fixAll": "explicit",
+      "source.fixAll.eslint": "explicit"
    },
    "editor.formatOnSave": true,
    "cSpell.language": "en,es-ES,de-DE"

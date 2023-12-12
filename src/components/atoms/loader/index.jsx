@@ -113,3 +113,7 @@ export function ProfileLoader() {
       </div>
    )
 }
+
+export function SpinLoader() {
+   return <span className="loading loading-spinner loading-xs" />
+}

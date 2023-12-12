@@ -9,7 +9,7 @@ export default function Article() {
    const {
       getSingleArticle,
       state: {
-         selectedArticle: { title, text_content, level, imageFile },
+         selectedArticle: { title, text_content, level, imageFile, link, author },
          isLoading: { article: isLoadingArticle }
       }
    } = useContext(StoreContext)
@@ -23,6 +23,15 @@ export default function Article() {
    return !imageFile && isLoadingArticle ? (
       <ArticleLoader />
    ) : (
-      imageFile && <Hero image={imageFile} level={level} text_content={text_content} title={title} />
+      imageFile && (
+         <Hero
+            author={author}
+            image={imageFile}
+            level={level}
+            link={link}
+            text_content={text_content}
+            title={title}
+         />
+      )
    )
 }

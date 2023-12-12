@@ -101,7 +101,7 @@ const saveVocabularyToStudy = async ({ user, selectedWordTranslation }) => {
             user_id: user.id,
             word_id: selectedWordTranslation.id,
             last_time_seen: null,
-            level: null
+            level: "hard"
          }
          debounce(pbCreateRecord(constants.STUDY_VOCABULARY, data))
          toast.success(t("translation.saved"))

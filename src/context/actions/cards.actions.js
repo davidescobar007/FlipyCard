@@ -55,7 +55,7 @@ const updateCard = async (card) => {
    const currentDate = new Date()
    card.last_time_seen = currentDate
    card.times_seen = Number(card.times_seen + 1)
-   const levelHistoryObj = { level: card.level, date: currentDate }
+   const levelHistoryObj = { level: card.level, date: currentDate, value: constants.CARDS_LEVEL[card.level] }
    card.level_history = card.level_history?.length ? [...card.level_history, levelHistoryObj] : [levelHistoryObj]
    await pbUpdateRecord(constants.STUDY_VOCABULARY, card.id, card)
 }

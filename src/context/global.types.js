@@ -33,7 +33,12 @@ export const constants = {
    ARTICLES: "articles",
    QUIZZES: "quizzes",
    STUDY_VOCABULARY: "studyVocabulary",
-   DELAY: 500
+   DELAY: 500,
+   CARDS_LEVEL: {
+      easy: 1,
+      medium: 2,
+      hard: 3
+   }
 }
 
 export const queryOperators = {
