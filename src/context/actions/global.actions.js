@@ -65,8 +65,18 @@ export const actionLoaders = {
       type: types.LOADING_ARTICLE,
       payload
    }),
-   loadingCards: (payload) => ({
-      type: types.LOADING_CARDS,
+   loadingCards: (payload) => {
+      return {
+         type: types.LOADING_CARDS,
+         payload
+      }
+   },
+   loadingProfile: (payload) => ({
+      type: types.LOADING_PROFILE,
+      payload
+   }),
+   loadingQuizz: (payload) => ({
+      type: types.LOADING_QUIZZ,
       payload
    })
 }

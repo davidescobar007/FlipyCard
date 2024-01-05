@@ -14,6 +14,8 @@ export const types = {
    LOADING_ARTICLE_LIST: "LOADING_ARTICLE_LIST",
    LOADING_ARTICLE: "LOADING_ARTICLE",
    LOADING_CARDS: "LOADING_CARDS",
+   LOADING_PROFILE: "LOADING_PROFILE",
+   LOADING_QUIZZ: "LOADING_QUIZZ",
    SET_SCORE_LIST: "SET_SCORE_LIST"
 }
 
@@ -30,7 +32,13 @@ export const constants = {
    VOCABULARY: "vocabulary",
    ARTICLES: "articles",
    QUIZZES: "quizzes",
-   STUDY_VOCABULARY: "studyVocabulary"
+   STUDY_VOCABULARY: "studyVocabulary",
+   DELAY: 500,
+   CARDS_LEVEL: {
+      easy: 1,
+      medium: 2,
+      hard: 3
+   }
 }
 
 export const queryOperators = {

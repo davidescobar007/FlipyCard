@@ -19,7 +19,7 @@ export default function InputCheckGroup({ text, name, inputState, ...rest }) {
    return (
       <div className={`form-control my-4 rounded-xl p-2 ${inputStyles[inputState]}`}>
          <label className="label relative cursor-pointer justify-start">
-            <input className="radio radio-accent mr-4" name={name} type="radio" {...rest} />
+            <input className="radio-accent radio mr-4" name={name} type="radio" {...rest} />
             <span className="label-text text-lg font-normal">{text}</span>
             <span
                className={`animate__animated ${emojiStyles[inputState]} absolute right-0 top-0 -mr-5 -mt-6 text-2xl`}

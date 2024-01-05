@@ -6,13 +6,13 @@ import { handleErrorModal } from "../../../context/actions/global.actions"
 
 function ProtectedRoute({ children }) {
    const { t } = useTranslation()
-   const propertyExists = localStorage.getItem("pocketbase_auth")
-   if (!propertyExists) {
-      console.log("render")
+   const user = JSON.parse(localStorage.getItem("pocketbase_auth"))
+   if (user?.model?.id) {
+      return children
+   } else {
       handleErrorModal(t("constants.needSignUp"))
       return <Navigate to="/learn" />
    }
-   return children
 }
 
 ProtectedRoute.propTypes = {

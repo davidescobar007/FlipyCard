@@ -83,6 +83,9 @@ module.exports = {
             "21/24": "87.5%", // 21/24 of the container width
             "22/24": "91.666667%", // 22/24 of the container width
             "23/24": "95.833333%" // 23/24 of the container width
+         },
+         spacing: {
+            34: "8.5rem"
          }
       },
 

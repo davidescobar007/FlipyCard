@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import { useContext, useState } from "react"
-import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 
 import { StoreContext } from "../../../context/global.state"
@@ -9,29 +9,18 @@ import InputAtom from "../../atoms/input"
 import Title from "../../atoms/title/title"
 import DashBoardOrganism from "../dashBoard"
 
-function ProfileOrganism() {
-   const {
-      getCardsList,
-      updateUSer,
-      state: { user, cards }
-   } = useContext(StoreContext)
+function ProfileOrganism({ user, cards }) {
+   const { updateUSer } = useContext(StoreContext)
    const userCopy = { ...user }
-   delete userCopy.updated
-   delete userCopy.expand
    const [userInfo, setUserInfo] = useState(userCopy)
    const { t } = useTranslation()
 
-   useEffect(() => {
-      getCardsList()
-   }, [])
-
-   useEffect(() => {
-      console.log(cards)
-   }, [cards])
-
    const handleChange = (e) => {
       const { name, value } = e.target
-      setUserInfo((prevValues) => ({ ...prevValues, [name]: value.replace(/[@ ]+/g, "") }))
+      setUserInfo((prevValues) => ({
+         ...prevValues,
+         [name]: name === "username" ? value.replace(/[@ ]+/g, "") : value
+      }))
    }
 
    const handleSubmit = (event) => {
@@ -52,9 +41,9 @@ function ProfileOrganism() {
 
          <form className="form-control my-2 mb-10 flex w-full flex-wrap md:w-7/12" onSubmit={handleSubmit}>
             <InputAtom
-               disabled
                id="name"
                labelText={t("profile.name")}
+               maxLength="30"
                name="name"
                onChange={handleChange}
                placeholder={userCopy?.name}

@@ -14,7 +14,7 @@ function AsideRight() {
                <Route
                   element={
                      <Suspense>
-                        <div className="fixed h-full overflow-y-hidden md:right-5 md:hidden md:w-8/32 lg:block lg:w-5/24 xl:w-6/32 2xl:right-32">
+                        <div className="fixed overflow-y-hidden md:right-7 md:hidden md:w-8/32 lg:block lg:w-5/24 xl:w-6/32 2xl:right-34">
                            <Score />
                         </div>
                      </Suspense>
@@ -24,7 +24,7 @@ function AsideRight() {
                <Route
                   element={
                      <Suspense>
-                        <div className="fixed h-full overflow-y-hidden md:right-5 md:hidden md:w-8/32 lg:block lg:w-5/24 xl:w-6/32 2xl:right-32">
+                        <div className="fixed overflow-y-hidden md:right-7 md:hidden md:w-8/32 lg:block lg:w-5/24 xl:w-6/32 2xl:right-34">
                            <Score />
                         </div>
                      </Suspense>

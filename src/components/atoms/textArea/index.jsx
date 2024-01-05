@@ -9,7 +9,6 @@ export default function TextArea({ extraClassName, innerRef, ...rest }) {
          }
          ref={innerRef}
          {...rest}
-         //  value="hello world"
       />
    )
 }

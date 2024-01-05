@@ -17,9 +17,9 @@ const resetTranslation = async (dispatch) => {
    }
 }
 
-const getWordsTranslationFromDB = async (wordToTranslate, params, dispatch) => {
+const getWordsTranslationFromDB = async (params, dispatch) => {
    try {
-      const translation = await pbGetSingleRecordQuery(params)
+      const translation = await pbGetSingleRecordQuery({ ...params, collection: constants.VOCABULARY })
       dispatch(translationActionTypes.setTranslation(translation))
       return translation
    } catch (error) {
@@ -46,40 +46,43 @@ const saveTranslationToDB = async (translation, dispatch) => {
       dispatch(translationActionTypes.setTranslation(recordCreated))
       return recordCreated
    } catch (error) {
-      handleErrorModal(error)
+      if (String(error) === "ClientResponseError 400: Failed to create record.") {
+         dispatch(translationActionTypes.setTranslation(translation))
+         return null
+      } else {
+         handleErrorModal(error)
+      }
    }
 }
 
 const searchTranslationFromSources = async (wordToTranslate, dispatch) => {
    dispatch(actionLoaders.loadingWordTranslation(true))
-   const params = (field, operator) => ({
-      collection: constants.VOCABULARY,
-      field,
-      operator,
-      param: removePunctuation(wordToTranslate)
-   })
+
    const exactTranslationFromDB = await getWordsTranslationFromDB(
-      wordToTranslate,
-      params("german_translation", "~"),
+      { field: "german_translation", operator: "~", param: removePunctuation(wordToTranslate) },
       dispatch
    )
-   if (!exactTranslationFromDB) {
-      const translationFromDb = await getWordsTranslationFromDB(
-         wordToTranslate,
-         params("conjugation.allConjugations", "~"),
-         dispatch
-      )
-      if (!translationFromDb) {
-         const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
-         if (translationFromAPI.status === 204) {
-            handleErrorModal(t("translation.notFoundTranslation"))
-            dispatch(actionLoaders.loadingWordTranslation(false))
-            return
-         }
-         if (translationFromAPI.data) {
-            saveTranslationToDB(translationFromAPI.data, dispatch)
-         }
-      }
+   if (exactTranslationFromDB) {
+      dispatch(actionLoaders.loadingWordTranslation(false))
+      return
+   }
+   const similarTranslationFromDB = await getWordsTranslationFromDB(
+      { field: "conjugation.allConjugations", operator: "~", param: removePunctuation(wordToTranslate) },
+      dispatch
+   )
+   if (similarTranslationFromDB) {
+      dispatch(actionLoaders.loadingWordTranslation(false))
+      return
+   }
+   const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
+   if (translationFromAPI.data) {
+      saveTranslationToDB(translationFromAPI.data, dispatch)
+      dispatch(actionLoaders.loadingWordTranslation(false))
+      return
+   } else if (translationFromAPI.status === 204) {
+      handleErrorModal(t("translation.notFoundTranslation"))
+      dispatch(actionLoaders.loadingWordTranslation(false))
+      return
    }
    dispatch(actionLoaders.loadingWordTranslation(false))
 }
@@ -91,19 +94,19 @@ const checkVocaBularyExist = async (userId, wordId) => {
    return wordIsSaved
 }
 
-const saveVocabularyToStudy = async (state) => {
+const saveVocabularyToStudy = async ({ user, selectedWordTranslation }) => {
    try {
-      if (state?.user?.id && state?.selectedWordTranslation?.id) {
-         const valueExists = await checkVocaBularyExist(state.user.id, state.selectedWordTranslation.id)
+      if (user?.id && selectedWordTranslation?.id) {
+         const valueExists = await checkVocaBularyExist(user.id, selectedWordTranslation.id)
          if (valueExists.length) {
             toast.info(t("translation.alreadySaved"))
             return
          }
          const data = {
-            user_id: state.user.id,
-            word_id: state.selectedWordTranslation.id,
+            user_id: user.id,
+            word_id: selectedWordTranslation.id,
             last_time_seen: null,
-            level: null
+            level: "hard"
          }
          debounce(pbCreateRecord(constants.STUDY_VOCABULARY, data))
          toast.success(t("translation.saved"))

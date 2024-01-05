@@ -1,7 +1,9 @@
 {
    "learn": {
       "wordSpecification": "Wähle ein beliebiges Wort im Text aus, um die Übersetzung zu sehen",
-      "startQuiz": "Quiz starten"
+      "startQuiz": "Quiz starten",
+      "wordSpecificationTooltip": "Beim Speichern dieses Wortes kannst du es in der Sektion 'Üben' überprüfen.",
+      "earnPoints": "Erhalte Punkte, indem du dieses Quiz abschließt."
    },
    "practice": {
       "cardStat": {
@@ -9,9 +11,10 @@
          "medium": "Mittel",
          "hard": "Schwer"
       },
-      "noVocabulary": "Du hast noch kein Vokabular in deiner Bibliothek gespeichert",
+      "noVocabulary": "Du hast noch keinen Wortschatz in deiner Bibliothek. Du kannst damit beginnen, Artikel zu lesen, um deinen Wortschatz aufzubauen.",
       "startAgain": "Von vorne beginnen",
-      "cards": "Karten"
+      "cards": "Karten",
+      "noFilterResult": "Du hast noch keinen Wortschatz auf Niveau {{level}}."
    },
    "quiz": {
       "checkAnswer": "Antwort überprüfen",
@@ -56,6 +59,7 @@
       "level": "Niveau",
       "times_seen": "Häufigkeit",
       "delete": "Löschen",
-      "tableTitle": "Ein Blick auf deine Statistiken."
+      "tableTitle": "Ein Blick auf deine Statistiken.",
+      "words_by_level": "Wörter nach Niveau"
    }
 }

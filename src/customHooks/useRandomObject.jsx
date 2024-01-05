@@ -5,16 +5,11 @@ import { getRandomFromArray } from "../utils"
 function useRandomObjectFromArray(initialArray) {
    const [filteredArray, setFilteredArray] = useState([...initialArray])
    const [randomObject, setRandomObject] = useState(null)
-   const [progressPercentage, setProgressPercentage] = useState(0)
+   const [filteredArrayLength, setFilteredArrayLength] = useState(0)
    const [filteringComplete, setFilteringComplete] = useState(false)
 
    useEffect(() => {
-      if (initialArray && initialArray.length > 0) {
-         setFilteredArray([...initialArray])
-      }
-      if (progressPercentage === 0) {
-         getRandomObject()
-      }
+      getRandomObject()
    }, [initialArray])
 
    const filterArray = () => {
@@ -22,27 +17,15 @@ function useRandomObjectFromArray(initialArray) {
       const newFilteredArray = filteredArray.filter((item) => item !== selectedObject)
       setRandomObject(selectedObject)
       setFilteredArray(newFilteredArray)
-      if (filteredArray.length === 0) {
-         setFilteringComplete(true)
-      }
-   }
-
-   const handleArrayProgress = () => {
-      let length = initialArray.length
-      let arrayLength = filteredArray.length - 1
-      let percentage = (arrayLength / length) * 100
-      percentage = 100 - percentage
-      // if (percentage > 100) percentage = 0
-      setProgressPercentage(Math.round(percentage))
+      setFilteredArrayLength(newFilteredArray.length)
+      setFilteringComplete(filteredArray.length === 0)
    }
 
    const getRandomObject = () => {
       filterArray()
-      handleArrayProgress()
-      return
    }
 
-   return { randomObject, getRandomObject, progressPercentage, filteringComplete }
+   return { randomObject, getRandomObject, filteringComplete, filteredArrayLength }
 }
 
 export default useRandomObjectFromArray

@@ -12,7 +12,7 @@ function TableAtom({ displayHeader, columns, data, displayIndex, extraClassname,
                {title}
             </Title>
          )}
-         <table className={`table table-zebra w-full ${extraClassname}`}>
+         <table className={`table w-full ${extraClassname}`}>
             {displayHeader && columns.length > 0 && (
                <thead>
                   <tr>
@@ -21,7 +21,7 @@ function TableAtom({ displayHeader, columns, data, displayIndex, extraClassname,
                            {t(`data.${column}`)}
                         </th>
                      ))}
-                     {isDelete && <th>Actions</th>}
+                     {isDelete && <th className="text-sm">Actions</th>}
                   </tr>
                </thead>
             )}

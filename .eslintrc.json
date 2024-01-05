@@ -65,7 +65,7 @@
             "argsIgnorePattern": "^_"
          }
       ],
-      "no-unused-vars": "warn",
+      "no-unused-vars": "off",
       "simple-import-sort/imports": "warn",
       "simple-import-sort/exports": "warn"
    },

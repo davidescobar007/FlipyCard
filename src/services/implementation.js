@@ -40,7 +40,6 @@ export const getWordsTranslationFetchImplementation = async (wordToTranslate) =>
          return transformedResult
       }
    } catch (error) {
-      console.log(error)
       return error
    }
 }

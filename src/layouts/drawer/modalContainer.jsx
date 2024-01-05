@@ -9,7 +9,7 @@ function ModalContainer({ children }) {
    } = useContext(StoreContext)
 
    return (
-      <section className="flex h-screen flex-col" data-theme={isDarkTheme ? "night" : "mytheme"}>
+      <section className="flex h-screen flex-col overflow-auto" data-theme={isDarkTheme ? "night" : "mytheme"}>
          {children}
          <Modal id="modalWarning" title="Ooops!">
             <p className="py-4 text-lg" id="modalTextContent" />

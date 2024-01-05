@@ -60,31 +60,39 @@ export function areObjectsDistinct(obj1, obj2) {
    return false
 }
 
-export function flattenObjects(arr) {
-   return arr.map((obj) => {
-      const result = {}
+export function flattenObjects(arrayOfObjects) {
+   /**
+    * Flattens an array of objects by converting nested properties into top-level properties.
+    *
+    * @param {Array} arrayOfObjects - An array of objects with nested properties.
+    * @returns {Array} - An array of objects where nested properties are flattened into top-level properties.
+    */
+   return arrayOfObjects.map((object) => {
+      const flattenedObject = {}
 
-      function recurse(curr, path = []) {
-         if (typeof curr === "object" && curr !== null) {
-            for (const [key, value] of Object.entries(curr)) {
-               recurse(value, path.concat(key))
+      function flatten(current, path = []) {
+         if (Array.isArray(current)) {
+            flattenedObject[path.join(".")] = current
+         } else if (typeof current === "object" && current !== null) {
+            for (const [key, value] of Object.entries(current)) {
+               flatten(value, path.concat(key))
             }
          } else {
-            const name = path[path.length - 1]
-            if (result[name] !== undefined) {
-               let i = 2
-               while (result[`${name}${i}`] !== undefined) {
-                  i++
+            const propertyName = path[path.length - 1]
+            if (flattenedObject[propertyName] !== undefined) {
+               let index = 2
+               while (flattenedObject[`${propertyName}${index}`] !== undefined) {
+                  index++
                }
-               result[`${name}${i}`] = curr
+               flattenedObject[`${propertyName}${index}`] = current
             } else {
-               result[name] = curr
+               flattenedObject[propertyName] = current
             }
          }
       }
 
-      recurse(obj)
-      return result
+      flatten(object)
+      return flattenedObject
    })
 }
 
@@ -98,4 +106,18 @@ export function filterProperties(arr, propertiesToKeep) {
       })
       return newObj
    })
+}
+
+export const getPercentage = (number1, number2) => {
+   if (typeof number1 !== "number" || typeof number2 !== "number" || number2 === 0) {
+      return 0
+   }
+   if (number1 === 0) {
+      return 100
+   }
+
+   const partial = (number1 / number2) * 100
+   const percentage = Math.round(100 - partial)
+
+   return Math.max(0, percentage)
 }

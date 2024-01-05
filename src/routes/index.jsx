@@ -1,7 +1,14 @@
 import { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
 
-import Loader from "../components/atoms/loader"
+import {
+   ArticleLoader,
+   CardLoader,
+   Loader,
+   PracticeLoader,
+   ProfileLoader,
+   QuizzLoader
+} from "../components/atoms/loader"
 
 const Learn = lazy(() => import("../pages/learn"))
 const Article = lazy(() => import("../pages/article"))
@@ -13,7 +20,7 @@ const Home = lazy(() => import("../pages/home"))
 const Profile = lazy(() => import("../pages/profile"))
 export default function Router() {
    return (
-      <main className="bg-blue-4000 w-full pb-20 md:w-7/12">
+      <main className="bg-blue-4000 w-full pb-20 md:w-7/12 lg:px-4">
          <Routes>
             <Route
                element={
@@ -25,7 +32,7 @@ export default function Router() {
             />
             <Route
                element={
-                  <Suspense fallback={<Loader />}>
+                  <Suspense fallback={<ProfileLoader />}>
                      <ProtectedRoute>
                         <Profile />
                      </ProtectedRoute>
@@ -35,7 +42,7 @@ export default function Router() {
             />
             <Route
                element={
-                  <Suspense fallback={<Loader />}>
+                  <Suspense fallback={<CardLoader />}>
                      <Learn />
                   </Suspense>
                }
@@ -52,7 +59,7 @@ export default function Router() {
 
             <Route
                element={
-                  <Suspense fallback={<Loader />}>
+                  <Suspense fallback={<ArticleLoader />}>
                      <Article />
                   </Suspense>
                }
@@ -60,7 +67,7 @@ export default function Router() {
             />
             <Route
                element={
-                  <Suspense fallback={<Loader />}>
+                  <Suspense fallback={<QuizzLoader />}>
                      <ProtectedRoute>
                         <Quiz />
                      </ProtectedRoute>
@@ -70,7 +77,7 @@ export default function Router() {
             />
             <Route
                element={
-                  <Suspense fallback={<Loader />}>
+                  <Suspense fallback={<PracticeLoader />}>
                      <ProtectedRoute>
                         <Practice />
                      </ProtectedRoute>

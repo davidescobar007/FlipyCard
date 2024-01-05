@@ -33,13 +33,13 @@ function Navbar() {
    return (
       <header className="border-b-1 navbar fixed z-10 flex h-14 border-neutral bg-base-100 shadow-md">
          <div className="flex-1">
-            <div className="hidden  w-16 select-none md:block">
+            <div className="w-16 select-none">
                <Link to="/">
                   <img alt="heart with german flag colors" src="/logo.png" />
                </Link>
             </div>
             <Link to="/">
-               <Title extraClassName=" select-none text-xl font-bold flex content-center" type="h1">
+               <Title extraClassName="hidden md:block select-none text-xl font-bold flex content-center" type="h1">
                   LingoDeutsch
                </Title>
             </Link>
@@ -55,11 +55,11 @@ function Navbar() {
                   </span>
                </label>
                <ul
-                  className="menu-sm dropdown-content menu rounded-box mt-3 w-52 bg-base-100 p-2 shadow-md"
+                  className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow-lg"
                   tabIndex={0}
                >
                   <li>
-                     <div className="justify-between" onClick={() => i18n.changeLanguage("de")}>
+                     <div className="my-1 justify-between py-3 text-lg" onClick={() => i18n.changeLanguage("de")}>
                         {t("menu.germanOption")}
                         <span className="text-lg">
                            <img
@@ -72,7 +72,7 @@ function Navbar() {
                      </div>
                   </li>
                   <li>
-                     <div className="justify-between" onClick={() => i18n.changeLanguage("es")}>
+                     <div className="my-1 justify-between py-3 text-lg" onClick={() => i18n.changeLanguage("es")}>
                         {t("menu.spanishOption")}
                         <span className="text-lg">
                            <img
@@ -94,11 +94,11 @@ function Navbar() {
                      </div>
                   </label>
                   <ul
-                     className="menu-sm dropdown-content menu rounded-box mt-3 w-52 bg-base-100 p-2 shadow"
+                     className="menu dropdown-content menu-sm mt-3 w-52 rounded-box bg-base-100 p-2 shadow-lg"
                      tabIndex={0}
                   >
                      <li>
-                        <Link className="justify-between" to="/profile">
+                        <Link className="my-1 justify-between py-3 text-lg" to="/profile">
                            {t("menu.profile")}
                            <span className="text-lg">
                               <TbUser />
@@ -106,7 +106,7 @@ function Navbar() {
                         </Link>
                      </li>
                      <li>
-                        <Link className="justify-between" onClick={() => logOut()} to="/learn">
+                        <Link className="my-1 justify-between py-3 text-lg" onClick={() => logOut()} to="/learn">
                            {t("menu.logOut")}
                            <span className="text-lg">
                               <TbLogout />

@@ -5,10 +5,13 @@ import PropTypes from "prop-types"
 import useSound from "use-sound"
 
 import { StoreContext } from "../../../context/global.state"
+import { useLocalStorage } from "../../../customHooks/useLocalStorage"
 import useRandomObjectFromArray from "../../../customHooks/useRandomObject"
 import CardFlipper from "../../../features/flipCard"
+import { getPercentage } from "../../../utils"
 import Button from "../../atoms/button"
 import ProgressPercentage from "../../atoms/progressBar"
+import BadgeListMolecule from "../../molecules/badgeList"
 import CardsStats from "../../molecules/cardsStats"
 import FlipCard from "../../molecules/flipCard"
 
@@ -17,13 +20,20 @@ import flipSound from "/flipSound.mp3"
 
 function CardsOrg({ cards }) {
    const { t } = useTranslation()
-   const { randomObject, getRandomObject, progressPercentage } = useRandomObjectFromArray(cards)
+   let { randomObject, getRandomObject, filteredArrayLength, filteringComplete } = useRandomObjectFromArray(cards)
+   const [localStorageLevel, setLocalStorageLevel] = useLocalStorage("selectedLevel", "")
+
    const [isFlipped, setIsFlipped] = useState(false)
    const [animation, setAnimation] = useState("")
    const { german_translation, spanish_translation } = randomObject?.expand?.word_id || {}
 
-   const { updateCard } = useContext(StoreContext)
-
+   const levelTranslations = [
+      { label: t("practice.cardStat.easy"), value: "easy" },
+      { label: t("practice.cardStat.medium"), value: "medium" },
+      { label: t("practice.cardStat.hard"), value: "hard" }
+   ]
+   const { updateCard, getCardsList } = useContext(StoreContext)
+   const percentage = getPercentage(filteredArrayLength, cards.length)
    const [playFlipSound] = useSound(flipSound, { volume: 0.1 })
    const [playCardSound] = useSound(cardSound, { volume: 0.08 })
 
@@ -46,18 +56,31 @@ function CardsOrg({ cards }) {
       }, 401)
    }
 
+   const getCardsByLevel = (event) => {
+      const selectedLevelTarget = event.target.dataset["value"]
+      setLocalStorageLevel(selectedLevelTarget)
+      if (localStorageLevel !== selectedLevelTarget) {
+         getCardsList(true, selectedLevelTarget)
+      }
+   }
+
    return (
       <main className="w-full content-center lg:w-10/12">
-         {!randomObject && progressPercentage > 100 ? (
+         {!randomObject && filteringComplete ? (
             <div className="flex columns-1 flex-col justify-center">
                <CardsStats />
-               {/* TODO: onclick to restart  useRandomObjectFromArray customhook*/}
+               {/* TODO: onclick to restart  useRandomObjectFromArray customHook*/}
                <Button onClick={() => location.reload()}>{t("practice.startAgain")}</Button>
             </div>
          ) : (
             randomObject && (
                <>
-                  <ProgressPercentage value={progressPercentage} />
+                  <BadgeListMolecule
+                     itemsArray={levelTranslations}
+                     onClick={getCardsByLevel}
+                     selectedItem={localStorageLevel}
+                  />
+                  <ProgressPercentage value={percentage} />
                   <div className={animation}>
                      <CardFlipper isFlipped={isFlipped}>
                         <FlipCard message={german_translation || ""} onClick={handleFlip} />
@@ -65,19 +88,25 @@ function CardsOrg({ cards }) {
                      </CardFlipper>
                   </div>
                   <footer className="mt-6 flex w-full content-between justify-center">
-                     <div className="btn-group">
-                        <button className="btn btn-outline btn-accent" onClick={() => handleNextCard("easy")}>
-                           <span className="mr-1 text-lg">🙂</span>
-                           {t("practice.cardStat.easy")}
+                     <div className="btn-group flex gap-1 md:gap-3">
+                        <button
+                           className="btn btn-outline btn-accent px-2 md:px-4"
+                           onClick={() => handleNextCard("easy")}
+                        >
+                           <span className="text-lg">🙂</span>
+                           {levelTranslations[0]["label"]}
                         </button>
                         <button
-                           className="btn btn-outline btn-primary mx-1"
+                           className="btn btn-outline btn-primary px-2 md:px-4"
                            onClick={() => handleNextCard("medium")}
                         >
-                           <span className="mr-1 text-lg">🤔</span> {t("practice.cardStat.medium")}
+                           <span className="text-lg">🤔</span> {levelTranslations[1]["label"]}
                         </button>
-                        <button className="btn btn-outline btn-warning" onClick={() => handleNextCard("hard")}>
-                           <span className="mr-1 text-lg">😰</span> {t("practice.cardStat.hard")}
+                        <button
+                           className="btn btn-outline btn-warning px-2 md:px-4"
+                           onClick={() => handleNextCard("hard")}
+                        >
+                           <span className="text-lg">😰</span> {levelTranslations[2]["label"]}
                         </button>
                      </div>
                   </footer>
@@ -87,8 +116,6 @@ function CardsOrg({ cards }) {
       </main>
    )
 }
-
-CardsOrg.defaultProps = {}
 
 CardsOrg.propTypes = {
    cards: PropTypes.array.isRequired
