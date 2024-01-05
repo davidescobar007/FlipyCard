@@ -59,6 +59,7 @@
       "level": "Niveau",
       "times_seen": "Häufigkeit",
       "delete": "Löschen",
-      "tableTitle": "Ein Blick auf deine Statistiken."
+      "tableTitle": "Ein Blick auf deine Statistiken.",
+      "words_by_level": "Wörter nach Niveau"
    }
 }

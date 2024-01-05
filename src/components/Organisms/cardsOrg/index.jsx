@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useContext } from "react"
-import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import PropTypes from "prop-types"
 import useSound from "use-sound"
@@ -26,7 +25,6 @@ function CardsOrg({ cards }) {
 
    const [isFlipped, setIsFlipped] = useState(false)
    const [animation, setAnimation] = useState("")
-   const [selectedLevel, setSelectedLevel] = useState("")
    const { german_translation, spanish_translation } = randomObject?.expand?.word_id || {}
 
    const levelTranslations = [
@@ -57,8 +55,6 @@ function CardsOrg({ cards }) {
          setAnimation("")
       }, 401)
    }
-
-   useEffect(() => {}, [selectedLevel])
 
    const getCardsByLevel = (event) => {
       const selectedLevelTarget = event.target.dataset["value"]

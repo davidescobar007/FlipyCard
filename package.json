@@ -14,6 +14,7 @@
    },
    "dependencies": {
       "@ramonak/react-progress-bar": "^5.0.2",
+      "chart.js": "^4.4.1",
       "debounce": "^1.2.1",
       "i18next": "^23.7.6",
       "i18next-browser-languagedetector": "^7.2.0",
@@ -21,6 +22,7 @@
       "openai": "^4.7.1",
       "pocketbase": "^0.10.1",
       "react": "^18.2.0",
+      "react-chartjs-2": "^5.2.0",
       "react-dom": "^18.2.0",
       "react-horizontal-scrolling-menu": "^3.2.3",
       "react-i18next": "^13.5.0",

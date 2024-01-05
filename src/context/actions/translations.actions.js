@@ -17,9 +17,9 @@ const resetTranslation = async (dispatch) => {
    }
 }
 
-const getWordsTranslationFromDB = async (wordToTranslate, params, dispatch) => {
+const getWordsTranslationFromDB = async (params, dispatch) => {
    try {
-      const translation = await pbGetSingleRecordQuery(params)
+      const translation = await pbGetSingleRecordQuery({ ...params, collection: constants.VOCABULARY })
       dispatch(translationActionTypes.setTranslation(translation))
       return translation
    } catch (error) {
@@ -46,7 +46,12 @@ const saveTranslationToDB = async (translation, dispatch) => {
       dispatch(translationActionTypes.setTranslation(recordCreated))
       return recordCreated
    } catch (error) {
-      handleErrorModal(error)
+      if (String(error) === "ClientResponseError 400: Failed to create record.") {
+         dispatch(translationActionTypes.setTranslation(translation))
+         return null
+      } else {
+         handleErrorModal(error)
+      }
    }
 }
 
@@ -54,23 +59,23 @@ const searchTranslationFromSources = async (wordToTranslate, dispatch) => {
    dispatch(actionLoaders.loadingWordTranslation(true))
 
    const exactTranslationFromDB = await getWordsTranslationFromDB(
-      wordToTranslate,
-      { collection: constants.VOCABULARY, field: "german_translation", operator: "~" },
+      { field: "german_translation", operator: "~", param: removePunctuation(wordToTranslate) },
       dispatch
    )
-   const similarTranslationFromDB = await getWordsTranslationFromDB(
-      wordToTranslate,
-      { collection: constants.VOCABULARY, field: "conjugation.allConjugations", operator: "~" },
-      dispatch
-   )
-   const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
    if (exactTranslationFromDB) {
       dispatch(actionLoaders.loadingWordTranslation(false))
       return
-   } else if (similarTranslationFromDB) {
+   }
+   const similarTranslationFromDB = await getWordsTranslationFromDB(
+      { field: "conjugation.allConjugations", operator: "~", param: removePunctuation(wordToTranslate) },
+      dispatch
+   )
+   if (similarTranslationFromDB) {
       dispatch(actionLoaders.loadingWordTranslation(false))
       return
-   } else if (translationFromAPI.data) {
+   }
+   const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
+   if (translationFromAPI.data) {
       saveTranslationToDB(translationFromAPI.data, dispatch)
       dispatch(actionLoaders.loadingWordTranslation(false))
       return

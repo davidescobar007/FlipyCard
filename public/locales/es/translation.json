@@ -59,6 +59,7 @@
       "level": "Nivel",
       "times_seen": "Veces visto",
       "delete": "Eliminar",
-      "tableTitle": "Un vistazo a tus estadísticas"
+      "tableTitle": "Un vistazo a tus estadísticas",
+      "words_by_level": "Palabras por nivel"
    }
 }

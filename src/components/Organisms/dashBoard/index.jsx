@@ -2,7 +2,9 @@ import { useTranslation } from "react-i18next"
 import PropTypes from "prop-types"
 
 import { filterProperties, flattenObjects } from "../../../utils"
+import { getLevelsData } from "../../../utils/statistics.utils"
 import TableAtom from "../../atoms/table"
+import BarChartMolecule from "../../molecules/barChart"
 
 const columns = ["german_translation", "level", "times_seen"]
 const levelValues = {
@@ -19,15 +21,18 @@ function DashBoardOrganism({ data }) {
 
    const translatedData = processedData.map((item) => ({ ...item, level: t(`practice.cardStat.${item.level}`) }))
 
+   const dataToDashBoard = getLevelsData(data)
+
    return (
       <div className="w-full">
          <TableAtom
             columns={columns}
             data={translatedData}
             displayIndex={false}
-            extraClassname="table-compact"
+            extraClassname="table-compact my-5"
             title={t("data.tableTitle")}
          />
+         <BarChartMolecule dataSet={dataToDashBoard} />
       </div>
    )
 }
