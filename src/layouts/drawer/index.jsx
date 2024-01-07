@@ -10,7 +10,7 @@ function Drawer({ children }) {
 
    return (
       <section
-         className="mt-24 flex justify-between bg-base-100 px-5 2xl:px-32"
+         className="mt-24 flex justify-between bg-base-100 px-5 pb-34 2xl:px-32"
          data-theme={isDarkTheme ? "night" : "mytheme"}
       >
          {children}
