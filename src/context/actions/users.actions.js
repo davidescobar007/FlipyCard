@@ -50,7 +50,7 @@ const updateUserScore = async (id, newScore) => {
    }
    const userScore = await pbGetSingleRecordQuery(params)
    const currentScore = Number(userScore.score)
-   userScore.score = currentScore + Number(newScore)
+   userScore.score = Math.round(currentScore + Number(newScore))
    await pbUpdateRecord(constants.SCORE, userScore.id, userScore)
 }
 

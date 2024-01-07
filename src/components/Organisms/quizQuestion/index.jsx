@@ -82,7 +82,7 @@ export default function QuizQuestion({ arrayOfQuestions }) {
          ) : (
             <Title extraClassName="font-medium text-2xl mb-5 animate__animated animate__backInRight">
                {t("quiz.quizResult", { totalRating, numberOfQuestions: arrayOfQuestions.length })}
-               <span className="font-bold">{(totalRating * 100) / arrayOfQuestions.length}</span>
+               <span className="font-bold">{Math.round((totalRating * 100) / arrayOfQuestions.length)}</span>
             </Title>
          )}
       </div>
